@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -10,6 +9,7 @@ public class Item {
     private ItemNames  name;
     private int wholeBoughtPrice;
     private Queue<Evidence> evidences;
+    private final int initialPrice;
 
     /**
      * The constructor for adding items into shop.
@@ -17,24 +17,27 @@ public class Item {
      * @param price The price of the product to be sold.
      * @param name The name of the product to be sold.
      */
-    public Item(int price, String name) throws WrongItemException{
+    public Item(int price, String name, int initialPrice) throws WrongItemException{
         setPrice(price);
         this.amount = -1;
         setName(name);
         wholeBoughtPrice = 0;
         evidences = new LinkedList<>();
+        this.initialPrice = initialPrice;
     }
 
-    public Item(int price, int wholeBoughtPrice, String name, int amount) throws WrongItemException, IllegalArgumentException{
+    public Item(int price, int wholeBoughtPrice, String name, int amount, int initialPrice) throws WrongItemException, IllegalArgumentException{
         setPrice(price);
         setWholeBoughtPrice(wholeBoughtPrice);
         setName(name);
         setAmount(amount);
         evidences = new LinkedList<>();
+        this.initialPrice = initialPrice;
     }
 
 
     public Item() {
+        this.initialPrice = 0;
     }
 
     public void setPrice(int price) throws WrongItemException{
@@ -81,18 +84,9 @@ public class Item {
         return name;
     }
 
-    public boolean addEvidence(int amount) throws WrongEvidenceException, WrongItemException{
-        itemBought(amount);
-        return evidences.add(new Evidence(amount, this.price));
-    }
-
-    public void moveWithAmount(int move) throws WrongItemException{
-        int afterMove = amount + move;
-        if(afterMove < 0){
-            throw new WrongItemException("Wrong movement with amount");
-        }else {
-            amount = afterMove;
-        }
+    public void itemBought(int amount) throws WrongEvidenceException, WrongItemException{
+        moveWithWholeBoughtPrice(amount);
+        evidences.add(new Evidence(amount, this.price));
     }
 
     public int itemSold(int amount) throws WrongItemException{
@@ -111,20 +105,57 @@ public class Item {
         return result;
     }
 
-    public void itemBought(int amount) throws WrongItemException{
+    public void moveWithAmount(int move) throws WrongItemException{
+        int afterMove = amount + move;
+        if(afterMove < 0){
+            throw new WrongItemException("Wrong movement with amount");
+        }else {
+            amount = afterMove;
+        }
+    }
+    private void moveWithWholeBoughtPrice(int amount) throws WrongItemException{
         moveWithAmount(amount);
         this.wholeBoughtPrice = this.wholeBoughtPrice + (this.price * amount);
     }
 
+    public String writeEvidences(){
+        Queue<Evidence> temp = evidences;
+        String result = "";
+        while(temp.peek() != null){
+            result += temp.peek().intoCSV();
+            temp.remove();
+        }
+        return result;
+    }
+
+    public String intoCSV(){
+        return this.price+">"+this.wholeBoughtPrice+">"+this.name+">"+this.amount+">"+this.initialPrice+writeEvidences();
+    }
+
+    private void addEvidennce(int amount, int price) throws WrongEvidenceException {
+        evidences.add(new Evidence(amount, price));
+    }
+
+    public void loadEvidences(String[] arr) throws WrongEvidenceException{
+        for (int i = 5; i < arr.length; i = i +2) {
+           addEvidennce(Integer.parseInt(arr[i]), Integer.parseInt(arr[i+1]));
+        }
+    }
+
     @Override
     public String toString() {
-        return "Item{" +
-                "price=" + price +
-                ", amount=" + amount +
-                ", name=" + name +
-                ", wholeBoughtPrice=" + wholeBoughtPrice +
-                '}';
+        int income = this.amount * this.price;
+        String doIncome;
+        if(income > this.wholeBoughtPrice){
+            doIncome = Utility.colourMap("green") + (income - wholeBoughtPrice) + Utility.colourMap("reset");
+        }else if(income < this.wholeBoughtPrice){
+            doIncome = Utility.colourMap("red") + (income - wholeBoughtPrice) + Utility.colourMap("reset");
+        }else {
+            doIncome = Utility.colourMap("yellow") + (0) + Utility.colourMap("reset");
+        }
+        return "|Name: "+this.name+ "| |price: "+this.price+"| |amount:"+this.amount+"| |spent: "+this.wholeBoughtPrice+"| |income: " + doIncome+"|";
     }
+
 
     private static class Evidence{
         int amount;
@@ -173,6 +204,10 @@ public class Item {
                 move = 0;
                 return new int[]{move, this.amount, earnings, sold};
             }
+        }
+
+        public String intoCSV(){
+            return ">"+this.amount+">"+this.price;
         }
     }
 

@@ -1,0 +1,2 @@
+price>wholeBoughtPrice>name>amount>initialPrice>now all evidences in (amount>price) 
+12>1280>Banana>72>10>52>20>20>12
