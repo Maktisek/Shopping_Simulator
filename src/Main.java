@@ -5,6 +5,16 @@ public class Main {
 
 
 
+        Player player = new Player();
+        System.out.println(player.getItems());
+        try {
+            player.getItems().get(4).setPrice(Utility.priceUpdater(player.getItems().get(4).getInitialPrice()));
+        } catch (WrongItemException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(player.getItems());
+
+
     }
     public static void priceUpdaterTest(){
         int initialBananaPrice = 5000;

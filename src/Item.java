@@ -72,6 +72,10 @@ public class Item {
         return price;
     }
 
+    public int getInitialPrice() {
+        return initialPrice;
+    }
+
     public int getAmount() {
         return amount;
     }
