@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Utility {
 
     public static String colourMap(String colour){
@@ -31,4 +33,11 @@ public class Utility {
             }
         }
     }
+
+    public static int priceUpdater(float price){
+        Random rd = new Random();
+        int percent = rd.nextInt(-40,40);
+        return (int) (price + ((price/100) * percent));
+    }
+
 }

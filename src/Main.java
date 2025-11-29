@@ -4,8 +4,13 @@ public class Main {
     public static void main(String[] args) {
 
 
-    itemLoaderTest();
 
+    }
+    public static void priceUpdaterTest(){
+        int initialBananaPrice = 5000;
+        System.out.println(initialBananaPrice);
+        initialBananaPrice = Utility.priceUpdater(initialBananaPrice);
+        System.out.println(initialBananaPrice);
     }
     public static void toStringTest(){
         Item item = new Item();
@@ -49,6 +54,9 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        /**
+         * Tady je algoritmus na loadeni itemu.
+         */
         Item item2 = new Item();
         try (BufferedReader br = new BufferedReader(new FileReader("res\\test.txt"))){
             br.readLine();
