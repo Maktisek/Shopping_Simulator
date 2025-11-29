@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Player {
@@ -24,7 +21,7 @@ public class Player {
         loadPlayerDays();
     }
 
-    public void loadBasicPlayer() {
+    private void loadBasicPlayer() {
         try (BufferedReader br = new BufferedReader(new FileReader("res\\playerSave.txt"))) {
             String line1 = br.readLine();
             String line2 = br.readLine();
@@ -43,7 +40,7 @@ public class Player {
 
     }
 
-    public void loadPlayerItems() {
+    private void loadPlayerItems() {
         try (BufferedReader br = new BufferedReader(new FileReader("res\\playerItems.txt"))) {
             String line;
             br.readLine();
@@ -60,7 +57,7 @@ public class Player {
 
     }
 
-    public void loadPlayerDays() {
+    private void loadPlayerDays() {
         try (BufferedReader br = new BufferedReader(new FileReader("res\\playerDays.txt"))) {
             String line;
             br.readLine();
@@ -72,6 +69,46 @@ public class Player {
         }
     }
 
+    public void save(){
+        saveBasicPlayer();
+        savePlayerItems();
+        savePlayerDays();
+    }
+
+    private void saveBasicPlayer(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerSave.txt"))){
+            bw.write(basicPlayerIntoCSV() + "\n");
+            bw.write(this.currentDay.dayIntoCSV()+ "\n");
+            bw.write("Current shop will be added in future");
+        } catch (IOException _) {
+        }
+
+    }
+
+    private void savePlayerItems(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerItems.txt"))){
+            bw.write("price>wholeBoughtPrice>name>amount>initialPrice>now all evidences in (amount>price) \n");
+            for (Item item : items) {
+                bw.write(item.intoCSV() + "\n");
+            }
+        }catch (IOException _) {
+        }
+    }
+
+    private void savePlayerDays(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerDays.txt"))){
+            bw.write("number of the day>dayIncome");
+            for (Day day : daysDatabase) {
+                bw.write(day.dayIntoCSV()+"\n");
+            }
+        }catch (IOException _) {
+        }
+    }
+
+
+    public String basicPlayerIntoCSV(){
+        return this.name+">"+this.balance+">"+this.allTimeBalance+">"+this.dayNumber;
+    }
 
 
     public String getName() {
@@ -126,6 +163,10 @@ public class Player {
 
         public int getDayIncome() {
             return dayIncome;
+        }
+
+        public String dayIntoCSV(){
+            return this.number+">"+this.dayIncome;
         }
     }
 

@@ -5,6 +5,11 @@ public class Main {
 
 
 
+    playerLoadAndSaveTest();
+
+    }
+
+    public static void playerLoadAndSaveTest(){
         Player player = new Player();
         System.out.println(player.getItems());
         try {
@@ -13,8 +18,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
         System.out.println(player.getItems());
-
-
+        player.save();
     }
     public static void priceUpdaterTest(){
         int initialBananaPrice = 5000;
