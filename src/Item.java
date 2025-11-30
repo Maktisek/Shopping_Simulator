@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class Item {
 
@@ -43,7 +41,12 @@ public class Item {
         return this.price+">"+this.name+">"+this.initialPrice;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "price=" + price +
+                ", name=" + name +
+                ", initialPrice=" + initialPrice +
+                '}';
+    }
 }

@@ -1,3 +1,3 @@
-Maktis>0>0>1
+Maktis>0>0
 1>0
 Current shop will be added in future
