@@ -110,37 +110,8 @@ public class Player {
         return this.name+">"+this.balance+">"+this.allTimeBalance+">"+this.dayNumber;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-    public ArrayList<Day> getDaysDatabase() {
-        return daysDatabase;
-    }
-
-    public Day getCurrentDay() {
-        return currentDay;
-    }
-
-    public int getDayNumber() {
-        return dayNumber;
-    }
-
     public ArrayList<Item> getItems() {
         return items;
-    }
-
-    public Shop getCurrentShop() {
-        return currentShop;
-    }
-
-    public int getAllTimeBalance() {
-        return allTimeBalance;
-    }
-
-    public int getBalance() {
-        return balance;
     }
 
     private static class Day {
