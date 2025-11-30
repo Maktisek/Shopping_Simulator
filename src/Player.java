@@ -22,14 +22,11 @@ public class Player {
         try (BufferedReader br = new BufferedReader(new FileReader("res\\playerSave.txt"))) {
             String line1 = br.readLine();
             String line2 = br.readLine();
-            String line3 = br.readLine();
             String[] data1 = line1.split(">");
             String[] data2 = line2.split(">");
-            String[] data3 = line3.split(">");
             this.name = data1[0];
             this.balance = Integer.parseInt(data1[1]);
             this.allTimeBalance = Integer.parseInt(data1[2]);
-            this.dayManagement = new DayManagement(Integer.parseInt(data2[0]), Integer.parseInt(data2[1]));
         } catch (IOException _) {
         }
     }
@@ -55,10 +52,12 @@ public class Player {
         try (BufferedReader br = new BufferedReader(new FileReader("res\\playerDays.txt"))) {
             String line;
             br.readLine();
+            this.dayManagement = new DayManagement(null);
             while ((line = br.readLine()) != null){
                 String[] data = line.split(">");
                 dayManagement.addDay(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
             }
+            this.dayManagement.setCurrentDay(dayManagement.getDaysDatabase().getLast());
         } catch (IOException _) {
         }
     }
@@ -72,7 +71,6 @@ public class Player {
     private void saveBasicPlayer(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerSave.txt"))){
             bw.write(basicPlayerIntoCSV() + "\n");
-            bw.write(this.dayManagement.getCurrentDay().dayIntoCSV()+ "\n");
             bw.write("Current shop will be added in future");
         } catch (IOException _) {
         }
@@ -81,7 +79,7 @@ public class Player {
 
     private void savePlayerItems(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerItems.txt"))){
-            bw.write("price>wholeBoughtPrice>name>amount>initialPrice>now all evidences in (amount>price) \n");
+            bw.write("price>name>initialPrice>wholeBoughtPrice>amount>now all evidences in (amount>price) \n");
             for (ItemPlayer item : items) {
                 bw.write(item.intoCSV() + "\n");
             }
@@ -91,7 +89,7 @@ public class Player {
 
     private void savePlayerDays(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("res\\playerDays.txt"))){
-            bw.write("number of the day>dayIncome");
+            bw.write("number of the day>dayIncome \n");
             for (Day day : dayManagement.getDaysDatabase()) {
                 bw.write(day.dayIntoCSV()+"\n");
             }
@@ -106,6 +104,22 @@ public class Player {
 
     public ArrayList<ItemPlayer> getItems() {
         return items;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAllTimeBalance() {
+        return allTimeBalance;
+    }
+
+    public DayManagement getDayManagement() {
+        return dayManagement;
     }
 
     public static class Day {
@@ -133,6 +147,14 @@ public class Player {
         public String dayIntoCSV(){
             return this.number+">"+this.dayIncome;
         }
+
+        @Override
+        public String toString() {
+            return "Day{" +
+                    "number=" + number +
+                    ", dayIncome=" + dayIncome +
+                    '}';
+        }
     }
 
     public static class DayManagement {
@@ -140,8 +162,8 @@ public class Player {
         private Player.Day currentDay;
         private ArrayList<Day> daysDatabase;
 
-        public DayManagement(int dayNumber, int incomeCurrentDay) {
-            this.currentDay = new Day(dayNumber, incomeCurrentDay);
+        public DayManagement(Day day) {
+            this.currentDay = day;
             daysDatabase = new ArrayList<>();
         }
 

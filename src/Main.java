@@ -1,25 +1,47 @@
-import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
 
 
 
-    playerLoadAndSaveTest();
 
-    }
-
-    public static void playerLoadAndSaveTest(){
         Player player = new Player();
         System.out.println(player.getItems());
+        System.out.println(player.getDayManagement().getCurrentDay().dayIntoCSV());
         try {
-            player.getItems().get(4).setPrice(Utility.priceUpdater(player.getItems().get(4).getInitialPrice()));
-        } catch (WrongItemException e) {
-            System.out.println(e.getMessage());
+            player.getItems().get(2).itemBought(20);
+        }catch (WrongEvidenceException | WrongItemException _){
         }
-        System.out.println(player.getItems());
         player.save();
+
+        Player player1 = new Player();
+
+        System.out.println(player.getItems());
+
+        try {
+            player1.getItems().get(2).getItem().setPrice(Utility.priceUpdater(player1.getItems().get(2).getItem().getInitialPrice()));
+        }catch (WrongItemException _){
+        }
+
+        player1.save();
+        System.out.println(player1.getItems());
+
+        System.out.println(player1.getDayManagement().getDaysDatabase());
+
+
     }
+
+//    public static void playerLoadAndSaveTest(){
+//        Player player = new Player();
+//        System.out.println(player.getItems());
+//        try {
+//            player.getItems().get(4).setPrice(Utility.priceUpdater(player.getItems().get(4).getInitialPrice()));
+//        } catch (WrongItemException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        System.out.println(player.getItems());
+//        player.save();
+//    }
 //    public static void priceUpdaterTest(){
 //        int initialBananaPrice = 5000;
 //        System.out.println(initialBananaPrice);

@@ -1,1 +1,3 @@
-number of the day>dayIncome
+number of the day>dayIncome 
+1>0
+2>0

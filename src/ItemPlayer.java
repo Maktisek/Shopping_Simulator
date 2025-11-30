@@ -102,7 +102,11 @@ public class ItemPlayer {
     }
 
     public String intoCSV(){
-        return this.item.intoCSV()+">"+this.wholeBoughtPrice+">"+this.amount;
+        return this.item.intoCSV()+">"+this.wholeBoughtPrice+">"+this.amount+writeEvidences();
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     private static class Evidence{
