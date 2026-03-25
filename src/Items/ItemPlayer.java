@@ -7,17 +7,13 @@ import java.util.Queue;
 
 public class ItemPlayer {
 
-
-    private final Item item;
     private int amount;
     private int wholeBoughtPrice;
+    private double averageBuyPrice;
     private final Queue<Evidence> evidences;
 
 
-    public ItemPlayer(int price, String name, int initialPrice, int wholeBoughtPrice, int amount) throws WrongItemException, IllegalArgumentException {
-        item = new Item(price, name, initialPrice);
-        setAmount(amount);
-        setWholeBoughtPrice(wholeBoughtPrice);
+    public ItemPlayer() {
         this.evidences = new LinkedList<>();
     }
 
@@ -37,10 +33,19 @@ public class ItemPlayer {
         }
     }
 
-    public void buyItem(int amount) throws WrongEvidenceException, WrongItemException {
+    public void buyItem(int amount, int shopPrice) throws WrongEvidenceException, WrongItemException {
         moveWithAmount(amount);
-        moveWithWholeBoughtPrice(amount);
-        evidences.add(new Evidence(amount, this.item.getPrice()));
+        moveWithWholeBoughtPrice(amount, shopPrice);
+        this.evidences.add(new Evidence(amount, shopPrice));
+        updateAveragePrice();
+    }
+
+    private void updateAveragePrice(){
+        if (this.amount > 0){
+            this.averageBuyPrice = (double) this.wholeBoughtPrice / this.amount;
+        }else {
+            this.averageBuyPrice = 0;
+        }
     }
 
     private void moveWithAmount(int move) throws WrongItemException {
@@ -52,8 +57,8 @@ public class ItemPlayer {
         }
     }
 
-    private void moveWithWholeBoughtPrice(int amount) {
-        this.wholeBoughtPrice += (this.item.getPrice() * amount);
+    private void moveWithWholeBoughtPrice(int amount, int shopPrice) {
+        this.wholeBoughtPrice += (shopPrice * amount);
     }
 
     public int sellItem(int amount, int NPCPrice) throws WrongItemException {
@@ -68,15 +73,7 @@ public class ItemPlayer {
             }
             this.wholeBoughtPrice = this.wholeBoughtPrice - arr[2];
         }
+        updateAveragePrice();
         return result;
-    }
-
-    private void addEvidence(int amount, int price) throws WrongEvidenceException {
-        this.evidences.add(new Evidence(amount, price));
-    }
-
-
-    public Item getItem() {
-        return item;
     }
 }
