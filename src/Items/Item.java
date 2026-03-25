@@ -1,9 +1,10 @@
+package Items;
 
 public class Item {
 
 
     private int price;
-    private ItemNames  name;
+    private ItemNames name;
     private final int initialPrice;
 
     public Item(int price, String name, int initialPrice) throws WrongItemException, IllegalArgumentException{
@@ -12,14 +13,13 @@ public class Item {
         this.initialPrice = initialPrice;
     }
 
-    public void setPrice(int price) throws WrongItemException{
+    public void setPrice(int price) throws WrongItemException {
         if(price > 0){
             this.price = price;
         }else {
             throw new WrongItemException("Wrong price");
         }
     }
-
 
     public void setName(String name) throws IllegalArgumentException{
        this.name = ItemNames.valueOf(name);
@@ -37,13 +37,9 @@ public class Item {
         return name;
     }
 
-    public String intoCSV(){
-        return this.price+">"+this.name+">"+this.initialPrice;
-    }
-
     @Override
     public String toString() {
-        return "Item{" +
+        return "Player.Items.Item{" +
                 "price=" + price +
                 ", name=" + name +
                 ", initialPrice=" + initialPrice +
