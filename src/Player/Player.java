@@ -1,5 +1,6 @@
 package Player;
 
+import Items.ItemNames;
 import Items.ItemPlayer;
 
 import java.util.ArrayList;
@@ -14,6 +15,15 @@ public class Player {
 
     public Player() {
         this.items = new ArrayList<>();
+    }
+
+    public ItemPlayer findItem(ItemNames name){
+        for (ItemPlayer item : items){
+            if(item.getName() == name){
+                return item;
+            }
+        }
+        return null;
     }
 
     public ArrayList<ItemPlayer> getItems() {
