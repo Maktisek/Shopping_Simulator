@@ -1,10 +1,13 @@
 package NPCs;
 
 import Items.Item;
+import Items.ItemPlayer;
 import Items.Shop;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class NPC {
 
@@ -14,20 +17,59 @@ public class NPC {
     private Item[] demand;
 
     public void loadDemand(Player player, Shop shop) {
+        resetDemand();
         double first = 0;
         double second = 0;
-        for (int i = 0; i < this.items.size(); i++) {
-            double s = (player.findItem(items.get(i).getName()).getAmount() * quantityWeight) +
-                    ((shop.findItem(items.get(i).getName()).getPrice() / player.findItem(items.get(i).getName()).getAverageBuyPrice()) * convenienceWeight);
-            if (s > first) {
-                first = s;
-                demand[0] = items.get(i);
-            } else if (s > second) {
-                second = s;
-                demand[1] = items.get(i);
+        for (Item item : this.items) {
+            ItemPlayer playersItem = player.findItem(item.getName());
+            Item shopsItem = shop.findItem(item.getName());
+            if (playersItem != null && shopsItem != null) {
+                double playerAverage = playersItem.getAverageBuyPrice();
+                if (playerAverage != 0) {
+                    double s = (playersItem.getAmount() * quantityWeight) +
+                            ((shopsItem.getPrice() / playerAverage) * convenienceWeight);
+                    if (s > first) {
+                        demand[1] = demand[0];
+                        second = first;
+                        first = s;
+                        demand[0] = item;
+                    } else if (s > second) {
+                        second = s;
+                        demand[1] = item;
+                    }
+                }
             }
         }
+        checkLoadDemand();
     }
+
+    private void checkLoadDemand(){
+        if(demand[0] == null && demand[1] == null){
+            fillWholeDemandRandomly();
+        }else if(demand[1] == null){
+            Random rd = new Random();
+            do{
+                demand[1] = items.get(rd.nextInt(items.size()));
+            }while (demand[0] == demand[1]);
+        }
+    }
+
+    private void fillWholeDemandRandomly(){
+        Random rd = new Random();
+        int indexOne = rd.nextInt(items.size());
+        int indexTwo;
+        do{
+            indexTwo = rd.nextInt(items.size());
+        }while (indexOne == indexTwo);
+
+        demand[0] = items.get(indexOne);
+        demand[1] = items.get(indexTwo);
+    }
+
+    private void resetDemand(){
+        Arrays.fill(demand, null);
+    }
+
 
     public int getQuantityWeight() {
         return quantityWeight;
