@@ -3,8 +3,8 @@ package Items;
 public class Item {
 
 
-    private int price;
     private ItemNames name;
+    private int price;
     private final int initialPrice;
 
     public Item(int price, String name, int initialPrice) throws WrongItemException, IllegalArgumentException{
