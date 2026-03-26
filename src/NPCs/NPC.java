@@ -77,6 +77,37 @@ public class NPC {
         }
     }
 
+
+    public void setNewPrices(Player player) throws WrongItemException {
+        Random rd = new Random();
+        for (Item item : demand) {
+            if(item == null){
+                continue;
+            }
+            ItemPlayer playersItem = player.findItem(item.getName());
+            if (playersItem == null) {
+                continue;
+            }
+            double playerAverage = playersItem.getAverageBuyPrice();
+            double playerAmount = playersItem.getAmount();
+            if (playerAverage == 0 || playerAmount == 0) {
+                continue;
+            }
+            double k = calculateK(playerAverage);
+            double bonus = Math.sqrt(k) / Math.sqrt(playerAverage * playerAmount);
+            if(bonus > 5){
+                bonus = 5;
+            }
+            double percentUpdate = rd.nextInt(-10, 11) + bonus;
+            item.setPrice((int) Math.round(item.getPrice() + (((double) item.getPrice() / 100) * percentUpdate)));
+        }
+    }
+
+    private double calculateK(double averagePrice){
+        String parser = String.valueOf((int) averagePrice);
+        return 5000.00 * Math.pow(10, parser.length() - 2);
+    }
+
     public int getQuantityWeight() {
         return quantityWeight;
     }
