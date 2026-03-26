@@ -40,8 +40,12 @@ public class Item {
         return name;
     }
 
-    public Item copy() throws WrongItemException{
-        return new Item(this.price, this.name, this.initialPrice);
+    public Item copy() {
+        try {
+            return new Item(this.price, this.name, this.initialPrice);
+        }catch (WrongItemException e){
+            return null;
+        }
     }
 
     @Override

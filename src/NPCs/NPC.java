@@ -3,6 +3,7 @@ package NPCs;
 import Items.Item;
 import Items.ItemPlayer;
 import Items.Shop;
+import Items.WrongItemException;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -43,33 +44,38 @@ public class NPC {
         checkLoadDemand();
     }
 
-    private void checkLoadDemand(){
-        if(demand[0] == null && demand[1] == null){
+    private void checkLoadDemand() {
+        if (demand[0] == null && demand[1] == null) {
             fillWholeDemandRandomly();
-        }else if(demand[1] == null){
+        } else if (demand[1] == null) {
             Random rd = new Random();
-            do{
+            do {
                 demand[1] = items.get(rd.nextInt(items.size()));
-            }while (demand[0] == demand[1]);
+            } while (demand[0] == demand[1]);
         }
     }
 
-    private void fillWholeDemandRandomly(){
+    private void fillWholeDemandRandomly() {
         Random rd = new Random();
         int indexOne = rd.nextInt(items.size());
         int indexTwo;
-        do{
+        do {
             indexTwo = rd.nextInt(items.size());
-        }while (indexOne == indexTwo);
+        } while (indexOne == indexTwo);
 
         demand[0] = items.get(indexOne);
         demand[1] = items.get(indexTwo);
     }
 
-    private void resetDemand(){
+    private void resetDemand() {
         Arrays.fill(demand, null);
     }
 
+    public void loadItems(ArrayList<Item> temp) {
+        for (Item item : temp) {
+            this.items.add(item.copy());
+        }
+    }
 
     public int getQuantityWeight() {
         return quantityWeight;
