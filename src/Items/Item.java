@@ -10,7 +10,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int price, String name, int initialPrice) throws WrongItemException, IllegalArgumentException{
+    public Item(int price, ItemNames name, int initialPrice) throws WrongItemException{
         setPrice(price);
         setName(name);
         this.initialPrice = initialPrice;
@@ -24,8 +24,8 @@ public class Item {
         }
     }
 
-    public void setName(String name) throws IllegalArgumentException{
-       this.name = ItemNames.valueOf(name);
+    public void setName(ItemNames name){
+       this.name = name;
     }
 
     public int getPrice() {
@@ -38,6 +38,10 @@ public class Item {
 
     public ItemNames getName() {
         return name;
+    }
+
+    public Item copy() throws WrongItemException{
+        return new Item(this.price, this.name, this.initialPrice);
     }
 
     @Override
