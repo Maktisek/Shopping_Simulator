@@ -5,7 +5,10 @@ public class Item {
 
     private ItemNames name;
     private int price;
-    private final int initialPrice;
+    private int initialPrice;
+
+    public Item() {
+    }
 
     public Item(int price, String name, int initialPrice) throws WrongItemException, IllegalArgumentException{
         setPrice(price);

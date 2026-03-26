@@ -7,6 +7,7 @@ import java.util.Queue;
 
 public class ItemPlayer {
 
+    private ItemNames name;
     private int amount;
     private int wholeBoughtPrice;
     private double averageBuyPrice;
@@ -75,5 +76,33 @@ public class ItemPlayer {
         }
         updateAveragePrice();
         return result;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public Queue<Evidence> getEvidences() {
+        return evidences;
+    }
+
+    public double getAverageBuyPrice() {
+        return averageBuyPrice;
+    }
+
+    public void setAverageBuyPrice(double averageBuyPrice) {
+        this.averageBuyPrice = averageBuyPrice;
+    }
+
+    public int getWholeBoughtPrice() {
+        return wholeBoughtPrice;
+    }
+
+    public ItemNames getName() {
+        return name;
+    }
+
+    public void setName(ItemNames name) {
+        this.name = name;
     }
 }
