@@ -32,6 +32,18 @@ public class Item {
         return new Item(this.name, this.currentDayAmount, this.penalization, this.currentPrice, this.basePrice);
     }
 
+    public void updatePenalization(int change){
+        this.penalization += change;
+    }
+
+    public void updateCurrentDayAmount(int change){
+        this.currentDayAmount += change;
+    }
+
+    public void resetCurrentDayAmount(){
+        this.currentDayAmount = 0;
+    }
+
     public void setName(ItemNames name) {
         this.name = name;
     }
@@ -47,7 +59,6 @@ public class Item {
     public ItemNames getName() {
         return name;
     }
-
 
 
     public void setBasePrice(int basePrice) {
