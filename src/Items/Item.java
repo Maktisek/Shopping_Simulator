@@ -47,7 +47,14 @@ public class Item {
     }
 
     public void updatePenalization(int change){
-        this.penalization += change;
+        double afterChange = this.penalization + change;
+        if(afterChange < 0.5){
+            this.penalization = 0.5;
+        }else if(afterChange > 5){
+            this.penalization = 5;
+        }else {
+            this.penalization = afterChange;
+        }
     }
 
     public void updateCurrentDayAmount(int change){
