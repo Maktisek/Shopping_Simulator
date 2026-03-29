@@ -71,7 +71,7 @@ public class NPC {
         Arrays.fill(demand, null);
     }
 
-    public void loadItems(ArrayList<Item> temp) {
+    public void loadItems(ArrayList<Item> temp) throws WrongItemException{
         for (Item item : temp) {
             this.items.add(item.copy());
         }

@@ -8,16 +8,18 @@ public class Item {
     private int currentPrice;
     private double penalization;
     private int currentDayAmount;
+    private int priceSensitivity;
 
     public Item() {
     }
 
-    public Item(ItemNames name, int currentDayAmount, double penalization, int currentPrice, int basePrice) {
+    public Item(ItemNames name, int currentDayAmount, double penalization, int currentPrice, int basePrice, int priceSensitivity) throws WrongItemException{
         this.name = name;
         this.currentDayAmount = currentDayAmount;
         this.penalization = penalization;
-        this.currentPrice = currentPrice;
+        setCurrentPrice(currentPrice);
         this.basePrice = basePrice;
+        setPriceSensitivity(priceSensitivity);
     }
 
     public void setCurrentPrice(int currentPrice) throws WrongItemException {
@@ -28,8 +30,20 @@ public class Item {
         }
     }
 
-    public Item copy() {
-        return new Item(this.name, this.currentDayAmount, this.penalization, this.currentPrice, this.basePrice);
+    public void setPriceSensitivity(int priceSensitivity) throws WrongItemException{
+        if(this.priceSensitivity > 0){
+            this.priceSensitivity = priceSensitivity;
+        }else {
+            throw new WrongItemException("Price sensitivity must be over 0");
+        }
+    }
+
+    public Item copy() throws WrongItemException {
+        return new Item(this.name, this.currentDayAmount, this.penalization, this.currentPrice, this.basePrice, priceSensitivity);
+    }
+
+    public void updatePrice() throws ArithmeticException{
+        this.currentPrice = (int) Math.round((this.basePrice * penalization * (1 + ((double) currentDayAmount / this.priceSensitivity))));
     }
 
     public void updatePenalization(int change){
@@ -80,6 +94,12 @@ public class Item {
     public void setPenalization(double penalization) {
         this.penalization = penalization;
     }
+
+    public int getPriceSensitivity() {
+        return priceSensitivity;
+    }
+
+
 
     @Override
     public String toString() {
