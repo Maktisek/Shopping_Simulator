@@ -28,7 +28,7 @@ public class NPC {
                 double playerAverage = playersItem.getAverageBuyPrice();
                 if (playerAverage != 0) {
                     double s = (playersItem.getAmount() * quantityWeight) +
-                            ((shopsItem.getPrice() / playerAverage) * convenienceWeight);
+                            ((shopsItem.getCurrentPrice() / playerAverage) * convenienceWeight);
                     if (s > first) {
                         demand[1] = demand[0];
                         second = first;
@@ -99,7 +99,7 @@ public class NPC {
                 bonus = 5;
             }
             double percentUpdate = rd.nextInt(-10, 11) + bonus;
-            item.setPrice((int) Math.round(item.getPrice() + (((double) item.getPrice() / 100) * percentUpdate)));
+            item.setCurrentPrice((int) Math.round(item.getCurrentPrice() + (((double) item.getCurrentPrice() / 100) * percentUpdate)));
         }
     }
 
