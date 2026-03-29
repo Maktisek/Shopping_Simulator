@@ -46,7 +46,7 @@ public class Item {
         this.currentPrice = (int) Math.round((this.basePrice * penalization * (1 + ((double) currentDayAmount / this.priceSensitivity))));
     }
 
-    public void updatePenalization(int change){
+    public void updatePenalization(double change){
         double afterChange = this.penalization + change;
         if(afterChange < 0.5){
             this.penalization = 0.5;
