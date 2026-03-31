@@ -22,7 +22,7 @@ public class ItemPlayer {
         if (wholeBoughtPrice >= 0) {
             this.wholeBoughtPrice = wholeBoughtPrice;
         } else {
-            throw new WrongItemException("Wrong whole bought price");
+            throw new WrongItemException("Whole bought price must be over -1");
         }
     }
 
@@ -30,7 +30,7 @@ public class ItemPlayer {
         if (amount >= 0) {
             this.amount = amount;
         } else {
-            throw new WrongItemException("Wrong price");
+            throw new WrongItemException("Amount must be over -1");
         }
     }
 
