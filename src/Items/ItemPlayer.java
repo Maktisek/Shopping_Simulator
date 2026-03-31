@@ -69,7 +69,7 @@ public class ItemPlayer {
 
     }
 
-    public void sellItem(int amount, int NPCPrice) throws WrongItemException {
+    public int sellItem(int amount, int NPCPrice) throws WrongItemException {
         moveWithAmount(-amount);
         int result = 0;
         while (amount != 0 && this.evidences.peek() != null) {
@@ -82,6 +82,7 @@ public class ItemPlayer {
             this.wholeBoughtPrice = this.wholeBoughtPrice - arr[2];
         }
         updateAveragePrice();
+        return result;
     }
 
     public int getAmount() {
