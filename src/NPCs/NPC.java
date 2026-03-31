@@ -88,12 +88,11 @@ public class NPC {
                 continue;
             }
             double playerAverage = playersItem.getAverageBuyPrice();
-            double playerAmount = playersItem.getAmount();
-            if (playerAverage == 0 || playerAmount == 0) {
+            if (playerAverage == 0) {
                 continue;
             }
             double k = calculateK(playerAverage);
-            double bonus = Math.sqrt(k) / Math.sqrt(playerAverage * playerAmount);
+            double bonus = Math.sqrt(k) / Math.sqrt(playersItem.getWholeBoughtPrice());
             if(bonus > 5){
                 bonus = 5;
             }
