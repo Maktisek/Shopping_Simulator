@@ -77,7 +77,6 @@ public class NPC {
         }
     }
 
-
     public void setNewPrices(Player player) throws WrongItemException {
         Random rd = new Random();
         for (Item item : demand) {

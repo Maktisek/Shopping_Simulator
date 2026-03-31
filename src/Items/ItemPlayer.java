@@ -41,10 +41,10 @@ public class ItemPlayer {
         updateAveragePrice();
     }
 
-    private void updateAveragePrice(){
-        if (this.amount > 0){
+    private void updateAveragePrice() {
+        if (this.amount > 0) {
             this.averageBuyPrice = (double) this.wholeBoughtPrice / this.amount;
-        }else {
+        } else {
             this.averageBuyPrice = 0;
         }
     }
@@ -58,14 +58,21 @@ public class ItemPlayer {
         }
     }
 
-    private void moveWithWholeBoughtPrice(int amount, int shopPrice) {
-        this.wholeBoughtPrice += (shopPrice * amount);
+    private void moveWithWholeBoughtPrice(int amount, int shopPrice) throws WrongItemException {
+        int afterMove = this.wholeBoughtPrice + (shopPrice * amount);
+        if (afterMove < 0) {
+            throw new WrongItemException("WholeBoughtPrice must be over -1");
+        } else {
+            this.wholeBoughtPrice = afterMove;
+        }
+
+
     }
 
-    public int sellItem(int amount, int NPCPrice) throws WrongItemException {
+    public void sellItem(int amount, int NPCPrice) throws WrongItemException {
         moveWithAmount(-amount);
         int result = 0;
-        while (amount != 0) {
+        while (amount != 0 && this.evidences.peek() != null) {
             int[] arr = this.evidences.peek().register(amount);
             amount = arr[0];
             result = result + (arr[3] * NPCPrice);
@@ -75,7 +82,6 @@ public class ItemPlayer {
             this.wholeBoughtPrice = this.wholeBoughtPrice - arr[2];
         }
         updateAveragePrice();
-        return result;
     }
 
     public int getAmount() {
