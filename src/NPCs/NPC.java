@@ -6,7 +6,7 @@ import Shops.Shop;
 import Items.WrongItemException;
 import Player.Player;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public class NPC {
 
     private int quantityWeight;
     private int convenienceWeight;
-    private ArrayList<Item> items;
+    private Item[] items;
     private Item[] demand;
 
     public void loadDemand(Player player, Shop shop) {
@@ -50,21 +50,21 @@ public class NPC {
         } else if (demand[1] == null) {
             Random rd = new Random();
             do {
-                demand[1] = items.get(rd.nextInt(items.size()));
+                demand[1] = items[rd.nextInt(items.length)];
             } while (demand[0] == demand[1]);
         }
     }
 
     private void fillWholeDemandRandomly() {
         Random rd = new Random();
-        int indexOne = rd.nextInt(items.size());
+        int indexOne = rd.nextInt(items.length);
         int indexTwo;
         do {
-            indexTwo = rd.nextInt(items.size());
+            indexTwo = rd.nextInt(items.length);
         } while (indexOne == indexTwo);
 
-        demand[0] = items.get(indexOne);
-        demand[1] = items.get(indexTwo);
+        demand[0] = items[indexOne];
+        demand[1] = items[indexTwo];
     }
 
     private void resetDemand() {
@@ -72,8 +72,8 @@ public class NPC {
     }
 
     public void loadItems(Item[] temp) throws WrongItemException{
-        for (Item item : temp) {
-            this.items.add(item.copy());
+        for (int i = 0; i < temp.length; i++) {
+            this.items[i] = temp[i].copy();
         }
     }
 
@@ -151,11 +151,11 @@ public class NPC {
         this.demand = demand;
     }
 
-    public ArrayList<Item> getItems() {
+    public Item[] getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(Item[] items) {
         this.items = items;
     }
 
