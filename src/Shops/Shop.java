@@ -13,6 +13,12 @@ public class Shop {
     private NPC npc;
 
 
+    public void buyItem(int index, int amount){
+        items[index].updatePenalization(0.02 * amount);
+        items[index].updateCurrentDayAmount(amount);
+    }
+
+
     public void initializeNPC() throws WrongItemException {
         this.npc.loadItems(this.items);
     }
