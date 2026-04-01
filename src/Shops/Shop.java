@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Shop {
 
+    private ShopNames name;
     private ArrayList<Item> items;
 
 
@@ -25,5 +26,13 @@ public class Shop {
             }
         }
         return null;
+    }
+
+    public ShopNames getName() {
+        return name;
+    }
+
+    public void setName(ShopNames name) {
+        this.name = name;
     }
 }
