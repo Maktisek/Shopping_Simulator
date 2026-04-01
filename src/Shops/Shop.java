@@ -1,4 +1,7 @@
-package Items;
+package Shops;
+
+import Items.Item;
+import Items.ItemNames;
 
 import java.util.ArrayList;
 

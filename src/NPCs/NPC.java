@@ -2,7 +2,7 @@ package NPCs;
 
 import Items.Item;
 import Items.ItemPlayer;
-import Items.Shop;
+import Shops.Shop;
 import Items.WrongItemException;
 import Player.Player;
 
