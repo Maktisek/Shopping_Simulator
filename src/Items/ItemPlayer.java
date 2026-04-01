@@ -65,8 +65,6 @@ public class ItemPlayer {
         } else {
             this.wholeBoughtPrice = afterMove;
         }
-
-
     }
 
     public int sellItem(int amount, int NPCPrice) throws WrongItemException {

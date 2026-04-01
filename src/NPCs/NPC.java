@@ -77,33 +77,62 @@ public class NPC {
         }
     }
 
-    public void setNewPrices(Player player) throws WrongItemException {
+    public void setNewPrices(Player player, Shop shop) throws WrongItemException {
         Random rd = new Random();
         for (Item item : demand) {
             if(item == null){
                 continue;
             }
+
             ItemPlayer playersItem = player.findItem(item.getName());
             if (playersItem == null) {
                 continue;
             }
             double playerAverage = playersItem.getAverageBuyPrice();
-            if (playerAverage == 0) {
+            double playerWhole = playersItem.getWholeBoughtPrice();
+            if (playerAverage == 0 || playerWhole == 0) {
                 continue;
             }
-            double k = calculateK(playerAverage);
-            double bonus = Math.sqrt(k) / Math.sqrt(playersItem.getWholeBoughtPrice());
-            if(bonus > 5){
-                bonus = 5;
+
+            Item itemShop = shop.findItem(item.getName());
+            if(itemShop == null){
+                continue;
             }
-            double percentUpdate = rd.nextInt(-10, 11) + bonus;
+            double shopPrice = itemShop.getCurrentPrice();
+            if(shopPrice == 0){
+                continue;
+            }
+
+            double bonus = calculateB(playerAverage, playerWhole);
+
+            double percentUpdate = rd.nextInt(-10, 11) + bonus + calculateL(playerAverage, shopPrice);
             item.setCurrentPrice((int) Math.round(item.getCurrentPrice() + (((double) item.getCurrentPrice() / 100) * percentUpdate)));
         }
+    }
+
+    private double calculateB(double playerAverage, double playerWhole){
+        double k = calculateK(playerAverage);
+        double bonus = Math.sqrt(k) / Math.sqrt(playerWhole);
+        if(bonus > 5){
+            bonus = 5;
+        }
+        return bonus;
     }
 
     private double calculateK(double averagePrice){
         String parser = String.valueOf((int) averagePrice);
         return 5000.00 * Math.pow(10, parser.length() - 2);
+    }
+
+    private double calculateL(double averagePrice, double shopPrice){
+        double ratio = averagePrice / shopPrice;
+        if(ratio > 1){
+            return -ratio;
+        }
+        if(ratio < 1){
+            return shopPrice/averagePrice;
+        }
+        return 0;
     }
 
     public int getQuantityWeight() {
