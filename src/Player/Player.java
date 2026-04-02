@@ -36,9 +36,20 @@ public class Player {
             throw new InvalidPlayerActionException(name + "could not be bought - " + name + " could not be found");
         }
         try {
-            foundItem.buyItem(amount, shopPrice);
-            this.currentBalance -= amount * shopPrice;
+            this.currentBalance -= foundItem.buyItem(amount, shopPrice);
         } catch (WrongItemException | WrongEvidenceException e) {
+            throw new InvalidPlayerActionException(e.getMessage());
+        }
+    }
+
+    public void sellItem(ItemNames name, int amount, int npcPrice) throws InvalidPlayerActionException {
+        ItemPlayer foundItem = findItem(name);
+        if (foundItem == null) {
+            throw new InvalidPlayerActionException(name + "could not be sold - " + name + " could not be found");
+        }
+        try {
+            this.currentBalance += foundItem.sellItem(amount, npcPrice);
+        } catch (WrongItemException e) {
             throw new InvalidPlayerActionException(e.getMessage());
         }
     }
