@@ -48,7 +48,9 @@ public class Player {
             throw new InvalidPlayerActionException(name + "could not be sold - " + name + " could not be found");
         }
         try {
-            this.currentBalance += foundItem.sellItem(amount, npcPrice);
+            int profit = foundItem.sellItem(amount, npcPrice);
+            this.currentBalance += profit;
+            this.allTimeBalance += profit;
         } catch (WrongItemException e) {
             throw new InvalidPlayerActionException(e.getMessage());
         }
