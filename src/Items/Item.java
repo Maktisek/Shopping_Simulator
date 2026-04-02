@@ -26,7 +26,7 @@ public class Item {
         if (currentPrice > 0) {
             this.currentPrice = currentPrice;
         } else {
-            throw new WrongItemException("The price cannot be lower than 0");
+            throw new WrongItemException("The price of " + name + " is under 0");
         }
     }
 
@@ -34,7 +34,7 @@ public class Item {
         if(this.priceSensitivity > 0){
             this.priceSensitivity = priceSensitivity;
         }else {
-            throw new WrongItemException("Price sensitivity must be over 0");
+            throw new WrongItemException("The price sensitivity of " + name + " is under 0");
         }
     }
 
