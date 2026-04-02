@@ -2,6 +2,7 @@ package NPCs;
 
 import Items.Item;
 import Items.ItemPlayer;
+import Items.ItemShop;
 import Shops.Shop;
 import Items.WrongItemException;
 import Player.Player;
@@ -23,12 +24,12 @@ public class NPC {
         double second = 0;
         for (Item item : this.items) {
             ItemPlayer playersItem = player.findItem(item.getName());
-            Item shopsItem = shop.findItem(item.getName());
+            ItemShop shopsItem = shop.findItem(item.getName());
             if (playersItem != null && shopsItem != null) {
                 double playerAverage = playersItem.getAverageBuyPrice();
                 if (playerAverage != 0) {
                     double s = (playersItem.getAmount() * quantityWeight) +
-                            ((shopsItem.getCurrentPrice() / playerAverage) * convenienceWeight);
+                            ((shopsItem.getItem().getCurrentPrice() / playerAverage) * convenienceWeight);
                     if (s > first) {
                         demand[1] = demand[0];
                         second = first;
@@ -71,9 +72,9 @@ public class NPC {
         Arrays.fill(demand, null);
     }
 
-    public void loadItems(Item[] temp) throws WrongItemException{
+    public void loadItems(ItemShop[] temp) throws WrongItemException{
         for (int i = 0; i < temp.length; i++) {
-            this.items[i] = temp[i].copy();
+            this.items[i] = temp[i].getItem().copy();
         }
     }
 
@@ -94,11 +95,11 @@ public class NPC {
                 continue;
             }
 
-            Item itemShop = shop.findItem(item.getName());
+            ItemShop itemShop = shop.findItem(item.getName());
             if(itemShop == null){
                 continue;
             }
-            double shopPrice = itemShop.getCurrentPrice();
+            double shopPrice = itemShop.getItem().getCurrentPrice();
             if(shopPrice == 0){
                 continue;
             }
