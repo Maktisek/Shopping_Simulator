@@ -56,6 +56,19 @@ public class Player {
         }
     }
 
+    public boolean bankrupt(){
+        return this.currentBalance < 15 && !hasSomething();
+    }
+
+    private boolean hasSomething(){
+        for (ItemPlayer itemPlayer : items){
+            if(itemPlayer.getAmount() > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getCurrentBalance() {
         return currentBalance;
     }
