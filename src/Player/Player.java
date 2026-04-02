@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Player {
 
 
-    private String name;
     private int currentBalance;
     private int allTimeBalance;
     private final ArrayList<ItemPlayer> items;
@@ -26,20 +25,23 @@ public class Player {
         return null;
     }
 
-    public ArrayList<ItemPlayer> getItems() {
-        return items;
-    }
-
     public int getCurrentBalance() {
         return currentBalance;
     }
 
-    public String getName() {
-        return name;
+    public void setCurrentBalance(int currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public ArrayList<ItemPlayer> getItems() {
+        return items;
     }
 
     public int getAllTimeBalance() {
         return allTimeBalance;
     }
 
+    public void setAllTimeBalance(int allTimeBalance) {
+        this.allTimeBalance = allTimeBalance;
+    }
 }
