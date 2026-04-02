@@ -2,6 +2,8 @@ package Player;
 
 import Items.ItemNames;
 import Items.ItemPlayer;
+import Items.WrongEvidenceException;
+import Items.WrongItemException;
 
 import java.util.ArrayList;
 
@@ -16,13 +18,29 @@ public class Player {
         this.items = new ArrayList<>();
     }
 
-    public ItemPlayer findItem(ItemNames name){
-        for (ItemPlayer item : items){
-            if(item.getName() == name){
+    public ItemPlayer findItem(ItemNames name) {
+        for (ItemPlayer item : items) {
+            if (item.getName() == name) {
                 return item;
             }
         }
         return null;
+    }
+
+    public void buyItem(ItemNames name, int amount, int shopPrice) throws InvalidPlayerActionException {
+        if (amount * shopPrice > this.currentBalance) {
+            throw new InvalidPlayerActionException(name + " could not be bought - currentBalance too small");
+        }
+        ItemPlayer foundItem = findItem(name);
+        if (foundItem == null) {
+            throw new InvalidPlayerActionException(name + "could not be bought - " + name + " could not be found");
+        }
+        try {
+            foundItem.buyItem(amount, shopPrice);
+            this.currentBalance -= amount * shopPrice;
+        } catch (WrongItemException | WrongEvidenceException e) {
+            throw new InvalidPlayerActionException(e.getMessage());
+        }
     }
 
     public int getCurrentBalance() {
