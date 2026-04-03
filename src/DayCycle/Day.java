@@ -5,15 +5,18 @@ public class Day {
     private DayNames dayName;
     private final int number;
     private final int dayIncome;
+    private final int daySpending;
 
     public Day(int number) {
         this.number = number;
         this.dayIncome = 0;
+        this.daySpending = 0;
     }
 
     public Day(int number, DayNames dayName) {
         this.number = number;
         this.dayIncome = 0;
+        this.daySpending = 0;
         this.dayName = dayName;
     }
 
