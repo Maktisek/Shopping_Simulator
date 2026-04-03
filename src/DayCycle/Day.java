@@ -35,4 +35,8 @@ public class Day {
     public void setDayName(DayNames dayName) {
         this.dayName = dayName;
     }
+
+    public int getDaySpending() {
+        return daySpending;
+    }
 }
