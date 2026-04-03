@@ -12,6 +12,7 @@ public class Shop {
     private ShopNames name;
     private ItemShop[] items;
     private NPC npc;
+    private ShopKey shopKey;
 
 
     public void buyItem(int index, int amount){
@@ -77,5 +78,13 @@ public class Shop {
 
     public void setNpc(NPC npc) {
         this.npc = npc;
+    }
+
+    public ShopKey getShopKey() {
+        return shopKey;
+    }
+
+    public void setShopKey(ShopKey shopKey) {
+        this.shopKey = shopKey;
     }
 }
