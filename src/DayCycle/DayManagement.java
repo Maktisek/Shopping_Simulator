@@ -17,20 +17,21 @@ public class DayManagement {
         this.daysDatabase = new ArrayList<>();
         this.daysNames = new HashMap<>();
         loadNames();
+        nextDay();
     }
 
     public void loadNames(){
-        for (int i = 1; i < DayNames.values().length + 1; i++) {
+        for (int i = 1; i < DayNames.values().length; i++) {
             assert daysNames != null;
-            daysNames.put(i, DayNames.values()[i]);
+            daysNames.put(i, DayNames.values()[i - 1]);
         }
     }
 
     private int calculateDay(){
         int result = this.numberOfDays;
-        do{
+        while (result > 7){
             result -= 7;
-        }while (result > 7);
+        }
         return result;
     }
 
