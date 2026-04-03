@@ -11,6 +11,12 @@ public class Day {
         this.dayIncome = 0;
     }
 
+    public Day(int number, DayNames dayName) {
+        this.number = number;
+        this.dayIncome = 0;
+        this.dayName = dayName;
+    }
+
     public int getNumber() {
         return number;
     }

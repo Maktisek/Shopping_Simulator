@@ -2,32 +2,44 @@ package DayCycle;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DayManagement {
 
     private int numberOfDays;
     private Day currentDay;
     private final ArrayList<Day> daysDatabase;
+    private final HashMap<Integer, DayNames> daysNames;
 
 
     public DayManagement() {
         this.currentDay = new Day(0);
-        daysDatabase = new ArrayList<>();
+        this.daysDatabase = new ArrayList<>();
+        this.daysNames = new HashMap<>();
+        loadNames();
     }
 
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
+    public void loadNames(){
+        for (int i = 1; i < DayNames.values().length + 1; i++) {
+            assert daysNames != null;
+            daysNames.put(i, DayNames.values()[i]);
+        }
     }
 
-    public void setCurrentDay(Day currentDay) {
-        this.currentDay = currentDay;
+    private int calculateDay(){
+        int result = this.numberOfDays;
+        do{
+            result -= 7;
+        }while (result > 7);
+        return result;
     }
 
     public void nextDay() {
-        numberOfDays++;
-        Day day = new Day(this.numberOfDays);
-        daysDatabase.add(day);
-        currentDay = day;
+        this.numberOfDays++;
+        int dayNumber = calculateDay();
+        Day day = new Day(this.numberOfDays, daysNames.get(dayNumber));
+        this.daysDatabase.add(day);
+        this.currentDay = day;
     }
 
     public ArrayList<Day> getDaysDatabase() {
@@ -42,4 +54,11 @@ public class DayManagement {
         return numberOfDays;
     }
 
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    public void setCurrentDay(Day currentDay) {
+        this.currentDay = currentDay;
+    }
 }
