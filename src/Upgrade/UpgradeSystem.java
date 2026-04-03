@@ -16,5 +16,11 @@ public class UpgradeSystem {
         this.upgrades.put(UpgradeNames.SELL, new MaxSoldUpgrade());
     }
 
+    public void levelUpUpgrade(UpgradeNames name){
+        this.upgrades.get(name).levelUp();
+    }
 
+    public int getUpgradeData(UpgradeNames name){
+        return this.upgrades.get(name).dataInfo();
+    }
 }
