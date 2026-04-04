@@ -50,6 +50,15 @@ public class AchievementManagement {
         }
     }
 
+    public void updateAchievement(AchievementTypes type, int change) {
+        ArrayList<Achievement> temp = possibleAchievements.get(type);
+        if (temp != null) {
+            for (Achievement achievement : temp) {
+                achievement.changeCurrent(change);
+            }
+            executeDoneAchievements();
+        }
+    }
 
     public ArrayList<Achievement> getLoadedAchievements() {
         return loadedAchievements;
