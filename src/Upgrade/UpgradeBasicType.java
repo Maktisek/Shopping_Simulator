@@ -1,11 +1,11 @@
 package Upgrade;
 
-public abstract class UpgradeType implements Upgrade{
+public abstract class UpgradeBasicType implements Upgrade{
 
     private int data;
     private int price;
 
-    public UpgradeType() {
+    public UpgradeBasicType() {
     }
 
     @Override
