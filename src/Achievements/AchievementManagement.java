@@ -18,8 +18,19 @@ public class AchievementManagement {
 
     public void loadPossibleAchievements(){
         for (int i = 0; i < AchievementTypes.values().length; i++) {
-
+            AchievementTypes currentType = AchievementTypes.values()[i];
+            this.possibleAchievements.put(currentType, findInLoadedAchievements(currentType));
         }
+    }
+
+    private ArrayList<Achievement> findInLoadedAchievements(AchievementTypes type){
+        ArrayList<Achievement> result = new ArrayList<>();
+        for (Achievement achievement : loadedAchievements){
+            if(achievement.getType() == type){
+                result.add(achievement);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Achievement> getLoadedAchievements() {
