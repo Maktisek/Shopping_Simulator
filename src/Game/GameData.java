@@ -1,5 +1,6 @@
 package Game;
 
+import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
 import Player.Player;
 import Shops.ShopManagement;
@@ -11,5 +12,6 @@ public class GameData {
     private DayManagement dayManagement;
     private ShopManagement shopManagement;
     private UpgradeSystem upgradeSystem;
+    private AchievementManagement achievementManagement;
 
 }
