@@ -1,11 +1,17 @@
 package Achievements;
 
-public interface Achievement {
-
-    boolean isDone();
-    void changeData(int change);
+public class Achievement {
 
 
+    int bound;
+    int current;
 
+    public void changeData(int change){
+
+    }
+
+     public boolean isDone(){
+         return false;
+     }
 
 }
