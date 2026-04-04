@@ -33,6 +33,24 @@ public class AchievementManagement {
         return result;
     }
 
+    public void executeDoneAchievements(){
+        for (AchievementTypes key: possibleAchievements.keySet()){
+            ArrayList<Achievement> possible = possibleAchievements.get(key);
+
+            ArrayList<Achievement> done = new ArrayList<>();
+            for (Achievement achievement : possible){
+                if (achievement.isDone()){
+                    done.add(achievement);
+                }
+            }
+
+            doneAchievements.computeIfAbsent(key, k -> new ArrayList<>()).addAll(done);
+
+            possible.removeIf(Achievement::isDone);
+        }
+    }
+
+
     public ArrayList<Achievement> getLoadedAchievements() {
         return loadedAchievements;
     }
