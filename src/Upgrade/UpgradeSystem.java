@@ -14,6 +14,7 @@ public class UpgradeSystem {
     private void loadUpgrades(){
         this.upgrades.put(UpgradeNames.BUY, new MaxBoughtUpgrade());
         this.upgrades.put(UpgradeNames.SELL, new MaxSoldUpgrade());
+        this.upgrades.put(UpgradeNames.STOCK, new MaxStockUpgrade());
     }
 
     public void levelUpUpgrade(UpgradeNames name){

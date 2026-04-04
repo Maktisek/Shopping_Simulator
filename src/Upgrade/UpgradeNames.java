@@ -1,5 +1,5 @@
 package Upgrade;
 
 public enum UpgradeNames {
-    BUY, SELL
+    BUY, SELL, STOCK
 }
