@@ -10,7 +10,15 @@ public abstract class UpgradeBasicType implements Upgrade{
 
     @Override
     public void levelUp() {
-        this.data += 10;
+        this.data += 10 * calculateDials();
+        changePrice();
+    }
+
+    private int calculateDials(){
+        String s = String.valueOf(this.price);
+        int dials = s.length() - 1;
+        int firstDial = Character.getNumericValue(s.charAt(0));
+        return dials + (firstDial / 5);
     }
 
     @Override
@@ -25,7 +33,7 @@ public abstract class UpgradeBasicType implements Upgrade{
 
     @Override
     public void changePrice() {
-        this.price += 50;
+        this.price = (int) (this.price * 1.15);
     }
 
     public int getPrice() {
