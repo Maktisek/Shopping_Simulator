@@ -2,16 +2,48 @@ package Achievements;
 
 public class Achievement {
 
+    private AchievementTypes type;
+    private String name;
+    private int bound;
+    private int current;
 
-    int bound;
-    int current;
-
-    public void changeData(int change){
-
+    public void changeCurrent(int change){
+        this.current += change;
     }
 
      public boolean isDone(){
-         return false;
+         return current >= bound;
      }
 
+    public AchievementTypes getType() {
+        return type;
+    }
+
+    public void setType(AchievementTypes type) {
+        this.type = type;
+    }
+
+    public int getBound() {
+        return bound;
+    }
+
+    public void setBound(int bound) {
+        this.bound = bound;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
