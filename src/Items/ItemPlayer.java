@@ -14,8 +14,12 @@ public class ItemPlayer {
     private final Queue<Evidence> evidences;
 
 
-    public ItemPlayer() {
+    public ItemPlayer(ItemNames name) {
+        this.name = name;
         this.evidences = new LinkedList<>();
+        this.amount = 0;
+        this.wholeBoughtPrice = 0;
+        this.averageBuyPrice = 0;
     }
 
     public void setWholeBoughtPrice(int wholeBoughtPrice) throws WrongItemException {
@@ -53,7 +57,7 @@ public class ItemPlayer {
     private void moveWithAmount(int move) throws WrongItemException {
         int afterMove = this.amount + move;
         if (afterMove < 0) {
-            throw new WrongItemException("There cannot be less than 0 items in a stack.");
+            throw new WrongItemException("There is less than " + -move + " pieces of " + name);
         } else {
             this.amount = afterMove;
         }

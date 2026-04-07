@@ -4,6 +4,7 @@ import Items.ItemNames;
 import Items.ItemPlayer;
 import Items.WrongEvidenceException;
 import Items.WrongItemException;
+import Shops.Shop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,14 @@ public class Player {
             }
         }
         return false;
+    }
+
+    public void loadItems(ArrayList<Shop> shops) throws WrongItemException{
+        for (Shop shop : shops){
+            for (int i = 0; i < shop.getItems().length; i++) {
+                this.items.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
+            }
+        }
     }
 
     public int getCurrentBalance() {
