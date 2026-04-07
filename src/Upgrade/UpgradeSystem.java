@@ -5,8 +5,10 @@ import java.util.HashMap;
 public class UpgradeSystem {
 
     private final HashMap<UpgradeNames, Upgrade> upgrades;
+    private double rebirthMultiplier;
 
     public UpgradeSystem() {
+        this.rebirthMultiplier = 1;
         this.upgrades = new HashMap<>();
         loadUpgrades();
     }
@@ -22,6 +24,10 @@ public class UpgradeSystem {
     }
 
     public int getUpgradeData(UpgradeNames name){
-        return this.upgrades.get(name).dataInfo();
+        return (int) (this.upgrades.get(name).dataInfo() * rebirthMultiplier);
+    }
+
+    public void newRebirth(){
+        this.rebirthMultiplier += 0.1;
     }
 }
