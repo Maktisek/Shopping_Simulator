@@ -69,4 +69,10 @@ public class ItemShop {
         return priceSensitivity;
     }
 
+    public ItemShop(Item item, int priceSensitivity, int currentDayAmount, double penalization) {
+        this.item = item;
+        this.priceSensitivity = priceSensitivity;
+        this.currentDayAmount = currentDayAmount;
+        this.penalization = penalization;
+    }
 }

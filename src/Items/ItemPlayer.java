@@ -111,4 +111,12 @@ public class ItemPlayer {
     public void setName(ItemNames name) {
         this.name = name;
     }
+
+    public ItemPlayer(double averageBuyPrice, int wholeBoughtPrice, int amount, ItemNames name) {
+        this.evidences = new LinkedList<>();
+        this.averageBuyPrice = averageBuyPrice;
+        this.wholeBoughtPrice = wholeBoughtPrice;
+        this.amount = amount;
+        this.name = name;
+    }
 }

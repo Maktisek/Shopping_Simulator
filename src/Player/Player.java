@@ -6,6 +6,7 @@ import Items.WrongEvidenceException;
 import Items.WrongItemException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
@@ -87,5 +88,11 @@ public class Player {
 
     public void setAllTimeBalance(int allTimeBalance) {
         this.allTimeBalance = allTimeBalance;
+    }
+
+    public Player(int allTimeBalance, int currentBalance, ItemPlayer[] arr) {
+        this.allTimeBalance = allTimeBalance;
+        this.currentBalance = currentBalance;
+        this.items = new ArrayList<>(List.of(arr));
     }
 }

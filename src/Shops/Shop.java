@@ -56,6 +56,10 @@ public class Shop {
         return null;
     }
 
+    public boolean isAccessible(){
+        return this.shopKey.isUnlocked();
+    }
+
     public ItemShop[] getItems() {
         return items;
     }
