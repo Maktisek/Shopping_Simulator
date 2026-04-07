@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class ShopManagement {
 
     private ArrayList<Shop> shops;
+    private Shop currentShop;
 
     public ShopManagement() {
         this.shops = new ArrayList<>();
@@ -38,5 +39,13 @@ public class ShopManagement {
 
     public void setShops(ArrayList<Shop> shops) {
         this.shops = shops;
+    }
+
+    public Shop getCurrentShop() {
+        return currentShop;
+    }
+
+    public void setCurrentShop(Shop currentShop) {
+        this.currentShop = currentShop;
     }
 }
