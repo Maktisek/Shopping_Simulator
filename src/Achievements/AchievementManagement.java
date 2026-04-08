@@ -33,7 +33,7 @@ public class AchievementManagement {
         return result;
     }
 
-    public void executeDoneAchievements(){
+    private void executeDoneAchievements(){
         for (AchievementTypes key: possibleAchievements.keySet()){
             ArrayList<Achievement> possible = possibleAchievements.get(key);
 
