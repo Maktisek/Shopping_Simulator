@@ -27,7 +27,23 @@ public class UpgradeSystem {
         return (int) (this.upgrades.get(name).dataInfo() * rebirthMultiplier);
     }
 
+    public int getUpgradePrice(UpgradeNames name){
+        return this.upgrades.get(name).priceInfo();
+    }
+
     public void newRebirth(){
         this.rebirthMultiplier += 0.1;
+    }
+
+    public HashMap<UpgradeNames, Upgrade> getUpgrades() {
+        return upgrades;
+    }
+
+    public double getRebirthMultiplier() {
+        return rebirthMultiplier;
+    }
+
+    public void setRebirthMultiplier(double rebirthMultiplier) {
+        this.rebirthMultiplier = rebirthMultiplier;
     }
 }
