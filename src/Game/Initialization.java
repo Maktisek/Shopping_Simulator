@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 public class Initialization {
 
     public static GameData loadGameData(){
-        return new GameData();
+        return new GameData(loadPlayer(), loadDayManagement(), loadShopManagement(), loadUpgradeManagement(), loadAchievementManagement());
     }
 
     public static Player loadPlayer(){
