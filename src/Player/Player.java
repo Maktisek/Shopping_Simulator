@@ -7,6 +7,7 @@ import Items.WrongItemException;
 import Shops.Shop;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Player {
@@ -102,6 +103,7 @@ public class Player {
     public Player(int allTimeBalance, int currentBalance, ItemPlayer[] arr) {
         this.allTimeBalance = allTimeBalance;
         this.currentBalance = currentBalance;
-        this.items = new ArrayList<>(List.of(arr));
+        this.items = new ArrayList<>();
+        items.addAll(Arrays.asList(arr));
     }
 }
