@@ -13,6 +13,7 @@ public class Initialization {
 
     public static Player loadPlayer(){
 
+
         return new Player();
     }
 
