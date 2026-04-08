@@ -2,12 +2,12 @@ package Upgrade;
 
 import java.util.HashMap;
 
-public class UpgradeSystem {
+public class UpgradeManagement {
 
     private final HashMap<UpgradeNames, Upgrade> upgrades;
     private double rebirthMultiplier;
 
-    public UpgradeSystem() {
+    public UpgradeManagement() {
         this.rebirthMultiplier = 1;
         this.upgrades = new HashMap<>();
         loadUpgrades();

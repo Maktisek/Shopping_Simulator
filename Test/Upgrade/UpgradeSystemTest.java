@@ -7,11 +7,11 @@ import static org.junit.Assert.*;
 
 public class UpgradeSystemTest {
 
-    UpgradeSystem upgradeSystem;
+    UpgradeManagement upgradeSystem;
 
     @Before
     public void setUp() throws Exception {
-        this.upgradeSystem = new UpgradeSystem();
+        this.upgradeSystem = new UpgradeManagement();
     }
 
     @Test
