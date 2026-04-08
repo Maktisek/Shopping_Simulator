@@ -8,8 +8,12 @@ public class Achievement {
     private int bound;
     private int current;
 
+    public Achievement() {
+    }
+
     public void changeCurrent(int change){
-        this.current += change;
+        int after = this.current + change;
+        this.current = Math.min(after, bound);
     }
 
      public boolean isDone(){
@@ -54,5 +58,13 @@ public class Achievement {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Achievement(AchievementTypes type, int current, int bound, String description, String name) {
+        this.type = type;
+        this.current = current;
+        this.bound = bound;
+        this.description = description;
+        this.name = name;
     }
 }
