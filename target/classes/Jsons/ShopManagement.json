@@ -1,3 +1,79 @@
 {
-
+  "currentShop": null,
+  "shops": [
+    {
+      "name": "Test",
+      "npc": {
+        "quantityWeight": 15,
+        "convenienceWeight": 10,
+        "items": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "demand": [
+          null,
+          null
+        ]
+      },
+      "shopKey": {
+        "price": 0,
+        "unlocked": true
+      },
+      "items": [
+        {
+          "item": {
+            "name": "Bread",
+            "basePrice": 15,
+            "currentPrice": 15
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 1000
+        },
+        {
+          "item": {
+            "name": "Banana",
+            "basePrice": 20,
+            "currentPrice": 20
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 980
+        },
+        {
+          "item": {
+            "name": "Apple",
+            "basePrice": 30,
+            "currentPrice": 30
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 930
+        },
+        {
+          "item": {
+            "name": "Chocolate",
+            "basePrice": 50,
+            "currentPrice": 50
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 900
+        },
+        {
+          "item": {
+            "name": "Whisky",
+            "basePrice": 100,
+            "currentPrice": 100
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 890
+        }
+      ]
+    }
+  ]
 }

@@ -51,4 +51,12 @@ public abstract class UpgradeBasicType implements Upgrade{
     public void setData(int data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "UpgradeBasicType{" +
+                "data=" + data +
+                ", price=" + price +
+                '}';
+    }
 }

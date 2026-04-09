@@ -46,4 +46,12 @@ public class UpgradeManagement {
     public void setRebirthMultiplier(double rebirthMultiplier) {
         this.rebirthMultiplier = rebirthMultiplier;
     }
+
+    @Override
+    public String toString() {
+        return "UpgradeManagement{" +
+                "upgrades=" + upgrades +
+                ", rebirthMultiplier=" + rebirthMultiplier +
+                '}';
+    }
 }

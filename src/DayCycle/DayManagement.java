@@ -13,6 +13,7 @@ public class DayManagement {
 
 
     public DayManagement() {
+        this.numberOfDays = 0;
         this.currentDay = new Day(0);
         this.daysDatabase = new ArrayList<>();
         this.daysNames = new HashMap<>();
@@ -21,9 +22,9 @@ public class DayManagement {
     }
 
     public void loadNames(){
-        for (int i = 1; i < DayNames.values().length; i++) {
+        for (int i = 0; i < DayNames.values().length; i++) {
             assert daysNames != null;
-            daysNames.put(i, DayNames.values()[i - 1]);
+            daysNames.put(i + 1, DayNames.values()[i]);
         }
     }
 
@@ -61,5 +62,15 @@ public class DayManagement {
 
     public void setCurrentDay(Day currentDay) {
         this.currentDay = currentDay;
+    }
+
+    @Override
+    public String toString() {
+        return "DayManagement{" +
+                "numberOfDays=" + numberOfDays +
+                ", currentDay=" + currentDay +
+                ", daysDatabase=" + daysDatabase +
+                ", daysNames=" + daysNames +
+                '}';
     }
 }

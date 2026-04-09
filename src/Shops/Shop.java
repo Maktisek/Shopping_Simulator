@@ -7,6 +7,8 @@ import Items.WrongItemException;
 import NPCs.NPC;
 import Player.Player;
 
+import java.util.Arrays;
+
 public class Shop {
 
     private ShopNames name;
@@ -90,5 +92,15 @@ public class Shop {
 
     public void setShopKey(ShopKey shopKey) {
         this.shopKey = shopKey;
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "name=" + name +
+                ", items=" + Arrays.toString(items) +
+                ", npc=" + npc +
+                ", shopKey=" + shopKey +
+                '}';
     }
 }

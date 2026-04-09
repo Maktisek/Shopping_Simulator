@@ -1,3 +1,109 @@
 {
-
+  "loadedAchievements": [
+    {
+      "type": "BUY",
+      "name": "Better than your mom",
+      "description": "Buy 100 products",
+      "bound": 100,
+      "current": 0
+    },
+    {
+      "type": "BUY",
+      "name": "Future Andrew Tate",
+      "description": "Buy 1000 products",
+      "bound": 1000,
+      "current": 0
+    },
+    {
+      "type": "BUY",
+      "name": "Where do I put all of that",
+      "description": "Buy 10000 products",
+      "bound": 10000,
+      "current": 0
+    },
+    {
+      "type": "BUY",
+      "name": "Bigger than Amazon",
+      "description": "Buy 10000 products",
+      "bound": 100000,
+      "current": 0
+    },
+    {
+      "type": "BUY",
+      "name": "I like buying stuff",
+      "description": "Buy 100000 products",
+      "bound": 1000000,
+      "current": 0
+    },
+    {
+      "type": "SELL",
+      "name": "Breaking bad",
+      "description": "Sell 100 products",
+      "bound": 100,
+      "current": 0
+    },
+    {
+      "type": "SELL",
+      "name": "I don't need a job",
+      "description": "Sell 1000 products",
+      "bound": 1000,
+      "current": 0
+    },
+    {
+      "type": "SELL",
+      "name": "Jeff Bezos would be proud",
+      "description": "Sell 10000 products",
+      "bound": 10000,
+      "current": 0
+    },
+    {
+      "type": "SELL",
+      "name": "Self-made business man",
+      "description": "Sell 100000 products",
+      "bound": 100000,
+      "current": 0
+    },
+    {
+      "type": "SELL",
+      "name": "Basically millionaire",
+      "description": "Sell 1000000 products",
+      "bound": 1000000,
+      "current": 0
+    },
+    {
+      "type": "MONEY",
+      "name": "Poor dude",
+      "description": "Earn 1000 Tony Franks",
+      "bound": 1000,
+      "current": 0
+    },
+    {
+      "type": "MONEY",
+      "name": "Gambling time",
+      "description": "Earn 10000 Tony Franks",
+      "bound": 10000,
+      "current": 0
+    },
+    {
+      "type": "MONEY",
+      "name": "I cloud join politics",
+      "description": "Earn 100000 Tony Franks",
+      "bound": 100000,
+      "current": 0
+    },
+    {
+      "type": "MONEY",
+      "name": "Communists would hate me",
+      "description": "Earn 1000000 Tony Franks",
+      "bound": 1000000,
+      "current": 0
+    },
+    {
+      "type": "MONEY",
+      "name": "Jirka would be proud",
+      "description": "Earn 10000000 Tony Franks",
+      "bound": 10000000,
+      "current": 0
+    }
+  ]
 }

@@ -167,4 +167,14 @@ public class NPC {
     public void setConvenienceWeight(int convenienceWeight) {
         this.convenienceWeight = convenienceWeight;
     }
+
+    @Override
+    public String toString() {
+        return "NPC{" +
+                "quantityWeight=" + quantityWeight +
+                ", convenienceWeight=" + convenienceWeight +
+                ", items=" + Arrays.toString(items) +
+                ", demand=" + Arrays.toString(demand) +
+                '}';
+    }
 }

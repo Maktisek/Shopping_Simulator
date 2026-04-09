@@ -50,10 +50,12 @@ public class Item {
         this.basePrice = basePrice;
     }
 
-
-
     @Override
     public String toString() {
-        return null;
+        return "Item{" +
+                "name=" + name +
+                ", basePrice=" + basePrice +
+                ", currentPrice=" + currentPrice +
+                '}';
     }
 }

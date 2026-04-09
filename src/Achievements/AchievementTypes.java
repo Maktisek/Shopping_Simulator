@@ -2,5 +2,5 @@ package Achievements;
 
 public enum AchievementTypes {
 
-    BUY, SELL
+    BUY, SELL, MONEY
 }

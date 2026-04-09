@@ -23,4 +23,12 @@ public class ShopKey {
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;
     }
+
+    @Override
+    public String toString() {
+        return "ShopKey{" +
+                "price=" + price +
+                ", unlocked=" + unlocked +
+                '}';
+    }
 }

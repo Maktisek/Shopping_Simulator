@@ -83,4 +83,13 @@ public class AchievementManagement {
     public void setDoneAchievements(HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements) {
         this.doneAchievements = doneAchievements;
     }
+
+    @Override
+    public String toString() {
+        return "AchievementManagement{" +
+                "possibleAchievements=" + possibleAchievements +
+                ", doneAchievements=" + doneAchievements +
+                ", loadedAchievements=" + loadedAchievements +
+                '}';
+    }
 }

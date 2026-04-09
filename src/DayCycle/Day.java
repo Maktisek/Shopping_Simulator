@@ -39,4 +39,14 @@ public class Day {
     public int getDaySpending() {
         return daySpending;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "dayName=" + dayName +
+                ", number=" + number +
+                ", dayIncome=" + dayIncome +
+                ", daySpending=" + daySpending +
+                '}';
+    }
 }

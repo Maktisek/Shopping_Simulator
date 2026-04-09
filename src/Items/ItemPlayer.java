@@ -116,6 +116,17 @@ public class ItemPlayer {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "ItemPlayer{" +
+                "name=" + name +
+                ", amount=" + amount +
+                ", wholeBoughtPrice=" + wholeBoughtPrice +
+                ", averageBuyPrice=" + averageBuyPrice +
+                ", evidences=" + evidences +
+                '}';
+    }
+
     public ItemPlayer(double averageBuyPrice, int wholeBoughtPrice, int amount, ItemNames name) {
         this.evidences = new LinkedList<>();
         this.averageBuyPrice = averageBuyPrice;

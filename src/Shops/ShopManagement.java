@@ -10,13 +10,10 @@ public class ShopManagement {
     private ArrayList<Shop> shops;
     private Shop currentShop;
 
-    public ShopManagement() {
-        this.shops = new ArrayList<>();
-    }
 
-    public Shop findShop(ShopNames name){
-        for (Shop shop : shops){
-            if(shop.getName() == name){
+    public Shop findShop(ShopNames name) {
+        for (Shop shop : shops) {
+            if (shop.getName() == name) {
                 return shop;
             }
         }
@@ -24,12 +21,18 @@ public class ShopManagement {
     }
 
     public void setNewDays(Player player) {
-        for (Shop shop : shops){
+        for (Shop shop : shops) {
             try {
                 shop.newDay(player);
-            }catch (WrongItemException e){
+            } catch (WrongItemException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void loadAllNpc() throws WrongItemException {
+        for (Shop shop : shops) {
+            shop.initializeNPC();
         }
     }
 
@@ -47,5 +50,13 @@ public class ShopManagement {
 
     public void setCurrentShop(Shop currentShop) {
         this.currentShop = currentShop;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopManagement{" +
+                "shops=" + shops +
+                ", currentShop=" + currentShop +
+                '}';
     }
 }
