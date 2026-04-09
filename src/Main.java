@@ -10,5 +10,17 @@ public class Main {
         gameData.getShopManagement().setNewDays(gameData.getPlayer());
         gameData.getDayManagement().nextDay();
         System.out.println("\n"+gameData.toString());
+        gameData.getShopManagement().setNewDays(gameData.getPlayer());
+        gameData.getDayManagement().nextDay();
+        System.out.println("\n"+gameData.toString());
+        gameData.getShopManagement().setNewDays(gameData.getPlayer());
+        gameData.getDayManagement().nextDay();
+        System.out.println("\n"+gameData.toString());
+        gameData.getShopManagement().setNewDays(gameData.getPlayer());
+        gameData.getDayManagement().nextDay();
+        System.out.println("\n"+gameData.toString());
+        gameData.getShopManagement().setNewDays(gameData.getPlayer());
+        gameData.getDayManagement().nextDay();
+        System.out.println("\n"+gameData.toString());
     }
 }
