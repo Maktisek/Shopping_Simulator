@@ -17,7 +17,6 @@ public class Initialization {
 
     public Initialization() {
         this.gameData = new GameData();
-
     }
 
     private void initGameData(){
