@@ -11,9 +11,9 @@ public class ShopManagement {
     private Shop currentShop;
 
 
-    public Shop findShop(ShopNames name){
-        for (Shop shop : shops){
-            if(shop.getName() == name){
+    public Shop findShop(ShopNames name) {
+        for (Shop shop : shops) {
+            if (shop.getName() == name) {
                 return shop;
             }
         }
@@ -21,12 +21,18 @@ public class ShopManagement {
     }
 
     public void setNewDays(Player player) {
-        for (Shop shop : shops){
+        for (Shop shop : shops) {
             try {
                 shop.newDay(player);
-            }catch (WrongItemException e){
+            } catch (WrongItemException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void loadAllNpc() throws WrongItemException {
+        for (Shop shop : shops) {
+            shop.initializeNPC();
         }
     }
 
