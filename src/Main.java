@@ -7,5 +7,8 @@ public class Main {
 
         GameData gameData = new Initialization().getGameData();
         System.out.println(gameData.toString());
+        gameData.getShopManagement().setNewDays(gameData.getPlayer());
+        gameData.getDayManagement().nextDay();
+        System.out.println("\n"+gameData.toString());
     }
 }
