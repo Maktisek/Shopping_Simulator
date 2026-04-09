@@ -72,7 +72,9 @@ public class Initialization {
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/AchievementManagement.json is invalid and the file could not be found");
             }
-            this.gameData.setAchievementManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class));
+            AchievementManagement achievementManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
+            achievementManagement.loadPossibleAchievements();
+            this.gameData.setAchievementManagement(achievementManagement);
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }
@@ -81,7 +83,6 @@ public class Initialization {
     private void finishInitialization(){
         try {
             this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
-
         } catch (WrongItemException e) {
             throw new RuntimeException(e);
         }
