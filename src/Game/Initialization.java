@@ -12,73 +12,87 @@ import java.nio.charset.StandardCharsets;
 
 public class Initialization {
 
-    public static GameData loadGameData(){
-        return new GameData(loadPlayer(), loadDayManagement(), loadShopManagement(), loadUpgradeManagement(), loadAchievementManagement());
+    private GameData gameData;
+
+    public Initialization() {
+        this.gameData = new GameData();
+
     }
 
-    public static Player loadPlayer(){
+    private void initGameData(){
+        loadPlayer();
+        loadDayManagement();
+        loadShopManagement();
+        loadUpgradeManagement();
+        loadAchievementManagement();
+    }
+
+    private void loadPlayer(){
         Gson gson = new Gson();
 
         try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Player.json")){
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/Player.json is invalid and the file could not be found");
             }
-            return gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Player.class);
+            this.gameData.setPlayer(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Player.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Player: " + e.getMessage());
         }
     }
 
-    public static DayManagement loadDayManagement(){
+    private void loadDayManagement(){
         Gson gson = new Gson();
 
         try (InputStream is = GameData.class.getResourceAsStream("/Jsons/DayManagement.json")){
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/DayManagement.json is invalid and the file could not be found");
             }
-            return gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), DayManagement.class);
+            this.gameData.setDayManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), DayManagement.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading DayManagement: " + e.getMessage());
         }
     }
 
-    public static ShopManagement loadShopManagement(){
+    private void loadShopManagement(){
         Gson gson = new Gson();
 
         try (InputStream is = GameData.class.getResourceAsStream("/Jsons/ShopManagement.json")){
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/ShopManagement.json is invalid and the file could not be found");
             }
-            return gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), ShopManagement.class);
+            this.gameData.setShopManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), ShopManagement.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
     }
 
-    public static UpgradeManagement loadUpgradeManagement(){
+    private void loadUpgradeManagement(){
         Gson gson = new Gson();
 
         try (InputStream is = GameData.class.getResourceAsStream("/Jsons/UpgradeManagement.json")){
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/UpgradeManagement.json is invalid and the file could not be found");
             }
-            return gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), UpgradeManagement.class);
+            this.gameData.setUpgradeManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), UpgradeManagement.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading UpgradeManagement: " + e.getMessage());
         }
     }
 
-    public static AchievementManagement loadAchievementManagement(){
+    private void loadAchievementManagement(){
         Gson gson = new Gson();
 
         try (InputStream is = GameData.class.getResourceAsStream("/Jsons/AchievementManagement.json")){
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/AchievementManagement.json is invalid and the file could not be found");
             }
-            return gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
+            this.gameData.setAchievementManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }
+    }
 
+    public GameData getGameData() {
+        return gameData;
     }
 }

@@ -5,6 +5,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-        GameData gameData = Initialization.loadGameData();
+        GameData gameData = new Initialization().getGameData();
     }
 }
