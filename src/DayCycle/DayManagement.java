@@ -22,9 +22,9 @@ public class DayManagement {
     }
 
     public void loadNames(){
-        for (int i = 1; i < DayNames.values().length; i++) {
+        for (int i = 0; i < DayNames.values().length; i++) {
             assert daysNames != null;
-            daysNames.put(i, DayNames.values()[i - 1]);
+            daysNames.put(i + 1, DayNames.values()[i]);
         }
     }
 
