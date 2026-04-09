@@ -53,7 +53,9 @@ public class Initialization {
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/ShopManagement.json is invalid and the file could not be found");
             }
-            this.gameData.setShopManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), ShopManagement.class));
+            ShopManagement shopManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), ShopManagement.class);
+            shopManagement.setCurrentShop(shopManagement.getShops().get(0));
+            this.gameData.setShopManagement(shopManagement);
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }

@@ -10,9 +10,6 @@ public class ShopManagement {
     private ArrayList<Shop> shops;
     private Shop currentShop;
 
-    public ShopManagement() {
-        this.shops = new ArrayList<>();
-    }
 
     public Shop findShop(ShopNames name){
         for (Shop shop : shops){
