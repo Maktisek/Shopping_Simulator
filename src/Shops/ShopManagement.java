@@ -51,4 +51,12 @@ public class ShopManagement {
     public void setCurrentShop(Shop currentShop) {
         this.currentShop = currentShop;
     }
+
+    @Override
+    public String toString() {
+        return "ShopManagement{" +
+                "shops=" + shops +
+                ", currentShop=" + currentShop +
+                '}';
+    }
 }

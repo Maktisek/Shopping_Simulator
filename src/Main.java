@@ -6,5 +6,6 @@ public class Main {
 
 
         GameData gameData = new Initialization().getGameData();
+        System.out.println(gameData.toString());
     }
 }

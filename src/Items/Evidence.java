@@ -46,4 +46,12 @@ public class Evidence {
             return new int[]{0, this.amount, oldMoney, move};
         }
     }
+
+    @Override
+    public String toString() {
+        return "Evidence{" +
+                "amount=" + amount +
+                ", price=" + price +
+                '}';
+    }
 }

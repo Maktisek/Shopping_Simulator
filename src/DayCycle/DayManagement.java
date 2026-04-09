@@ -63,4 +63,14 @@ public class DayManagement {
     public void setCurrentDay(Day currentDay) {
         this.currentDay = currentDay;
     }
+
+    @Override
+    public String toString() {
+        return "DayManagement{" +
+                "numberOfDays=" + numberOfDays +
+                ", currentDay=" + currentDay +
+                ", daysDatabase=" + daysDatabase +
+                ", daysNames=" + daysNames +
+                '}';
+    }
 }

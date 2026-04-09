@@ -100,6 +100,15 @@ public class Player {
         this.allTimeBalance = allTimeBalance;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "currentBalance=" + currentBalance +
+                ", allTimeBalance=" + allTimeBalance +
+                ", items=" + items +
+                '}';
+    }
+
     public Player(int allTimeBalance, int currentBalance, ItemPlayer[] arr) {
         this.allTimeBalance = allTimeBalance;
         this.currentBalance = currentBalance;

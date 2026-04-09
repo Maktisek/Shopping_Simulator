@@ -69,6 +69,16 @@ public class ItemShop {
         return priceSensitivity;
     }
 
+    @Override
+    public String toString() {
+        return "ItemShop{" +
+                "item=" + item +
+                ", penalization=" + penalization +
+                ", currentDayAmount=" + currentDayAmount +
+                ", priceSensitivity=" + priceSensitivity +
+                '}';
+    }
+
     public ItemShop(Item item, int priceSensitivity, int currentDayAmount, double penalization) {
         this.item = item;
         this.priceSensitivity = priceSensitivity;

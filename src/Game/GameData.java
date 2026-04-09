@@ -54,4 +54,14 @@ public class GameData {
     public void setDayManagement(DayManagement dayManagement) {
         this.dayManagement = dayManagement;
     }
+
+    @Override
+    public String toString() {
+        return
+                "player=" + player + "\n" +
+                        "dayManagement=" + dayManagement + "\n" +
+                        "shopManagement=" + shopManagement + "\n" +
+                        "upgradeManagement=" + upgradeManagement + "\n" +
+                        "achievementManagement=" + achievementManagement;
+    }
 }
