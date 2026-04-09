@@ -1,6 +1,7 @@
 package Game;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
+import Items.WrongItemException;
 import Player.Player;
 import Shops.ShopManagement;
 import Upgrade.UpgradeManagement;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Initialization {
 
-    private GameData gameData;
+    private final GameData gameData;
 
     public Initialization() {
         this.gameData = new GameData();
@@ -25,6 +26,7 @@ public class Initialization {
         loadShopManagement();
         loadUpgradeManagement();
         loadAchievementManagement();
+        finishInitialization();
     }
 
     private void loadPlayer(){
@@ -41,16 +43,7 @@ public class Initialization {
     }
 
     private void loadDayManagement(){
-        Gson gson = new Gson();
-
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/DayManagement.json")){
-            if(is == null){
-                throw new IllegalStateException("The path for Json: /Jsons/DayManagement.json is invalid and the file could not be found");
-            }
-            this.gameData.setDayManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), DayManagement.class));
-        }catch (Exception e){
-            throw new RuntimeException("There is an mistake withing loading the Json file while loading DayManagement: " + e.getMessage());
-        }
+        this.gameData.setDayManagement(new DayManagement());
     }
 
     private void loadShopManagement(){
@@ -89,6 +82,15 @@ public class Initialization {
             this.gameData.setAchievementManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
+        }
+    }
+
+    private void finishInitialization(){
+        try {
+            this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
+
+        } catch (WrongItemException e) {
+            throw new RuntimeException(e);
         }
     }
 

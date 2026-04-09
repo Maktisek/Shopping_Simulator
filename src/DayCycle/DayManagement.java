@@ -13,6 +13,7 @@ public class DayManagement {
 
 
     public DayManagement() {
+        this.numberOfDays = 0;
         this.currentDay = new Day(0);
         this.daysDatabase = new ArrayList<>();
         this.daysNames = new HashMap<>();
