@@ -62,16 +62,7 @@ public class Initialization {
     }
 
     private void loadUpgradeManagement(){
-        Gson gson = new Gson();
-
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/UpgradeManagement.json")){
-            if(is == null){
-                throw new IllegalStateException("The path for Json: /Jsons/UpgradeManagement.json is invalid and the file could not be found");
-            }
-            this.gameData.setUpgradeManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), UpgradeManagement.class));
-        }catch (Exception e){
-            throw new RuntimeException("There is an mistake withing loading the Json file while loading UpgradeManagement: " + e.getMessage());
-        }
+        this.gameData.setUpgradeManagement(new UpgradeManagement());
     }
 
     private void loadAchievementManagement(){
