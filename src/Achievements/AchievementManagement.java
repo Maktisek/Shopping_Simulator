@@ -6,11 +6,13 @@ import java.util.HashMap;
 
 public class AchievementManagement {
 
+    private ArrayList<Achievement> freshAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements;
     private ArrayList<Achievement> loadedAchievements;
 
     public AchievementManagement() {
+        this.freshAchievements = new ArrayList<>();
         this.possibleAchievements = new HashMap<>();
         this.doneAchievements = new HashMap<>();
         this.loadedAchievements = new ArrayList<>();
@@ -40,6 +42,7 @@ public class AchievementManagement {
             ArrayList<Achievement> done = new ArrayList<>();
             for (Achievement achievement : possible){
                 if (achievement.isDone()){
+                    freshAchievements.add(achievement);
                     done.add(achievement);
                 }
             }
@@ -58,6 +61,10 @@ public class AchievementManagement {
             }
             executeDoneAchievements();
         }
+    }
+
+    public void clearFreshAchievements(){
+        this.freshAchievements.clear();
     }
 
     public ArrayList<Achievement> getLoadedAchievements() {
@@ -82,6 +89,14 @@ public class AchievementManagement {
 
     public void setDoneAchievements(HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements) {
         this.doneAchievements = doneAchievements;
+    }
+
+    public ArrayList<Achievement> getFreshAchievements() {
+        return freshAchievements;
+    }
+
+    public void setFreshAchievements(ArrayList<Achievement> freshAchievements) {
+        this.freshAchievements = freshAchievements;
     }
 
     @Override

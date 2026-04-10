@@ -9,7 +9,7 @@ import Upgrade.UpgradeNames;
 public class BuyProductCommand extends Command {
 
     private final int amount;
-    private int index;
+    private final int index;
 
     public BuyProductCommand(GameData gameData, int index, int amount) {
         super(gameData);
