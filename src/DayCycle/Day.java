@@ -6,7 +6,8 @@ public class Day {
     private final int number;
     private int dayIncome;
     private int daySpending;
-    private int dayAmount;
+    private int dayBoughtAmount;
+    private int daySoldAmount;
 
     public Day(int number) {
         this.number = number;
@@ -29,13 +30,22 @@ public class Day {
         this.daySpending += spending;
     }
 
-    public boolean canIncrementDayAmount(int amount, int bound) {
-        int afterIncrement = this.dayAmount + amount;
+    public boolean canIncrementDayBoughtAmount(int amount, int bound) {
+        int afterIncrement = this.dayBoughtAmount + amount;
         return afterIncrement <= bound;
     }
 
-    public void incrementDayAmount(int amount) {
-        this.dayAmount += amount;
+    public void incrementDayBoughtAmount(int amount) {
+        this.dayBoughtAmount += amount;
+    }
+
+    public boolean canIncrementDaySoldAmount(int amount, int bound) {
+        int afterIncrement = this.daySoldAmount + amount;
+        return afterIncrement <= bound;
+    }
+
+    public void incrementDaySoldAmount(int amount) {
+        this.dayBoughtAmount += amount;
     }
 
     public int getNumber() {
@@ -65,7 +75,7 @@ public class Day {
                 ", number=" + number +
                 ", dayIncome=" + dayIncome +
                 ", daySpending=" + daySpending +
-                ", dayAmount=" + dayAmount +
+                ", dayAmount=" + dayBoughtAmount +
                 '}';
     }
 }

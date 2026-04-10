@@ -42,7 +42,7 @@ public class ShopTest {
     public void testNPC() throws Exception {
         shop.getNpc().setItems(new Item[5]);
         assertNull(shop.getNpc().getItems()[2]);
-        shop.initializeNPC();
+        shop.initializeNPC(new Player(), new Shop());
         assertEquals(ItemNames.Bread, shop.getNpc().getItems()[2].getName());
         shop.getNpc().setDemand(new Item[2]);
         assertNull(shop.getNpc().getDemand()[1]);
@@ -62,7 +62,7 @@ public class ShopTest {
         assertEquals(1.2,1.2, shop.getItems()[0].getPenalization());
         shop.getNpc().setDemand(new Item[2]);
         shop.getNpc().setItems(new Item[5]);
-        shop.initializeNPC();
+        shop.initializeNPC(new Player(), new Shop());
         shop.newDay(new Player(0, 0, new ItemPlayer[]{
                 new ItemPlayer(12, 1000, 12000, ItemNames.Apple),
                 new ItemPlayer(10, 1000, 13, ItemNames.Banana),

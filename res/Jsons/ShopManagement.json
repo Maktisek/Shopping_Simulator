@@ -31,7 +31,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 1000
+          "priceSensitivity": 10000
         },
         {
           "item": {
@@ -41,7 +41,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 980
+          "priceSensitivity": 9800
         },
         {
           "item": {
@@ -51,7 +51,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 930
+          "priceSensitivity": 9300
         },
         {
           "item": {
@@ -61,7 +61,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 900
+          "priceSensitivity": 9000
         },
         {
           "item": {
@@ -71,7 +71,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 890
+          "priceSensitivity": 8900
         }
       ]
     }

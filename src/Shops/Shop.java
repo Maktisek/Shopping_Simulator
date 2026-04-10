@@ -18,13 +18,14 @@ public class Shop {
 
 
     public void buyItem(int index, int amount){
-        items[index].updatePenalization(0.02 * amount);
+        items[index].updatePenalization(0.009 * amount);
         items[index].updateCurrentDayAmount(amount);
     }
 
-
-    public void initializeNPC() throws WrongItemException {
+    public void initializeNPC(Player player, Shop shop) throws WrongItemException {
         this.npc.loadItems(this.items);
+        this.npc.loadDemand(player, shop);
+        this.npc.setNewPrices(player, shop);
     }
 
     public void newDay(Player player) throws WrongItemException{

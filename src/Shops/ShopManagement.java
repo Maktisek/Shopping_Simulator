@@ -30,9 +30,9 @@ public class ShopManagement {
         }
     }
 
-    public void loadAllNpc() throws WrongItemException {
+    public void loadAllNpc(Player player) throws WrongItemException {
         for (Shop shop : shops) {
-            shop.initializeNPC();
+            shop.initializeNPC(player, shop);
         }
     }
 

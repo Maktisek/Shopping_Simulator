@@ -83,7 +83,7 @@ public class Initialization {
     private void finishInitialization(){
         try {
             this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
-            this.gameData.getShopManagement().loadAllNpc();
+            this.gameData.getShopManagement().loadAllNpc(this.getGameData().getPlayer());
         } catch (WrongItemException e) {
             throw new RuntimeException(e);
         }
