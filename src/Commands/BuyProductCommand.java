@@ -19,19 +19,19 @@ public class BuyProductCommand extends Command {
 
     @Override
     public String execute() {
-        if (!getDayManagement().getCurrentDay().canIncrementDayAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
+        if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
             super.setSuccessful(false);
             return "You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day";
         }
         ItemNames product = getCurrentShop().getItems()[index].getItem().getName();
         try {
-            getPlayer().buyItem(product, amount,getCurrentShop().findItem(product).getItem().getCurrentPrice());
+            getPlayer().buyItem(product, amount,getCurrentShop().getItems()[index].getItem().getCurrentPrice());
         }catch (InvalidPlayerActionException e){
             super.setSuccessful(false);
             return e.getMessage();
         }
         getCurrentShop().buyItem(index, amount);
-        getDayManagement().getCurrentDay().incrementDayAmount(amount);
+        getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getAchievementManagement().updateAchievement(AchievementTypes.BUY, amount);
         return "Bought " + amount + "x " + product;
     }
