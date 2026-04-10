@@ -10,6 +10,7 @@ public class NewDayCommand extends Command{
 
     @Override
     public String execute() {
+        setSuccessful(true);
         getShopManagement().setNewDays(getPlayer());
         getDayManagement().nextDay();
         return "Set new day - " + getDayManagement().getCurrentDay().getDayName() ;

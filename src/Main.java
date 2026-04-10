@@ -1,4 +1,5 @@
 import Commands.BuyProductCommand;
+import Commands.NewDayCommand;
 import Commands.SellProductCommand;
 import Game.GameData;
 import Game.Initialization;
@@ -13,17 +14,19 @@ public class Main {
         System.out.println(gameData);
         System.out.println(gameData.getAchievementManagement().getFreshAchievements());
 
-        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-        gameData.getDayManagement().nextDay();
+        System.out.println(new NewDayCommand(gameData).execute());
 
-        SellProductCommand command2 = new SellProductCommand(gameData, 0, 1);
+        SellProductCommand command2 = new SellProductCommand(gameData, 0, 3);
         System.out.println(command2.execute());
         System.out.println(command2.isSuccessful());
         System.out.println(gameData);
         System.out.println(gameData.getAchievementManagement().getFreshAchievements());
 
-        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-        gameData.getDayManagement().nextDay();
+        System.out.println(new NewDayCommand(gameData).execute());
+
+        System.out.println(gameData);
+
+        System.out.println(new NewDayCommand(gameData).execute());
 
         System.out.println(gameData);
 

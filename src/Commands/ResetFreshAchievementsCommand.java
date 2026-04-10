@@ -10,6 +10,7 @@ public class ResetFreshAchievementsCommand extends Command{
 
     @Override
     public String execute() {
+        setSuccessful(true);
         getAchievementManagement().clearFreshAchievements();
         return "Cleared FreshAchievements";
 
