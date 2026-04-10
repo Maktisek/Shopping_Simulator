@@ -5,6 +5,7 @@ import DayCycle.DayManagement;
 import Game.GameData;
 import Player.Player;
 import Shops.Shop;
+import Shops.ShopManagement;
 import Upgrade.UpgradeManagement;
 
 public abstract class Command {
@@ -50,6 +51,10 @@ public abstract class Command {
 
     public AchievementManagement getAchievementManagement(){
         return this.gameData.getAchievementManagement();
+    }
+
+    public ShopManagement getShopManagement(){
+        return this.gameData.getShopManagement();
     }
 
 }
