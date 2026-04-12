@@ -4,6 +4,7 @@ public abstract class UpgradeBasicType implements Upgrade{
 
     private int data;
     private int price;
+    private int level;
 
     public UpgradeBasicType() {
     }
@@ -12,6 +13,7 @@ public abstract class UpgradeBasicType implements Upgrade{
     public void levelUp() {
         this.data += 10 * calculateDials();
         changePrice();
+        this.level++;
     }
 
     private int calculateDials(){
@@ -52,11 +54,20 @@ public abstract class UpgradeBasicType implements Upgrade{
         this.data = data;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @Override
     public String toString() {
         return "UpgradeBasicType{" +
                 "data=" + data +
                 ", price=" + price +
+                ", level=" + level +
                 '}';
     }
 }
