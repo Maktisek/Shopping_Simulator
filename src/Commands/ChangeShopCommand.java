@@ -17,10 +17,12 @@ public class ChangeShopCommand extends Command {
     public String execute() {
         Shop foundShop = getShopManagement().findShop(name);
         if(foundShop == null){
+            setSuccessful(false);
             return "Shop " + name + " does not exist";
         }
 
         if(!foundShop.getShopKey().isUnlocked()){
+            setSuccessful(false);
             return "Shop " + name + " is locked. Price: " + foundShop.getShopKey().getPrice();
         }
 

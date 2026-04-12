@@ -80,6 +80,10 @@ public class Player {
         }
     }
 
+    public boolean canBuy(int price){
+        return price <= this.currentBalance;
+    }
+
     public int getCurrentBalance() {
         return currentBalance;
     }
