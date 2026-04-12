@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class UpgradeManagement {
 
     private final HashMap<UpgradeNames, Upgrade> upgrades;
-    private double rebirthMultiplier;
+    private Rebirth rebirth;
 
     public UpgradeManagement() {
-        this.rebirthMultiplier = 1;
+        this.rebirth = new Rebirth(10000000);
         this.upgrades = new HashMap<>();
         loadUpgrades();
     }
@@ -24,34 +24,35 @@ public class UpgradeManagement {
     }
 
     public int getUpgradeData(UpgradeNames name){
-        return (int) (this.upgrades.get(name).dataInfo() * rebirthMultiplier);
+        return (int) (this.upgrades.get(name).dataInfo() * rebirth.getMultiplier());
     }
 
     public int getUpgradePrice(UpgradeNames name){
         return this.upgrades.get(name).priceInfo();
     }
 
-    public void newRebirth(){
-        this.rebirthMultiplier += 0.1;
+    public void setNewRebirth(){
+        this.rebirth.newRebirth();
     }
+
 
     public HashMap<UpgradeNames, Upgrade> getUpgrades() {
         return upgrades;
     }
 
-    public double getRebirthMultiplier() {
-        return rebirthMultiplier;
+    public Rebirth getRebirth() {
+        return rebirth;
     }
 
-    public void setRebirthMultiplier(double rebirthMultiplier) {
-        this.rebirthMultiplier = rebirthMultiplier;
+    public void setRebirth(Rebirth rebirth) {
+        this.rebirth = rebirth;
     }
 
     @Override
     public String toString() {
         return "UpgradeManagement{" +
                 "upgrades=" + upgrades +
-                ", rebirthMultiplier=" + rebirthMultiplier +
+                ", rebirthMultiplier=" + rebirth +
                 '}';
     }
 }
