@@ -14,11 +14,12 @@ public class UpgradeCommand extends Command{
 
     @Override
     public String execute() {
-        if(!getPlayer().canBuy(getUpgradeManagement().getUpgradePrice(name))){
+        int price = getUpgradeManagement().getUpgradePrice(name);
+        if(!getPlayer().canBuy(price)){
             setSuccessful(false);
             return "Not enough money";
         }
-
+        getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().levelUpUpgrade(name);
         return "Skill " + name + " was upgraded";
     }
