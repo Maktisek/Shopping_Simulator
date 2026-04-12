@@ -1,9 +1,10 @@
-package Commands;
+package Commands.UpgradeCommands;
 
+import Commands.Command;
 import Game.GameData;
 import Upgrade.UpgradeNames;
 
-public class UpgradeCommand extends Command{
+public class UpgradeCommand extends Command {
 
     private final UpgradeNames name;
 

@@ -1,6 +1,6 @@
-import Commands.BuyProductCommand;
-import Commands.NewDayCommand;
-import Commands.SellProductCommand;
+import Commands.ProductCommands.BuyProductCommand;
+import Commands.DayCommands.NewDayCommand;
+import Commands.ProductCommands.SellProductCommand;
 import Game.GameData;
 import Game.Initialization;
 

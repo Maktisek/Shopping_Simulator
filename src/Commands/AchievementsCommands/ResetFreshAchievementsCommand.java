@@ -1,8 +1,9 @@
-package Commands;
+package Commands.AchievementsCommands;
 
+import Commands.Command;
 import Game.GameData;
 
-public class ResetFreshAchievementsCommand extends Command{
+public class ResetFreshAchievementsCommand extends Command {
 
     public ResetFreshAchievementsCommand(GameData gameData) {
         super(gameData);

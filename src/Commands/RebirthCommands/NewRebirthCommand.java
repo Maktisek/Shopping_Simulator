@@ -1,8 +1,9 @@
-package Commands;
+package Commands.RebirthCommands;
 
+import Commands.Command;
 import Game.GameData;
 
-public class NewRebirthCommand extends Command{
+public class NewRebirthCommand extends Command {
 
     public NewRebirthCommand(GameData gameData) {
         super(gameData);

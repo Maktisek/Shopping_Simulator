@@ -1,10 +1,11 @@
-package Commands;
+package Commands.ShopCommands;
 
+import Commands.Command;
 import Game.GameData;
 import Shops.Shop;
 import Shops.ShopNames;
 
-public class BuyShopCommand extends Command{
+public class BuyShopCommand extends Command {
 
     private final ShopNames name;
 

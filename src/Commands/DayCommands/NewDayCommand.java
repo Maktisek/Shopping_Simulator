@@ -1,8 +1,9 @@
-package Commands;
+package Commands.DayCommands;
 
+import Commands.Command;
 import Game.GameData;
 
-public class NewDayCommand extends Command{
+public class NewDayCommand extends Command {
 
     public NewDayCommand(GameData gameData) {
         super(gameData);

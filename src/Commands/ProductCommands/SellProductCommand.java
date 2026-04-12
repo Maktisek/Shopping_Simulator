@@ -1,6 +1,7 @@
-package Commands;
+package Commands.ProductCommands;
 
 import Achievements.AchievementTypes;
+import Commands.Command;
 import Game.GameData;
 import Items.ItemNames;
 import Player.InvalidPlayerActionException;

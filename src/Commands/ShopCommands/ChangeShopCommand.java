@@ -1,5 +1,6 @@
-package Commands;
+package Commands.ShopCommands;
 
+import Commands.Command;
 import Game.GameData;
 import Shops.Shop;
 import Shops.ShopNames;
