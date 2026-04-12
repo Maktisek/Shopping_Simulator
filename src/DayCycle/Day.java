@@ -45,7 +45,7 @@ public class Day {
     }
 
     public void incrementDaySoldAmount(int amount) {
-        this.dayBoughtAmount += amount;
+        this.daySoldAmount += amount;
     }
 
     public int getNumber() {
