@@ -24,13 +24,15 @@ public class SellProductCommand extends Command {
             return "You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.SELL) + " products at one day";
         }
         ItemNames product = getCurrentShop().getNpc().getDemand()[index].getName();
+        int price = getCurrentShop().getNpc().getDemand()[index].getCurrentPrice();
         try {
-            getPlayer().sellItem(product, amount, getCurrentShop().getNpc().getDemand()[index].getCurrentPrice());
+            getPlayer().sellItem(product, amount, price);
         } catch (InvalidPlayerActionException e) {
             super.setSuccessful(false);
             return e.getMessage();
         }
         getDayManagement().getCurrentDay().incrementDaySoldAmount(amount);
+        getDayManagement().getCurrentDay().incrementDayIncome(amount * price);
         getAchievementManagement().updateAchievement(AchievementTypes.SELL, amount);
         return "Sold " + amount + "x " + product;
     }
