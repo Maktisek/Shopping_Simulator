@@ -22,22 +22,6 @@ public class ItemPlayer {
         this.averageBuyPrice = 0;
     }
 
-    public void setWholeBoughtPrice(int wholeBoughtPrice) throws WrongItemException {
-        if (wholeBoughtPrice >= 0) {
-            this.wholeBoughtPrice = wholeBoughtPrice;
-        } else {
-            throw new WrongItemException("Whole bought price must be over -1");
-        }
-    }
-
-    public void setAmount(int amount) throws WrongItemException {
-        if (amount >= 0) {
-            this.amount = amount;
-        } else {
-            throw new WrongItemException("Amount must be over -1");
-        }
-    }
-
     public int buyItem(int amount, int shopPrice) throws WrongEvidenceException, WrongItemException {
         moveWithAmount(amount);
         moveWithWholeBoughtPrice(amount, shopPrice);
