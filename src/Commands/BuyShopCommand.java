@@ -6,7 +6,7 @@ import Shops.ShopNames;
 
 public class BuyShopCommand extends Command{
 
-    private ShopNames name;
+    private final ShopNames name;
 
     public BuyShopCommand(GameData gameData, ShopNames name) {
         super(gameData);
