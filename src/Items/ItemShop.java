@@ -10,14 +10,6 @@ public class ItemShop {
     public ItemShop() {
     }
 
-    public void setPriceSensitivity(int priceSensitivity) throws WrongItemException{
-        if(this.priceSensitivity > 0){
-            this.priceSensitivity = priceSensitivity;
-        }else {
-            throw new WrongItemException("The price sensitivity of " + this.item.getName() + " is under 0");
-        }
-    }
-
     public void updatePrice() throws WrongItemException{
         this.item.setCurrentPrice((int) Math.round((this.item.getBasePrice() * penalization * (1 + ((double) currentDayAmount / this.priceSensitivity)))));
     }
@@ -67,6 +59,10 @@ public class ItemShop {
 
     public int getPriceSensitivity() {
         return priceSensitivity;
+    }
+
+    public void setPriceSensitivity(int priceSensitivity) {
+        this.priceSensitivity = priceSensitivity;
     }
 
     @Override

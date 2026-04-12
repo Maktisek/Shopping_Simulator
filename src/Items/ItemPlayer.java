@@ -100,6 +100,16 @@ public class ItemPlayer {
         this.name = name;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setWholeBoughtPrice(int wholeBoughtPrice) {
+        this.wholeBoughtPrice = wholeBoughtPrice;
+    }
+
+
+
     @Override
     public String toString() {
         return "ItemPlayer{" +
