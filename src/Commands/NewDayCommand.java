@@ -10,6 +10,10 @@ public class NewDayCommand extends Command{
 
     @Override
     public String execute() {
+        if(getPlayer().bankrupt()){
+            setSuccessful(false);
+            return "GAME OVER - BANKRUPT";
+        }
         setSuccessful(true);
         getShopManagement().setNewDays(getPlayer());
         getDayManagement().nextDay();
