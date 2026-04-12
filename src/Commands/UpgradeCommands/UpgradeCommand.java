@@ -22,6 +22,6 @@ public class UpgradeCommand extends Command {
         }
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().levelUpUpgrade(name);
-        return "Skill " + name + " was upgraded";
+        return "Skill " + name + " was upgraded - level: " + getUpgradeManagement().getUpgradeLevel(name);
     }
 }

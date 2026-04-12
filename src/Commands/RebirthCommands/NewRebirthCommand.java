@@ -19,6 +19,6 @@ public class NewRebirthCommand extends Command {
 
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().setNewRebirth();
-        return "New rebirth";
+        return "New rebirth - level: " + getUpgradeManagement().getRebirth().getAmount();
     }
 }

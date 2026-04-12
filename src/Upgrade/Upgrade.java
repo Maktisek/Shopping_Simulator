@@ -6,4 +6,5 @@ public interface Upgrade {
     void changePrice();
     int dataInfo();
     int priceInfo();
+    int levelInfo();
 }

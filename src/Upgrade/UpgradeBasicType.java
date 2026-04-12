@@ -34,6 +34,11 @@ public abstract class UpgradeBasicType implements Upgrade{
     }
 
     @Override
+    public int levelInfo() {
+        return this.level;
+    }
+
+    @Override
     public void changePrice() {
         this.price = (int) (this.price * 1.15);
     }

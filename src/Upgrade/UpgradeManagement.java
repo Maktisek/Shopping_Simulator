@@ -31,6 +31,10 @@ public class UpgradeManagement {
         return this.upgrades.get(name).priceInfo();
     }
 
+    public int getUpgradeLevel(UpgradeNames name){
+        return this.upgrades.get(name).levelInfo();
+    }
+
     public void setNewRebirth(){
         this.rebirth.newRebirth();
     }
