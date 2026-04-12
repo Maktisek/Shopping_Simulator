@@ -21,11 +21,11 @@ public class UpgradeManagementTest {
         assertEquals(520, upgradeSystem.getUpgradeData(UpgradeNames.STOCK));
         assertEquals(172, upgradeSystem.getUpgradePrice(UpgradeNames.STOCK));
 
-        upgradeSystem.newRebirth();
+        upgradeSystem.setNewRebirth();
 
         assertEquals(572, upgradeSystem.getUpgradeData(UpgradeNames.STOCK));
 
-        upgradeSystem.newRebirth();
+        upgradeSystem.setNewRebirth();
 
         assertEquals(624, upgradeSystem.getUpgradeData(UpgradeNames.STOCK));
     }

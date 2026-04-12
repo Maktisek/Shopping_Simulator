@@ -20,11 +20,18 @@ public class BuyProductCommand extends Command {
     @Override
     public String execute() {
         if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
-            super.setSuccessful(false);
+            setSuccessful(false);
             return "You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day";
         }
+
         ItemNames product = getCurrentShop().getItems()[index].getItem().getName();
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
+
+        if(getPlayer().calculateStocks() > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)){
+            setSuccessful(false);
+            return "You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse";
+        }
+
         try {
             getPlayer().buyItem(product, amount,price);
         }catch (InvalidPlayerActionException e){

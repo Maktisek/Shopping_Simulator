@@ -8,7 +8,6 @@ import Shops.Shop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Player {
 
@@ -78,6 +77,14 @@ public class Player {
                 this.items.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
             }
         }
+    }
+
+    public int calculateStocks(){
+        int stocks = 0;
+        for (ItemPlayer itemPlayer : items){
+            stocks += itemPlayer.getAmount();
+        }
+        return stocks;
     }
 
     public boolean canBuy(int price){
