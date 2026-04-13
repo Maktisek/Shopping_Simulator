@@ -52,6 +52,14 @@ public class ShopManagement {
         return temp.getShopKey().isUnlocked();
     }
 
+    public Shop peekLeft(){
+        return leftShops.peek();
+    }
+
+    public Shop peekRight(){
+        return rightShops.peek();
+    }
+
     public Shop findShop(ShopNames name) {
         for (Shop shop : shops) {
             if (shop.getName() == name) {

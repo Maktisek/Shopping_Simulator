@@ -1,15 +1,3 @@
-import Commands.ProductCommands.BuyProductCommand;
-import Commands.DayCommands.NewDayCommand;
-import Commands.ProductCommands.SellProductCommand;
-import Commands.RebirthCommands.NewRebirthCommand;
-import Commands.ShopCommands.BuyShopCommand;
-import Commands.ShopCommands.ChangeShopCommand;
-import Commands.UpgradeCommands.UpgradeCommand;
-import Game.GameData;
-import Game.Initialization;
-import Shops.ShopNames;
-import Upgrade.UpgradeNames;
-
 public class Main {
     public static void main(String[] args) {
 

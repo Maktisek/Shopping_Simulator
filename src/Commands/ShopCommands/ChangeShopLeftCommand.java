@@ -1,7 +1,10 @@
 package Commands.ShopCommands;
 
 import Commands.Command;
+import Commands.CommandResult;
+import Commands.CommandState;
 import Game.GameData;
+import Shops.Shop;
 
 public class ChangeShopLeftCommand extends Command {
 
@@ -10,14 +13,18 @@ public class ChangeShopLeftCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public CommandResult execute() {
         if (!getShopManagement().isSwitchLeft()){
-            setSuccessful(false);
-            return "There is no other shop available";
+            return new CommandResult("There is no other shop available", CommandState.FAILED_ISSUE);
         }
 
         if(!getShopManagement().boughtLeft()){
-            setSuccessful(false);
+            Shop temp = getShopManagement().peekLeft();
+            return new CommandResult("Do you want to buy " + temp.getName() + " for " + temp.getShopKey().getPrice() + " ?",
+                    CommandState.FAILED_BUY);
         }
+
+        getShopManagement().switchLeft();
+        return new CommandResult("Shop changed into: " + getShopManagement().getCurrentShop().getName(), CommandState.DONE);
     }
 }
