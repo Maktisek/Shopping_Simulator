@@ -4,12 +4,53 @@ import Items.WrongItemException;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class ShopManagement {
 
     private ArrayList<Shop> shops;
     private Shop currentShop;
+    private Stack<Shop> leftShops;
+    private Stack<Shop> rightShops;
 
+    public void loadStacks(){
+        this.leftShops = new Stack<>();
+        this.rightShops = new Stack<>();
+        this.currentShop = shops.get(0);
+        for (Shop shop : shops){
+            this.rightShops.push(shop);
+        }
+    }
+
+    public void switchLeft(){
+        rightShops.push(currentShop);
+        currentShop = leftShops.pop();
+    }
+
+    public boolean isSwitchLeft(){
+        Shop temp = leftShops.peek();
+        return temp != null;
+    }
+
+    public boolean boughtLeft(){
+        Shop temp = leftShops.peek();
+        return temp.getShopKey().isUnlocked();
+    }
+
+    public void switchRight(){
+        leftShops.push(currentShop);
+        currentShop = rightShops.pop();
+    }
+
+    public boolean isSwitchRight(){
+        Shop temp = rightShops.peek();
+        return temp != null;
+    }
+
+    public boolean boughtRight(){
+        Shop temp = rightShops.peek();
+        return temp.getShopKey().isUnlocked();
+    }
 
     public Shop findShop(ShopNames name) {
         for (Shop shop : shops) {
@@ -50,6 +91,22 @@ public class ShopManagement {
 
     public void setCurrentShop(Shop currentShop) {
         this.currentShop = currentShop;
+    }
+
+    public Stack<Shop> getLeftShops() {
+        return leftShops;
+    }
+
+    public void setLeftShops(Stack<Shop> leftShops) {
+        this.leftShops = leftShops;
+    }
+
+    public Stack<Shop> getRightShops() {
+        return rightShops;
+    }
+
+    public void setRightShops(Stack<Shop> rightShops) {
+        this.rightShops = rightShops;
     }
 
     @Override
