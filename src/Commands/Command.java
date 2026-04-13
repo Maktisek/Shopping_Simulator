@@ -10,50 +10,50 @@ import Upgrade.UpgradeManagement;
 
 public abstract class Command {
 
-    private boolean successful;
     private final GameData gameData;
+    private CommandResult result;
 
     public Command(GameData gameData) {
-        this.successful = true;
+        this.result = null;
         this.gameData = gameData;
     }
 
     public abstract String execute();
-
-    public boolean isSuccessful(){
-        return successful;
-    }
 
 
     public GameData getGameData() {
         return gameData;
     }
 
-    public void setSuccessful(boolean successful) {
-        this.successful = successful;
+    public CommandResult getResult() {
+        return result;
     }
 
-    public Player getPlayer(){
+    public void setResult(CommandResult result) {
+        this.result = result;
+    }
+
+    public Player getPlayer() {
         return this.gameData.getPlayer();
     }
 
-    public DayManagement getDayManagement(){
+    public DayManagement getDayManagement() {
         return this.gameData.getDayManagement();
     }
 
-    public UpgradeManagement getUpgradeManagement(){
+    public UpgradeManagement getUpgradeManagement() {
         return this.gameData.getUpgradeManagement();
     }
 
-    public Shop getCurrentShop(){
+    public Shop getCurrentShop() {
         return this.gameData.getShopManagement().getCurrentShop();
     }
 
-    public AchievementManagement getAchievementManagement(){
+    public AchievementManagement getAchievementManagement() {
         return this.gameData.getAchievementManagement();
     }
 
-    public ShopManagement getShopManagement(){
+    public ShopManagement getShopManagement() {
         return this.gameData.getShopManagement();
     }
 
