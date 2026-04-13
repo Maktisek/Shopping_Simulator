@@ -1,6 +1,8 @@
 package Commands.AchievementsCommands;
 
 import Commands.Command;
+import Commands.CommandResult;
+import Commands.CommandState;
 import Game.GameData;
 
 public class ResetFreshAchievementsCommand extends Command {
@@ -10,10 +12,8 @@ public class ResetFreshAchievementsCommand extends Command {
     }
 
     @Override
-    public String execute() {
-        setSuccessful(true);
+    public CommandResult execute() {
         getAchievementManagement().clearFreshAchievements();
-        return "Cleared FreshAchievements";
-
+        return new CommandResult("Cleared FreshAchievements", CommandState.DONE);
     }
 }

@@ -1,6 +1,8 @@
 package Commands.RebirthCommands;
 
 import Commands.Command;
+import Commands.CommandResult;
+import Commands.CommandState;
 import Game.GameData;
 
 public class NewRebirthCommand extends Command {
@@ -10,15 +12,14 @@ public class NewRebirthCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public CommandResult execute() {
         int price = getUpgradeManagement().getRebirth().getPrice();
         if(!getPlayer().canBuy(price)){
-            setSuccessful(false);
-            return "Not enough money";
+            return new CommandResult("Not enough money", CommandState.FAILED_ISSUE);
         }
 
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().setNewRebirth();
-        return "New rebirth - level: " + getUpgradeManagement().getRebirth().getAmount();
+        return new CommandResult("New rebirth - level: " + getUpgradeManagement().getRebirth().getAmount(), CommandState.DONE);
     }
 }

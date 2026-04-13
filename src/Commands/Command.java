@@ -18,7 +18,7 @@ public abstract class Command {
         this.gameData = gameData;
     }
 
-    public abstract String execute();
+    public abstract CommandResult execute();
 
 
     public GameData getGameData() {

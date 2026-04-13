@@ -1,6 +1,8 @@
 package Commands.DayCommands;
 
 import Commands.Command;
+import Commands.CommandResult;
+import Commands.CommandState;
 import Game.GameData;
 
 public class NewDayCommand extends Command {
@@ -10,14 +12,13 @@ public class NewDayCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public CommandResult execute() {
         if(getPlayer().bankrupt()){
-            setSuccessful(false);
-            return "GAME OVER - BANKRUPT";
+            return new CommandResult("GAME OVER - BANKRUPT", CommandState.FAILED_END);
         }
-        setSuccessful(true);
         getShopManagement().setNewDays(getPlayer());
         getDayManagement().nextDay();
-        return "Set new day - " + getDayManagement().getCurrentDay().getDayName() ;
+        return new CommandResult("Set new day - " + getDayManagement().getCurrentDay().getDayName(), CommandState.DONE);
+
     }
 }

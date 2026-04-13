@@ -2,6 +2,8 @@ package Commands.ProductCommands;
 
 import Achievements.AchievementTypes;
 import Commands.Command;
+import Commands.CommandResult;
+import Commands.CommandState;
 import Game.GameData;
 import Items.ItemNames;
 import Player.InvalidPlayerActionException;
@@ -19,31 +21,29 @@ public class BuyProductCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public CommandResult execute() {
         if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
-            setSuccessful(false);
-            return "You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day";
+            return new CommandResult("You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day",
+                    CommandState.FAILED_ISSUE);
         }
 
         ItemNames product = getCurrentShop().getItems()[index].getItem().getName();
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
 
         if(getPlayer().calculateStocks() > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)){
-            setSuccessful(false);
-            return "You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse";
+            return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse",
+                    CommandState.FAILED_ISSUE);
         }
 
         try {
             getPlayer().buyItem(product, amount,price);
         }catch (InvalidPlayerActionException e){
-            super.setSuccessful(false);
-            return e.getMessage();
+            return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
         getCurrentShop().buyItem(index, amount);
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);
         getAchievementManagement().updateAchievement(AchievementTypes.BUY, amount);
-
-        return "Bought " + amount + "x " + product;
+        return new CommandResult("Bought " + amount + "x " + product, CommandState.DONE);
     }
 }
