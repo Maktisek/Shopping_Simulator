@@ -1,8 +1,24 @@
+import Commands.ShopCommands.BuyShopCommand;
+import Commands.ShopCommands.ChangeShopLeftCommand;
+import Commands.ShopCommands.ChangeShopRightCommand;
+import Commands.ShopCommands.ShopDirection;
+import Game.GameData;
+import Game.Initialization;
+
 public class Main {
     public static void main(String[] args) {
 
 
+        GameData gameData = new Initialization().getGameData();
 
+        System.out.println();
+
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new BuyShopCommand(gameData, ShopDirection.RIGHT).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new ChangeShopLeftCommand(gameData).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
 
 
 

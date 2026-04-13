@@ -20,7 +20,7 @@ public class ChangeShopLeftCommand extends Command {
 
         if(!getShopManagement().boughtLeft()){
             Shop temp = getShopManagement().peekLeft();
-            return new CommandResult("Do you want to buy " + temp.getName() + " for " + temp.getShopKey().getPrice() + " ?",
+            return new CommandResult("Do you want to buy " + temp.getName() + " for " + temp.getShopKey().getPrice() + "?",
                     CommandState.FAILED_BUY);
         }
 

@@ -4,6 +4,7 @@ import Items.WrongItemException;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class ShopManagement {
@@ -17,8 +18,8 @@ public class ShopManagement {
         this.leftShops = new Stack<>();
         this.rightShops = new Stack<>();
         this.currentShop = shops.get(0);
-        for (Shop shop : shops){
-            this.rightShops.push(shop);
+        for (int i = shops.size() - 1; i >= 1 ; i--) {
+            rightShops.push(shops.get(i));
         }
     }
 
@@ -28,8 +29,12 @@ public class ShopManagement {
     }
 
     public boolean isSwitchLeft(){
-        Shop temp = leftShops.peek();
-        return temp != null;
+        try {
+            leftShops.peek();
+        }catch (EmptyStackException e){
+            return false;
+        }
+        return true;
     }
 
     public boolean boughtLeft(){
@@ -43,8 +48,12 @@ public class ShopManagement {
     }
 
     public boolean isSwitchRight(){
-        Shop temp = rightShops.peek();
-        return temp != null;
+        try {
+            rightShops.peek();
+        }catch (EmptyStackException e){
+            return false;
+        }
+        return true;
     }
 
     public boolean boughtRight(){
@@ -58,15 +67,6 @@ public class ShopManagement {
 
     public Shop peekRight(){
         return rightShops.peek();
-    }
-
-    public Shop findShop(ShopNames name) {
-        for (Shop shop : shops) {
-            if (shop.getName() == name) {
-                return shop;
-            }
-        }
-        return null;
     }
 
     public void setNewDays(Player player) {
@@ -122,6 +122,8 @@ public class ShopManagement {
         return "ShopManagement{" +
                 "shops=" + shops +
                 ", currentShop=" + currentShop +
+                ", leftShops=" + leftShops +
+                ", rightShops=" + rightShops +
                 '}';
     }
 }
