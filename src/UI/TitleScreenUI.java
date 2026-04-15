@@ -12,16 +12,22 @@ import java.net.URL;
 public class TitleScreenUI {
 
     private final JFrame frame;
-
+    private final BackgroundPanel background;
 
     public TitleScreenUI() throws InvalidUILoadException {
         this.frame = new JFrame("Forest Market Launcher");
+
+        this.background = new BackgroundPanel("/TitleScreenUI/pes.jpg");
+        this.frame.setContentPane(background);
+
         this.frame.setSize(600, 600);
         this.frame.setLayout(new BorderLayout());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);
         this.frame.setMinimumSize(new Dimension(600, 600));
         this.frame.setResizable(false);
+
+
         initialize();
     }
 
@@ -47,7 +53,7 @@ public class TitleScreenUI {
         label.setBorder(new EmptyBorder(50, 0, 0, 0));
         label.setOpaque(false);
 
-        this.frame.add(label, BorderLayout.NORTH);
+        this.background.add(label, BorderLayout.NORTH);
     }
 
     private void initializeMainPanel() throws InvalidUILoadException{
@@ -71,7 +77,7 @@ public class TitleScreenUI {
         panel.add(Box.createVerticalStrut(12));
         panel.add(quit);
 
-        this.frame.add(panel, BorderLayout.CENTER);
+        this.background.add(panel, BorderLayout.CENTER);
 
         newGame.addActionListener(e ->{
             GameData gameData = new Initialization().getGameData();
