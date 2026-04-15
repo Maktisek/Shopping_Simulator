@@ -8,8 +8,12 @@ public class Launcher {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                TitleScreenUI title = new TitleScreenUI();
-                title.show();
+                try {
+                    TitleScreenUI title = new TitleScreenUI();
+                    title.show();
+                }catch (InvalidUILoadException e){
+                    System.err.println(e.getMessage());
+                }
             }
         });
     }
