@@ -5,21 +5,12 @@ import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Game.Initialization;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-
-        GameData gameData = new Initialization().getGameData();
-
-        System.out.println();
-
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new BuyShopCommand(gameData, ShopDirection.RIGHT).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new ChangeShopLeftCommand(gameData).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-
+        int[][] array = {{111},};
 
 
     }
@@ -93,5 +84,16 @@ public class Main {
 //        System.out.println(new NewRebirthCommand(gameData).execute());
 //
 //        System.out.println(gameData);
+    }
+
+    public static void commandTest2(){
+        GameData gameData = new Initialization().getGameData();
+
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new BuyShopCommand(gameData, ShopDirection.RIGHT).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
+        System.out.println(new ChangeShopLeftCommand(gameData).execute());
+        System.out.println(new ChangeShopRightCommand(gameData).execute());
     }
 }
