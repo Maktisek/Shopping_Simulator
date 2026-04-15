@@ -13,6 +13,7 @@ public class TitleScreenUI {
 
     private final JFrame frame;
 
+
     public TitleScreenUI() throws InvalidUILoadException {
         this.frame = new JFrame("Forest Market Launcher");
         this.frame.setSize(600, 600);
