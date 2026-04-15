@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TitleScreenUI {
 
-    private JFrame frame;
+    private final JFrame frame;
 
     public TitleScreenUI() {
         this.frame = new JFrame("Forest Market Launcher");
@@ -13,6 +13,7 @@ public class TitleScreenUI {
         this.frame.setLayout(new BorderLayout());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);
+        frame.setMinimumSize(new Dimension(600, 600));
 
     }
 
