@@ -17,7 +17,7 @@ public class TitleScreenUI {
     public TitleScreenUI() throws InvalidUILoadException {
         this.frame = new JFrame("Forest Market Launcher");
 
-        this.background = new BackgroundPanel("/TitleScreenUI/pes.jpg");
+        this.background = new BackgroundPanel("/TitleScreenUI/BACKGROUND.png");
         this.frame.setContentPane(background);
 
         this.frame.setSize(600, 600);
