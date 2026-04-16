@@ -40,6 +40,7 @@ public class TitleScreenButton extends JButton {
         setSizeOfButton(width,height);
 
         setMouseListener();
+        setCursor();
     }
 
     @Override
@@ -104,5 +105,12 @@ public class TitleScreenButton extends JButton {
         setMaximumSize(dimension);
         setPreferredSize(dimension);
         setMinimumSize(dimension);
+    }
+
+    private void setCursor(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CUSTOM_CURSOR.png"));
+        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
+        this.setCursor(customCursor);
     }
 }
