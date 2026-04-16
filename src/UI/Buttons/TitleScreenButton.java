@@ -14,6 +14,7 @@ public class TitleScreenButton extends JButton {
     private final Image idleImg;
     private final Image clickedImg;
     private boolean hoovered;
+    private boolean clicked;
 
     public TitleScreenButton(String imgFile,String clickedImg, int width, int height) throws InvalidUILoadException{
         super();
@@ -48,12 +49,20 @@ public class TitleScreenButton extends JButton {
         int w = getWidth();
         int h = getHeight();
 
-        if (hoovered) {
-            g.drawImage(img, 0, 0, w, h, this);
-        } else {
-            int offset = 5;
-            g.drawImage(img, offset, offset, w - (offset * 2), h - (offset * 2), this);
+        int offset2 = calculateOffset();
+        g.drawImage(img, offset2, offset2, w - (offset2 * 2), h - (offset2 * 2), this);
+
+
+    }
+
+    private int calculateOffset(){
+        if(clicked){
+            return 5;
         }
+        if(hoovered){
+            return 0;
+        }
+        return 5;
     }
 
     private void setMouseListener(){
@@ -76,6 +85,7 @@ public class TitleScreenButton extends JButton {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 TitleScreenButton.this.img = clickedImg;
+                TitleScreenButton.this.clicked = true;
                 repaint();
             }
 
@@ -83,6 +93,7 @@ public class TitleScreenButton extends JButton {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 TitleScreenButton.this.img = idleImg;
+                TitleScreenButton.this.clicked = false;
                 repaint();
             }
         });
