@@ -63,8 +63,8 @@ public class TitleScreenUI {
         panel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40));
 
         TitleScreenButton newGame = new TitleScreenButton("/TitleScreenUI/NEW_GAME_BUTTON.png","/TitleScreenUI/NEW_GAME_BUTTON_CLICKED.png", 200, 100);
-        TitleScreenButton loadGame = new TitleScreenButton("/TitleScreenUI/LOAD_BUTTON.png","/TitleScreenUI/NEW_GAME_BUTTON.png", 200, 100);
-        TitleScreenButton quit = new TitleScreenButton("/TitleScreenUI/QUIT_BUTTON.png","/TitleScreenUI/NEW_GAME_BUTTON.png", 200, 100);
+        TitleScreenButton loadGame = new TitleScreenButton("/TitleScreenUI/LOAD_BUTTON.png","/TitleScreenUI/LOAD_BUTTON_CLICKED.png", 200, 100);
+        TitleScreenButton quit = new TitleScreenButton("/TitleScreenUI/QUIT_BUTTON.png","/TitleScreenUI/QUIT_BUTTON_CLICKED.png", 200, 100);
 
         newGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
