@@ -2,8 +2,10 @@ package UI.TitleUI;
 
 import Game.GameData;
 import Game.Initialization;
+import Player.InvalidPlayerActionException;
 import UI.BackgroundPanel;
 import UI.InvalidUILoadException;
+import UI.MainUI.MainUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -82,8 +84,13 @@ public class TitleScreenUI {
 
         newGame.addActionListener(e ->{
             GameData gameData = new Initialization().getGameData();
-            System.out.println(gameData);
-            this.frame.dispose();
+            try {
+                MainUI mainUI = new MainUI();
+                this.frame.dispose();
+                mainUI.show();
+            }catch (InvalidUILoadException ex){
+                System.err.println(ex.getMessage());
+            }
         });
 
         loadGame.addActionListener(e ->{
