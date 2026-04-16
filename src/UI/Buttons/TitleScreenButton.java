@@ -109,7 +109,7 @@ public class TitleScreenButton extends JButton {
 
     private void setCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CUSTOM_CURSOR.png"));
+        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CLICKED_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }
