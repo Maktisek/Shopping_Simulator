@@ -10,18 +10,28 @@ import java.net.URL;
 
 public class TitleScreenButton extends JButton {
 
-    private final Image img;
+    private Image img;
+    private final Image idleImg;
+    private final Image clickedImg;
     private boolean hoovered;
 
-    public TitleScreenButton(String imgFile, int width, int height) throws InvalidUILoadException{
+    public TitleScreenButton(String imgFile,String clickedImg, int width, int height) throws InvalidUILoadException{
         super();
         URL imageURL = getClass().getResource(imgFile);
+        URL clickedURL = getClass().getResource(clickedImg);
 
         if(imageURL == null){
             throw new InvalidUILoadException("The image "+ imgFile +" was not found");
         }
 
-        this.img = new ImageIcon(imageURL).getImage();
+        if(clickedURL == null){
+            throw new InvalidUILoadException("The image "+ imgFile +" was not found");
+        }
+
+        this.idleImg = new ImageIcon(imageURL).getImage();
+        this.clickedImg = new ImageIcon(clickedURL).getImage();
+
+        this.img = idleImg;
 
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -59,6 +69,20 @@ public class TitleScreenButton extends JButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 TitleScreenButton.this.hoovered = true;
+                repaint();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                TitleScreenButton.this.img = clickedImg;
+                repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                TitleScreenButton.this.img = idleImg;
                 repaint();
             }
         });
