@@ -1,4 +1,4 @@
-package UI.Buttons;
+package UI.TitleUI;
 
 import UI.InvalidUILoadException;
 

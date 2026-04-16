@@ -1,5 +1,7 @@
 package UI;
 
+import UI.TitleUI.TitleScreenUI;
+
 import java.awt.*;
 
 public class Launcher {

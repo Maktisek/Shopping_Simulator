@@ -32,7 +32,7 @@ public class BackgroundPanel extends JPanel {
 
     private void setCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/MAIN_CURSOR.png"));
+        Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }

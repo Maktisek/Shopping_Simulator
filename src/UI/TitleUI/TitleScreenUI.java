@@ -1,8 +1,9 @@
-package UI;
+package UI.TitleUI;
 
 import Game.GameData;
 import Game.Initialization;
-import UI.Buttons.TitleScreenButton;
+import UI.BackgroundPanel;
+import UI.InvalidUILoadException;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
