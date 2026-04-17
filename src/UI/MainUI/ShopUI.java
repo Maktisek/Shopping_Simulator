@@ -8,6 +8,7 @@ import UI.InvalidUILoadException;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class ShopUI extends BackgroundPanel {
 
     private Shop shop;
@@ -18,6 +19,17 @@ public class ShopUI extends BackgroundPanel {
         super("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
         this.shop = shop;
         this.gameData = gameData;
+
+        initialize();
     }
 
+    private void initialize(){
+        this.setLayout(new BorderLayout());
+        initializeSouth();
+    }
+
+    private void initializeSouth(){
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
+    }
 }

@@ -32,4 +32,6 @@ public class ShopManagementUI extends Panel {
             add(shop, gameData.getShopManagement().getShops().get(i).toString());
         }
     }
+
+
 }
