@@ -53,5 +53,4 @@ public class StrokeLabel extends JLabel {
 
         g2.dispose();
     }
-
 }
