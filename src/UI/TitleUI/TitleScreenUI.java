@@ -83,9 +83,8 @@ public class TitleScreenUI {
         this.background.add(panel, BorderLayout.CENTER);
 
         newGame.addActionListener(e ->{
-            GameData gameData = new Initialization().getGameData();
             try {
-                MainUI mainUI = new MainUI();
+                MainUI mainUI = new MainUI(new Initialization().getGameData());
                 this.frame.dispose();
                 mainUI.show();
             }catch (InvalidUILoadException ex){
