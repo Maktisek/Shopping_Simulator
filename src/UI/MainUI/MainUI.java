@@ -13,7 +13,7 @@ public class MainUI {
     public MainUI() throws InvalidUILoadException {
         this.frame = new JFrame("Forest Market");
 
-        this.background = new BackgroundPanel("/MainUI/MAIN_BACKGROUND_TEST.png");
+        this.background = new BackgroundPanel("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
         this.frame.setContentPane(background);
 
         this.frame.setLayout(new CardLayout());
