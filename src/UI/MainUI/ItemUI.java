@@ -1,6 +1,8 @@
 package UI.MainUI;
 
 
+import Commands.ProductCommands.BuyProductCommand;
+import Game.GameData;
 import Items.ItemShop;
 import UI.BackgroundPanel;
 import UI.CustomButton;
@@ -16,10 +18,14 @@ public class ItemUI extends BackgroundPanel {
 
     private final ItemShop item;
     private Font currentFont;
+    private GameData gameData;
+    private int index;
 
-    public ItemUI(String imgFile, ItemShop item) throws InvalidUILoadException {
+    public ItemUI(String imgFile, ItemShop item, int index, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
         this.item = item;
+        this.index = index;
+        this.gameData = gameData;
 
         Dimension dimension = new Dimension(180, 180);
         setMinimumSize(new Dimension(dimension));
@@ -82,6 +88,11 @@ public class ItemUI extends BackgroundPanel {
 
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setAlignmentY(Component.TOP_ALIGNMENT);
+
+        button.addActionListener(e ->{
+            System.out.println(new BuyProductCommand(gameData, index, 1).execute());
+            System.out.println(gameData);
+        });
 
         add(button);
     }
