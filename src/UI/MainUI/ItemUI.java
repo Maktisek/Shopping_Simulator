@@ -3,6 +3,7 @@ package UI.MainUI;
 
 import Items.ItemShop;
 import UI.BackgroundPanel;
+import UI.CustomButton;
 import UI.InvalidUILoadException;
 
 import javax.swing.*;
@@ -35,6 +36,7 @@ public class ItemUI extends BackgroundPanel {
         loadFont();
         initializeLabel();
         initializeImg();
+        initializeBuyButton();
     }
 
     private void initializeLabel(){
@@ -46,7 +48,7 @@ public class ItemUI extends BackgroundPanel {
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setAlignmentY(Component.TOP_ALIGNMENT);
-//        label.setBorder(BorderFactory.createLineBorder(Color.RED));
+//        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
         add(label);
         add(Box.createVerticalStrut(8));
@@ -70,11 +72,20 @@ public class ItemUI extends BackgroundPanel {
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentY(Component.TOP_ALIGNMENT);
 
-//        image.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+//        image.setBorder(BorderFactory.createLineBorder(Color.BLUE)); //Debugging
 
         add(image);
-
     }
+
+    private void initializeBuyButton() throws InvalidUILoadException{
+        CustomButton button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
+
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentY(Component.TOP_ALIGNMENT);
+
+        add(button);
+    }
+
 
     private void loadFont(){
         try {

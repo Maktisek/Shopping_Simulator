@@ -1,6 +1,4 @@
-package UI.TitleUI;
-
-import UI.InvalidUILoadException;
+package UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-public class TitleScreenButton extends JButton {
+public class CustomButton extends JButton {
 
     private Image img;
     private final Image idleImg;
@@ -16,7 +14,7 @@ public class TitleScreenButton extends JButton {
     private boolean hoovered;
     private boolean clicked;
 
-    public TitleScreenButton(String imgFile,String clickedImg, int width, int height) throws InvalidUILoadException{
+    public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException{
         super();
         URL imageURL = getClass().getResource(imgFile);
         URL clickedURL = getClass().getResource(clickedImg);
@@ -36,6 +34,7 @@ public class TitleScreenButton extends JButton {
 
         setContentAreaFilled(false);
         setBorderPainted(false);
+        setFocusPainted(false);
 
         setSizeOfButton(width,height);
 
@@ -71,30 +70,30 @@ public class TitleScreenButton extends JButton {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                TitleScreenButton.this.hoovered = false;
+                CustomButton.this.hoovered = false;
                 repaint();
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                TitleScreenButton.this.hoovered = true;
+                CustomButton.this.hoovered = true;
                 repaint();
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                TitleScreenButton.this.img = clickedImg;
-                TitleScreenButton.this.clicked = true;
+                CustomButton.this.img = clickedImg;
+                CustomButton.this.clicked = true;
                 repaint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                TitleScreenButton.this.img = idleImg;
-                TitleScreenButton.this.clicked = false;
+                CustomButton.this.img = idleImg;
+                CustomButton.this.clicked = false;
                 repaint();
             }
         });
