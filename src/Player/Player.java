@@ -31,11 +31,11 @@ public class Player {
 
     public void buyItem(ItemNames name, int amount, int shopPrice) throws InvalidPlayerActionException {
         if (amount * shopPrice > this.currentBalance) {
-            throw new InvalidPlayerActionException(name + " could not be bought - currentBalance too small");
+            throw new InvalidPlayerActionException(name + " could not be bought currentBalance too small");
         }
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
-            throw new InvalidPlayerActionException(name + "could not be bought - " + name + " could not be found");
+            throw new InvalidPlayerActionException(name + "could not be bought " + name + " could not be found");
         }
         try {
             this.currentBalance -= foundItem.buyItem(amount, shopPrice);

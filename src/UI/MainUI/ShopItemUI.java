@@ -98,18 +98,16 @@ public class ShopItemUI extends BackgroundPanel {
             System.out.println(result.getMessage());
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
-
+                try {
+                    parentShop.showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
-
-
         });
 
         add(button);
     }
-
-
-
-
 
     private void loadFont(){
         try {
