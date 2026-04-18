@@ -9,10 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 public class ItemUI extends BackgroundPanel {
 
-    private ItemShop item;
+    private final ItemShop item;
     private Font currentFont;
 
     public ItemUI(String imgFile, ItemShop item) throws InvalidUILoadException {
@@ -27,12 +28,13 @@ public class ItemUI extends BackgroundPanel {
         initialize();
     }
 
-    private void initialize(){
+    private void initialize() throws InvalidUILoadException{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
-        setBorder(BorderFactory.createEmptyBorder(15, 0, 40, 0));
+        setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         loadFont();
         initializeLabel();
+        initializeImg();
     }
 
     private void initializeLabel(){
@@ -40,11 +42,37 @@ public class ItemUI extends BackgroundPanel {
         label.setFont(currentFont);
         label.setOpaque(false);
         label.setFont(this.currentFont.deriveFont(Font.BOLD,14.0f));
-        label.setForeground(Color.BLACK);
+        label.setForeground(Color.WHITE);
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setAlignmentY(Component.TOP_ALIGNMENT);
+//        label.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         add(label);
+        add(Box.createVerticalStrut(8));
+
+    }
+
+    private void initializeImg() throws InvalidUILoadException{
+//        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products"+item.getItem().getName().toString()+".png");
+        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
+
+        if(imageURL == null){
+            throw new InvalidUILoadException(item.getItem().getName().toString() + " picture was not found.");
+        }
+
+        ImageIcon icon = new ImageIcon(imageURL);
+        Image scaledImage = icon.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+
+        JLabel image = new JLabel(new ImageIcon(scaledImage));
+
+        image.setOpaque(false);
+        image.setAlignmentX(Component.CENTER_ALIGNMENT);
+        image.setAlignmentY(Component.TOP_ALIGNMENT);
+
+//        image.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+
+        add(image);
 
     }
 

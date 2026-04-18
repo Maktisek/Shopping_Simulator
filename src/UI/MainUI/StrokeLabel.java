@@ -11,12 +11,12 @@ import java.awt.geom.Rectangle2D;
  * @author Google Gemini
  */
 public class StrokeLabel extends JLabel {
-    private Color strokeColor = Color.WHITE;
-    private float strokeWidth = 4.5f;
+    private Color strokeColor = Color.BLACK;
+    private float strokeWidth = 7.5f;
 
     public StrokeLabel(String text) {
         super(text);
-        setBorder(new EmptyBorder(10, 10, 10, 10));
+        setBorder(new EmptyBorder(0, 10, 0, 10));
     }
 
     @Override
