@@ -31,11 +31,15 @@ public class MainUI {
         this.frame.setVisible(true);
     }
 
-    private void initialize() throws InvalidUILoadException{
+    private void initialize() throws InvalidUILoadException {
         initializeMainPanel();
         initializeShopManagementUI();
 
         this.cardLayout.show(mainPanel, "Shop");
+
+        UIManager.put("OptionPane.background", Color.DARK_GRAY);
+        UIManager.put("Panel.background", Color.DARK_GRAY);
+        UIManager.put("OptionPane.messageForeground", Color.WHITE);
     }
 
     private void initializeMainPanel() {

@@ -1,9 +1,12 @@
 package UI.MainUI;
 
 
+import Commands.CommandResult;
+import Commands.CommandState;
 import Commands.ProductCommands.BuyProductCommand;
 import Game.GameData;
 import Items.ItemShop;
+import Shops.Shop;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
@@ -13,15 +16,16 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 
-public class ItemUI extends BackgroundPanel {
+public class ShopItemUI extends BackgroundPanel {
 
     private final ItemShop item;
     private Font currentFont;
     private GameData gameData;
     private int index;
 
-    public ItemUI(String imgFile, ItemShop item, int index, GameData gameData) throws InvalidUILoadException {
+    public ShopItemUI(String imgFile, ItemShop item, int index, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
         this.item = item;
         this.index = index;
@@ -90,12 +94,21 @@ public class ItemUI extends BackgroundPanel {
         button.setAlignmentY(Component.TOP_ALIGNMENT);
 
         button.addActionListener(e ->{
-            System.out.println(new BuyProductCommand(gameData, index, 1).execute());
-            System.out.println(gameData);
+            CommandResult result = new BuyProductCommand(gameData, index, 1).execute();
+            System.out.println(result.getMessage());
+            if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
+                ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
+
+            }
+
+
         });
 
         add(button);
     }
+
+
+
 
 
     private void loadFont(){
