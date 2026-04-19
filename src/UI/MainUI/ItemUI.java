@@ -21,8 +21,8 @@ public class ItemUI extends BackgroundPanel {
 
     private final Item item;
     private Font currentFont;
-    private GameData gameData;
-    private int index;
+    private final GameData gameData;
+    private final int index;
 
     public ItemUI(String imgFile, Item item, int index, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
@@ -43,6 +43,7 @@ public class ItemUI extends BackgroundPanel {
         setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         loadFont();
+
         initializeLabel();
         initializeImg();
         initializeBuyButton();
