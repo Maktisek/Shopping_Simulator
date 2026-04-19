@@ -1,9 +1,11 @@
 package UI.MainUI;
 
 
+import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.ProductCommands.BuyProductCommand;
+import Commands.ProductCommands.SellProductCommand;
 import Game.GameData;
 import Items.Item;
 import UI.BackgroundPanel;
@@ -48,10 +50,7 @@ public class ItemUI extends BackgroundPanel {
 
         initializeLabel();
         initializeImg();
-
-        switch (this.specification){
-            case SHOP -> initializeBuyButton();
-        }
+        initializeButton();
 
     }
 
@@ -93,14 +92,29 @@ public class ItemUI extends BackgroundPanel {
         add(image);
     }
 
-    private void initializeBuyButton() throws InvalidUILoadException{
-        CustomButton button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
+
+    private void initializeButton() throws InvalidUILoadException{
+        CustomButton button = new CustomButton();
+        Command command = null;
+        switch (specification){
+            case SHOP:{
+                button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
+                command = new BuyProductCommand(gameData, index, 1);
+                break;
+            }
+            case NPC:{
+                button = new CustomButton("/MainUI/ShopUI/SELL_BUTTON.png", "/MainUI/ShopUI/SELL_BUTTON.png", 100, 50);
+                command = new SellProductCommand(gameData, index, 1);
+                break;
+            }
+        }
 
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setAlignmentY(Component.TOP_ALIGNMENT);
 
+        Command finalCommand = command;
         button.addActionListener(e ->{
-            CommandResult result = new BuyProductCommand(gameData, index, 1).execute();
+            CommandResult result = finalCommand.execute();
             System.out.println(result.getMessage());
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
@@ -111,7 +125,6 @@ public class ItemUI extends BackgroundPanel {
                 }
             }
         });
-
         add(button);
     }
 

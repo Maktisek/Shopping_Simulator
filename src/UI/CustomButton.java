@@ -9,10 +9,14 @@ import java.net.URL;
 public class CustomButton extends JButton {
 
     private Image img;
-    private final Image idleImg;
-    private final Image clickedImg;
+    private Image idleImg;
+    private Image clickedImg;
     private boolean hoovered;
     private boolean clicked;
+
+    public CustomButton(){
+
+    }
 
     public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException{
         super();
