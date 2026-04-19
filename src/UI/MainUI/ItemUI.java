@@ -23,12 +23,14 @@ public class ItemUI extends BackgroundPanel {
     private Font currentFont;
     private final GameData gameData;
     private final int index;
+    private final ItemSpecification specification;
 
-    public ItemUI(String imgFile, Item item, int index, GameData gameData) throws InvalidUILoadException {
+    public ItemUI(String imgFile, Item item, int index, GameData gameData, ItemSpecification specification) throws InvalidUILoadException {
         super(imgFile);
         this.item = item;
         this.index = index;
         this.gameData = gameData;
+        this.specification = specification;
 
         Dimension dimension = new Dimension(180, 180);
         setMinimumSize(new Dimension(dimension));
@@ -46,7 +48,11 @@ public class ItemUI extends BackgroundPanel {
 
         initializeLabel();
         initializeImg();
-        initializeBuyButton();
+
+        switch (this.specification){
+            case SHOP -> initializeBuyButton();
+        }
+
     }
 
     private void initializeLabel(){
