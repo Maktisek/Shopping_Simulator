@@ -92,7 +92,7 @@ public class ShopUI extends BackgroundPanel {
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
 
-        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound));
+        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png"));
     }
 
     private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException{
@@ -100,7 +100,7 @@ public class ShopUI extends BackgroundPanel {
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
 
-        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound));
+        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png"));
 
     }
 

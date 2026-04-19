@@ -2,21 +2,34 @@ package UI.MainUI;
 
 import UI.BackgroundPanel;
 import UI.InvalidUILoadException;
+import Utilities.Important;
 
+import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class BoundPanelUI extends BackgroundPanel {
 
-    private String current;
-    private String bound;
+    private final String current;
+    private final String bound;
+    private ImageIcon img;
 
-    public BoundPanelUI(String imgFile, String current, String bound) throws InvalidUILoadException {
+    public BoundPanelUI(String imgFile, String current, String bound, String iconFile) throws InvalidUILoadException {
         super(imgFile);
+        this.current = current;
+        this.bound = bound;
+
+
+        loadIcon(iconFile);
         initialize();
     }
 
     private void initialize() {
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
         initializeDimensions();
+        initializeIconLabel();
+        initializeTextLabel();
     }
 
     private void initializeDimensions() {
@@ -26,7 +39,36 @@ public class BoundPanelUI extends BackgroundPanel {
         setMaximumSize(new Dimension(dimension));
     }
 
+    private void initializeIconLabel(){
+        add(Box.createHorizontalStrut(10));
+        JLabel label = new JLabel(img, JLabel.CENTER);
+        label.setAlignmentY(Component.CENTER_ALIGNMENT);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(label);
+    }
+
+    private void initializeTextLabel(){
+        StrokeLabel label = new StrokeLabel(current + "/" + bound);
+        Font font = Important.loadFont("/Fonts/Daydream.otf");
+        label.setFont(font);
+        label.setOpaque(false);
+        label.setFont(font.deriveFont(Font.BOLD,24.0f));
+        label.setForeground(Color.WHITE);
+
+        label.setAlignmentY(Component.CENTER_ALIGNMENT);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        add(label);
+    }
 
 
+    private void loadIcon(String fileName) throws InvalidUILoadException{
+        URL imageURL = getClass().getResource(fileName);
 
+        if(imageURL == null){
+            throw new InvalidUILoadException("The icon" + fileName + " could not be found");
+        }
+
+        this.img = new ImageIcon(imageURL);
+    }
 }
