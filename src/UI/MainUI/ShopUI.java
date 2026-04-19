@@ -4,6 +4,7 @@ import Game.GameData;
 import Shops.Shop;
 import UI.BackgroundPanel;
 import UI.InvalidUILoadException;
+import Upgrade.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,6 +56,7 @@ public class ShopUI extends BackgroundPanel {
 
         initializeShopItems(southPanel);
         initializeNPCItems(southPanel);
+        initializeBounds(southPanel);
 
         panel.add(southPanel, BorderLayout.SOUTH);
     }
@@ -72,6 +74,34 @@ public class ShopUI extends BackgroundPanel {
             panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC));
             panel.add(Box.createHorizontalStrut(40));
         }
+    }
+
+    private void initializeBounds(JPanel panel) throws InvalidUILoadException{
+        JPanel bounds = new JPanel();
+        bounds.setLayout(new BoxLayout(bounds, BoxLayout.Y_AXIS));
+        bounds.setOpaque(false);
+
+        addBuyBoundPanel(bounds);
+        addSellBoundPanel(bounds);
+
+        panel.add(bounds);
+    }
+
+    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException{
+        panel.add(Box.createVerticalStrut(12));
+        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
+
+        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound));
+    }
+
+    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException{
+        panel.add(Box.createVerticalStrut(12));
+        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
+
+        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound));
+
     }
 
     public void showShopDialog(JPanel customContent) {

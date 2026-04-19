@@ -68,6 +68,30 @@ public class Day {
         return daySpending;
     }
 
+    public void setDayIncome(int dayIncome) {
+        this.dayIncome = dayIncome;
+    }
+
+    public int getDaySoldAmount() {
+        return daySoldAmount;
+    }
+
+    public void setDaySoldAmount(int daySoldAmount) {
+        this.daySoldAmount = daySoldAmount;
+    }
+
+    public int getDayBoughtAmount() {
+        return dayBoughtAmount;
+    }
+
+    public void setDayBoughtAmount(int dayBoughtAmount) {
+        this.dayBoughtAmount = dayBoughtAmount;
+    }
+
+    public void setDaySpending(int daySpending) {
+        this.daySpending = daySpending;
+    }
+
     @Override
     public String toString() {
         return "Day{" +

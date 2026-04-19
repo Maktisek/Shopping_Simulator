@@ -20,7 +20,7 @@ public class BoundPanelUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(96, 32);
+        Dimension dimension = new Dimension(270, 90);
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
