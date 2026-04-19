@@ -60,7 +60,7 @@ public class ShopUI extends BackgroundPanel {
 
     private void initializeItems(JPanel panel) throws InvalidUILoadException{
         for (int i = 0; i < shop.getItems().length; i++) {
-            panel.add(new ShopItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i], i, gameData));
+            panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData));
             panel.add(Box.createHorizontalStrut(40));
         }
     }

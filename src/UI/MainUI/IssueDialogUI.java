@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class IssueDialogUI extends BackgroundPanel {
 
-    private String message;
+    private final String message;
 
     public IssueDialogUI(String imgFile, String message) throws InvalidUILoadException {
         super(imgFile);

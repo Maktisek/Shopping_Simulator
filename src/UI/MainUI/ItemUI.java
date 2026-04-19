@@ -5,8 +5,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.ProductCommands.BuyProductCommand;
 import Game.GameData;
-import Items.ItemShop;
-import Shops.Shop;
+import Items.Item;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
@@ -18,14 +17,14 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Objects;
 
-public class ShopItemUI extends BackgroundPanel {
+public class ItemUI extends BackgroundPanel {
 
-    private final ItemShop item;
+    private final Item item;
     private Font currentFont;
     private GameData gameData;
     private int index;
 
-    public ShopItemUI(String imgFile, ItemShop item, int index, GameData gameData) throws InvalidUILoadException {
+    public ItemUI(String imgFile, Item item, int index, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
         this.item = item;
         this.index = index;
@@ -50,7 +49,7 @@ public class ShopItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        StrokeLabel label = new StrokeLabel(this.item.getItem().getName().toString());
+        StrokeLabel label = new StrokeLabel(this.item.getName().toString());
         label.setFont(currentFont);
         label.setOpaque(false);
         label.setFont(this.currentFont.deriveFont(Font.BOLD,14.0f));
@@ -70,7 +69,7 @@ public class ShopItemUI extends BackgroundPanel {
         URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
 
         if(imageURL == null){
-            throw new InvalidUILoadException(item.getItem().getName().toString() + " picture was not found.");
+            throw new InvalidUILoadException(item.getName().toString() + " picture was not found.");
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
