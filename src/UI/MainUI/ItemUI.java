@@ -11,6 +11,7 @@ import Items.Item;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
+import Utilities.Important;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -96,8 +97,8 @@ public class ItemUI extends BackgroundPanel {
     private void initializeCommandPoint() throws InvalidUILoadException {
         JPanel commandPoint = new JPanel();
         commandPoint.setOpaque(false);
-        commandPoint.setLayout(new BoxLayout(commandPoint, BoxLayout.X_AXIS));
-        commandPoint.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        commandPoint.setLayout(new BoxLayout(commandPoint, BoxLayout.Y_AXIS));
+        commandPoint.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
         initializeButton(commandPoint);
         initializePrice(commandPoint);
@@ -141,13 +142,13 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializePrice(JPanel panel){
-        StrokeLabel label = new StrokeLabel(String.valueOf(this.item.getCurrentPrice()));
+        StrokeLabel label = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR");
         label.setFont(currentFont);
         label.setOpaque(false);
-        label.setFont(this.currentFont.deriveFont(Font.BOLD,12.0f));
+        label.setFont(this.currentFont.deriveFont(Font.BOLD,13.0f));
         label.setForeground(Color.WHITE);
 
-        label.setAlignmentY(Component.CENTER_ALIGNMENT);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
         panel.add(label);

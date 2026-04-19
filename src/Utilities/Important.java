@@ -21,7 +21,7 @@ public class Important {
         return null;
     }
 
-    public static String formatCurrency(int amount) {
+    private static String formatCurrency(int amount) {
         java.text.DecimalFormat df = new java.text.DecimalFormat("#,###");
         return df.format(amount).replace(",", " ");
     }

@@ -51,7 +51,7 @@ public class ShopUI extends BackgroundPanel {
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         southPanel.setOpaque(false);
-        southPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 45, 40));
+        southPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 25, 40));
 
         initializeShopItems(southPanel);
         initializeNPCItems(southPanel);
