@@ -3,7 +3,7 @@ package UI.MainUI;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
-import Utilities.StringUpdater;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +33,7 @@ public class IssueDialogUI extends BackgroundPanel {
     private void initializeLabel(){
         add(Box.createVerticalStrut(30));
         StrokeLabel label = new StrokeLabel(message);
-        Font font = StringUpdater.loadFont("/Fonts/Daydream.otf");
+        Font font = Important.loadFont("/Fonts/Daydream.otf");
         label.setFont(font);
         label.setOpaque(false);
         label.setFont(font.deriveFont(Font.BOLD,12.0f));

@@ -4,11 +4,11 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class StringUpdater {
+public class Important {
 
     public static Font loadFont(String filePath){
         try {
-            InputStream in = StringUpdater.class.getResourceAsStream(filePath);
+            InputStream in = Important.class.getResourceAsStream(filePath);
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, in);
 
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
