@@ -4,13 +4,15 @@ import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Game.Initialization;
+import Utilities.Important;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        int[][] array = {{111},};
+        int test = 174400;
+        System.out.println(Important.parseMoney(test));
 
 
     }
