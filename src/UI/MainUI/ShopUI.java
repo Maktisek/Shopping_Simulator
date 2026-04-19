@@ -53,14 +53,23 @@ public class ShopUI extends BackgroundPanel {
         southPanel.setOpaque(false);
         southPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 45, 40));
 
-        initializeItems(southPanel);
+        initializeShopItems(southPanel);
+        initializeNPCItems(southPanel);
 
         panel.add(southPanel, BorderLayout.SOUTH);
     }
 
-    private void initializeItems(JPanel panel) throws InvalidUILoadException{
+    private void initializeShopItems(JPanel panel) throws InvalidUILoadException{
         for (int i = 0; i < shop.getItems().length; i++) {
             panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData, ItemSpecification.SHOP));
+            panel.add(Box.createHorizontalStrut(40));
+        }
+    }
+
+    private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
+        panel.add(Box.createHorizontalStrut(40));
+        for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
+            panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC));
             panel.add(Box.createHorizontalStrut(40));
         }
     }

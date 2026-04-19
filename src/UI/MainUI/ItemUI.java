@@ -13,6 +13,7 @@ import UI.CustomButton;
 import UI.InvalidUILoadException;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +51,7 @@ public class ItemUI extends BackgroundPanel {
 
         initializeLabel();
         initializeImg();
-        initializeButton();
+        initializeCommandPoint();
 
     }
 
@@ -92,8 +93,20 @@ public class ItemUI extends BackgroundPanel {
         add(image);
     }
 
+    private void initializeCommandPoint() throws InvalidUILoadException {
+        JPanel commandPoint = new JPanel();
+        commandPoint.setOpaque(false);
+        commandPoint.setLayout(new BoxLayout(commandPoint, BoxLayout.X_AXIS));
+        commandPoint.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
-    private void initializeButton() throws InvalidUILoadException{
+        initializeButton(commandPoint);
+        initializePrice(commandPoint);
+
+        add(commandPoint);
+    }
+
+
+    private void initializeButton(JPanel panel) throws InvalidUILoadException{
         CustomButton button = new CustomButton();
         Command command = null;
         switch (specification){
@@ -110,7 +123,6 @@ public class ItemUI extends BackgroundPanel {
         }
 
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setAlignmentY(Component.TOP_ALIGNMENT);
 
         Command finalCommand = command;
         button.addActionListener(e ->{
@@ -125,7 +137,20 @@ public class ItemUI extends BackgroundPanel {
                 }
             }
         });
-        add(button);
+        panel.add(button);
+    }
+
+    private void initializePrice(JPanel panel){
+        StrokeLabel label = new StrokeLabel(String.valueOf(this.item.getCurrentPrice()));
+        label.setFont(currentFont);
+        label.setOpaque(false);
+        label.setFont(this.currentFont.deriveFont(Font.BOLD,12.0f));
+        label.setForeground(Color.WHITE);
+
+        label.setAlignmentY(Component.CENTER_ALIGNMENT);
+//        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
+
+        panel.add(label);
     }
 
     private void loadFont(){
