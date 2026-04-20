@@ -29,7 +29,7 @@ public class ShopUI extends BackgroundPanel {
         initialize();
     }
 
-    private void initialize() throws InvalidUILoadException{
+    private void initialize() throws InvalidUILoadException {
         this.setLayout(new BorderLayout());
 
         layeredPane = new JLayeredPane();
@@ -43,17 +43,16 @@ public class ShopUI extends BackgroundPanel {
         overlay = new JPanel(new GridBagLayout());
         overlay.setOpaque(false);
         overlay.setVisible(false);
-        overlay.addMouseListener(new java.awt.event.MouseAdapter() {});
+        overlay.addMouseListener(new java.awt.event.MouseAdapter() {
+        });
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
 
         add(layeredPane);
-
-        update();
     }
 
-    private void initializeSouth(JPanel panel) throws InvalidUILoadException{
+    private void initializeSouth(JPanel panel) throws InvalidUILoadException {
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         southPanel.setOpaque(false);
@@ -66,7 +65,7 @@ public class ShopUI extends BackgroundPanel {
         panel.add(southPanel, BorderLayout.SOUTH);
     }
 
-    private void initializeShopItems(JPanel panel) throws InvalidUILoadException{
+    private void initializeShopItems(JPanel panel) throws InvalidUILoadException {
         for (int i = 0; i < shop.getItems().length; i++) {
             panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData, ItemSpecification.SHOP));
             panel.add(Box.createHorizontalStrut(40));
@@ -81,7 +80,7 @@ public class ShopUI extends BackgroundPanel {
         }
     }
 
-    private void initializeBounds(JPanel panel) throws InvalidUILoadException{
+    private void initializeBounds(JPanel panel) throws InvalidUILoadException {
         JPanel bounds = new JPanel();
         bounds.setLayout(new BoxLayout(bounds, BoxLayout.Y_AXIS));
         bounds.setOpaque(false);
@@ -92,7 +91,7 @@ public class ShopUI extends BackgroundPanel {
         panel.add(bounds);
     }
 
-    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException{
+    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(12));
 
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
@@ -103,7 +102,7 @@ public class ShopUI extends BackgroundPanel {
         panel.add(buyBounds);
     }
 
-    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException{
+    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(12));
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
@@ -126,12 +125,9 @@ public class ShopUI extends BackgroundPanel {
         repaint();
     }
 
-    public void update(){
-        Timer updater = new Timer(20, e ->{
-            this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
-            this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
-        });
-        updater.start();
+    public void update() {
+        this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
+        this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
     }
 
 }

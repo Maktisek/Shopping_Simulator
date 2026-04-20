@@ -37,9 +37,7 @@ public class MainUI {
 
         this.cardLayout.show(mainPanel, "Shop");
 
-        UIManager.put("OptionPane.background", Color.DARK_GRAY);
-        UIManager.put("Panel.background", Color.DARK_GRAY);
-        UIManager.put("OptionPane.messageForeground", Color.WHITE);
+        update();
     }
 
     private void initializeMainPanel() {
@@ -51,5 +49,12 @@ public class MainUI {
     private void initializeShopManagementUI() throws InvalidUILoadException{
         this.shopManagementUI = new ShopManagementUI(this.gameData);
         this.mainPanel.add(shopManagementUI, "Shop");
+    }
+
+    public void update(){
+        Timer updater = new Timer(20, e ->{
+            this.shopManagementUI.update();
+        });
+        updater.start();
     }
 }
