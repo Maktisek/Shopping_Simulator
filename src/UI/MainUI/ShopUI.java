@@ -1,5 +1,9 @@
 package UI.MainUI;
 
+import Commands.CommandResult;
+import Commands.CommandState;
+import Commands.ShopCommands.ChangeShopLeftCommand;
+import Commands.ShopCommands.ChangeShopRightCommand;
 import Game.GameData;
 import Shops.Shop;
 import UI.BackgroundPanel;
@@ -10,6 +14,7 @@ import Upgrade.UpgradeNames;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ShopUI extends BackgroundPanel {
@@ -43,6 +48,7 @@ public class ShopUI extends BackgroundPanel {
         mainPanel.setOpaque(false);
 
         initializeSouth(mainPanel);
+        initializeWest(mainPanel);
 
         overlay = new JPanel(new GridBagLayout());
         overlay.setOpaque(false);
@@ -122,23 +128,50 @@ public class ShopUI extends BackgroundPanel {
         panel.add(sellBounds);
     }
 
-    private void initializeEast(){
-        JPanel southPanel = new JPanel();
-        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
-        southPanel.setOpaque(false);
-        southPanel.setBorder(BorderFactory.createEmptyBorder(100, 0, 100, 0));
+    private void initializeWest(JPanel panel) throws InvalidUILoadException{
+        JPanel westPanel = new JPanel();
+        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+        westPanel.setOpaque(false);
 
-
+        initializeChangeShopButtons(westPanel);
+        panel.add(westPanel, BorderLayout.WEST);
     }
 
-    private void initializeChangeShopButtons(JPanel panel){
-        CustomButton previous = new CustomButton();
-        CustomButton next = new CustomButton();
+    private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException{
+        panel.add(Box.createVerticalGlue());
+        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
+        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", "/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 162, 162);
 
+        previous.setAlignmentX(Component.CENTER_ALIGNMENT);
+        next.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        previous.addActionListener(e ->{
+            CommandResult result = new ChangeShopLeftCommand(gameData).execute();
+            System.out.println(result.getMessage());
+            if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
+                try {
+                    showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        next.addActionListener(e ->{
+            CommandResult result = new ChangeShopRightCommand(gameData).execute();
+            System.out.println(result.getMessage());
+            if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
+                try {
+                    showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
         panel.add(previous);
         panel.add(next);
+        panel.add(Box.createVerticalGlue());
     }
 
 

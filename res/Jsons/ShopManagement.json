@@ -94,7 +94,7 @@
       },
       "shopKey": {
         "price": 100,
-        "unlocked": false
+        "unlocked": true
       },
       "items": [
         {
