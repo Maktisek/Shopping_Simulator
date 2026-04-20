@@ -10,9 +10,11 @@ import java.net.URL;
 
 public class BoundPanelUI extends BackgroundPanel {
 
-    private final String current;
-    private final String bound;
+    private String current;
+    private String bound;
     private ImageIcon img;
+
+    private StrokeLabel label;
 
     public BoundPanelUI(String imgFile, String current, String bound, String iconFile) throws InvalidUILoadException {
         super(imgFile);
@@ -39,7 +41,7 @@ public class BoundPanelUI extends BackgroundPanel {
         setMaximumSize(new Dimension(dimension));
     }
 
-    private void initializeIconLabel(){
+    private void initializeIconLabel() {
         add(Box.createHorizontalStrut(10));
         JLabel label = new JLabel(img, JLabel.CENTER);
         label.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -47,12 +49,12 @@ public class BoundPanelUI extends BackgroundPanel {
         add(label);
     }
 
-    private void initializeTextLabel(){
-        StrokeLabel label = new StrokeLabel(current + "/" + bound);
+    private void initializeTextLabel() {
+        label = new StrokeLabel(current + "/" + bound);
         Font font = Important.loadFont("/Fonts/Daydream.otf");
         label.setFont(font);
         label.setOpaque(false);
-        label.setFont(font.deriveFont(Font.BOLD,24.0f));
+        label.setFont(font.deriveFont(Font.BOLD, 24.0f));
         label.setForeground(Color.WHITE);
 
         label.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -62,13 +64,21 @@ public class BoundPanelUI extends BackgroundPanel {
     }
 
 
-    private void loadIcon(String fileName) throws InvalidUILoadException{
+    private void loadIcon(String fileName) throws InvalidUILoadException {
         URL imageURL = getClass().getResource(fileName);
 
-        if(imageURL == null){
+        if (imageURL == null) {
             throw new InvalidUILoadException("The icon" + fileName + " could not be found");
         }
 
         this.img = new ImageIcon(imageURL);
+    }
+
+    public void update(String current, String bound) {
+        this.current = current;
+        this.bound = bound;
+        if(label != null){
+            label.setText(this.current + "/" + this.bound);
+        }
     }
 }

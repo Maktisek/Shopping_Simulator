@@ -17,6 +17,9 @@ public class ShopUI extends BackgroundPanel {
     private JLayeredPane layeredPane;
     private JPanel overlay;
 
+    private BoundPanelUI buyBounds;
+    private BoundPanelUI sellBounds;
+
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
         super("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
@@ -46,6 +49,8 @@ public class ShopUI extends BackgroundPanel {
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
 
         add(layeredPane);
+
+        update();
     }
 
     private void initializeSouth(JPanel panel) throws InvalidUILoadException{
@@ -89,10 +94,13 @@ public class ShopUI extends BackgroundPanel {
 
     private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException{
         panel.add(Box.createVerticalStrut(12));
+
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
 
-        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png"));
+        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png");
+
+        panel.add(buyBounds);
     }
 
     private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException{
@@ -100,7 +108,9 @@ public class ShopUI extends BackgroundPanel {
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
 
-        panel.add(new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png"));
+        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
+
+        panel.add(sellBounds);
 
     }
 
@@ -114,6 +124,14 @@ public class ShopUI extends BackgroundPanel {
     public void hideDialog() {
         overlay.setVisible(false);
         repaint();
+    }
+
+    public void update(){
+        Timer updater = new Timer(20, e ->{
+            this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
+            this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
+        });
+        updater.start();
     }
 
 }
