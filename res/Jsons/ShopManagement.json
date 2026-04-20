@@ -99,7 +99,7 @@
       "items": [
         {
           "item": {
-            "name": "Bread",
+            "name": "TEST",
             "basePrice": 15,
             "currentPrice": 15
           },

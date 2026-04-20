@@ -148,23 +148,41 @@ public class ShopUI extends BackgroundPanel {
         previous.addActionListener(e ->{
             CommandResult result = new ChangeShopLeftCommand(gameData).execute();
             System.out.println(result.getMessage());
-            if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
-                try {
-                    showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
+            switch (result.getState()){
+                case DONE: {
+                    ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+                    parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
+                    break;
+                }
+                case FAILED_ISSUE:{
+                    try {
+                        showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    } catch (InvalidUILoadException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    break;
                 }
             }
+
         });
 
         next.addActionListener(e ->{
             CommandResult result = new ChangeShopRightCommand(gameData).execute();
             System.out.println(result.getMessage());
-            if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
-                try {
-                    showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
+
+            switch (result.getState()){
+                case DONE: {
+                    ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+                    parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
+                    break;
+                }
+                case FAILED_ISSUE:{
+                    try {
+                        showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    } catch (InvalidUILoadException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    break;
                 }
             }
         });

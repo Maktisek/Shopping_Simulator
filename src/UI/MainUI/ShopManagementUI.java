@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ShopManagementUI extends Panel {
+public class ShopManagementUI extends JPanel {
 
     private final GameData gameData;
     private CardLayout cardLayout;
@@ -25,7 +25,7 @@ public class ShopManagementUI extends Panel {
         setLayout(cardLayout);
 
         initializeShops();
-        cardLayout.show(this, gameData.getShopManagement().getShops().get(0).toString());
+        cardLayout.show(this, gameData.getShopManagement().getShops().get(0).getName().toString());
 
         update();
     }
@@ -35,12 +35,13 @@ public class ShopManagementUI extends Panel {
             Shop currentShop = gameData.getShopManagement().getShops().get(i);
             ShopUI shop = new ShopUI(currentShop, gameData);
             this.shopPanels.add(shop);
-            add(shop, gameData.getShopManagement().getShops().get(i).toString());
+            add(shop, gameData.getShopManagement().getShops().get(i).getName().toString());
         }
     }
 
     public void changeCard(String card){
         this.cardLayout.show(this, card);
+
     }
 
     public void update() {
