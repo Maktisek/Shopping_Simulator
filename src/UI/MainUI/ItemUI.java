@@ -15,8 +15,6 @@ import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.Objects;
 
@@ -132,7 +130,7 @@ public class ItemUI extends BackgroundPanel {
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
                 try {
-                    parentShop.showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    parentShop.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

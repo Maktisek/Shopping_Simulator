@@ -1,7 +1,6 @@
 package UI.MainUI;
 
 import Commands.CommandResult;
-import Commands.CommandState;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Game.GameData;
@@ -14,7 +13,6 @@ import Upgrade.UpgradeNames;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class ShopUI extends BackgroundPanel {
@@ -156,7 +154,7 @@ public class ShopUI extends BackgroundPanel {
                 }
                 case FAILED_ISSUE:{
                     try {
-                        showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                        showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                     } catch (InvalidUILoadException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -178,7 +176,7 @@ public class ShopUI extends BackgroundPanel {
                 }
                 case FAILED_ISSUE:{
                     try {
-                        showShopDialog(new IssueDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                        showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                     } catch (InvalidUILoadException ex) {
                         throw new RuntimeException(ex);
                     }
