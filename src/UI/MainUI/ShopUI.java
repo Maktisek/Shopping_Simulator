@@ -184,6 +184,9 @@ public class ShopUI extends BackgroundPanel {
                     }
                     break;
                 }
+                case FAILED_BUY:{
+
+                }
             }
         });
 
