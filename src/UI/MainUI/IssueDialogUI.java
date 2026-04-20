@@ -8,7 +8,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
-public class IssueDialogUI extends BackgroundPanel {
+public abstract class IssueDialogUI extends BackgroundPanel {
 
     private final String message;
 

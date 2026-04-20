@@ -3,6 +3,7 @@ package UI.MainUI;
 import Commands.CommandResult;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
+import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Shops.Shop;
 import UI.BackgroundPanel;
@@ -145,47 +146,12 @@ public class ShopUI extends BackgroundPanel {
 
         previous.addActionListener(e ->{
             CommandResult result = new ChangeShopLeftCommand(gameData).execute();
-            System.out.println(result.getMessage());
-            switch (result.getState()){
-                case DONE: {
-                    ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
-                    parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-                    break;
-                }
-                case FAILED_ISSUE:{
-                    try {
-                        showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                    } catch (InvalidUILoadException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    break;
-                }
-            }
-
+            proceedCommandResult(result, ShopDirection.LEFT);
         });
 
         next.addActionListener(e ->{
             CommandResult result = new ChangeShopRightCommand(gameData).execute();
-            System.out.println(result.getMessage());
-
-            switch (result.getState()){
-                case DONE: {
-                    ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
-                    parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-                    break;
-                }
-                case FAILED_ISSUE:{
-                    try {
-                        showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                    } catch (InvalidUILoadException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    break;
-                }
-                case FAILED_BUY:{
-
-                }
-            }
+           proceedCommandResult(result, ShopDirection.RIGHT);
         });
 
         panel.add(previous);
@@ -193,6 +159,33 @@ public class ShopUI extends BackgroundPanel {
         panel.add(Box.createVerticalGlue());
     }
 
+    private void proceedCommandResult(CommandResult result, ShopDirection shopDirection){
+        System.out.println(result.getMessage());
+
+        switch (result.getState()){
+            case DONE: {
+                ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+                parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
+                break;
+            }
+            case FAILED_ISSUE:{
+                try {
+                    showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            }
+            case FAILED_BUY:{
+                try {
+                    showShopDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage(), gameData, shopDirection));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            }
+        }
+    }
 
     public void showShopDialog(JPanel customContent) {
         overlay.removeAll();
