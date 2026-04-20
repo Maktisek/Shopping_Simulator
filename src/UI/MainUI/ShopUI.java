@@ -20,7 +20,7 @@ public class ShopUI extends BackgroundPanel {
 
     private BoundPanelUI buyBounds;
     private BoundPanelUI sellBounds;
-    private ArrayList<ItemUI> items;
+    private final ArrayList<ItemUI> items;
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
@@ -81,8 +81,11 @@ public class ShopUI extends BackgroundPanel {
     private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createHorizontalStrut(40));
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
-            panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC));
+            ItemUI itemUI = new  ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
+
+            panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(40));
+            this.items.add(itemUI);
         }
     }
 

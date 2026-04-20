@@ -39,6 +39,10 @@ public class ShopManagementUI extends Panel {
         }
     }
 
+    public void changeCard(String card){
+        this.cardLayout.show(this, card);
+    }
+
     public void update() {
         for (ShopUI shopPanel : shopPanels) {
             shopPanel.update();
