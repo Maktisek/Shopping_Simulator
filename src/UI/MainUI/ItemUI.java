@@ -27,6 +27,7 @@ public class ItemUI extends BackgroundPanel {
     private final GameData gameData;
     private final int index;
     private final ItemSpecification specification;
+    private StrokeLabel price;
 
     public ItemUI(String imgFile, Item item, int index, GameData gameData, ItemSpecification specification) throws InvalidUILoadException {
         super(imgFile);
@@ -141,16 +142,21 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializePrice(JPanel panel){
-        StrokeLabel label = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR");
-        label.setFont(currentFont);
-        label.setOpaque(false);
-        label.setFont(this.currentFont.deriveFont(Font.BOLD,13.0f));
-        label.setForeground(Color.WHITE);
+        this.price = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR");
+        this.price.setFont(currentFont);
+        this.price.setOpaque(false);
+        this.price.setFont(this.currentFont.deriveFont(Font.BOLD,13.0f));
+        this.price.setForeground(Color.WHITE);
 
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
-        panel.add(label);
+        panel.add(this.price);
     }
 
+    public void update(){
+        if(this.price != null){
+            this.price.setText(item.getCurrentPrice() + " FR");
+        }
+    }
 }

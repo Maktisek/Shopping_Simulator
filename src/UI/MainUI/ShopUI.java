@@ -8,6 +8,7 @@ import Upgrade.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class ShopUI extends BackgroundPanel {
@@ -19,12 +20,14 @@ public class ShopUI extends BackgroundPanel {
 
     private BoundPanelUI buyBounds;
     private BoundPanelUI sellBounds;
+    private ArrayList<ItemUI> items;
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
         super("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
         this.shop = shop;
         this.gameData = gameData;
+        this.items = new ArrayList<>();
 
         initialize();
     }
@@ -67,8 +70,11 @@ public class ShopUI extends BackgroundPanel {
 
     private void initializeShopItems(JPanel panel) throws InvalidUILoadException {
         for (int i = 0; i < shop.getItems().length; i++) {
-            panel.add(new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData, ItemSpecification.SHOP));
+            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData, ItemSpecification.SHOP);
+
+            panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(40));
+            this.items.add(itemUI);
         }
     }
 
@@ -128,6 +134,9 @@ public class ShopUI extends BackgroundPanel {
     public void update() {
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
         this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
+        for (ItemUI itemUI : items){
+            itemUI.update();
+        }
     }
 
 }

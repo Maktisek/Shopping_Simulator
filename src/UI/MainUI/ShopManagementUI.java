@@ -3,7 +3,6 @@ package UI.MainUI;
 import Game.GameData;
 import Shops.Shop;
 import UI.InvalidUILoadException;
-import Upgrade.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ public class ShopManagementUI extends Panel {
 
     private final GameData gameData;
     private CardLayout cardLayout;
-    private ArrayList<ShopUI> shopPanels;
+    private final ArrayList<ShopUI> shopPanels;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
