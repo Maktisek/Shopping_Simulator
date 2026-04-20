@@ -3,6 +3,7 @@ package UI.MainUI;
 import Game.GameData;
 import Shops.Shop;
 import UI.BackgroundPanel;
+import UI.CustomButton;
 import UI.InvalidUILoadException;
 import Upgrade.UpgradeNames;
 
@@ -119,8 +120,27 @@ public class ShopUI extends BackgroundPanel {
         this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
 
         panel.add(sellBounds);
+    }
+
+    private void initializeEast(){
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
+        southPanel.setOpaque(false);
+        southPanel.setBorder(BorderFactory.createEmptyBorder(100, 0, 100, 0));
+
 
     }
+
+    private void initializeChangeShopButtons(JPanel panel){
+        CustomButton previous = new CustomButton();
+        CustomButton next = new CustomButton();
+
+
+
+        panel.add(previous);
+        panel.add(next);
+    }
+
 
     public void showShopDialog(JPanel customContent) {
         overlay.removeAll();
