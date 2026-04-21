@@ -128,7 +128,7 @@ public class ItemUI extends BackgroundPanel {
             CommandResult result = finalCommand.execute();
             System.out.println(result.getMessage());
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
-                ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
+                ShopManagementUI parentShop = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
                 try {
                     parentShop.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {

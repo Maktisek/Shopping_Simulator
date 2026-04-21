@@ -47,7 +47,6 @@ public class ShopUI extends BackgroundPanel {
         mainPanel.setOpaque(false);
 
         initializeSouth(mainPanel);
-        initializeWest(mainPanel);
 
         overlay = new JPanel(new GridBagLayout());
         overlay.setOpaque(false);
@@ -127,77 +126,6 @@ public class ShopUI extends BackgroundPanel {
         panel.add(sellBounds);
     }
 
-    private void initializeWest(JPanel panel) throws InvalidUILoadException{
-        JPanel westPanel = new JPanel();
-        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
-        westPanel.setOpaque(false);
-
-        initializeChangeShopButtons(westPanel);
-        panel.add(westPanel, BorderLayout.WEST);
-    }
-
-    private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException{
-        panel.add(Box.createVerticalGlue());
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
-        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", "/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 162, 162);
-
-        previous.setAlignmentX(Component.CENTER_ALIGNMENT);
-        next.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        previous.addActionListener(e ->{
-            CommandResult result = new ChangeShopLeftCommand(gameData).execute();
-            proceedCommandResult(result, ShopDirection.LEFT);
-        });
-
-        next.addActionListener(e ->{
-            CommandResult result = new ChangeShopRightCommand(gameData).execute();
-           proceedCommandResult(result, ShopDirection.RIGHT);
-        });
-
-        panel.add(previous);
-        panel.add(next);
-        panel.add(Box.createVerticalGlue());
-    }
-
-    private void proceedCommandResult(CommandResult result, ShopDirection shopDirection){
-        System.out.println(result.getMessage());
-
-        switch (result.getState()){
-            case DONE: {
-                ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
-                parent.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-                break;
-            }
-            case FAILED_ISSUE:{
-                try {
-                    showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-                break;
-            }
-            case FAILED_BUY:{
-                try {
-                    showShopDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage(), gameData, shopDirection));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-                break;
-            }
-        }
-    }
-
-    public void showShopDialog(JPanel customContent) {
-        overlay.removeAll();
-        overlay.add(customContent);
-        overlay.setVisible(true);
-        repaint();
-    }
-
-    public void hideDialog() {
-        overlay.setVisible(false);
-        repaint();
-    }
 
     public void update() {
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));

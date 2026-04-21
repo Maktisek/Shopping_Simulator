@@ -1,9 +1,7 @@
 package UI.MainUI;
 
-import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
-import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +20,8 @@ public class IssueFailDialogUI extends IssueDialogUI {
         CustomButton button = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png","/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
 
         button.addActionListener(e ->{
-            ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
-            parentShop.hideDialog();
+            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+            parent.hideDialog();
         });
 
         button.setAlignmentX(Component.CENTER_ALIGNMENT);

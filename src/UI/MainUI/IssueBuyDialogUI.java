@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class IssueBuyDialogUI extends IssueDialogUI {
 
-    private GameData gameData;
-    private ShopDirection shopDirection;
+    private final GameData gameData;
+    private final ShopDirection shopDirection;
 
     public IssueBuyDialogUI(String imgFile, String message, GameData gameData, ShopDirection shopDirection) throws InvalidUILoadException {
         super(imgFile, message);
@@ -36,24 +36,24 @@ public class IssueBuyDialogUI extends IssueDialogUI {
         CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
 
         ok.addActionListener(e ->{
-            ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
-            parentShop.hideDialog();
+            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+            parent.hideDialog();
         });
 
         buy.addActionListener(e ->{
-            ShopUI parentShop = (ShopUI) SwingUtilities.getAncestorOfClass(ShopUI.class, this);
+            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
             CommandResult result = new BuyShopCommand(gameData, shopDirection).execute();
             if(result.getState() == CommandState.FAILED_ISSUE){
                 try {
-                    parentShop.hideDialog();
-                    parentShop.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    parent.hideDialog();
+                    parent.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
             }else {
                 ShopManagementUI managementUI = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
                 managementUI.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-                parentShop.hideDialog();
+                parent.hideDialog();
             }
         });
         panel.add(ok);
