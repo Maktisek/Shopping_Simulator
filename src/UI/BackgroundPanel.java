@@ -8,6 +8,11 @@ public class BackgroundPanel extends JPanel {
 
     private Image img;
 
+    public BackgroundPanel(){
+        super();
+        setCursor();
+    }
+
     public BackgroundPanel(String imgFile) throws InvalidUILoadException{
         super();
         loadImage(imgFile);

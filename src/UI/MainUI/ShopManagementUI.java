@@ -6,6 +6,7 @@ import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Shops.Shop;
+import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
 import Upgrade.UpgradeNames;
@@ -14,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ShopManagementUI extends JPanel {
+public class ShopManagementUI extends BackgroundPanel {
 
     private final JPanel cardPanel;
     private final JPanel mainPanel;
@@ -27,6 +28,7 @@ public class ShopManagementUI extends JPanel {
     private BoundPanelUI sellBounds;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
+        super();
         this.gameData = gameData;
         this.shopPanels = new ArrayList<>();
         this.cardPanel = new JPanel();
@@ -39,26 +41,20 @@ public class ShopManagementUI extends JPanel {
     private void initialize() throws InvalidUILoadException {
         layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
-
-
         this.cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
         setLayout(new BorderLayout());
-
         initializeShops();
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         initializeWestPanel(wrapper);
         initializeBounds(wrapper);
-
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
-
         overlay.setOpaque(false);
         overlay.setVisible(false);
         overlay.addMouseListener(new java.awt.event.MouseAdapter() {
         });
-
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
         layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
