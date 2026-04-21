@@ -22,9 +22,6 @@ public class ShopUI extends BackgroundPanel {
     private final GameData gameData;
     private JLayeredPane layeredPane;
     private JPanel overlay;
-
-    private BoundPanelUI buyBounds;
-    private BoundPanelUI sellBounds;
     private final ArrayList<ItemUI> items;
 
 
@@ -68,7 +65,6 @@ public class ShopUI extends BackgroundPanel {
 
         initializeShopItems(southPanel);
         initializeNPCItems(southPanel);
-        initializeBounds(southPanel);
 
         panel.add(southPanel, BorderLayout.SOUTH);
     }
@@ -94,42 +90,8 @@ public class ShopUI extends BackgroundPanel {
         }
     }
 
-    private void initializeBounds(JPanel panel) throws InvalidUILoadException {
-        JPanel bounds = new JPanel();
-        bounds.setLayout(new BoxLayout(bounds, BoxLayout.Y_AXIS));
-        bounds.setOpaque(false);
-
-        addBuyBoundPanel(bounds);
-        addSellBoundPanel(bounds);
-
-        panel.add(bounds);
-    }
-
-    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(12));
-
-        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
-
-        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png");
-
-        panel.add(buyBounds);
-    }
-
-    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(12));
-        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
-
-        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
-
-        panel.add(sellBounds);
-    }
-
 
     public void update() {
-        this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
-        this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
         for (ItemUI itemUI : items){
             itemUI.update();
         }

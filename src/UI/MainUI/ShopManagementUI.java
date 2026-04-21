@@ -8,6 +8,7 @@ import Game.GameData;
 import Shops.Shop;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
+import Upgrade.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +18,13 @@ public class ShopManagementUI extends JPanel {
 
     private final JPanel cardPanel;
     private final JPanel mainPanel;
-    private JPanel currentShop;
     private final JPanel overlay;
     private JLayeredPane layeredPane;
     private final GameData gameData;
     private CardLayout cardLayout;
     private final ArrayList<ShopUI> shopPanels;
+    private BoundPanelUI buyBounds;
+    private BoundPanelUI sellBounds;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
@@ -44,7 +46,10 @@ public class ShopManagementUI extends JPanel {
         setLayout(new BorderLayout());
 
         initializeShops();
-        initializeWestPanel();
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setOpaque(false);
+        initializeWestPanel(wrapper);
+        initializeBounds(wrapper);
 
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
@@ -56,7 +61,7 @@ public class ShopManagementUI extends JPanel {
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
-        layeredPane.add(initializeWestPanel(), JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
         add(layeredPane);
         update();
     }
@@ -70,17 +75,13 @@ public class ShopManagementUI extends JPanel {
         }
     }
 
-    private JPanel initializeWestPanel() throws InvalidUILoadException {
-        JPanel wrapper = new JPanel(new BorderLayout());
-        wrapper.setOpaque(false);
-
+    private void initializeWestPanel(JPanel panel) throws InvalidUILoadException {
         JPanel westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
         initializeChangeShopButtons(westPanel);
 
-        wrapper.add(westPanel, BorderLayout.WEST);
-        return wrapper;
+        panel.add(westPanel, BorderLayout.WEST);
     }
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
@@ -133,6 +134,47 @@ public class ShopManagementUI extends JPanel {
         }
     }
 
+    private void initializeBounds(JPanel panel) throws InvalidUILoadException {
+        JPanel bounds = new JPanel();
+        bounds.setLayout(new BoxLayout(bounds, BoxLayout.Y_AXIS));
+        bounds.setOpaque(false);
+
+        addBuyBoundPanel(bounds);
+        addSellBoundPanel(bounds);
+
+        JPanel setBounds = new JPanel();
+        setBounds.setLayout(new BoxLayout(setBounds, BoxLayout.X_AXIS));
+        setBounds.setBorder(BorderFactory.createEmptyBorder(0,0,27,10));
+
+        setBounds.add(Box.createHorizontalStrut(1600));
+        setBounds.add(bounds);
+        setBounds.setOpaque(false);
+
+
+        panel.add(setBounds, BorderLayout.SOUTH);
+    }
+
+    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
+        panel.add(Box.createVerticalStrut(12));
+
+        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
+
+        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png");
+
+        panel.add(buyBounds);
+    }
+
+    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
+        panel.add(Box.createVerticalStrut(12));
+        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
+
+        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
+
+        panel.add(sellBounds);
+    }
+
     public void changeCard(String card) {
         this.cardLayout.show(cardPanel, card);
     }
@@ -141,6 +183,8 @@ public class ShopManagementUI extends JPanel {
         for (ShopUI shopPanel : shopPanels) {
             shopPanel.update();
         }
+        this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
+        this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
     }
 
     public void showShopDialog(JPanel customContent) {
