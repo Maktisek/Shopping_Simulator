@@ -1,12 +1,5 @@
-import Commands.ShopCommands.BuyShopCommand;
-import Commands.ShopCommands.ChangeShopLeftCommand;
-import Commands.ShopCommands.ChangeShopRightCommand;
-import Commands.ShopCommands.ShopDirection;
-import Game.GameData;
-import Game.Initialization;
-import Utilities.Important;
 
-import java.util.Scanner;
+import Utilities.Important;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,87 +8,5 @@ public class Main {
         System.out.println(Important.parseMoney(test));
 
 
-    }
-    public static void initTest(){
-//        GameData gameData = new Initialization().getGameData();
-//        System.out.println(gameData.toString());
-//        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-//        gameData.getDayManagement().nextDay();
-//        System.out.println("\n"+gameData.toString());
-//        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-//        gameData.getDayManagement().nextDay();
-//        System.out.println("\n"+gameData.toString());
-//        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-//        gameData.getDayManagement().nextDay();
-//        System.out.println("\n"+gameData.toString());
-//        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-//        gameData.getDayManagement().nextDay();
-//        System.out.println("\n"+gameData.toString());
-//        gameData.getShopManagement().setNewDays(gameData.getPlayer());
-//        gameData.getDayManagement().nextDay();
-//        System.out.println("\n"+gameData.toString());
-    }
-
-    public static void commandTest1(){
-        //        GameData gameData = new Initialization().getGameData();
-//
-//        BuyProductCommand command = new BuyProductCommand(gameData, 2, 20);
-//        System.out.println(command.execute());
-//        System.out.println(command.isSuccessful());
-//        System.out.println(gameData);
-//        System.out.println(gameData.getAchievementManagement().getFreshAchievements());
-//
-//        System.out.println(new NewDayCommand(gameData).execute());
-//
-//        SellProductCommand command2 = new SellProductCommand(gameData, 0, 3);
-//        System.out.println(command2.execute());
-//        System.out.println(command2.isSuccessful());
-//        System.out.println(gameData);
-//        System.out.println(gameData.getAchievementManagement().getFreshAchievements());
-//
-//        System.out.println(new NewDayCommand(gameData).execute());
-//
-//        System.out.println(gameData);
-//
-//        System.out.println(new NewDayCommand(gameData).execute());
-//
-//        System.out.println(gameData);
-//
-//        System.out.println(" ");
-//
-//        System.out.println(new ChangeShopCommand(gameData, ShopNames.Test2).execute());
-//
-//        System.out.println(new BuyShopCommand(gameData, ShopNames.Test2).execute());
-//
-//        System.out.println(new ChangeShopCommand(gameData, ShopNames.Test2).execute());
-//
-//        BuyProductCommand command4 = new BuyProductCommand(gameData, 2, 2);
-//        System.out.println(command4.execute());
-//        System.out.println(command4.isSuccessful());
-//        System.out.println(gameData);
-//
-//        System.out.println(" ");
-//
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.BUY).execute());
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.BUY).execute());
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.SELL).execute());
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.STOCK).execute());
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.BUY).execute());
-//        System.out.println(new UpgradeCommand(gameData, UpgradeNames.BUY).execute());
-//
-//        System.out.println(new NewRebirthCommand(gameData).execute());
-//
-//        System.out.println(gameData);
-    }
-
-    public static void commandTest2(){
-        GameData gameData = new Initialization().getGameData();
-
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new BuyShopCommand(gameData, ShopDirection.RIGHT).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
-        System.out.println(new ChangeShopLeftCommand(gameData).execute());
-        System.out.println(new ChangeShopRightCommand(gameData).execute());
     }
 }

@@ -26,7 +26,6 @@ public class MainUI extends JPanel{
         this.overlay.addMouseListener(new java.awt.event.MouseAdapter() {
         });
 
-
         this.gameData = gameData;
 
         initialize();

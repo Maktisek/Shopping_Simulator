@@ -53,6 +53,7 @@ public class ShopManagementUI extends BackgroundPanel {
         wrapper.setOpaque(false);
         initializeWestPanel(wrapper);
         initializeBounds(wrapper);
+        initializeEast(wrapper);
 
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
@@ -171,6 +172,14 @@ public class ShopManagementUI extends BackgroundPanel {
         this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
 
         panel.add(sellBounds);
+    }
+
+    private void initializeEast(JPanel panel){
+        JPanel eastPanel = new JPanel();
+        eastPanel.setOpaque(false);
+
+
+        panel.add(eastPanel, BorderLayout.EAST);
     }
 
     public void changeCard(String card) {

@@ -2,7 +2,6 @@ package UI.MainUI;
 
 import Game.GameData;
 import UI.InvalidUILoadException;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
