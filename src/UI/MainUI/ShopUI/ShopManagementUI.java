@@ -1,4 +1,4 @@
-package UI.MainUI;
+package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
 import Commands.ShopCommands.ChangeShopLeftCommand;
@@ -9,6 +9,9 @@ import Shops.Shop;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.IssueUI.IssueBuyDialogUI;
+import UI.MainUI.IssueUI.IssueFailDialogUI;
+import UI.MainUI.MainUI;
 import Upgrade.UpgradeNames;
 
 import javax.swing.*;

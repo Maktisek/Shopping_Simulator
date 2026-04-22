@@ -2,6 +2,7 @@ package UI.MainUI;
 
 import Game.GameData;
 import UI.InvalidUILoadException;
+import UI.MainUI.ShopUI.ShopManagementUI;
 
 import javax.swing.*;
 import java.awt.*;

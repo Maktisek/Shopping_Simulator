@@ -1,4 +1,4 @@
-package UI.MainUI;
+package UI.MainUI.ShopUI;
 
 
 import Commands.Command;
@@ -11,6 +11,9 @@ import Items.Item;
 import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.IssueUI.IssueFailDialogUI;
+import UI.MainUI.MainUI;
+import UI.MainUI.Utilities.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;

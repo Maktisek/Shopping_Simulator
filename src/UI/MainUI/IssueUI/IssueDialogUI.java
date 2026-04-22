@@ -1,8 +1,8 @@
-package UI.MainUI;
+package UI.MainUI.IssueUI;
 
 import UI.BackgroundPanel;
-import UI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.Utilities.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;

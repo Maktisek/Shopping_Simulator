@@ -1,4 +1,4 @@
-package UI.MainUI;
+package UI.MainUI.ShopUI;
 
 import Game.GameData;
 import Shops.Shop;

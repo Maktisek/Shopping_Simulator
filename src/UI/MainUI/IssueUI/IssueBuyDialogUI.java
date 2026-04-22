@@ -1,17 +1,15 @@
-package UI.MainUI;
+package UI.MainUI.IssueUI;
 
-import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.ShopCommands.BuyShopCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
-import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.MainUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class IssueBuyDialogUI extends IssueDialogUI {
 
