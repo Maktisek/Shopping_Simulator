@@ -1,4 +1,6 @@
-package UI;
+package UI.CreationUI;
+
+import UI.InvalidUILoadException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class BackgroundPanel extends JPanel {
         setCursor();
     }
 
-    public BackgroundPanel(String imgFile) throws InvalidUILoadException{
+    public BackgroundPanel(String imgFile) throws InvalidUILoadException {
         super();
         loadImage(imgFile);
         setCursor();

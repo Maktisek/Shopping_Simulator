@@ -1,10 +1,9 @@
 package UI.TitleUI;
 
 import Game.Initialization;
-import UI.BackgroundPanel;
-import UI.CustomButton;
+import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
-import UI.MainUI.MainUI;
 import UI.MainUI.MyFrame;
 
 import javax.swing.*;

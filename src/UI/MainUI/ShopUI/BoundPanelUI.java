@@ -1,6 +1,6 @@
 package UI.MainUI.ShopUI;
 
-import UI.BackgroundPanel;
+import UI.CreationUI.BackgroundPanel;
 import UI.InvalidUILoadException;
 import UI.MainUI.Utilities.StrokeLabel;
 import Utilities.Important;

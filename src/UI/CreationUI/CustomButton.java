@@ -1,4 +1,6 @@
-package UI;
+package UI.CreationUI;
+
+import UI.InvalidUILoadException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +20,7 @@ public class CustomButton extends JButton {
 
     }
 
-    public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException{
+    public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException {
         super();
         URL imageURL = getClass().getResource(imgFile);
         URL clickedURL = getClass().getResource(clickedImg);

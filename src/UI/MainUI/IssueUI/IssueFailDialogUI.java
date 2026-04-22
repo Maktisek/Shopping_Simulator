@@ -1,6 +1,6 @@
 package UI.MainUI.IssueUI;
 
-import UI.CustomButton;
+import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
 import UI.MainUI.MainUI;
 

@@ -2,7 +2,7 @@ package UI.MainUI.ShopUI;
 
 import Game.GameData;
 import Shops.Shop;
-import UI.BackgroundPanel;
+import UI.CreationUI.BackgroundPanel;
 import UI.InvalidUILoadException;
 
 import javax.swing.*;
