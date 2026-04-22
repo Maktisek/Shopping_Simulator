@@ -1,15 +1,9 @@
 package UI.MainUI;
 
-import Commands.CommandResult;
-import Commands.ShopCommands.ChangeShopLeftCommand;
-import Commands.ShopCommands.ChangeShopRightCommand;
-import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Shops.Shop;
 import UI.BackgroundPanel;
-import UI.CustomButton;
 import UI.InvalidUILoadException;
-import Upgrade.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;

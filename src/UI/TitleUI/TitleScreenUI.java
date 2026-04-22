@@ -5,6 +5,7 @@ import UI.BackgroundPanel;
 import UI.CustomButton;
 import UI.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import UI.MainUI.MyFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -83,9 +84,9 @@ public class TitleScreenUI {
 
         newGame.addActionListener(e ->{
             try {
-                MainUI mainUI = new MainUI(new Initialization().getGameData());
+                MyFrame myFrame = new MyFrame(new Initialization().getGameData());
+                myFrame.show();
                 this.frame.dispose();
-                mainUI.show();
             }catch (InvalidUILoadException ex){
                 System.err.println(ex.getMessage());
             }

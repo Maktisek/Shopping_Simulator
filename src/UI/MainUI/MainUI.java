@@ -6,29 +6,33 @@ import UI.InvalidUILoadException;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainUI {
+public class MainUI extends JPanel{
 
-    private final JFrame frame;
     private JPanel mainPanel;
     private CardLayout cardLayout;
+    private JLayeredPane layeredPane;
+    private JPanel overlay;
     private final GameData gameData;
     private ShopManagementUI shopManagementUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
-        this.frame = new JFrame("Forest Market");
-        this.frame.setLayout(new BorderLayout());
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setLocationRelativeTo(null);
-        this.frame.setResizable(false);
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.layeredPane = new JLayeredPane();
+        this.layeredPane.setLayout(new OverlayLayout(layeredPane));
+
+        this.overlay = new JPanel(new GridBagLayout());
+        this.overlay.setOpaque(false);
+        this.overlay.setVisible(false);
+        this.overlay.addMouseListener(new java.awt.event.MouseAdapter() {
+        });
+
 
         this.gameData = gameData;
 
         initialize();
-    }
-
-    public void show() {
-        this.frame.setVisible(true);
+        this.layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+        this.layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
+        setLayout(new BorderLayout());
+        add(layeredPane, BorderLayout.CENTER);
     }
 
     private void initialize() throws InvalidUILoadException {
@@ -43,7 +47,6 @@ public class MainUI {
     private void initializeMainPanel() {
         this.cardLayout = new CardLayout();
         this.mainPanel = new JPanel(cardLayout);
-        this.frame.add(mainPanel, BorderLayout.CENTER);
     }
 
     private void initializeShopManagementUI() throws InvalidUILoadException{
@@ -56,5 +59,21 @@ public class MainUI {
             this.shopManagementUI.update();
         });
         updater.start();
+    }
+
+    public void showShopDialog(JPanel customContent) {
+        overlay.removeAll();
+        overlay.add(customContent);
+        overlay.setVisible(true);
+        repaint();
+    }
+
+    public void hideDialog() {
+        overlay.setVisible(false);
+        repaint();
+    }
+
+    public ShopManagementUI getShopManagementUI() {
+        return shopManagementUI;
     }
 }

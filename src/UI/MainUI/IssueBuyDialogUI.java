@@ -36,12 +36,12 @@ public class IssueBuyDialogUI extends IssueDialogUI {
         CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
 
         ok.addActionListener(e ->{
-            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
 
         buy.addActionListener(e ->{
-            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             CommandResult result = new BuyShopCommand(gameData, shopDirection).execute();
             if(result.getState() == CommandState.FAILED_ISSUE){
                 try {
@@ -51,9 +51,8 @@ public class IssueBuyDialogUI extends IssueDialogUI {
                     throw new RuntimeException(ex);
                 }
             }else {
-                ShopManagementUI managementUI = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
-                managementUI.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
                 parent.hideDialog();
+                parent.getShopManagementUI().changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
             }
         });
         panel.add(ok);

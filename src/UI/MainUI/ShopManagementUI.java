@@ -19,7 +19,6 @@ public class ShopManagementUI extends BackgroundPanel {
 
     private final JPanel cardPanel;
     private final JPanel mainPanel;
-    private final JPanel overlay;
     private JLayeredPane layeredPane;
     private final GameData gameData;
     private CardLayout cardLayout;
@@ -33,7 +32,6 @@ public class ShopManagementUI extends BackgroundPanel {
         this.shopPanels = new ArrayList<>();
         this.cardPanel = new JPanel();
         this.mainPanel = new JPanel(new BorderLayout());
-        this.overlay = new JPanel(new GridBagLayout());
 
         initialize();
     }
@@ -45,18 +43,19 @@ public class ShopManagementUI extends BackgroundPanel {
         cardPanel.setLayout(cardLayout);
         setLayout(new BorderLayout());
         initializeShops();
+
+        //Wrapper stands for an individual panel which is then added within the JLayerPane, so the components
+        //can be shown on top of another components.
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         initializeWestPanel(wrapper);
         initializeBounds(wrapper);
+
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
-        overlay.setOpaque(false);
-        overlay.setVisible(false);
-        overlay.addMouseListener(new java.awt.event.MouseAdapter() {
-        });
+
+
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
         layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
         add(layeredPane);
         update();
@@ -105,7 +104,7 @@ public class ShopManagementUI extends BackgroundPanel {
 
     private void proceedCommandResult(CommandResult result, ShopDirection shopDirection) {
         System.out.println(result.getMessage());
-
+        MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         switch (result.getState()) {
             case DONE: {
                 changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
@@ -113,7 +112,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_ISSUE: {
                 try {
-                    showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parent.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -121,7 +120,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_BUY: {
                 try {
-                    showShopDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
+                    parent.showShopDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -181,17 +180,5 @@ public class ShopManagementUI extends BackgroundPanel {
         }
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
         this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
-    }
-
-    public void showShopDialog(JPanel customContent) {
-        overlay.removeAll();
-        overlay.add(customContent);
-        overlay.setVisible(true);
-        repaint();
-    }
-
-    public void hideDialog() {
-        overlay.setVisible(false);
-        repaint();
     }
 }

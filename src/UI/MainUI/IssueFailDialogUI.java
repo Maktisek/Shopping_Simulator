@@ -20,7 +20,7 @@ public class IssueFailDialogUI extends IssueDialogUI {
         CustomButton button = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png","/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
 
         button.addActionListener(e ->{
-            ShopManagementUI parent = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
 
