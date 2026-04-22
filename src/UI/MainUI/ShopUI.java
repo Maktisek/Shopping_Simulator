@@ -20,8 +20,6 @@ public class ShopUI extends BackgroundPanel {
 
     private final Shop shop;
     private final GameData gameData;
-    private JLayeredPane layeredPane;
-    private JPanel overlay;
     private final ArrayList<ItemUI> items;
 
 
@@ -37,27 +35,10 @@ public class ShopUI extends BackgroundPanel {
     private void initialize() throws InvalidUILoadException {
         this.setLayout(new BorderLayout());
 
-        layeredPane = new JLayeredPane();
-        layeredPane.setLayout(new OverlayLayout(layeredPane));
-
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setOpaque(false);
-
-        initializeSouth(mainPanel);
-
-        overlay = new JPanel(new GridBagLayout());
-        overlay.setOpaque(false);
-        overlay.setVisible(false);
-        overlay.addMouseListener(new java.awt.event.MouseAdapter() {
-        });
-
-        layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
-
-        add(layeredPane);
+        initializeSouth();
     }
 
-    private void initializeSouth(JPanel panel) throws InvalidUILoadException {
+    private void initializeSouth() throws InvalidUILoadException {
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         southPanel.setOpaque(false);
@@ -66,7 +47,7 @@ public class ShopUI extends BackgroundPanel {
         initializeShopItems(southPanel);
         initializeNPCItems(southPanel);
 
-        panel.add(southPanel, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH);
     }
 
     private void initializeShopItems(JPanel panel) throws InvalidUILoadException {
