@@ -28,6 +28,7 @@ public class ShopManagementUI extends BackgroundPanel {
     private final ArrayList<ShopUI> shopPanels;
     private BoundPanelUI buyBounds;
     private BoundPanelUI sellBounds;
+    private DayUI dayUI;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
@@ -174,9 +175,16 @@ public class ShopManagementUI extends BackgroundPanel {
         panel.add(sellBounds);
     }
 
-    private void initializeEast(JPanel panel){
+    private void initializeEast(JPanel panel) throws InvalidUILoadException{
         JPanel eastPanel = new JPanel();
+        eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
         eastPanel.setOpaque(false);
+        eastPanel.setBorder(BorderFactory.createEmptyBorder(18,0,0,28));
+
+        this.dayUI = new DayUI("/MainUI/ShopUI/DAY_FRAME.png", gameData);
+        dayUI.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        eastPanel.add(dayUI);
 
 
         panel.add(eastPanel, BorderLayout.EAST);
@@ -192,5 +200,6 @@ public class ShopManagementUI extends BackgroundPanel {
         }
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
         this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
+        this.dayUI.update();
     }
 }
