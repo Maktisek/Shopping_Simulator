@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
+import Commands.DayCommands.NewDayCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -195,6 +196,11 @@ public class ShopManagementUI extends BackgroundPanel {
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createVerticalStrut(7));
         panel.add(nextDay);
+
+        nextDay.addActionListener(e ->{
+            CommandResult commandResult = new NewDayCommand(gameData).execute();
+            System.out.println(commandResult.getMessage());
+        });
     }
 
     public void changeCard(String card) {

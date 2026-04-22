@@ -11,7 +11,7 @@ public abstract class UpgradeBasicType implements Upgrade{
 
     @Override
     public void levelUp() {
-        this.data += 10 * calculateDials();
+        this.data += 2 * calculateDials();
         changePrice();
         this.level++;
     }

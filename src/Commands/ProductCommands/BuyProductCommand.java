@@ -6,6 +6,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Items.ItemNames;
+import Items.ItemShop;
 import Player.InvalidPlayerActionException;
 import Upgrade.UpgradeNames;
 
@@ -27,7 +28,7 @@ public class BuyProductCommand extends Command {
                     CommandState.FAILED_ISSUE);
         }
 
-        ItemNames product = getCurrentShop().getItems()[index].getItem().getName();
+        ItemShop product = getCurrentShop().getItems()[index];
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
 
         if(getPlayer().calculateStocks() > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)){
@@ -36,7 +37,8 @@ public class BuyProductCommand extends Command {
         }
 
         try {
-            getPlayer().buyItem(product, amount,price);
+            getPlayer().buyItem(product.getItem().getName(), amount,price);
+            product.updatePenalization(0.02);
         }catch (InvalidPlayerActionException e){
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
@@ -44,6 +46,6 @@ public class BuyProductCommand extends Command {
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);
         getAchievementManagement().updateAchievement(AchievementTypes.BUY, amount);
-        return new CommandResult("Bought " + amount + "x " + product, CommandState.DONE);
+        return new CommandResult("Bought " + amount + "x " + product.getItem().getName(), CommandState.DONE);
     }
 }

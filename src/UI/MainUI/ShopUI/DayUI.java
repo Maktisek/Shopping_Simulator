@@ -39,7 +39,7 @@ public class DayUI extends BackgroundPanel {
         Font font = Important.loadFont("/Fonts/Daydream.otf");
         day.setFont(font);
         day.setOpaque(false);
-        day.setFont(font.deriveFont(Font.BOLD,24.0f));
+        day.setFont(font.deriveFont(Font.BOLD,22.0f));
         day.setForeground(Color.WHITE);
 
         day.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -29,6 +29,7 @@ public class ItemUI extends BackgroundPanel {
     private final int index;
     private final ItemSpecification specification;
     private StrokeLabel price;
+    private StrokeLabel name;
 
     public ItemUI(String imgFile, Item item, int index, GameData gameData, ItemSpecification specification) throws InvalidUILoadException {
         super(imgFile);
@@ -58,17 +59,17 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        StrokeLabel label = new StrokeLabel(this.item.getName().toString());
-        label.setFont(currentFont);
-        label.setOpaque(false);
-        label.setFont(this.currentFont.deriveFont(Font.BOLD,14.0f));
-        label.setForeground(Color.WHITE);
+        name = new StrokeLabel(this.item.getName().toString());
+        name.setFont(currentFont);
+        name.setOpaque(false);
+        name.setFont(this.currentFont.deriveFont(Font.BOLD,14.0f));
+        name.setForeground(Color.WHITE);
 
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        label.setAlignmentY(Component.TOP_ALIGNMENT);
+        name.setAlignmentX(Component.CENTER_ALIGNMENT);
+        name.setAlignmentY(Component.TOP_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
-        add(label);
+        add(name);
         add(Box.createVerticalStrut(8));
 
     }
@@ -155,9 +156,18 @@ public class ItemUI extends BackgroundPanel {
         panel.add(this.price);
     }
 
-    public void update(){
+    public void updateShop(){
         if(this.price != null){
             this.price.setText(item.getCurrentPrice() + " FR");
         }
     }
+
+    public void updateNPC(String name, String price){
+        this.name.setText(name);
+        this.price.setText(price+ " FR");
+        this.name.repaint();
+        this.price.repaint();
+    }
+
+
 }

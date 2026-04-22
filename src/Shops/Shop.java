@@ -40,7 +40,7 @@ public class Shop {
             }catch (WrongItemException e){
                 e.printStackTrace();
             }
-            item.updatePenalization(-0.1);
+            item.updatePenalization(-0.02);
             item.resetCurrentDayAmount();
         }
     }
