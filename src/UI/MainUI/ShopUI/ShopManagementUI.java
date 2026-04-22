@@ -185,9 +185,16 @@ public class ShopManagementUI extends BackgroundPanel {
         dayUI.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         eastPanel.add(dayUI);
-
+        initializeNewDayButton(eastPanel);
 
         panel.add(eastPanel, BorderLayout.EAST);
+    }
+
+    private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException{
+        CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", "/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
+        nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(7));
+        panel.add(nextDay);
     }
 
     public void changeCard(String card) {
