@@ -14,67 +14,69 @@ public class ShopManagement {
     private Stack<Shop> leftShops;
     private Stack<Shop> rightShops;
 
-    public void loadStacks(){
+    public void loadStacks() {
         this.leftShops = new Stack<>();
         this.rightShops = new Stack<>();
         this.currentShop = shops.get(0);
-        for (int i = shops.size() - 1; i >= 1 ; i--) {
+        for (int i = shops.size() - 1; i >= 1; i--) {
             rightShops.push(shops.get(i));
         }
     }
 
-    public void switchLeft(){
+    public void switchLeft() {
         rightShops.push(currentShop);
         currentShop = leftShops.pop();
     }
 
-    public boolean isSwitchLeft(){
+    public boolean isSwitchLeft() {
         try {
             leftShops.peek();
-        }catch (EmptyStackException e){
+        } catch (EmptyStackException e) {
             return false;
         }
         return true;
     }
 
-    public boolean boughtLeft(){
+    public boolean boughtLeft() {
         Shop temp = leftShops.peek();
         return temp.getShopKey().isUnlocked();
     }
 
-    public void switchRight(){
+    public void switchRight() {
         leftShops.push(currentShop);
         currentShop = rightShops.pop();
     }
 
-    public boolean isSwitchRight(){
+    public boolean isSwitchRight() {
         try {
             rightShops.peek();
-        }catch (EmptyStackException e){
+        } catch (EmptyStackException e) {
             return false;
         }
         return true;
     }
 
-    public boolean boughtRight(){
+    public boolean boughtRight() {
         Shop temp = rightShops.peek();
         return temp.getShopKey().isUnlocked();
     }
 
-    public Shop peekLeft(){
+    public Shop peekLeft() {
         return leftShops.peek();
     }
 
-    public Shop peekRight(){
+    public Shop peekRight() {
         return rightShops.peek();
     }
 
     public void setNewDays(Player player) {
         for (Shop shop : shops) {
-            try {
-                shop.newDay(player);
-            } catch (WrongItemException e) {
-                e.printStackTrace();
+            if (shop.getShopKey().isUnlocked()) {
+                try {
+                    shop.newDay(player);
+                } catch (WrongItemException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -26,6 +26,11 @@ public class ItemShop {
         }
     }
 
+    public void newDayPenalization(double change){
+        double afterChange = this.penalization + change;
+        this.penalization = Math.max(afterChange, 0.9);
+    }
+
     public void updateCurrentDayAmount(int change){
         this.currentDayAmount += change;
     }
