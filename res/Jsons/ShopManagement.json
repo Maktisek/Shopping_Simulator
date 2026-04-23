@@ -31,52 +31,52 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 10000,
+          "priceSensitivity": 15,
           "daysToBeDelivered": 1
         },
         {
           "item": {
             "name": "Banana",
-            "basePrice": 20,
-            "currentPrice": 20,
+            "basePrice": 30,
+            "currentPrice": 30,
             "daysToBeDelivered": 1
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9800,
+          "priceSensitivity": 30,
           "daysToBeDelivered": 1
         },
         {
           "item": {
             "name": "Apple",
-            "basePrice": 30,
-            "currentPrice": 30
-          },
-          "penalization": 1,
-          "currentDayAmount": 0,
-          "priceSensitivity": 9300,
-          "daysToBeDelivered": 1
-        },
-        {
-          "item": {
-            "name": "Chocolate",
             "basePrice": 50,
             "currentPrice": 50
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9000,
+          "priceSensitivity": 60,
           "daysToBeDelivered": 1
         },
         {
           "item": {
-            "name": "Whisky",
+            "name": "Chocolate",
             "basePrice": 100,
             "currentPrice": 100
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 8900,
+          "priceSensitivity": 80,
+          "daysToBeDelivered": 1
+        },
+        {
+          "item": {
+            "name": "Whisky",
+            "basePrice": 300,
+            "currentPrice": 300
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 100,
           "daysToBeDelivered": 1
         }
       ]

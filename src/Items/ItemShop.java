@@ -16,9 +16,9 @@ public class ItemShop {
     }
 
     public void updatePenalization(double change){
-        double afterChange = this.penalization + change;
-        if(afterChange < 0.7){
-            this.penalization = 0.7;
+        double afterChange = this.penalization + (change * (5/(penalization)/2));
+        if(afterChange < 0.9){
+            this.penalization = 0.9;
         }else if(afterChange > 3){
             this.penalization = 3;
         }else {

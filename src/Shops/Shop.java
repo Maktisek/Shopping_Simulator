@@ -18,7 +18,7 @@ public class Shop {
 
 
     public void buyItem(int index, int amount){
-        items[index].updatePenalization(0.04 * amount);
+        items[index].updatePenalization(0.01 * amount);
         items[index].updateCurrentDayAmount(amount);
     }
 
@@ -40,7 +40,7 @@ public class Shop {
             }catch (WrongItemException e){
                 e.printStackTrace();
             }
-            item.updatePenalization(-0.02);
+            item.updatePenalization(-0.04);
             item.resetCurrentDayAmount();
         }
     }
