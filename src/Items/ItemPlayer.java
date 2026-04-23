@@ -22,12 +22,11 @@ public class ItemPlayer {
         this.averageBuyPrice = 0;
     }
 
-    public int buyItem(int amount, int shopPrice) throws WrongEvidenceException, WrongItemException {
+    public void buyItem(int amount, int shopPrice) throws WrongEvidenceException, WrongItemException {
         moveWithAmount(amount);
         moveWithWholeBoughtPrice(amount, shopPrice);
         this.evidences.add(new Evidence(amount, shopPrice));
         updateAveragePrice();
-        return amount * shopPrice;
     }
 
     private void updateAveragePrice() {

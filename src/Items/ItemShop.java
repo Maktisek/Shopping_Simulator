@@ -6,6 +6,7 @@ public class ItemShop {
     private double penalization;
     private int currentDayAmount;
     private int priceSensitivity;
+    private int daysToBeDelivered;
 
     public ItemShop() {
     }
@@ -63,6 +64,14 @@ public class ItemShop {
 
     public void setPriceSensitivity(int priceSensitivity) {
         this.priceSensitivity = priceSensitivity;
+    }
+
+    public int getDaysToBeDelivered() {
+        return daysToBeDelivered;
+    }
+
+    public void setDaysToBeDelivered(int daysToBeDelivered) {
+        this.daysToBeDelivered = daysToBeDelivered;
     }
 
     @Override

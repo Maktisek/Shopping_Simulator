@@ -31,17 +31,20 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 10000
+          "priceSensitivity": 10000,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
             "name": "Banana",
             "basePrice": 20,
-            "currentPrice": 20
+            "currentPrice": 20,
+            "daysToBeDelivered": 1
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9800
+          "priceSensitivity": 9800,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -51,7 +54,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9300
+          "priceSensitivity": 9300,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -61,7 +65,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9000
+          "priceSensitivity": 9000,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -71,7 +76,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 8900
+          "priceSensitivity": 8900,
+          "daysToBeDelivered": 1
         }
       ]
     },
@@ -105,7 +111,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 10000
+          "priceSensitivity": 10000,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -115,7 +122,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9800
+          "priceSensitivity": 9800,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -125,7 +133,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9300
+          "priceSensitivity": 9300,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -135,7 +144,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 9000
+          "priceSensitivity": 9000,
+          "daysToBeDelivered": 1
         },
         {
           "item": {
@@ -145,7 +155,8 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 8900
+          "priceSensitivity": 8900,
+          "daysToBeDelivered": 1
         }
       ]
     }

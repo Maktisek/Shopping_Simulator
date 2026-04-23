@@ -4,6 +4,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
+import Player.InvalidPlayerActionException;
 
 public class NewDayCommand extends Command {
 
@@ -15,6 +16,11 @@ public class NewDayCommand extends Command {
     public CommandResult execute() {
         if(getPlayer().bankrupt()){
             return new CommandResult("GAME OVER - BANKRUPT", CommandState.FAILED_END);
+        }
+        try {
+            getPlayer().updateUndelivered();
+        }catch (InvalidPlayerActionException e){
+            return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
         getShopManagement().setNewDays(getPlayer());
         getDayManagement().nextDay();

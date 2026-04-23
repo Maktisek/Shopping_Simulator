@@ -18,7 +18,7 @@ public class Shop {
 
 
     public void buyItem(int index, int amount){
-        items[index].updatePenalization(0.009 * amount);
+        items[index].updatePenalization(0.04 * amount);
         items[index].updateCurrentDayAmount(amount);
     }
 

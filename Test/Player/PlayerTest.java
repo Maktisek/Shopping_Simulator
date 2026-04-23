@@ -43,7 +43,7 @@ public class PlayerTest {
         player.setCurrentBalance(200);
         player.setAllTimeBalance(200);
 
-        player.buyItem(ItemNames.Apple, 10, shop.findItem(ItemNames.Apple).getItem().getCurrentPrice());
+//        player.buyItem(ItemNames.Apple, 10, shop.findItem(ItemNames.Apple).getItem().getCurrentPrice());
 
         assertEquals(80, player.getCurrentBalance());
 

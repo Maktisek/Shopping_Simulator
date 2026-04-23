@@ -5,6 +5,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
+import Items.ItemDelivery;
 import Items.ItemNames;
 import Items.ItemShop;
 import Player.InvalidPlayerActionException;
@@ -30,16 +31,16 @@ public class BuyProductCommand extends Command {
 
         ItemShop product = getCurrentShop().getItems()[index];
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
+        ItemDelivery itemToDeliver = new ItemDelivery(product.getItem().getName(), amount, price, product.getDaysToBeDelivered());
 
-        if(getPlayer().calculateStocks() > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)){
+        if (getPlayer().calculateStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)) {
             return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse",
                     CommandState.FAILED_ISSUE);
         }
 
         try {
-            getPlayer().buyItem(product.getItem().getName(), amount,price);
-            product.updatePenalization(0.02);
-        }catch (InvalidPlayerActionException e){
+            getPlayer().buyItemNew(itemToDeliver);
+        } catch (InvalidPlayerActionException e) {
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
         getCurrentShop().buyItem(index, amount);
