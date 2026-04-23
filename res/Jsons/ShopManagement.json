@@ -31,7 +31,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 15,
+          "priceSensitivity": 80,
           "daysToBeDelivered": 1
         },
         {
@@ -43,7 +43,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 30,
+          "priceSensitivity": 50,
           "daysToBeDelivered": 1
         },
         {
@@ -54,7 +54,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 60,
+          "priceSensitivity": 30,
           "daysToBeDelivered": 1
         },
         {
@@ -65,7 +65,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 80,
+          "priceSensitivity": 20,
           "daysToBeDelivered": 1
         },
         {
@@ -76,7 +76,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 100,
+          "priceSensitivity": 10,
           "daysToBeDelivered": 1
         }
       ]

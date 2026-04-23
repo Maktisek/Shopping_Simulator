@@ -106,7 +106,7 @@ public class NPC {
 
             double bonus = calculateB(playerAverage, playerWhole);
 
-            double percentUpdate = rd.nextInt(-4, 2) + bonus + calculateL(playerAverage, shopPrice);
+            double percentUpdate = rd.nextInt(-8, 4) + bonus + calculateL(playerAverage, shopPrice);
             item.setCurrentPrice((int) Math.round(item.getBasePrice() + (((double) item.getCurrentPrice() / 100) * percentUpdate)));
         }
     }

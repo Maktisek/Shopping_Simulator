@@ -11,31 +11,37 @@ public class ItemShop {
     public ItemShop() {
     }
 
-    public void updatePrice() throws WrongItemException{
-        this.item.setCurrentPrice((int) Math.round((this.item.getBasePrice() * penalization * (1 + ((double) currentDayAmount / this.priceSensitivity)))));
+    public void updatePrice() throws WrongItemException {
+        this.item.setCurrentPrice((int) Math.round((this.item.getBasePrice() * penalization * (1 + calculateBonusPenalization()))));
     }
 
-    public void updatePenalization(double change){
-        double afterChange = this.penalization + (change * (5/(penalization)/2));
-        if(afterChange < 0.9){
+    private double calculateBonusPenalization() {
+        double result = ((double) currentDayAmount / this.priceSensitivity);
+
+        return Math.min(result, 0.25);
+    }
+
+    public void updatePenalization(double change) {
+        double afterChange = this.penalization + (change * (5 / (penalization) / 2));
+        if (afterChange < 0.9) {
             this.penalization = 0.9;
-        }else if(afterChange > 3){
-            this.penalization = 3;
-        }else {
+        } else if (afterChange > 1.2) {
+            this.penalization = 1.2;
+        } else {
             this.penalization = afterChange;
         }
     }
 
-    public void newDayPenalization(double change){
+    public void newDayPenalization(double change) {
         double afterChange = this.penalization + change;
         this.penalization = Math.max(afterChange, 0.9);
     }
 
-    public void updateCurrentDayAmount(int change){
+    public void updateCurrentDayAmount(int change) {
         this.currentDayAmount += change;
     }
 
-    public void resetCurrentDayAmount(){
+    public void resetCurrentDayAmount() {
         this.currentDayAmount = 0;
     }
 
