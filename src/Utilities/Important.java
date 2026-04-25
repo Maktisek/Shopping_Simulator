@@ -83,4 +83,19 @@ public class Important {
         }
         return "";
     }
+
+    public static String[] decodeString(String text){
+        String[] data = text.split("\n");
+        return data;
+    }
+
+    public static String insertDots(String text, int length){
+        int currentLength = 0;
+        String[] data = text.split(":");
+        for (String s : data){
+            currentLength += s.length();
+        }
+        length = length - currentLength;
+        return data[0] + ". ".repeat(length) + data[1];
+    }
 }

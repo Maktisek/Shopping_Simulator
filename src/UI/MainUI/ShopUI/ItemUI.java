@@ -18,13 +18,11 @@ import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 import java.util.Objects;
 
 public class ItemUI extends BackgroundPanel {
 
-    private final Item item;
-    private Font currentFont;
+    private Item item;
     private final GameData gameData;
     private final int index;
     private final ItemSpecification specification;
@@ -50,7 +48,6 @@ public class ItemUI extends BackgroundPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
-        this.currentFont = Important.loadFont("/Fonts/Daydream.otf");
 
         initializeLabel();
         initializeImg();
@@ -72,24 +69,26 @@ public class ItemUI extends BackgroundPanel {
 
     private void initializeImg() throws InvalidUILoadException{
 //        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products"+item.getItem().getName().toString()+".png");
-        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
+        CustomButton image = initializeCustomImageButton();
+        add(image);
+    }
 
-        if(imageURL == null){
-            throw new InvalidUILoadException(item.getName().toString() + " picture was not found.");
-        }
-
-        ImageIcon icon = new ImageIcon(imageURL);
-        Image scaledImage = icon.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT);
-
-        JLabel image = new JLabel(new ImageIcon(scaledImage));
+    private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
+        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/BANANA.png", "/MainUI/ShopUI/Products/BANANA.png", 80, 80);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentY(Component.TOP_ALIGNMENT);
 
-//        image.setBorder(BorderFactory.createLineBorder(Color.BLUE)); //Debugging
-
-        add(image);
+        image.addActionListener(e ->{
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showShopDialog(new ItemInformationUI(this.item, this.specification));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        return image;
     }
 
     private void initializeCommandPoint() throws InvalidUILoadException {
@@ -149,7 +148,7 @@ public class ItemUI extends BackgroundPanel {
 
     public void updateShop(){
         if(this.price != null){
-            this.price.setText(item.getCurrentPrice() + " FR");
+            this.price.setText(Important.parseMoney(item.getCurrentPrice()) + " FR");
             updateShopColorPrice();
         }
     }
@@ -186,5 +185,9 @@ public class ItemUI extends BackgroundPanel {
         }else {
             this.price.setForeground(Color.WHITE);
         }
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

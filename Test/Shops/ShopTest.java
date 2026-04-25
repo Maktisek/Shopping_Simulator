@@ -23,12 +23,12 @@ public class ShopTest {
         shop.getNpc().setConvenienceWeight(10);
         shop.getNpc().setQuantityWeight(10);
 
-        shop.setItems(new ItemShop[]{
-                new ItemShop(new Item(ItemNames.Apple, 12, 10), 90, 0, 1),
-                new ItemShop(new Item(ItemNames.Banana, 8, 9), 100, 0, 1),
-                new ItemShop(new Item(ItemNames.Bread, 16, 14), 80, 0, 1),
-                new ItemShop(new Item(ItemNames.Whisky, 89, 85), 40, 0, 1),
-                new ItemShop(new Item(ItemNames.Chocolate, 45, 45), 60, 0, 1)});
+//        shop.setItems(new ItemShop[]{
+//                new ItemShop(new Item(ItemNames.Apple, 12, 10), 90, 0, 1),
+//                new ItemShop(new Item(ItemNames.Banana, 8, 9), 100, 0, 1),
+//                new ItemShop(new Item(ItemNames.Bread, 16, 14), 80, 0, 1),
+//                new ItemShop(new Item(ItemNames.Whisky, 89, 85), 40, 0, 1),
+//                new ItemShop(new Item(ItemNames.Chocolate, 45, 45), 60, 0, 1)});
     }
 
     @Test

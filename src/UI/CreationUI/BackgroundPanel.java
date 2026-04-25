@@ -43,4 +43,8 @@ public class BackgroundPanel extends JPanel {
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }
+
+    public void setImg(String image) throws InvalidUILoadException{
+        loadImage(image);
+    }
 }

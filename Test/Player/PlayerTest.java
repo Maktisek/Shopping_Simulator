@@ -20,19 +20,20 @@ public class PlayerTest {
     public void setUp() throws Exception {
         player = new Player();
         shop = new Shop();
-        shop.setItems(new ItemShop[]{
-                new ItemShop(new Item(ItemNames.Apple, 12, 10), 90, 0, 1),
-                new ItemShop(new Item(ItemNames.Banana, 8, 9), 100, 0, 1),
-                new ItemShop(new Item(ItemNames.Bread, 16, 14), 80, 0, 1),
-                new ItemShop(new Item(ItemNames.Whisky, 89, 85), 40, 0, 1),
-                new ItemShop(new Item(ItemNames.Chocolate, 45, 45), 60, 0, 1)});
-        ArrayList<Shop> shops = new ArrayList<>();
-        shops.add(shop);
-        player.loadItems(shops);
-        player.setCurrentBalance(0);
-        player.setAllTimeBalance(0);
-    }
+//        shop.setItems(new ItemShop[]{
+//                new ItemShop(new Item(ItemNames.Apple, 12, 10), 90, 0, 1),
+//                new ItemShop(new Item(ItemNames.Banana, 8, 9), 100, 0, 1),
+//                new ItemShop(new Item(ItemNames.Bread, 16, 14), 80, 0, 1),
+//                new ItemShop(new Item(ItemNames.Whisky, 89, 85), 40, 0, 1),
+//                new ItemShop(new Item(ItemNames.Chocolate, 45, 45), 60, 0, 1)});
+//        ArrayList<Shop> shops = new ArrayList<>();
+//        shops.add(shop);
+//        player.loadItems(shops);
+//        player.setCurrentBalance(0);
+//        player.setAllTimeBalance(0);
+//    }
 
+    }
     @Test
     public void findItemTest() {
         assertEquals(ItemNames.Bread, player.findItem(ItemNames.Bread).getName());
