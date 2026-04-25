@@ -1,5 +1,7 @@
 package UI.MainUI.Utilities;
 
+import Utilities.Important;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -14,9 +16,12 @@ public class StrokeLabel extends JLabel {
     private Color strokeColor = Color.BLACK;
     private float strokeWidth = 7.5f;
 
-    public StrokeLabel(String text) {
+    public StrokeLabel(String text, float size) {
         super(text);
         setBorder(new EmptyBorder(0, 10, 0, 10));
+        setOpaque(false);
+        setFont(Important.loadFont("/Fonts/Daydream.otf").deriveFont(Font.BOLD,size));
+        setForeground(Color.WHITE);
     }
 
     @Override

@@ -51,12 +51,7 @@ public class BoundPanelUI extends BackgroundPanel {
     }
 
     private void initializeTextLabel() {
-        label = new StrokeLabel(current + "/" + bound);
-        Font font = Important.loadFont("/Fonts/Daydream.otf");
-        label.setFont(font);
-        label.setOpaque(false);
-        label.setFont(font.deriveFont(Font.BOLD, 24.0f));
-        label.setForeground(Color.WHITE);
+        label = new StrokeLabel(current + "/" + bound, 24.0f);
 
         label.setAlignmentY(Component.CENTER_ALIGNMENT);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);

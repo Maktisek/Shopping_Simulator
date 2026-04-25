@@ -59,11 +59,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        name = new StrokeLabel(this.item.getName().toString());
-        name.setFont(currentFont);
-        name.setOpaque(false);
-        name.setFont(this.currentFont.deriveFont(Font.BOLD,14.0f));
-        name.setForeground(Color.WHITE);
+        name = new StrokeLabel(this.item.getName().toString(), 14.0f);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -144,12 +140,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializePrice(JPanel panel){
-        this.price = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR");
-        this.price.setFont(currentFont);
-        this.price.setOpaque(false);
-        this.price.setFont(this.currentFont.deriveFont(Font.BOLD,13.0f));
-        this.price.setForeground(Color.WHITE);
-
+        this.price = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR", 13.0f);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 

@@ -30,12 +30,7 @@ public abstract class IssueDialogUI extends BackgroundPanel {
 
     private void initializeLabel(){
         add(Box.createVerticalStrut(30));
-        StrokeLabel label = new StrokeLabel(message);
-        Font font = Important.loadFont("/Fonts/Daydream.otf");
-        label.setFont(font);
-        label.setOpaque(false);
-        label.setFont(font.deriveFont(Font.BOLD,12.0f));
-        label.setForeground(Color.WHITE);
+        StrokeLabel label = new StrokeLabel(message, 12.0f);
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.BLUE));

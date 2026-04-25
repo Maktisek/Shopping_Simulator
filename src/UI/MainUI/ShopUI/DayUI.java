@@ -35,12 +35,7 @@ public class DayUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        day = new StrokeLabel(gameData.getDayManagement().getCurrentDay().getDayName().toString());
-        Font font = Important.loadFont("/Fonts/Daydream.otf");
-        day.setFont(font);
-        day.setOpaque(false);
-        day.setFont(font.deriveFont(Font.BOLD,22.0f));
-        day.setForeground(Color.WHITE);
+        day = new StrokeLabel(gameData.getDayManagement().getCurrentDay().getDayName().toString(), 22.0f);
 
         day.setAlignmentX(Component.CENTER_ALIGNMENT);
         day.setAlignmentY(Component.TOP_ALIGNMENT);
