@@ -31,7 +31,7 @@ public class BuyProductCommand extends Command {
 
         ItemShop product = getCurrentShop().getItems()[index];
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
-        ItemDelivery itemToDeliver = new ItemDelivery(product.getItem().getName(), amount, price, product.getDaysToBeDelivered());
+        ItemDelivery itemToDeliver = new ItemDelivery(product.getItem().getName(), amount, price, product.getItem().getDaysToBeDelivered());
 
         if (getPlayer().calculateStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)) {
             return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse",

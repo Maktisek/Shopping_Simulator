@@ -6,7 +6,6 @@ public class ItemShop {
     private double penalization;
     private int currentDayAmount;
     private int priceSensitivity;
-    private int daysToBeDelivered;
 
     public ItemShop() {
     }
@@ -77,28 +76,4 @@ public class ItemShop {
         this.priceSensitivity = priceSensitivity;
     }
 
-    public int getDaysToBeDelivered() {
-        return daysToBeDelivered;
-    }
-
-    public void setDaysToBeDelivered(int daysToBeDelivered) {
-        this.daysToBeDelivered = daysToBeDelivered;
-    }
-
-    @Override
-    public String toString() {
-        return "ItemShop{" +
-                "item=" + item +
-                ", penalization=" + penalization +
-                ", currentDayAmount=" + currentDayAmount +
-                ", priceSensitivity=" + priceSensitivity +
-                '}';
-    }
-
-    public ItemShop(Item item, int priceSensitivity, int currentDayAmount, double penalization) {
-        this.item = item;
-        this.priceSensitivity = priceSensitivity;
-        this.currentDayAmount = currentDayAmount;
-        this.penalization = penalization;
-    }
 }

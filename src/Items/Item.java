@@ -11,14 +11,16 @@ public class Item {
     private int currentPrice;
     private int wholePrice;
     private int numberOfPrices;
+    private int daysToBeDelivered;
 
     public Item() {
     }
 
-    public Item(ItemNames name, int currentPrice, int basePrice) throws WrongItemException{
+    public Item(ItemNames name, int currentPrice, int basePrice, int daysToBeDelivered) throws WrongItemException{
         this.name = name;
         setCurrentPrice(currentPrice);
         this.basePrice = basePrice;
+        this.daysToBeDelivered = daysToBeDelivered;
     }
 
     public void setCurrentPrice(int currentPrice) throws WrongItemException {
@@ -39,7 +41,7 @@ public class Item {
     }
 
     public Item copy() throws WrongItemException {
-        return new Item(this.name, this.currentPrice, this.basePrice);
+        return new Item(this.name, this.currentPrice, this.basePrice, this.daysToBeDelivered);
     }
 
 
@@ -64,13 +66,37 @@ public class Item {
         this.basePrice = basePrice;
     }
 
+    public int getWholePrice() {
+        return wholePrice;
+    }
+
+    public void setWholePrice(int wholePrice) {
+        this.wholePrice = wholePrice;
+    }
+
+    public int getNumberOfPrices() {
+        return numberOfPrices;
+    }
+
+    public void setNumberOfPrices(int numberOfPrices) {
+        this.numberOfPrices = numberOfPrices;
+    }
+
+    public int getDaysToBeDelivered() {
+        return daysToBeDelivered;
+    }
+
+    public void setDaysToBeDelivered(int daysToBeDelivered) {
+        this.daysToBeDelivered = daysToBeDelivered;
+    }
+
     public String information(ItemSpecification spec){
         switch (spec){
             case SHOP -> {
-                return "Base price:" + Important.parseMoney(basePrice) + " FR" + "\n" + "Buy price:" + Important.parseMoney(currentPrice) + " FR"+ "\n" + "Average price:" + Important.parseMoney(calculateAveragePrice()) + " FR";
+                return "Base price:" + Important.parseMoney(basePrice) + " FR" + "\n" + "Buy price:" + Important.parseMoney(currentPrice) + " FR"+ "\n" + "Average price:" + Important.parseMoney(calculateAveragePrice()) + " FR"+ "\n" + "Delivery time:" + daysToBeDelivered + " days";
             }
             case NPC -> {
-                return "Base price:" + Important.parseMoney(basePrice) + " FR" + "\n" + "Sell price:" + Important.parseMoney(currentPrice)+ " FR"+ "\n" + "Average price:" + Important.parseMoney(calculateAveragePrice()) + " FR";
+                return "Base price:" + Important.parseMoney(basePrice) + " FR" + "\n" + "Sell price:" + Important.parseMoney(currentPrice)+ " FR"+ "\n" + "Average price:" + Important.parseMoney(calculateAveragePrice()) + " FR"+ "\n" + "Delivery time:" + daysToBeDelivered + " days";
             }
         }
         return "Issue";

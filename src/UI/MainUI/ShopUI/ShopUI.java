@@ -72,6 +72,7 @@ public class ShopUI extends BackgroundPanel {
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
             Item item = shop.getNpc().getDemand()[i];
             this.demand[i].updateNPC(item.getName().toString(), String.valueOf(item.getCurrentPrice()));
+            this.demand[i].setItem(item);
         }
     }
 
