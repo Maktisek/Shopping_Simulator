@@ -5,10 +5,11 @@ import UI.InvalidUILoadException;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.net.URL;
-import javax.imageio.ImageIO;
 
+/**
+ * @author Google Gemini
+ */
 public class CustomScrollBarUI extends BasicScrollBarUI {
 
     private Image thumbImage;
@@ -16,8 +17,8 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
 
     public CustomScrollBarUI() {
         try {
-            this.thumbImage = loadImage("");
-            this.trackImage = loadImage("");
+            this.thumbImage = loadImage("/MainUI/ShopUI/SCROLL.png");
+            this.trackImage = loadImage("/MainUI/ShopUI/BAR.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

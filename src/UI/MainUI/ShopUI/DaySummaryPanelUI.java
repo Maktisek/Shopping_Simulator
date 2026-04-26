@@ -3,7 +3,9 @@ package UI.MainUI.ShopUI;
 import DayCycle.Day;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.MainUI;
 import UI.MainUI.Utilities.StrokeLabel;
 import Utilities.Important;
 
@@ -22,7 +24,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         initialization();
     }
 
-    private void initialization() {
+    private void initialization() throws InvalidUILoadException {
         initializeDimensions();
 
         JPanel mainContent = new JPanel();
@@ -34,16 +36,8 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         initializeCenter(mainContent);
         initializeSouth(mainContent);
 
-        JScrollPane scrollPane = new JScrollPane(mainContent);
-        scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBorder(null);
 
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-
-        add(scrollPane, BorderLayout.CENTER);
+        add(mainContent, BorderLayout.CENTER);
     }
 
     private void initializeDay() {
@@ -94,13 +88,14 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     private void initializeDayStatistics(JPanel center) {
         String[] description = Important.decodeString(this.day.information());
         for (String s : description) {
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 14.0f);
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 13.0f);
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
             center.add(label);
             center.add(Box.createVerticalStrut(20));
         }
     }
 
-    private void initializeSouth(JPanel mainPanel) {
+    private void initializeSouth(JPanel mainPanel) throws InvalidUILoadException {
         JPanel south = new JPanel();
         south.setLayout(new BoxLayout(south, BoxLayout.Y_AXIS));
         south.setOpaque(false);
@@ -108,9 +103,21 @@ public class DaySummaryPanelUI extends BackgroundPanel {
 
         initializeDeliveryLabel(south);
         initializeDeliveries(south);
+        initializeOkButton(south);
         south.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        mainPanel.add(south);
+        JScrollPane scrollPane = new JScrollPane(south);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+
+        scrollPane.getVerticalScrollBar().setUnitIncrement(24);
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+
+        mainPanel.add(scrollPane);
     }
 
     private void initializeDeliveryLabel(JPanel south) {
@@ -125,27 +132,37 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
         wrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
+        wrapper.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
         String info = gameData.getPlayer().information();
         if(info == null){
-            for (int i = 0; i < 100; i++) {
                 StrokeLabel label = new StrokeLabel("Nothing was delivered", 14.0f);
                 label.setAlignmentX(Component.CENTER_ALIGNMENT);
                 wrapper.add(label);
+                wrapper.add(Box.createVerticalStrut(10));
                 south.add(wrapper);
+                 return;
             }
-            return;
-        }
 
         String[] deliveries = Important.decodeString(info);
 
         for (String s : deliveries) {
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 45), 14.0f);
-            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 45), 13.0f);
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
             wrapper.add(label);
             wrapper.add(Box.createVerticalStrut(20));
         }
         south.add(wrapper);
+    }
+
+    private void initializeOkButton(JPanel south) throws InvalidUILoadException {
+        CustomButton okButton = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png","/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        okButton.addActionListener(e ->{
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            parent.hideDialog();
+        });
+        okButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        south.add(okButton);
     }
 
     private void initializeDimensions() {

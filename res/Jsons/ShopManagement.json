@@ -115,7 +115,7 @@
         },
         {
           "item": {
-            "name": "Banana",
+            "name": "TEST2",
             "basePrice": 20,
             "currentPrice": 20,
             "daysToBeDelivered": 1
@@ -126,7 +126,7 @@
         },
         {
           "item": {
-            "name": "Apple",
+            "name": "TEST3",
             "basePrice": 30,
             "currentPrice": 30,
             "daysToBeDelivered": 1
@@ -137,7 +137,7 @@
         },
         {
           "item": {
-            "name": "Chocolate",
+            "name": "TEST4",
             "basePrice": 50,
             "currentPrice": 50,
             "daysToBeDelivered": 1
@@ -148,7 +148,7 @@
         },
         {
           "item": {
-            "name": "Whisky",
+            "name": "TEST5",
             "basePrice": 100,
             "currentPrice": 100,
             "daysToBeDelivered": 1
