@@ -1,13 +1,14 @@
 package UI.MainUI;
 
 import Game.GameData;
+import UI.CreationUI.BackgroundPanel;
 import UI.InvalidUILoadException;
 import UI.MainUI.ShopUI.ShopManagementUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainUI extends JPanel{
+public class MainUI extends BackgroundPanel {
 
     private JPanel mainPanel;
     private CardLayout cardLayout;
