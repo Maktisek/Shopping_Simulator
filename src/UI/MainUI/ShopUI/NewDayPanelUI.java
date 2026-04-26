@@ -48,7 +48,11 @@ public class NewDayPanelUI extends IssueDialogUI {
             System.out.println(commandResult.getMessage());
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
-
+            try {
+                parent.showDialog(new DaySummaryPanelUI(gameData));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         wrapper.add(yesButton);
     }
