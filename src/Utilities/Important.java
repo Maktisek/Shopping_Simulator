@@ -39,7 +39,7 @@ public class Important {
         String parsed = formatCurrency(number);
         int startingIndex = findStartingIndex(parsed);
         int numberOfDigits = 0;
-        if(startingIndex == 0){
+        if (startingIndex == 0) {
             return parsed;
         }
         for (int i = startingIndex + 1; i < parsed.length(); i++) {
@@ -50,15 +50,15 @@ public class Important {
         return findStartOfNumber(parsed) + findDigitName(numberOfDigits);
     }
 
-    private static String findStartOfNumber(String number){
+    private static String findStartOfNumber(String number) {
         String result = "";
         for (int i = 0; i < number.length(); i++) {
-            if(number.charAt(i) != ' ' ){
+            if (number.charAt(i) != ' ') {
                 result += number.charAt(i);
-            }else {
+            } else {
                 String next = "";
-                if(number.charAt(i+1) != '0'){
-                    next = ","+number.charAt(i+1);
+                if (number.charAt(i + 1) != '0') {
+                    next = "," + number.charAt(i + 1);
                 }
                 return result + next;
             }
@@ -84,18 +84,22 @@ public class Important {
         return "";
     }
 
-    public static String[] decodeString(String text){
+    public static String[] decodeString(String text) {
         String[] data = text.split("\n");
         return data;
     }
 
-    public static String insertDots(String text, int length){
+    public static String insertDots(String text, int length) {
         int currentLength = 0;
         String[] data = text.split(":");
-        for (String s : data){
-            currentLength += s.length();
+        if (data.length != 1) {
+            for (String s : data) {
+                currentLength += s.length();
+            }
+            length = length - currentLength;
+            return data[0] + ". ".repeat(length) + data[1];
         }
-        length = length - currentLength;
-        return data[0] + ". ".repeat(length) + data[1];
+        return null;
     }
 }
+

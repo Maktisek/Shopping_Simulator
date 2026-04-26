@@ -1,5 +1,7 @@
 package DayCycle;
 
+import Utilities.Important;
+
 public class Day {
 
     private DayNames dayName;
@@ -92,14 +94,10 @@ public class Day {
         this.daySpending = daySpending;
     }
 
-    @Override
-    public String toString() {
-        return "Day{" +
-                "dayName=" + dayName +
-                ", number=" + number +
-                ", dayIncome=" + dayIncome +
-                ", daySpending=" + daySpending +
-                ", dayAmount=" + dayBoughtAmount +
-                '}';
+    public String information() {
+        return "Income:" + Important.parseMoney(dayIncome) + " FR" + "\n" +
+                "Spending:" + Important.parseMoney(daySpending) + " FR" + "\n" +
+                "Bought:" + Important.parseMoney(dayBoughtAmount) + " products" + "\n" +
+                "Sold:" + Important.parseMoney(daySoldAmount) + " products" + "\n";
     }
 }

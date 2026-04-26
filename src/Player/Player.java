@@ -5,6 +5,7 @@ import Shops.Shop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Player {
 
@@ -30,7 +31,7 @@ public class Player {
         return null;
     }
 
-    public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException{
+    public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException {
         if (delivery.getBoughtPrice() > this.currentBalance) {
             throw new InvalidPlayerActionException("Not enough money for " + delivery.getName());
         }
@@ -40,9 +41,9 @@ public class Player {
 
     public void updateUndelivered() throws InvalidPlayerActionException {
         deliveredItems.clear();
-        for (ItemDelivery delivery : undeliveredItems){
+        for (ItemDelivery delivery : undeliveredItems) {
             delivery.setDaysToBeDelivered(delivery.getDaysToBeDelivered() - 1);
-            if(delivery.getDaysToBeDelivered() == 0){
+            if (delivery.getDaysToBeDelivered() == 0) {
                 deliveredItems.add(delivery);
             }
         }
@@ -51,7 +52,7 @@ public class Player {
     }
 
     private void transferDeliveredItems() throws InvalidPlayerActionException {
-        for (ItemDelivery delivery : deliveredItems){
+        for (ItemDelivery delivery : deliveredItems) {
             transferItem(delivery.getName(), delivery.getBoughtPrice(), delivery.getAmount());
         }
     }
@@ -83,39 +84,39 @@ public class Player {
         }
     }
 
-    public boolean bankrupt(){
+    public boolean bankrupt() {
         return this.currentBalance < 15 && !hasSomething();
     }
 
-    private boolean hasSomething(){
-        if(!undeliveredItems.isEmpty()){
+    private boolean hasSomething() {
+        if (!undeliveredItems.isEmpty()) {
             return true;
         }
-        for (ItemPlayer itemPlayer : stockItems){
-            if(itemPlayer.getAmount() > 0){
+        for (ItemPlayer itemPlayer : stockItems) {
+            if (itemPlayer.getAmount() > 0) {
                 return true;
             }
         }
         return false;
     }
 
-    public void loadItems(ArrayList<Shop> shops) throws WrongItemException{
-        for (Shop shop : shops){
+    public void loadItems(ArrayList<Shop> shops) throws WrongItemException {
+        for (Shop shop : shops) {
             for (int i = 0; i < shop.getItems().length; i++) {
                 this.stockItems.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
             }
         }
     }
 
-    public int calculateStocks(){
+    public int calculateStocks() {
         int stocks = 0;
-        for (ItemPlayer itemPlayer : stockItems){
+        for (ItemPlayer itemPlayer : stockItems) {
             stocks += itemPlayer.getAmount();
         }
         return stocks;
     }
 
-    public boolean canBuy(int price){
+    public boolean canBuy(int price) {
         return price <= this.currentBalance;
     }
 
@@ -139,19 +140,29 @@ public class Player {
         this.allTimeBalance = allTimeBalance;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "currentBalance=" + currentBalance +
-                ", allTimeBalance=" + allTimeBalance +
-                ", items=" + stockItems +
-                '}';
+    private HashMap<ItemNames, Integer> loadMap() {
+        HashMap<ItemNames, Integer> map = new HashMap<>();
+        for (ItemDelivery itemDelivery : deliveredItems) {
+            if (map.containsKey(itemDelivery.getName())) {
+                int current = map.get(itemDelivery.getName());
+                current += itemDelivery.getAmount();
+                map.put(itemDelivery.getName(), current);
+            } else {
+                map.put(itemDelivery.getName(), itemDelivery.getAmount());
+            }
+        }
+        return map;
     }
 
-    public Player(int allTimeBalance, int currentBalance, ItemPlayer[] arr) {
-        this.allTimeBalance = allTimeBalance;
-        this.currentBalance = currentBalance;
-        this.stockItems = new ArrayList<>();
-        stockItems.addAll(Arrays.asList(arr));
+    public String information(){
+        HashMap<ItemNames, Integer> map = loadMap();
+        StringBuilder sb = new StringBuilder();
+        for (ItemNames name: map.keySet()){
+            sb.append(name).append(":").append(map.get(name)).append("\n");
+        }
+        if(sb.isEmpty()){
+            return null;
+        }
+        return sb.toString();
     }
 }
