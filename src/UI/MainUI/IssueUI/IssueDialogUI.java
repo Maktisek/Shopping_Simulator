@@ -18,7 +18,7 @@ public abstract class IssueDialogUI extends BackgroundPanel {
         initialize();
     }
 
-    private void initialize() throws InvalidUILoadException{
+    private void initialize() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         Dimension dimension = new Dimension(720, 160);
@@ -28,7 +28,7 @@ public abstract class IssueDialogUI extends BackgroundPanel {
         initializeLabel();
     }
 
-    private void initializeLabel(){
+    private void initializeLabel() {
         add(Box.createVerticalStrut(30));
         StrokeLabel label = new StrokeLabel(message, 12.0f);
 

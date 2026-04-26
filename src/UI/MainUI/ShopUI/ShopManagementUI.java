@@ -1,7 +1,6 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
-import Commands.DayCommands.NewDayCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -118,7 +117,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_ISSUE: {
                 try {
-                    parent.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parent.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -126,7 +125,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_BUY: {
                 try {
-                    parent.showShopDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
+                    parent.showDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -145,7 +144,7 @@ public class ShopManagementUI extends BackgroundPanel {
 
         JPanel setBounds = new JPanel();
         setBounds.setLayout(new BoxLayout(setBounds, BoxLayout.X_AXIS));
-        setBounds.setBorder(BorderFactory.createEmptyBorder(0,0,27,10));
+        setBounds.setBorder(BorderFactory.createEmptyBorder(0, 0, 27, 10));
 
         setBounds.add(Box.createHorizontalStrut(1600));
         setBounds.add(bounds);
@@ -176,11 +175,11 @@ public class ShopManagementUI extends BackgroundPanel {
         panel.add(sellBounds);
     }
 
-    private void initializeEast(JPanel panel) throws InvalidUILoadException{
+    private void initializeEast(JPanel panel) throws InvalidUILoadException {
         JPanel eastPanel = new JPanel();
         eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
         eastPanel.setOpaque(false);
-        eastPanel.setBorder(BorderFactory.createEmptyBorder(18,0,0,28));
+        eastPanel.setBorder(BorderFactory.createEmptyBorder(18, 0, 0, 28));
 
         this.dayUI = new DayUI("/MainUI/ShopUI/DAY_FRAME.png", gameData);
         dayUI.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -191,15 +190,19 @@ public class ShopManagementUI extends BackgroundPanel {
         panel.add(eastPanel, BorderLayout.EAST);
     }
 
-    private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException{
+    private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException {
         CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", "/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createVerticalStrut(7));
         panel.add(nextDay);
 
-        nextDay.addActionListener(e ->{
-            CommandResult commandResult = new NewDayCommand(gameData).execute();
-            System.out.println(commandResult.getMessage());
+        nextDay.addActionListener(e -> {
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new NewDayPanelUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to proceed into another day?", gameData));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
         });
     }
 

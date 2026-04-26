@@ -44,7 +44,7 @@ public class IssueBuyDialogUI extends IssueDialogUI {
             if(result.getState() == CommandState.FAILED_ISSUE){
                 try {
                     parent.hideDialog();
-                    parent.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    parent.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

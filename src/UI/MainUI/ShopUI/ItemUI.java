@@ -83,7 +83,7 @@ public class ItemUI extends BackgroundPanel {
         image.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showShopDialog(new ItemInformationUI(this.item, this.specification));
+                parent.showDialog(new ItemInformationUI(this.item, this.specification));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -129,7 +129,7 @@ public class ItemUI extends BackgroundPanel {
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parentShop.showShopDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    parentShop.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

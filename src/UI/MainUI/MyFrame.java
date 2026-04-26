@@ -18,7 +18,7 @@ public class MyFrame {
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.frame.setUndecorated(true);
+//        this.frame.setUndecorated(true);
 
         this.gameData = gameData;
         initialize();

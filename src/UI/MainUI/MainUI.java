@@ -62,7 +62,7 @@ public class MainUI extends BackgroundPanel {
         updater.start();
     }
 
-    public void showShopDialog(JPanel customContent) {
+    public void showDialog(JPanel customContent) {
         overlay.removeAll();
         overlay.add(customContent);
         overlay.setVisible(true);
