@@ -18,7 +18,7 @@ public class ItemInformationUI extends BackgroundPanel {
     private final ItemSpecification spec;
 
     public ItemInformationUI(Item item, ItemSpecification spec) throws InvalidUILoadException {
-        setImg("/MainUI/ShopUI/ITEM_INFO_PANE.png");
+        setImg("/MainUI/ShopUI/INFO_PANE.png");
         this.item = item;
         this.spec = spec;
         initialization();

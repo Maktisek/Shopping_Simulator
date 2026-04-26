@@ -48,6 +48,7 @@ public class NewDayPanelUI extends IssueDialogUI {
             System.out.println(commandResult.getMessage());
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
+
         });
         wrapper.add(yesButton);
     }
