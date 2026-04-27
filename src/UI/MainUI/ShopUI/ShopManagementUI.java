@@ -88,8 +88,20 @@ public class ShopManagementUI extends BackgroundPanel {
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
         initializeChangeShopButtons(westPanel);
+        initializeStocksChangeButton(westPanel);
 
         panel.add(westPanel, BorderLayout.WEST);
+    }
+
+    private void initializeStocksChangeButton(JPanel westPanel) throws InvalidUILoadException {
+        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
+        previous.addActionListener(e ->{
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            parent.switchPanel("Stock");
+        });
+        previous.setAlignmentX(Component.CENTER_ALIGNMENT);
+        westPanel.add(previous);
+        westPanel.add(Box.createVerticalGlue());
     }
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
@@ -112,7 +124,6 @@ public class ShopManagementUI extends BackgroundPanel {
 
         panel.add(previous);
         panel.add(next);
-        panel.add(Box.createVerticalGlue());
     }
 
     private void proceedCommandResult(CommandResult result, ShopDirection shopDirection) {

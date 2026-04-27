@@ -4,6 +4,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.InvalidUILoadException;
 import UI.MainUI.ShopUI.ShopManagementUI;
+import UI.MainUI.StockUI.StockManagementUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class MainUI extends BackgroundPanel {
     private JPanel overlay;
     private final GameData gameData;
     private ShopManagementUI shopManagementUI;
+    private StockManagementUI stockManagementUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
         this.layeredPane = new JLayeredPane();
@@ -39,6 +41,7 @@ public class MainUI extends BackgroundPanel {
     private void initialize() throws InvalidUILoadException {
         initializeMainPanel();
         initializeShopManagementUI();
+        initializeStockManagementUI();
 
         this.cardLayout.show(mainPanel, "Shop");
 
@@ -53,6 +56,15 @@ public class MainUI extends BackgroundPanel {
     private void initializeShopManagementUI() throws InvalidUILoadException{
         this.shopManagementUI = new ShopManagementUI(this.gameData);
         this.mainPanel.add(shopManagementUI, "Shop");
+    }
+
+    private void initializeStockManagementUI() throws InvalidUILoadException {
+        this.stockManagementUI = new StockManagementUI(this.gameData);
+        this.mainPanel.add(stockManagementUI, "Stock");
+    }
+
+    public void switchPanel(String panel){
+        this.cardLayout.show(mainPanel, panel);
     }
 
     public void update(){
