@@ -225,6 +225,8 @@ public class ShopManagementUI extends BackgroundPanel {
         }
     }
 
+
+
     public void changeCard(String card) {
         this.cardLayout.show(cardPanel, card);
     }
