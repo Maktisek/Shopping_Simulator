@@ -12,6 +12,7 @@ import UI.InvalidUILoadException;
 import UI.MainUI.IssueUI.IssueBuyDialogUI;
 import UI.MainUI.IssueUI.IssueFailDialogUI;
 import UI.MainUI.MainUI;
+import Upgrade.Upgrade;
 import Upgrade.UpgradeNames;
 
 import javax.swing.*;
@@ -181,13 +182,17 @@ public class ShopManagementUI extends BackgroundPanel {
         eastPanel.setOpaque(false);
         eastPanel.setBorder(BorderFactory.createEmptyBorder(18, 0, 0, 28));
 
+        initializeDay(eastPanel);
+        initializeNewDayButton(eastPanel);
+
+        panel.add(eastPanel, BorderLayout.EAST);
+    }
+
+    private void initializeDay(JPanel eastPanel) throws InvalidUILoadException {
         this.dayUI = new DayUI("/MainUI/ShopUI/DAY_FRAME.png", gameData);
         dayUI.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         eastPanel.add(dayUI);
-        initializeNewDayButton(eastPanel);
-
-        panel.add(eastPanel, BorderLayout.EAST);
     }
 
     private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException {
@@ -204,6 +209,12 @@ public class ShopManagementUI extends BackgroundPanel {
                 throw new RuntimeException(ex);
             }
         });
+    }
+
+    private void initializeUpgrades(JPanel eastPanel){
+        for (UpgradeNames upgrade : gameData.getUpgradeManagement().getUpgrades().keySet()){
+
+        }
     }
 
     public void changeCard(String card) {
