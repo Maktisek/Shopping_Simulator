@@ -29,7 +29,8 @@ public class ShopManagementUI extends BackgroundPanel {
     private BoundPanelUI buyBounds;
     private BoundPanelUI sellBounds;
     private DayUI dayUI;
-    private ArrayList<UpgradeUI> upgrades;
+    private final ArrayList<UpgradeUI> upgrades;
+    private MoneyPanelUI moneyPanelUI;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
@@ -58,12 +59,17 @@ public class ShopManagementUI extends BackgroundPanel {
         initializeBounds(wrapper);
         initializeEast(wrapper);
 
+        JPanel northWrapper = new JPanel(new BorderLayout());
+        northWrapper.setOpaque(false);
+        initializeNorth(northWrapper);
+
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
 
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(northWrapper, JLayeredPane.PALETTE_LAYER);
         add(layeredPane);
         update();
     }
@@ -225,7 +231,21 @@ public class ShopManagementUI extends BackgroundPanel {
         }
     }
 
+    private void initializeNorth(JPanel wrapper) throws InvalidUILoadException {
+        JPanel north = new JPanel();
+        north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
+        north.setOpaque(false);
+        north.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
+        initializeBalance(north);
+
+        wrapper.add(north, BorderLayout.NORTH);
+    }
+
+    private void initializeBalance(JPanel north) throws InvalidUILoadException {
+        this.moneyPanelUI = new MoneyPanelUI("/MainUI/ShopUI/MONEY_PANEL.png", gameData);
+        north.add(moneyPanelUI);
+    }
 
     public void changeCard(String card) {
         this.cardLayout.show(cardPanel, card);
@@ -241,5 +261,6 @@ public class ShopManagementUI extends BackgroundPanel {
         for (UpgradeUI upgradeUI : upgrades){
             upgradeUI.update();
         }
+        this.moneyPanelUI.update();
     }
 }
