@@ -7,6 +7,7 @@ public abstract class UpgradeBasicType implements Upgrade{
     private int level;
 
     public UpgradeBasicType() {
+        setLevel(1);
     }
 
     @Override

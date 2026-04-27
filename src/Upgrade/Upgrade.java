@@ -7,4 +7,5 @@ public interface Upgrade {
     int dataInfo();
     int priceInfo();
     int levelInfo();
+    UpgradeNames nameInfo();
 }

@@ -12,7 +12,6 @@ import UI.InvalidUILoadException;
 import UI.MainUI.IssueUI.IssueBuyDialogUI;
 import UI.MainUI.IssueUI.IssueFailDialogUI;
 import UI.MainUI.MainUI;
-import Upgrade.Upgrade;
 import Upgrade.UpgradeNames;
 
 import javax.swing.*;
@@ -30,11 +29,13 @@ public class ShopManagementUI extends BackgroundPanel {
     private BoundPanelUI buyBounds;
     private BoundPanelUI sellBounds;
     private DayUI dayUI;
+    private ArrayList<UpgradeUI> upgrades;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
         this.gameData = gameData;
         this.shopPanels = new ArrayList<>();
+        this.upgrades = new ArrayList<>();
         this.cardPanel = new JPanel();
         this.mainPanel = new JPanel(new BorderLayout());
 
@@ -161,7 +162,7 @@ public class ShopManagementUI extends BackgroundPanel {
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
 
-        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SHIP_ICON.png");
+        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/BUY_ICON.png");
 
         panel.add(buyBounds);
     }
@@ -184,6 +185,7 @@ public class ShopManagementUI extends BackgroundPanel {
 
         initializeDay(eastPanel);
         initializeNewDayButton(eastPanel);
+        initializeUpgrades(eastPanel);
 
         panel.add(eastPanel, BorderLayout.EAST);
     }
@@ -211,9 +213,15 @@ public class ShopManagementUI extends BackgroundPanel {
         });
     }
 
-    private void initializeUpgrades(JPanel eastPanel){
-        for (UpgradeNames upgrade : gameData.getUpgradeManagement().getUpgrades().keySet()){
-
+    private void initializeUpgrades(JPanel eastPanel) throws InvalidUILoadException {
+        eastPanel.add(Box.createVerticalStrut(15));
+        for (UpgradeNames upgrade : gameData.getUpgradeManagement().getUpgrades().keySet()) {
+            UpgradeUI upgradeUI = new UpgradeUI("/MainUI/ShopUI/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
+            upgradeUI.setOpaque(false);
+            upgradeUI.setAlignmentX(Component.CENTER_ALIGNMENT);
+            eastPanel.add(upgradeUI);
+            eastPanel.add(Box.createVerticalStrut(20));
+            upgrades.add(upgradeUI);
         }
     }
 
@@ -228,5 +236,8 @@ public class ShopManagementUI extends BackgroundPanel {
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
         this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
         this.dayUI.update();
+        for (UpgradeUI upgradeUI : upgrades){
+            upgradeUI.update();
+        }
     }
 }

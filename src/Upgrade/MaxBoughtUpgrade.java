@@ -6,4 +6,9 @@ public class MaxBoughtUpgrade extends UpgradeBasicType {
         setData(10);
         setPrice(50);
     }
+
+    @Override
+    public UpgradeNames nameInfo() {
+        return UpgradeNames.BUY;
+    }
 }
