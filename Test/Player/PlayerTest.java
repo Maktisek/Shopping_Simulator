@@ -1,13 +1,9 @@
 package Player;
 
-import Items.Item;
 import Items.ItemNames;
-import Items.ItemShop;
 import Shops.Shop;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

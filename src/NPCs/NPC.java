@@ -1,10 +1,7 @@
 package NPCs;
 
-import Items.Item;
-import Items.ItemPlayer;
-import Items.ItemShop;
+import Items.*;
 import Shops.Shop;
-import Items.WrongItemException;
 import Player.Player;
 
 
@@ -15,16 +12,17 @@ public class NPC {
 
     private int quantityWeight;
     private int convenienceWeight;
-    private Item[] items;
-    private Item[] demand;
+    private ItemNPC[] items;
+    private ItemNPC[] demand;
 
     public void loadDemand(Player player, Shop shop) {
         resetDemand();
         double first = 0;
         double second = 0;
-        for (Item item : this.items) {
-            ItemPlayer playersItem = player.findItem(item.getName());
-            ItemShop shopsItem = shop.findItem(item.getName());
+        System.out.println(Arrays.toString(items));
+        for (ItemNPC item : this.items) {
+            ItemPlayer playersItem = player.findItem(item.getItem().getName());
+            ItemShop shopsItem = shop.findItem(item.getItem().getName());
             if (playersItem != null && shopsItem != null) {
                 double playerAverage = playersItem.getAverageBuyPrice();
                 if (playerAverage != 0) {
@@ -74,18 +72,18 @@ public class NPC {
 
     public void loadItems(ItemShop[] temp) throws WrongItemException{
         for (int i = 0; i < temp.length; i++) {
-            this.items[i] = temp[i].getItem().copy();
+            this.items[i].setItem(temp[i].getItem().copy());
         }
     }
 
     public void setNewPrices(Player player, Shop shop) throws WrongItemException {
         Random rd = new Random();
-        for (Item item : demand) {
+        for (ItemNPC item : demand) {
             if(item == null){
                 continue;
             }
 
-            ItemPlayer playersItem = player.findItem(item.getName());
+            ItemPlayer playersItem = player.findItem(item.getItem().getName());
             if (playersItem == null) {
                 continue;
             }
@@ -95,7 +93,7 @@ public class NPC {
                 continue;
             }
 
-            ItemShop itemShop = shop.findItem(item.getName());
+            ItemShop itemShop = shop.findItem(item.getItem().getName());
             if(itemShop == null){
                 continue;
             }
@@ -107,7 +105,7 @@ public class NPC {
             double bonus = calculateB(playerAverage, playerWhole);
 
             double percentUpdate = rd.nextInt(-8, 4) + bonus + calculateL(playerAverage, shopPrice);
-            item.setCurrentPrice((int) Math.round(item.getBasePrice() + (((double) item.getCurrentPrice() / 100) * percentUpdate)));
+            item.getItem().setCurrentPrice((int) Math.round(item.getItem().getBasePrice() + (((double) item.getItem().getCurrentPrice() / 100) * percentUpdate)));
         }
     }
 
@@ -144,19 +142,19 @@ public class NPC {
         this.quantityWeight = quantityWeight;
     }
 
-    public Item[] getDemand() {
+    public ItemNPC[] getDemand() {
         return demand;
     }
 
-    public void setDemand(Item[] demand) {
+    public void setDemand(ItemNPC[] demand) {
         this.demand = demand;
     }
 
-    public Item[] getItems() {
+    public ItemNPC[] getItems() {
         return items;
     }
 
-    public void setItems(Item[] items) {
+    public void setItems(ItemNPC[] items) {
         this.items = items;
     }
 

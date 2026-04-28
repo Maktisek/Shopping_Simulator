@@ -1,9 +1,10 @@
 package Game;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
-import Items.Item;
 import Items.ItemShop;
 import Items.WrongItemException;
+import NPCs.NPC;
+import NPCs.NPCFinder;
 import Player.Player;
 import Shops.Shop;
 import Shops.ShopManagement;
@@ -14,10 +15,12 @@ import com.google.gson.Gson;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class Initialization {
 
     private final GameData gameData;
+    private NPCFinder[] npcs;
 
     public Initialization() {
         this.gameData = new GameData();
@@ -28,6 +31,8 @@ public class Initialization {
         loadPlayer();
         loadDayManagement();
         loadShopManagement();
+        loadNPCs();
+        connectShopAndNPCs();
         loadUpgradeManagement();
         loadAchievementManagement();
         finishInitialization();
@@ -63,17 +68,32 @@ public class Initialization {
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
-        try {
-            checkIntervals();
-        }catch (WrongIntervalException e){
-            throw new RuntimeException(e.getMessage());
+    }
+
+    private void loadNPCs(){
+        Gson gson = new Gson();
+
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/NPCs.json")){
+            if(is == null){
+                throw new IllegalStateException("The path for Json: /Jsons/NPCs.json is invalid and the file could not be found");
+            }
+            this.npcs = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), NPCFinder[].class);
+        }catch (Exception e){
+            throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
     }
+
+    private void connectShopAndNPCs(){
+        for (int i = 0; i < gameData.getShopManagement().getShops().size(); i++) {
+            gameData.getShopManagement().getShops().get(i).setNpc(npcs[i].getNpc());
+        }
+    }
+
 
     private void checkIntervals() throws WrongIntervalException {
         for (Shop shop : gameData.getShopManagement().getShops()){
             for (ItemShop item : shop.getItems()){
-                item.getItem().getAmountManager().getInterval().testInterval();
+                item.getAmountManager().getInterval().testInterval();
             }
         }
     }

@@ -1,11 +1,16 @@
 package Items;
 
-public class ItemShop {
+import UI.MainUI.ShopUI.ItemSpecification;
+import Utilities.Important;
 
-    private Item item;
+public class ItemShop implements Item {
+
+    private ItemBase item;
     private double penalization;
     private int currentDayAmount;
     private int priceSensitivity;
+    private int daysToBeDelivered;
+    private AmountManager amountManager;
 
     public ItemShop() {
     }
@@ -44,11 +49,16 @@ public class ItemShop {
         this.currentDayAmount = 0;
     }
 
-    public Item getItem() {
+    public ItemBase getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    @Override
+    public String specification() {
+        return this.item.information(ItemSpecification.SHOP) + "\n" + "Delivery time:" + daysToBeDelivered + " days" + "\n" +  "Supply:" + Important.parseMoney(amountManager.getCurrent());
+    }
+
+    public void setItem(ItemBase item) {
         this.item = item;
     }
 
@@ -76,4 +86,19 @@ public class ItemShop {
         this.priceSensitivity = priceSensitivity;
     }
 
+    public int getDaysToBeDelivered() {
+        return daysToBeDelivered;
+    }
+
+    public void setDaysToBeDelivered(int daysToBeDelivered) {
+        this.daysToBeDelivered = daysToBeDelivered;
+    }
+
+    public AmountManager getAmountManager() {
+        return amountManager;
+    }
+
+    public void setAmountManager(AmountManager amountManager) {
+        this.amountManager = amountManager;
+    }
 }

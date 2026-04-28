@@ -31,14 +31,14 @@ public class BuyProductCommand extends Command {
 
         ItemShop product = getCurrentShop().getItems()[index];
         int price = getCurrentShop().getItems()[index].getItem().getCurrentPrice();
-        ItemDelivery itemToDeliver = new ItemDelivery(product.getItem().getName(), amount, price, product.getItem().getDaysToBeDelivered());
+        ItemDelivery itemToDeliver = new ItemDelivery(product.getItem().getName(), amount, price, product.getDaysToBeDelivered());
 
         if (getPlayer().calculateStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)) {
             return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse",
                     CommandState.FAILED_ISSUE);
         }
 
-        if(!product.getItem().getAmountManager().canDecrement(amount)){
+        if(!product.getAmountManager().canDecrement(amount)){
             return new CommandResult(product.getItem().getName().toString() +" is out of stocks", CommandState.FAILED_ISSUE);
         }
 
@@ -47,7 +47,7 @@ public class BuyProductCommand extends Command {
         } catch (InvalidPlayerActionException e) {
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
-        product.getItem().getAmountManager().decrement(amount);
+        product.getAmountManager().decrement(amount);
         getCurrentShop().buyItem(index, amount);
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);

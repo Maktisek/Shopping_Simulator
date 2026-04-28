@@ -15,12 +15,10 @@ import java.net.URL;
 public class ItemInformationUI extends BackgroundPanel {
 
     private final Item item;
-    private final ItemSpecification spec;
 
-    public ItemInformationUI(Item item, ItemSpecification spec) throws InvalidUILoadException {
+    public ItemInformationUI(Item item) throws InvalidUILoadException {
         setImg("/MainUI/ShopUI/INFO_PANE.png");
         this.item = item;
-        this.spec = spec;
         initialization();
     }
 
@@ -46,7 +44,7 @@ public class ItemInformationUI extends BackgroundPanel {
 
         setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
-        String name = this.item.getName().toString();
+        String name = this.item.getItem().getName().toString();
         StrokeLabel label = new StrokeLabel(name, 48.0f);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -67,7 +65,7 @@ public class ItemInformationUI extends BackgroundPanel {
         URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
 
         if (imageURL == null) {
-            throw new InvalidUILoadException(item.getName().toString() + " picture was not found.");
+            throw new InvalidUILoadException(item.getItem().getName().toString() + " picture was not found.");
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
@@ -94,7 +92,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeDescriptionLabel(JPanel panel) {
-        String[] description = Important.decodeString(this.item.information(spec));
+        String[] description = Important.decodeString(this.item.specification());
         for (String s : description) {
             StrokeLabel label = new StrokeLabel(Important.insertDots(s, 44), 14.0f);
             panel.add(label);

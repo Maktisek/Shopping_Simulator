@@ -1,7 +1,7 @@
 package UI.MainUI.ShopUI;
 
 import Game.GameData;
-import Items.Item;
+import Items.ItemNPC;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.InvalidUILoadException;
@@ -17,7 +17,7 @@ public class ShopUI extends BackgroundPanel {
     private final GameData gameData;
     private final ArrayList<ItemUI> items;
     private JPanel southPanel;
-    private ItemUI[] demand;
+    private final ItemUI[] demand;
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
@@ -50,7 +50,7 @@ public class ShopUI extends BackgroundPanel {
 
     private void initializeShopItems(JPanel panel) throws InvalidUILoadException {
         for (int i = 0; i < shop.getItems().length; i++) {
-            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i].getItem(), i, gameData, ItemSpecification.SHOP);
+            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i], i, gameData, ItemSpecification.SHOP);
 
             panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(40));
@@ -61,7 +61,7 @@ public class ShopUI extends BackgroundPanel {
     private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createHorizontalStrut(40));
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
-            ItemUI itemUI = new  ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
+            ItemUI itemUI = new  ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getItems()[i], i, gameData, ItemSpecification.NPC);
             this.demand[i] = itemUI;
             panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(40));
@@ -70,8 +70,8 @@ public class ShopUI extends BackgroundPanel {
 
     private void updateNPCItems(){
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
-            Item item = shop.getNpc().getDemand()[i];
-            this.demand[i].updateNPC(item.getName().toString(), String.valueOf(item.getCurrentPrice()));
+            ItemNPC item = shop.getNpc().getDemand()[i];
+            this.demand[i].updateNPC(item.getItem().getName().toString(), String.valueOf(item.getItem().getCurrentPrice()));
             this.demand[i].setItem(item);
         }
     }

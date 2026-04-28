@@ -5,7 +5,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
-import Items.Item;
+import Items.ItemNPC;
 import Items.ItemNames;
 import Player.InvalidPlayerActionException;
 import Upgrade.UpgradeNames;
@@ -27,9 +27,9 @@ public class SellProductCommand extends Command {
             return new CommandResult("You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.SELL) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }
-        Item product = getCurrentShop().getNpc().getDemand()[index];
-        ItemNames productName = product.getName();
-        int price = getCurrentShop().getNpc().getDemand()[index].getCurrentPrice();
+        ItemNPC product = getCurrentShop().getNpc().getDemand()[index];
+        ItemNames productName = product.getItem().getName();
+        int price = product.getItem().getCurrentPrice();
         if (!product.getAmountManager().canDecrement(amount)) {
             return new CommandResult("Buyer does not need " + productName + " anymore", CommandState.FAILED_ISSUE);
         }

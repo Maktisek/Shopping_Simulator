@@ -13,8 +13,8 @@ public class Player {
     private int currentBalance;
     private int allTimeBalance;
     private final ArrayList<ItemPlayer> stockItems;
-    private ArrayList<ItemDelivery> undeliveredItems;
-    private ArrayList<ItemDelivery> deliveredItems;
+    private final ArrayList<ItemDelivery> undeliveredItems;
+    private final ArrayList<ItemDelivery> deliveredItems;
 
     public Player() {
         this.stockItems = new ArrayList<>();

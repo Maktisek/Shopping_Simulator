@@ -31,10 +31,10 @@ public class ItemUI extends BackgroundPanel {
 
     public ItemUI(String imgFile, Item item, int index, GameData gameData, ItemSpecification specification) throws InvalidUILoadException {
         super(imgFile);
-        this.item = item;
         this.index = index;
         this.gameData = gameData;
         this.specification = specification;
+        this.item = item;
 
         Dimension dimension = new Dimension(180, 180);
         setMinimumSize(new Dimension(dimension));
@@ -56,7 +56,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        name = new StrokeLabel(this.item.getName().toString(), 14.0f);
+        name = new StrokeLabel(this.item.getItem().getName().toString(), 14.0f);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -83,7 +83,7 @@ public class ItemUI extends BackgroundPanel {
         image.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new ItemInformationUI(this.item, this.specification));
+                parent.showDialog(new ItemInformationUI(this.item));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -139,7 +139,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializePrice(JPanel panel){
-        this.price = new StrokeLabel(Important.parseMoney(item.getCurrentPrice()) + " FR", 13.0f);
+        this.price = new StrokeLabel(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR", 13.0f);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
@@ -148,7 +148,7 @@ public class ItemUI extends BackgroundPanel {
 
     public void updateShop(){
         if(this.price != null){
-            this.price.setText(Important.parseMoney(item.getCurrentPrice()) + " FR");
+            this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR");
             updateShopColorPrice();
         }
     }
@@ -162,9 +162,9 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void updateShopColorPrice() {
-        if (item.getBasePrice() > item.getCurrentPrice()) {
+        if (item.getItem().getBasePrice() > item.getItem().getCurrentPrice()) {
             this.price.setForeground(Color.GREEN);
-        } else if (item.getBasePrice() < item.getCurrentPrice()) {
+        } else if (item.getItem().getBasePrice() < item.getItem().getCurrentPrice()) {
             this.price.setForeground(Color.RED);
         }else {
             this.price.setForeground(Color.WHITE);
@@ -172,8 +172,8 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void updateNpcColorPrice(){
-        int npcPrice = gameData.getShopManagement().getCurrentShop().getNpc().getDemand()[index].getCurrentPrice();
-        double playerPrice = gameData.getPlayer().findItem(gameData.getShopManagement().getCurrentShop().getNpc().getDemand()[index].getName()).getAverageBuyPrice();
+        int npcPrice = gameData.getShopManagement().getCurrentShop().getNpc().getDemand()[index].getItem().getCurrentPrice();
+        double playerPrice = gameData.getPlayer().findItem(gameData.getShopManagement().getCurrentShop().getNpc().getDemand()[index].getItem().getName()).getAverageBuyPrice();
         if(playerPrice == 0){
             this.price.setForeground(Color.WHITE);
             return;

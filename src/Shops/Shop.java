@@ -1,10 +1,7 @@
 package Shops;
 
 
-import Items.Item;
-import Items.ItemNames;
-import Items.ItemShop;
-import Items.WrongItemException;
+import Items.*;
 import NPCs.NPC;
 import Player.Player;
 
@@ -37,7 +34,7 @@ public class Shop {
     private void updateItems(){
         for (ItemShop item : items){
             item.newDayPenalization(-0.08);
-            item.getItem().getAmountManager().stockIn();
+            item.getAmountManager().stockIn();
             try {
                 item.updatePrice();
             }catch (WrongItemException e){
@@ -50,7 +47,7 @@ public class Shop {
     private void updateNPC(Player player) throws WrongItemException{
         this.npc.loadDemand(player,this);
         this.npc.setNewPrices(player, this);
-        for (Item item : npc.getItems()){
+        for (ItemNPC item : npc.getItems()){
             item.getAmountManager().stockIn();
         }
     }

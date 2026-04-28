@@ -46,8 +46,4 @@ public class AmountManager {
         this.current = current;
     }
 
-
-    public AmountManager copyAmountManager(){
-        return new AmountManager(max, current, interval);
-    }
 }
