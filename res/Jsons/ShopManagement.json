@@ -28,7 +28,15 @@
             "name": "Bread",
             "basePrice": 15,
             "currentPrice": 15,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -39,7 +47,15 @@
             "name": "Banana",
             "basePrice": 30,
             "currentPrice": 30,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -50,7 +66,15 @@
             "name": "Apple",
             "basePrice": 50,
             "currentPrice": 50,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -61,7 +85,15 @@
             "name": "Chocolate",
             "basePrice": 100,
             "currentPrice": 100,
-            "daysToBeDelivered": 2
+            "daysToBeDelivered": 2,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -72,7 +104,15 @@
             "name": "Whisky",
             "basePrice": 300,
             "currentPrice": 300,
-            "daysToBeDelivered": 3
+            "daysToBeDelivered": 3,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -107,7 +147,15 @@
             "name": "TEST",
             "basePrice": 15,
             "currentPrice": 15,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -118,7 +166,15 @@
             "name": "TEST2",
             "basePrice": 20,
             "currentPrice": 20,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -129,7 +185,15 @@
             "name": "TEST3",
             "basePrice": 30,
             "currentPrice": 30,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -140,7 +204,15 @@
             "name": "TEST4",
             "basePrice": 50,
             "currentPrice": 50,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,
@@ -151,7 +223,15 @@
             "name": "TEST5",
             "basePrice": 100,
             "currentPrice": 100,
-            "daysToBeDelivered": 1
+            "daysToBeDelivered": 1,
+            "amountManager": {
+              "max" : 100,
+              "current" : 80,
+              "interval": {
+                "upperBound" : 15,
+                "lowerBound" : 10
+              }
+            }
           },
           "penalization": 1,
           "currentDayAmount": 0,

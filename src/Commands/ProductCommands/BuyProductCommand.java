@@ -38,11 +38,16 @@ public class BuyProductCommand extends Command {
                     CommandState.FAILED_ISSUE);
         }
 
+        if(!product.getItem().getAmountManager().canDecrement(amount)){
+            return new CommandResult(product.getItem().getName().toString() +" is out of stocks", CommandState.FAILED_ISSUE);
+        }
+
         try {
             getPlayer().buyItemNew(itemToDeliver);
         } catch (InvalidPlayerActionException e) {
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
+        product.getItem().getAmountManager().decrement(amount);
         getCurrentShop().buyItem(index, amount);
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);
