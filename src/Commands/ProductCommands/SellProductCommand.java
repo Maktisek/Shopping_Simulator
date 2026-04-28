@@ -6,7 +6,6 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Items.ItemNPC;
-import Items.ItemNames;
 import Player.InvalidPlayerActionException;
 import Upgrade.UpgradeNames;
 
@@ -28,7 +27,7 @@ public class SellProductCommand extends Command {
                     CommandState.FAILED_ISSUE);
         }
         ItemNPC product = getCurrentShop().getNpc().getDemand()[index];
-        ItemNames productName = product.getItem().getName();
+        String productName = product.getItem().getName();
         int price = product.getItem().getCurrentPrice();
         if (!product.getAmountManager().canDecrement(amount)) {
             return new CommandResult("Buyer does not need " + productName + " anymore", CommandState.FAILED_ISSUE);

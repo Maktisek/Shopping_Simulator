@@ -52,9 +52,9 @@ public class Shop {
         }
     }
 
-    public ItemShop findItem(ItemNames name){
+    public ItemShop findItem(String name){
         for (ItemShop item : items){
-            if(item.getItem().getName() == name){
+            if(item.getItem().getName().equalsIgnoreCase(name)){
                 return item;
             }
         }

@@ -22,9 +22,9 @@ public class Player {
         this.deliveredItems = new ArrayList<>();
     }
 
-    public ItemPlayer findItem(ItemNames name) {
+    public ItemPlayer findItem(String name) {
         for (ItemPlayer item : stockItems) {
-            if (item.getName() == name) {
+            if (item.getName().equalsIgnoreCase(name)) {
                 return item;
             }
         }
@@ -58,7 +58,7 @@ public class Player {
     }
 
 
-    public void transferItem(ItemNames name, int shopPrice, int amount) throws InvalidPlayerActionException {
+    public void transferItem(String name, int shopPrice, int amount) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
             throw new InvalidPlayerActionException(name + "could not be bought " + name + " could not be found");
@@ -70,7 +70,7 @@ public class Player {
         }
     }
 
-    public void sellItem(ItemNames name, int amount, int npcPrice) throws InvalidPlayerActionException {
+    public void sellItem(String name, int amount, int npcPrice) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
             throw new InvalidPlayerActionException(name + "could not be sold - " + name + " could not be found");
@@ -140,8 +140,8 @@ public class Player {
         this.allTimeBalance = allTimeBalance;
     }
 
-    private HashMap<ItemNames, Integer> loadMap() {
-        HashMap<ItemNames, Integer> map = new HashMap<>();
+    private HashMap<String, Integer> loadMap() {
+        HashMap<String, Integer> map = new HashMap<>();
         for (ItemDelivery itemDelivery : deliveredItems) {
             if (map.containsKey(itemDelivery.getName())) {
                 int current = map.get(itemDelivery.getName());
@@ -155,9 +155,9 @@ public class Player {
     }
 
     public String information(){
-        HashMap<ItemNames, Integer> map = loadMap();
+        HashMap<String, Integer> map = loadMap();
         StringBuilder sb = new StringBuilder();
-        for (ItemNames name: map.keySet()){
+        for (String name: map.keySet()){
             sb.append(name).append(":").append(map.get(name)).append("\n");
         }
         if(sb.isEmpty()){

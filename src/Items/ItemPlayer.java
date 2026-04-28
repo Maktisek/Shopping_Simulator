@@ -7,14 +7,14 @@ import java.util.Queue;
 
 public class ItemPlayer {
 
-    private ItemNames name;
+    private String name;
     private int amount;
     private int wholeBoughtPrice;
     private double averageBuyPrice;
     private final Queue<Evidence> evidences;
 
 
-    public ItemPlayer(ItemNames name) {
+    public ItemPlayer(String name) {
         this.name = name;
         this.evidences = new LinkedList<>();
         this.amount = 0;
@@ -91,11 +91,11 @@ public class ItemPlayer {
         return wholeBoughtPrice;
     }
 
-    public ItemNames getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ItemNames name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -108,23 +108,4 @@ public class ItemPlayer {
     }
 
 
-
-    @Override
-    public String toString() {
-        return "ItemPlayer{" +
-                "name=" + name +
-                ", amount=" + amount +
-                ", wholeBoughtPrice=" + wholeBoughtPrice +
-                ", averageBuyPrice=" + averageBuyPrice +
-                ", evidences=" + evidences +
-                '}';
-    }
-
-    public ItemPlayer(double averageBuyPrice, int wholeBoughtPrice, int amount, ItemNames name) {
-        this.evidences = new LinkedList<>();
-        this.averageBuyPrice = averageBuyPrice;
-        this.wholeBoughtPrice = wholeBoughtPrice;
-        this.amount = amount;
-        this.name = name;
-    }
 }

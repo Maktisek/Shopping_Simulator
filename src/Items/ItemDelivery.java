@@ -2,23 +2,23 @@ package Items;
 
 public class ItemDelivery {
 
-    private ItemNames name;
+    private String name;
     private int boughtPrice;
     private int daysToBeDelivered;
     private int amount;
 
-    public ItemDelivery(ItemNames name, int amount, int boughtPrice, int daysToBeDelivered) {
+    public ItemDelivery(String name, int amount, int boughtPrice, int daysToBeDelivered) {
         this.name = name;
         this.boughtPrice = boughtPrice;
         this.daysToBeDelivered = daysToBeDelivered;
         this.amount = amount;
     }
 
-    public ItemNames getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ItemNames name) {
+    public void setName(String name) {
         this.name = name;
     }
 

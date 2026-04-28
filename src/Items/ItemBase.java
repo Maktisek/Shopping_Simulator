@@ -6,7 +6,7 @@ import Utilities.Important;
 public class ItemBase {
 
 
-    private ItemNames name;
+    private String name;
     private int basePrice;
     private int currentPrice;
     private int wholePrice;
@@ -15,7 +15,7 @@ public class ItemBase {
     public ItemBase() {
     }
 
-    public ItemBase(ItemNames name, int currentPrice, int basePrice) throws WrongItemException{
+    public ItemBase(String name, int currentPrice, int basePrice) throws WrongItemException{
         this.name = name;
         setCurrentPrice(currentPrice);
         this.basePrice = basePrice;
@@ -42,11 +42,6 @@ public class ItemBase {
         return new ItemBase(this.name, this.currentPrice, this.basePrice);
     }
 
-
-    public void setName(ItemNames name) {
-        this.name = name;
-    }
-
     public int getCurrentPrice() {
         return currentPrice;
     }
@@ -55,10 +50,13 @@ public class ItemBase {
         return basePrice;
     }
 
-    public ItemNames getName() {
+    public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setBasePrice(int basePrice) {
         this.basePrice = basePrice;
