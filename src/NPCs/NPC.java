@@ -19,7 +19,6 @@ public class NPC {
         resetDemand();
         double first = 0;
         double second = 0;
-        System.out.println(Arrays.toString(items));
         for (ItemNPC item : this.items) {
             ItemPlayer playersItem = player.findItem(item.getItem().getName());
             ItemShop shopsItem = shop.findItem(item.getItem().getName());

@@ -29,11 +29,4 @@ public class ItemNPC implements Item {
         this.amountManager = amountManager;
     }
 
-    @Override
-    public String toString() {
-        return "ItemNPC{" +
-                "item=" + item +
-                ", amountManager=" + amountManager +
-                '}';
-    }
 }

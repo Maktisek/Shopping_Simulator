@@ -94,14 +94,4 @@ public class ItemBase {
         return "Issue";
     }
 
-    @Override
-    public String toString() {
-        return "ItemBase{" +
-                "name=" + name +
-                ", basePrice=" + basePrice +
-                ", currentPrice=" + currentPrice +
-                ", wholePrice=" + wholePrice +
-                ", numberOfPrices=" + numberOfPrices +
-                '}';
-    }
 }
