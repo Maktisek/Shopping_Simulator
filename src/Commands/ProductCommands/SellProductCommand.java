@@ -27,10 +27,10 @@ public class SellProductCommand extends Command {
             return new CommandResult("You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.SELL) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }
-        Item product =  getCurrentShop().getNpc().getDemand()[index];
+        Item product = getCurrentShop().getNpc().getDemand()[index];
         ItemNames productName = product.getName();
         int price = getCurrentShop().getNpc().getDemand()[index].getCurrentPrice();
-        if(!product.getAmountManager().canDecrement(amount)){
+        if (!product.getAmountManager().canDecrement(amount)) {
             return new CommandResult("Buyer does not need " + productName + " anymore", CommandState.FAILED_ISSUE);
         }
         try {

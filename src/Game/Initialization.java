@@ -1,10 +1,14 @@
 package Game;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
+import Items.Item;
+import Items.ItemShop;
 import Items.WrongItemException;
 import Player.Player;
+import Shops.Shop;
 import Shops.ShopManagement;
 import Upgrade.UpgradeManagement;
+import Utilities.WrongIntervalException;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
@@ -58,6 +62,19 @@ public class Initialization {
             this.gameData.setShopManagement(shopManagement);
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
+        }
+        try {
+            checkIntervals();
+        }catch (WrongIntervalException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private void checkIntervals() throws WrongIntervalException {
+        for (Shop shop : gameData.getShopManagement().getShops()){
+            for (ItemShop item : shop.getItems()){
+                item.getItem().getAmountManager().getInterval().testInterval();
+            }
         }
     }
 

@@ -106,11 +106,11 @@
             "currentPrice": 300,
             "daysToBeDelivered": 3,
             "amountManager": {
-              "max" : 100,
-              "current" : 80,
+              "max" : 10,
+              "current" : 10,
               "interval": {
-                "upperBound" : 15,
-                "lowerBound" : 10
+                "upperBound" : 3,
+                "lowerBound" : 1
               }
             }
           },

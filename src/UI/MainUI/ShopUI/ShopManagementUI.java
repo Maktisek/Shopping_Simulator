@@ -232,7 +232,7 @@ public class ShopManagementUI extends BackgroundPanel {
 
     private void initializeUpgrades(JPanel eastPanel) throws InvalidUILoadException {
         eastPanel.add(Box.createVerticalStrut(15));
-        for (UpgradeNames upgrade : gameData.getUpgradeManagement().getUpgrades().keySet()) {
+        for (UpgradeNames upgrade : UpgradeNames.values()) {
             UpgradeUI upgradeUI = new UpgradeUI("/MainUI/ShopUI/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
             upgradeUI.setOpaque(false);
             upgradeUI.setAlignmentX(Component.CENTER_ALIGNMENT);
