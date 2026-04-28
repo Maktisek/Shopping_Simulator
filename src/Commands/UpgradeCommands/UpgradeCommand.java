@@ -22,7 +22,7 @@ public class UpgradeCommand extends Command {
             return new CommandResult("Not enough money", CommandState.FAILED_ISSUE);
         }
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
-        getDayManagement().getCurrentDay().incrementDayIncome(price);
+        getDayManagement().getCurrentDay().incrementDaySpending(price);
         getUpgradeManagement().levelUpUpgrade(name);
         return new CommandResult("Skill " + name + " was upgraded - level: " + getUpgradeManagement().getUpgradeLevel(name),
                 CommandState.DONE);
