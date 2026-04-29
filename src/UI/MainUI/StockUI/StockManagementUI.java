@@ -38,16 +38,35 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeMainPanel() throws InvalidUILoadException {
-        this.mainPanel = new BackgroundPanel("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
+        this.mainPanel = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI.png");
         this.mainPanel.setLayout(new BorderLayout());
 
     }
 
-    private void initializeSidePanel(){
+    private void initializeSidePanel() throws InvalidUILoadException {
         this.sidePanel = new JPanel();
         this.sidePanel.setLayout(new BorderLayout());
         this.sidePanel.setOpaque(false);
+
+        initializeNorth();
     }
+
+    private void initializeNorth() throws InvalidUILoadException {
+        JPanel north = new JPanel();
+        north.setLayout(new BorderLayout());
+
+        BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI_BAR.png");
+        Dimension dimension = new Dimension(1920, 135);
+        bar.setPreferredSize(dimension);
+        bar.setMaximumSize(dimension);
+        bar.setMaximumSize(dimension);
+
+
+        north.add(bar, BorderLayout.NORTH);
+
+        sidePanel.add(north, BorderLayout.NORTH);
+    }
+
 
 
 }
