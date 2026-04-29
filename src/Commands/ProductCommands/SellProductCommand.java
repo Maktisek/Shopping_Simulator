@@ -11,18 +11,17 @@ import Upgrade.UpgradeNames;
 
 public class SellProductCommand extends Command {
 
-    private final int amount;
     private final int index;
 
-    public SellProductCommand(GameData gameData, int index, int amount) {
+    public SellProductCommand(GameData gameData, int index) {
         super(gameData);
-        this.amount = amount;
         this.index = index;
     }
 
     @Override
     public CommandResult execute() {
-        if (!getDayManagement().getCurrentDay().canIncrementDaySoldAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.SELL))) {
+        int amount = getGameData().getAmount();
+        if (!getDayManagement().getCurrentDay().canIncrementDaySoldAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeNames.SELL))) {
             return new CommandResult("You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.SELL) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }

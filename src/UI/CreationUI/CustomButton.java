@@ -10,11 +10,11 @@ import java.net.URL;
 
 public class CustomButton extends JButton {
 
-    private Image img;
-    private Image idleImg;
-    private Image clickedImg;
-    private boolean hoovered;
-    private boolean clicked;
+    protected Image img;
+    protected Image idleImg;
+    protected Image clickedImg;
+    protected boolean hoovered;
+    protected boolean clicked;
 
     public CustomButton(){
 
@@ -71,7 +71,7 @@ public class CustomButton extends JButton {
         return 5;
     }
 
-    private void setMouseListener(){
+    protected void setMouseListener(){
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -118,4 +118,5 @@ public class CustomButton extends JButton {
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }
+
 }

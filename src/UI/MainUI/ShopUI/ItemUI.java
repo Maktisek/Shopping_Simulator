@@ -110,12 +110,12 @@ public class ItemUI extends BackgroundPanel {
         switch (specification){
             case SHOP:{
                 button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
-                command = new BuyProductCommand(gameData, index, 1);
+                command = new BuyProductCommand(gameData, index);
                 break;
             }
             case NPC:{
                 button = new CustomButton("/MainUI/ShopUI/SELL_BUTTON.png", "/MainUI/ShopUI/SELL_BUTTON.png", 100, 50);
-                command = new SellProductCommand(gameData, index, 1);
+                command = new SellProductCommand(gameData, index);
                 break;
             }
         }

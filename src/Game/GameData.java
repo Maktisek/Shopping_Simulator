@@ -13,7 +13,7 @@ public class GameData {
     private ShopManagement shopManagement;
     private UpgradeManagement upgradeManagement;
     private AchievementManagement achievementManagement;
-
+    private int amount;
 
     public Player getPlayer() {
         return player;
@@ -55,13 +55,11 @@ public class GameData {
         this.dayManagement = dayManagement;
     }
 
-    @Override
-    public String toString() {
-        return
-                "player=" + player + "\n" +
-                        "dayManagement=" + dayManagement + "\n" +
-                        "shopManagement=" + shopManagement + "\n" +
-                        "upgradeManagement=" + upgradeManagement + "\n" +
-                        "achievementManagement=" + achievementManagement;
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

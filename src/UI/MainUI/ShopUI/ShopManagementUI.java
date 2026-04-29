@@ -8,6 +8,7 @@ import Game.GameData;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
+import UI.CreationUI.MultiplierButton;
 import UI.InvalidUILoadException;
 import UI.MainUI.IssueUI.IssueBuyDialogUI;
 import UI.MainUI.IssueUI.IssueFailDialogUI;
@@ -31,12 +32,14 @@ public class ShopManagementUI extends BackgroundPanel {
     private DayUI dayUI;
     private final ArrayList<UpgradeUI> upgrades;
     private MoneyPanelUI moneyPanelUI;
+    private ArrayList<MultiplierButton> multiplierButtons;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
         this.gameData = gameData;
         this.shopPanels = new ArrayList<>();
         this.upgrades = new ArrayList<>();
+        this.multiplierButtons = new ArrayList<>();
         this.cardPanel = new JPanel();
         this.mainPanel = new JPanel(new BorderLayout());
 
@@ -246,9 +249,10 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
         north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        north.setBorder(BorderFactory.createEmptyBorder(5,10,15,10));
 
         initializeBalance(north);
+        initializeMultipliers(north);
 
         wrapper.add(north, BorderLayout.NORTH);
     }
@@ -256,6 +260,18 @@ public class ShopManagementUI extends BackgroundPanel {
     private void initializeBalance(JPanel north) throws InvalidUILoadException {
         this.moneyPanelUI = new MoneyPanelUI("/MainUI/ShopUI/MONEY_PANEL.png", gameData);
         north.add(moneyPanelUI);
+    }
+
+    private void initializeMultipliers(JPanel north) throws InvalidUILoadException {
+        multiplierButtons.add(new MultiplierButton(100, 100, 1, gameData, multiplierButtons));
+        multiplierButtons.add(new MultiplierButton(100, 100, 5, gameData, multiplierButtons));
+        multiplierButtons.add(new MultiplierButton(100, 100, 10, gameData, multiplierButtons));
+
+        for (MultiplierButton multiplierButton : multiplierButtons){
+            north.add(multiplierButton);
+            north.add(Box.createHorizontalStrut(10));
+        }
+        multiplierButtons.get(0).doClick();
     }
 
     public void changeCard(String card) {

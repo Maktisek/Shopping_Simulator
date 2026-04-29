@@ -12,18 +12,17 @@ import Upgrade.UpgradeNames;
 
 public class BuyProductCommand extends Command {
 
-    private final int amount;
     private final int index;
 
-    public BuyProductCommand(GameData gameData, int index, int amount) {
+    public BuyProductCommand(GameData gameData, int index) {
         super(gameData);
-        this.amount = amount;
         this.index = index;
     }
 
     @Override
     public CommandResult execute() {
-        if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(this.amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
+        int amount = getGameData().getAmount();
+        if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
             return new CommandResult("You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }
@@ -38,7 +37,7 @@ public class BuyProductCommand extends Command {
         }
 
         if(!product.getAmountManager().canDecrement(amount)){
-            return new CommandResult(product.getItem().getName().toString() +" is out of stocks", CommandState.FAILED_ISSUE);
+            return new CommandResult(product.getItem().getName() +" is out of stocks", CommandState.FAILED_ISSUE);
         }
 
         try {

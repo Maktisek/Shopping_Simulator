@@ -32,7 +32,7 @@ public class Player {
     }
 
     public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException {
-        if (delivery.getBoughtPrice() > this.currentBalance) {
+        if (delivery.getBoughtPrice() * delivery.getAmount() > this.currentBalance) {
             throw new InvalidPlayerActionException("Not enough money for " + delivery.getName());
         }
         this.currentBalance -= delivery.getAmount() * delivery.getBoughtPrice();
