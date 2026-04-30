@@ -12,23 +12,22 @@ import java.net.URL;
  */
 public class CustomScrollBarUI extends BasicScrollBarUI {
 
-    private Image thumbImage;
-    private Image trackImage;
+    private final Image thumbImage;
+    private final Image trackImage;
 
-    public CustomScrollBarUI() {
-        try {
-            this.thumbImage = loadImage("/MainUI/ShopUI/SCROLL.png");
-            this.trackImage = loadImage("/MainUI/ShopUI/BAR.png");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public CustomScrollBarUI() throws InvalidUILoadException {
+
+        this.thumbImage = loadImage("/MainUI/ShopUI/SCROLL.png");
+        this.trackImage = loadImage("/MainUI/ShopUI/BAR.png");
+
+
     }
 
     private Image loadImage(String filePath) throws InvalidUILoadException {
         URL imageURL = getClass().getResource(filePath);
 
-        if(imageURL == null){
-            throw new InvalidUILoadException("The image "+ filePath +" was not found");
+        if (imageURL == null) {
+            throw new InvalidUILoadException("The image " + filePath + " was not found");
         }
 
         return new ImageIcon(imageURL).getImage();
