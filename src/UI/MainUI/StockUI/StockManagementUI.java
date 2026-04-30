@@ -29,7 +29,7 @@ public class StockManagementUI extends JPanel {
 
     }
 
-    private void initializeLayerPane(){
+    private void initializeLayerPane() {
         layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
 
@@ -52,22 +52,24 @@ public class StockManagementUI extends JPanel {
         fillGrid(grid);
 
         JPanel wrapper = new JPanel();
-        wrapper.setLayout(new BorderLayout());
+        wrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(20,400,0,400));
-        wrapper.add(grid, BorderLayout.CENTER);
+        wrapper.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+
+        int gridWidth = (3 * 300) + (2 * 20);
+        grid.setPreferredSize(new Dimension(gridWidth, grid.getPreferredSize().height));
+        wrapper.add(grid);
 
         JScrollPane scrollPane = initializeScrollPane(wrapper);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(135,0,0,0));
-
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(135, 0, 0, 0));
 
 
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     private void fillGrid(JPanel grid) throws InvalidUILoadException {
-        for (int i = 0; i < 50; i++) {
-            BackgroundPanel panel = new BackgroundPanel("/MainUI/ShopUI/ITEMPLAYER_FRAME.png");
+        for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
+            ItemPlayerUI panel = new ItemPlayerUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", itemPlayer);
             Dimension dimension = new Dimension(300, 300);
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
@@ -113,7 +115,6 @@ public class StockManagementUI extends JPanel {
 
         north.add(bar, BorderLayout.NORTH);
     }
-
 
 
 }
