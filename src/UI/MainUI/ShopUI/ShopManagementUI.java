@@ -97,7 +97,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initializeStocksChangeButton(JPanel westPanel) throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
+        CustomButton previous = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
         previous.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Stock");
