@@ -1,13 +1,18 @@
 package UI.MainUI.StockUI;
 
 import Game.GameData;
+import Items.Item;
 import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
+import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.CustomScrollBarUI;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class StockManagementUI extends JPanel {
 
@@ -15,9 +20,11 @@ public class StockManagementUI extends JPanel {
     private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
     private JPanel sidePanel;
+    private ArrayList<ItemPlayerUI> items;
 
     public StockManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
+        this.items = new ArrayList<>();
         initialization();
     }
 
@@ -54,7 +61,7 @@ public class StockManagementUI extends JPanel {
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
         int gridWidth = (3 * 300) + (2 * 20);
         grid.setPreferredSize(new Dimension(gridWidth, grid.getPreferredSize().height));
@@ -75,6 +82,7 @@ public class StockManagementUI extends JPanel {
             panel.setMaximumSize(dimension);
             panel.setMaximumSize(dimension);
             grid.add(panel);
+            items.add(panel);
         }
     }
 
@@ -112,9 +120,26 @@ public class StockManagementUI extends JPanel {
         bar.setPreferredSize(dimension);
         bar.setMaximumSize(dimension);
         bar.setMaximumSize(dimension);
+        bar.setLayout(new BoxLayout(bar, BoxLayout.X_AXIS));
+        bar.setBorder(BorderFactory.createEmptyBorder(5,18,10,10));
+
+        initializeExitButton(bar);
 
         north.add(bar, BorderLayout.NORTH);
     }
 
+    private void initializeExitButton(JPanel panel) throws InvalidUILoadException {
+        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 120, 120);
+        customButton.addActionListener(e ->{
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            parent.switchPanel("Shop");
+        });
+        panel.add(customButton);
+    }
 
+    public void update(){
+        for (ItemPlayerUI itemPlayerUI : items){
+            itemPlayerUI.update();
+        }
+    }
 }
