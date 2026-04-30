@@ -70,6 +70,7 @@ public class MainUI extends BackgroundPanel {
     public void update(){
         Timer updater = new Timer(5, e ->{
             this.shopManagementUI.update();
+            this.stockManagementUI.update();
         });
         updater.start();
     }
