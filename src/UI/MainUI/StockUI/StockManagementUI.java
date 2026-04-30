@@ -54,7 +54,7 @@ public class StockManagementUI extends JPanel {
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BorderLayout());
         wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(20,200,0,200));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(20,400,0,400));
         wrapper.add(grid, BorderLayout.CENTER);
 
         JScrollPane scrollPane = initializeScrollPane(wrapper);
@@ -67,7 +67,7 @@ public class StockManagementUI extends JPanel {
 
     private void fillGrid(JPanel grid) throws InvalidUILoadException {
         for (int i = 0; i < 50; i++) {
-            BackgroundPanel panel = new BackgroundPanel("/MainUI/ShopUI/MONEY_PANEL.png");
+            BackgroundPanel panel = new BackgroundPanel("/MainUI/ShopUI/ITEMPLAYER_FRAME.png");
             Dimension dimension = new Dimension(300, 300);
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
