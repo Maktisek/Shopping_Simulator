@@ -3,7 +3,7 @@ package Items;
 import UI.MainUI.ShopUI.ItemSpecification;
 import Utilities.Important;
 
-public class ItemShop implements Item {
+public class ItemShop implements Item{
 
     private ItemBase item;
     private double penalization;
@@ -101,4 +101,6 @@ public class ItemShop implements Item {
     public void setAmountManager(AmountManager amountManager) {
         this.amountManager = amountManager;
     }
+
+
 }

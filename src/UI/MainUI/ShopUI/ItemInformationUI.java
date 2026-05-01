@@ -65,7 +65,7 @@ public class ItemInformationUI extends BackgroundPanel {
         URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
 
         if (imageURL == null) {
-            throw new InvalidUILoadException(item.getItem().getName().toString() + " picture was not found.");
+            throw new InvalidUILoadException(item.getItem().getName() + " picture was not found.");
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
