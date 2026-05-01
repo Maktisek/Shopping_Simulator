@@ -140,6 +140,6 @@ public class ItemPlayer {
 
     @Override
     public String toString() {
-        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Current ag. buy price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Whole time spent:" + Important.parseMoney(wholePrice) + " FR" + "\n" + "Whole time ag. price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Whole time made:" + Important.parseMoney(wholeEarnings) + " FR"+ "\n" + "Whole time ag. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
+        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Avg. Buy Price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Total earnings:" + Important.parseMoney(wholeEarnings) + " FR"+  "\n" + "Total Spent:" + Important.parseMoney(wholePrice) + " FR" +"\n"+ "Total Avg. buy price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Total Avg. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
     }
 }

@@ -1,6 +1,5 @@
 package UI.MainUI.ShopUI;
 
-import Items.Item;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
