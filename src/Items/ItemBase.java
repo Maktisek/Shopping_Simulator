@@ -1,6 +1,7 @@
 package Items;
 
-import UI.MainUI.ShopUI.ItemSpecification;
+import Items.Exceptions.WrongItemException;
+import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
 public class ItemBase {
@@ -15,7 +16,7 @@ public class ItemBase {
     public ItemBase() {
     }
 
-    public ItemBase(String name, int currentPrice, int basePrice) throws WrongItemException{
+    public ItemBase(String name, int currentPrice, int basePrice) throws WrongItemException {
         this.name = name;
         setCurrentPrice(currentPrice);
         this.basePrice = basePrice;

@@ -1,6 +1,7 @@
 package NPCs;
 
 import Items.*;
+import Items.Exceptions.WrongItemException;
 import Shops.Shop;
 import Player.Player;
 
@@ -69,7 +70,7 @@ public class NPC {
         Arrays.fill(demand, null);
     }
 
-    public void loadItems(ItemShop[] temp) throws WrongItemException{
+    public void loadItems(ItemShop[] temp) throws WrongItemException {
         for (int i = 0; i < temp.length; i++) {
             this.items[i].setItem(temp[i].getItem().copy());
         }

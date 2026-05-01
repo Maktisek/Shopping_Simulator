@@ -4,7 +4,9 @@ import Game.GameData;
 import Items.ItemNPC;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.ShopUI.Items.ItemSpecification;
+import UI.MainUI.ShopUI.Items.ItemUI;
 
 import javax.swing.*;
 import java.awt.*;

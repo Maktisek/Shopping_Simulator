@@ -3,11 +3,10 @@ package UI.MainUI.StockUI;
 import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
-import UI.InvalidUILoadException;
-import UI.MainUI.IssueUI.IssueFailDialogUI;
+import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.MainUI.ShopUI.ItemInformationUI;
-import UI.MainUI.Utilities.StrokeLabel;
+import UI.MainUI.ShopUI.Items.ItemInformationUI;
+import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;

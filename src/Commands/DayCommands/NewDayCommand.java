@@ -4,7 +4,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
-import Player.InvalidPlayerActionException;
+import Player.Exceptions.InvalidPlayerActionException;
 
 public class NewDayCommand extends Command {
 

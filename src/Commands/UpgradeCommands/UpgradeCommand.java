@@ -4,7 +4,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
-import Upgrade.UpgradeNames;
+import Upgrade.Utilities.UpgradeNames;
 
 public class UpgradeCommand extends Command {
 

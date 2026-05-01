@@ -2,20 +2,18 @@ package Game;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
 import Items.ItemShop;
-import Items.WrongItemException;
-import NPCs.NPC;
+import Items.Exceptions.WrongItemException;
 import NPCs.NPCFinder;
 import Player.Player;
 import Shops.Shop;
 import Shops.ShopManagement;
 import Upgrade.UpgradeManagement;
-import Utilities.WrongIntervalException;
+import Utilities.Exceptions.WrongIntervalException;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class Initialization {
 

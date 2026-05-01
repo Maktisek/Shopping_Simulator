@@ -1,5 +1,6 @@
 package Upgrade;
 
+import Upgrade.Utilities.UpgradeNames;
 import org.junit.Before;
 import org.junit.Test;
 

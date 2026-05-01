@@ -1,7 +1,7 @@
 package UI.CreationUI;
 
 import Game.GameData;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

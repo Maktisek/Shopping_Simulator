@@ -1,7 +1,7 @@
 package Utilities;
 
-import UI.InvalidUILoadException;
-import UI.MainUI.ShopUI.CustomScrollBarUI;
+import UI.Exceptions.InvalidUILoadException;
+import UI.CreationUI.CustomScrollBarUI;
 
 import javax.swing.*;
 import java.awt.*;

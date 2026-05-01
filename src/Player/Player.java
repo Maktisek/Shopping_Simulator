@@ -1,10 +1,12 @@
 package Player;
 
 import Items.*;
+import Items.Exceptions.WrongEvidenceException;
+import Items.Exceptions.WrongItemException;
+import Player.Exceptions.InvalidPlayerActionException;
 import Shops.Shop;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Player {

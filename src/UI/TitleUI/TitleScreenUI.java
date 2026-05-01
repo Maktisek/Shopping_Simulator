@@ -3,8 +3,8 @@ package UI.TitleUI;
 import Game.Initialization;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
-import UI.InvalidUILoadException;
-import UI.MainUI.MyFrame;
+import UI.Exceptions.InvalidUILoadException;
+import UI.InitialUI.MyFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

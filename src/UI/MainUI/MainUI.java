@@ -2,7 +2,7 @@ package UI.MainUI;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.ShopManagementUI;
 import UI.MainUI.StockUI.StockManagementUI;
 

@@ -7,8 +7,8 @@ import Commands.CommandState;
 import Game.GameData;
 import Items.ItemDelivery;
 import Items.ItemShop;
-import Player.InvalidPlayerActionException;
-import Upgrade.UpgradeNames;
+import Player.Exceptions.InvalidPlayerActionException;
+import Upgrade.Utilities.UpgradeNames;
 
 public class BuyProductCommand extends Command {
 

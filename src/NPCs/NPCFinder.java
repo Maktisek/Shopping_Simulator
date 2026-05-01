@@ -1,6 +1,6 @@
 package NPCs;
 
-import Shops.ShopNames;
+import Shops.Utilities.ShopNames;
 
 public class NPCFinder {
 

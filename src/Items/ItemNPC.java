@@ -1,6 +1,7 @@
 package Items;
 
-import UI.MainUI.ShopUI.ItemSpecification;
+import Items.Utilities.AmountManager;
+import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
 public class ItemNPC implements Item {

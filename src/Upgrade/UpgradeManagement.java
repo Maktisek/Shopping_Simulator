@@ -1,5 +1,11 @@
 package Upgrade;
 
+import Upgrade.Rebirth.Rebirth;
+import Upgrade.Upgrades.MaxBoughtUpgrade;
+import Upgrade.Upgrades.MaxSoldUpgrade;
+import Upgrade.Upgrades.MaxStockUpgrade;
+import Upgrade.Utilities.UpgradeNames;
+
 import java.util.HashMap;
 
 public class UpgradeManagement {

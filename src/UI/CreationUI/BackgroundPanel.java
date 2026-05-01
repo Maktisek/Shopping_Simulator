@@ -1,6 +1,6 @@
 package UI.CreationUI;
 
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 
 import javax.swing.*;
 import java.awt.*;

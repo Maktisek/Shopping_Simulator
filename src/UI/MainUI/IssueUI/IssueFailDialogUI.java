@@ -1,7 +1,7 @@
 package UI.MainUI.IssueUI;
 
 import UI.CreationUI.CustomButton;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;

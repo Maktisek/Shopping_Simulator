@@ -9,11 +9,16 @@ import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.IssueUI.IssueBuyDialogUI;
 import UI.MainUI.IssueUI.IssueFailDialogUI;
 import UI.MainUI.MainUI;
-import Upgrade.UpgradeNames;
+import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
+import UI.MainUI.ShopUI.Days.DayUI;
+import UI.MainUI.ShopUI.Days.NewDayPanelUI;
+import UI.MainUI.ShopUI.Money.MoneyPanelUI;
+import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
+import Upgrade.Utilities.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;

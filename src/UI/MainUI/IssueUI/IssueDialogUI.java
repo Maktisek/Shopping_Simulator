@@ -1,9 +1,8 @@
 package UI.MainUI.IssueUI;
 
 import UI.CreationUI.BackgroundPanel;
-import UI.InvalidUILoadException;
-import UI.MainUI.Utilities.StrokeLabel;
-import Utilities.Important;
+import UI.Exceptions.InvalidUILoadException;
+import UI.CreationUI.StrokeLabel;
 
 import javax.swing.*;
 import java.awt.*;

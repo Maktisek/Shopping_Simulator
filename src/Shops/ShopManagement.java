@@ -1,6 +1,6 @@
 package Shops;
 
-import Items.WrongItemException;
+import Items.Exceptions.WrongItemException;
 import Player.Player;
 
 import java.util.ArrayList;

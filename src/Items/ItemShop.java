@@ -1,6 +1,8 @@
 package Items;
 
-import UI.MainUI.ShopUI.ItemSpecification;
+import Items.Exceptions.WrongItemException;
+import Items.Utilities.AmountManager;
+import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
 public class ItemShop implements Item{

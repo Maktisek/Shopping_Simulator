@@ -1,14 +1,11 @@
 package UI.MainUI.StockUI;
 
 import Game.GameData;
-import Items.Item;
 import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
-import UI.InvalidUILoadException;
+import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.MainUI.ShopUI.CustomScrollBarUI;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,5 +1,7 @@
 package Utilities;
 
+import Utilities.Exceptions.WrongIntervalException;
+
 public class Interval {
 
     private int upperBound;
@@ -26,7 +28,7 @@ public class Interval {
         this.lowerBound = lowerBound;
     }
 
-    public void testInterval() throws WrongIntervalException{
+    public void testInterval() throws WrongIntervalException {
         if(upperBound <= lowerBound){
             throw new WrongIntervalException("Upper bound is lower or same as the lower bound");
         }

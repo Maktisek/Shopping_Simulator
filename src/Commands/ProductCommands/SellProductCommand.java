@@ -6,8 +6,8 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Items.ItemNPC;
-import Player.InvalidPlayerActionException;
-import Upgrade.UpgradeNames;
+import Player.Exceptions.InvalidPlayerActionException;
+import Upgrade.Utilities.UpgradeNames;
 
 public class SellProductCommand extends Command {
 
