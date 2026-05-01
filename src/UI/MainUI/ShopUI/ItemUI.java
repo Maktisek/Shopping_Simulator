@@ -83,7 +83,7 @@ public class ItemUI extends BackgroundPanel {
         image.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new ItemInformationUI(this.item));
+                parent.showDialog(new ItemInformationUI(this.item.getItem().getName(), this.item.specification()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
