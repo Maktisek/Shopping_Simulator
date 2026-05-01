@@ -48,7 +48,7 @@ public class ItemPlayerUI extends BackgroundPanel {
         productButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Coming soon"));
+                parent.showDialog(new ItemPlayerInformationUI(itemPlayer));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
