@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class ItemPlayer {
+public class ItemPlayer implements Item{
 
     private String name;
     private int amount;
@@ -108,4 +108,13 @@ public class ItemPlayer {
     }
 
 
+    @Override
+    public ItemBase getItem() {
+        return null;
+    }
+
+    @Override
+    public String specification() {
+        return "";
+    }
 }
