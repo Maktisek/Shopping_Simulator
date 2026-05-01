@@ -6,6 +6,7 @@ import UI.CreationUI.CustomButton;
 import UI.InvalidUILoadException;
 import UI.MainUI.IssueUI.IssueFailDialogUI;
 import UI.MainUI.MainUI;
+import UI.MainUI.ShopUI.ItemInformationUI;
 import UI.MainUI.Utilities.StrokeLabel;
 import Utilities.Important;
 
@@ -48,7 +49,7 @@ public class ItemPlayerUI extends BackgroundPanel {
         productButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new ItemPlayerInformationUI(itemPlayer));
+                parent.showDialog(new ItemInformationUI(this.itemPlayer.getName(), this.itemPlayer.toString()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

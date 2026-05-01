@@ -1,22 +1,28 @@
 package Items;
 
 
+import Utilities.Important;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class ItemPlayer implements Item{
+public class ItemPlayer {
 
     private String name;
     private int amount;
     private int wholeBoughtPrice;
+    private int wholePrice;
     private double averageBuyPrice;
     private final Queue<Evidence> evidences;
+    private final ArrayList<Double> averagePrices;
 
 
     public ItemPlayer(String name) {
         this.name = name;
         this.evidences = new LinkedList<>();
+        this.averagePrices = new ArrayList<>();
         this.amount = 0;
         this.wholeBoughtPrice = 0;
         this.averageBuyPrice = 0;
@@ -27,6 +33,7 @@ public class ItemPlayer implements Item{
         moveWithWholeBoughtPrice(amount, shopPrice);
         this.evidences.add(new Evidence(amount, shopPrice));
         updateAveragePrice();
+        saveAveragePrice();
     }
 
     private void updateAveragePrice() {
@@ -35,6 +42,10 @@ public class ItemPlayer implements Item{
         } else {
             this.averageBuyPrice = 0;
         }
+    }
+
+    private void saveAveragePrice(){
+        this.averagePrices.add(this.averageBuyPrice);
     }
 
     private void moveWithAmount(int move) throws WrongItemException {
@@ -52,6 +63,7 @@ public class ItemPlayer implements Item{
             throw new WrongItemException("WholeBoughtPrice must be over -1");
         } else {
             this.wholeBoughtPrice = afterMove;
+            this.wholePrice += (shopPrice * amount);
         }
     }
 
@@ -107,14 +119,16 @@ public class ItemPlayer implements Item{
         this.wholeBoughtPrice = wholeBoughtPrice;
     }
 
-
-    @Override
-    public ItemBase getItem() {
-        return null;
+    private double calculateWholeTimeAveragePrice(){
+        double average = 0;
+        for (double d : averagePrices){
+            average += d;
+        }
+        return average / averagePrices.size();
     }
 
     @Override
-    public String specification() {
-        return "";
+    public String toString() {
+        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Current ag. buy price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Whole time spent:" + Important.parseMoney(wholePrice) + " FR" + "\n" + "Whole time ag. price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR";
     }
 }

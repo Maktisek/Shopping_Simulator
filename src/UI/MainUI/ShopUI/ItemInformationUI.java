@@ -14,8 +14,8 @@ import java.net.URL;
 
 public class ItemInformationUI extends BackgroundPanel {
 
-    private String name;
-    private String specification;
+    private final String name;
+    private final String specification;
 
     public ItemInformationUI(String name, String specification) throws InvalidUILoadException {
         setImg("/MainUI/ShopUI/INFO_PANE.png");
