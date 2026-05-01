@@ -27,12 +27,12 @@ public class NPC {
                 if (playerAverage != 0) {
                     double s = (playersItem.getAmount() * quantityWeight) +
                             ((shopsItem.getItem().getCurrentPrice() / playerAverage) * convenienceWeight);
-                    if (s > first) {
+                    if (s > first && item.getAmountManager().getCurrent() != 0) {
                         demand[1] = demand[0];
                         second = first;
                         first = s;
                         demand[0] = item;
-                    } else if (s > second) {
+                    } else if (s > second && item.getAmountManager().getCurrent() != 0) {
                         second = s;
                         demand[1] = item;
                     }
