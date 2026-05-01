@@ -1,5 +1,9 @@
 package Utilities;
 
+import UI.InvalidUILoadException;
+import UI.MainUI.ShopUI.CustomScrollBarUI;
+
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -100,6 +104,17 @@ public class Important {
             return data[0] + ". ".repeat(length) + data[1];
         }
         return null;
+    }
+
+    public static JScrollPane initializeScrollPane(JPanel panel, int increment) throws InvalidUILoadException {
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(increment);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        return scrollPane;
     }
 }
 

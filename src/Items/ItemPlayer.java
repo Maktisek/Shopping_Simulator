@@ -12,8 +12,10 @@ public class ItemPlayer {
 
     private String name;
     private int amount;
+    private int sellAmount;
     private int wholeBoughtPrice;
     private int wholePrice;
+    private int wholeEarnings;
     private double averageBuyPrice;
     private final Queue<Evidence> evidences;
     private final ArrayList<Double> averagePrices;
@@ -80,6 +82,8 @@ public class ItemPlayer {
             this.wholeBoughtPrice = this.wholeBoughtPrice - arr[2];
         }
         updateAveragePrice();
+        this.wholeEarnings += result;
+        this.sellAmount += amount;
         return result;
     }
 
@@ -127,8 +131,15 @@ public class ItemPlayer {
         return average / averagePrices.size();
     }
 
+    private double calculateAverageSellPrice(){
+        if(this.sellAmount != 0){
+            return (double) this.wholeEarnings / this.sellAmount;
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
-        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Current ag. buy price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Whole time spent:" + Important.parseMoney(wholePrice) + " FR" + "\n" + "Whole time ag. price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR";
+        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Current ag. buy price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Whole time spent:" + Important.parseMoney(wholePrice) + " FR" + "\n" + "Whole time ag. price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Whole time made:" + Important.parseMoney(wholeEarnings) + " FR"+ "\n" + "Whole time ag. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
     }
 }

@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static Utilities.Important.initializeScrollPane;
+
 public class StockManagementUI extends JPanel {
 
     private GameData gameData;
@@ -67,7 +69,7 @@ public class StockManagementUI extends JPanel {
         grid.setPreferredSize(new Dimension(gridWidth, grid.getPreferredSize().height));
         wrapper.add(grid);
 
-        JScrollPane scrollPane = initializeScrollPane(wrapper);
+        JScrollPane scrollPane = initializeScrollPane(wrapper, 16);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(135, 0, 0, 0));
 
 
@@ -86,16 +88,6 @@ public class StockManagementUI extends JPanel {
         }
     }
 
-    private JScrollPane initializeScrollPane(JPanel grid) throws InvalidUILoadException {
-        JScrollPane scrollPane = new JScrollPane(grid);
-        scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBorder(null);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        return scrollPane;
-    }
 
     private void initializeSidePanel() throws InvalidUILoadException {
         this.sidePanel = new JPanel();

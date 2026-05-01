@@ -82,25 +82,29 @@ public class ItemInformationUI extends BackgroundPanel {
         panel.add(image);
     }
 
-    private void initializeCenter() {
+    private void initializeCenter() throws InvalidUILoadException {
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
-        center.setBorder(BorderFactory.createEmptyBorder(20, 10, 0, 10));
+        center.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
         initializeDescriptionLabel(center);
 
-        add(center, BorderLayout.CENTER);
+        JScrollPane scrollPane = Important.initializeScrollPane(center, 4);
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     private void initializeDescriptionLabel(JPanel panel) {
         String[] description = Important.decodeString(specification);
         for (String s : description) {
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 44), 14.0f);
+            panel.add(Box.createVerticalStrut(20));
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 14.0f);
             panel.add(label);
             label.setAlignmentX(Component.LEFT_ALIGNMENT);
-            panel.add(Box.createVerticalStrut(20));
         }
+        panel.add(Box.createVerticalStrut(5));
     }
 
     private void initializeSouth() throws InvalidUILoadException {
