@@ -3,16 +3,18 @@ package Achievements;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AchievementManagement {
 
-    private ArrayList<Achievement> freshAchievements;
+    private Queue<Achievement> freshAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements;
     private ArrayList<Achievement> loadedAchievements;
 
     public AchievementManagement() {
-        this.freshAchievements = new ArrayList<>();
+        this.freshAchievements = new LinkedList<>();
         this.possibleAchievements = new HashMap<>();
         this.doneAchievements = new HashMap<>();
         this.loadedAchievements = new ArrayList<>();
@@ -63,8 +65,12 @@ public class AchievementManagement {
         }
     }
 
-    public void clearFreshAchievements(){
-        this.freshAchievements.clear();
+    public Achievement pollAchievement(){
+       if(!freshAchievements.isEmpty()){
+           return this.freshAchievements.poll();
+       }else {
+           return null;
+       }
     }
 
     public ArrayList<Achievement> getLoadedAchievements() {
@@ -91,11 +97,11 @@ public class AchievementManagement {
         this.doneAchievements = doneAchievements;
     }
 
-    public ArrayList<Achievement> getFreshAchievements() {
+    public Queue<Achievement> getFreshAchievements() {
         return freshAchievements;
     }
 
-    public void setFreshAchievements(ArrayList<Achievement> freshAchievements) {
+    public void setFreshAchievements(Queue<Achievement> freshAchievements) {
         this.freshAchievements = freshAchievements;
     }
 }

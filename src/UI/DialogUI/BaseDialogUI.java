@@ -28,7 +28,7 @@ public abstract class BaseDialogUI extends BackgroundPanel {
     }
 
     private void initializeLabel() {
-        add(Box.createVerticalStrut(30));
+        add(Box.createVerticalStrut(35));
         StrokeLabel label = new StrokeLabel(message, 12.0f);
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -1,7 +1,9 @@
 package UI.MainUI;
 
+import Achievements.Achievement;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.ShopManagementUI;
 import UI.MainUI.StockUI.StockManagementUI;
@@ -16,6 +18,7 @@ public class MainUI extends BackgroundPanel {
     private JLayeredPane layeredPane;
     private JPanel overlay;
     private final GameData gameData;
+    private Timer updater;
     private ShopManagementUI shopManagementUI;
     private StockManagementUI stockManagementUI;
 
@@ -68,14 +71,29 @@ public class MainUI extends BackgroundPanel {
     }
 
     public void update(){
-        Timer updater = new Timer(5, e ->{
+         this.updater = new Timer(5, e ->{
             this.shopManagementUI.update();
             this.stockManagementUI.update();
-        });
+             try {
+                 checkForAchievements();
+             } catch (InvalidUILoadException ex) {
+                 throw new RuntimeException(ex);
+             }
+         });
         updater.start();
     }
 
+    private void checkForAchievements() throws InvalidUILoadException {
+        Achievement temp = this.gameData.getAchievementManagement().pollAchievement();
+        if(temp != null){
+            String message = "Achievement..." + temp.getName() + "...has been unlocked";
+            System.out.println(message);
+            showDialog(new DialogUI("/MainUI/ShopUI/ACHIEVEMENT_PANE.png", message));
+        }
+    }
+
     public void showDialog(JPanel customContent) {
+        this.updater.stop();
         overlay.removeAll();
         overlay.add(customContent);
         overlay.setVisible(true);
@@ -83,6 +101,7 @@ public class MainUI extends BackgroundPanel {
     }
 
     public void hideDialog() {
+        this.updater.start();
         overlay.setVisible(false);
         repaint();
     }
