@@ -19,7 +19,7 @@ public class ShopUI extends BackgroundPanel {
     private final GameData gameData;
     private final ArrayList<ItemUI> items;
     private JPanel southPanel;
-    private final ItemUI[] demand;
+    private final ItemUI[] demandUI;
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
@@ -27,7 +27,7 @@ public class ShopUI extends BackgroundPanel {
         this.shop = shop;
         this.gameData = gameData;
         this.items = new ArrayList<>();
-        this.demand = new ItemUI[2];
+        this.demandUI = new ItemUI[2];
 
         initialize();
     }
@@ -63,24 +63,24 @@ public class ShopUI extends BackgroundPanel {
     private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createHorizontalStrut(40));
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
-            ItemUI itemUI = new  ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getItems()[i], i, gameData, ItemSpecification.NPC);
-            this.demand[i] = itemUI;
+            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
+            this.demandUI[i] = itemUI;
             panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(40));
         }
     }
 
-    private void updateNPCItems(){
+    private void updateNPCItems() throws InvalidUILoadException {
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
             ItemNPC item = shop.getNpc().getDemand()[i];
-            this.demand[i].updateNPC(item.getItem().getName().toString(), String.valueOf(item.getItem().getCurrentPrice()));
-            this.demand[i].setItem(item);
+            this.demandUI[i].setItem(item);
+            this.demandUI[i].updateNPC();
         }
     }
 
 
-    public void update() {
-        for (ItemUI itemUI : items){
+    public void update() throws InvalidUILoadException {
+        for (ItemUI itemUI : items) {
             itemUI.updateShop();
         }
         updateNPCItems();

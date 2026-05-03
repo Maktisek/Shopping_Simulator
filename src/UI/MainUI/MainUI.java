@@ -72,13 +72,17 @@ public class MainUI extends BackgroundPanel {
 
     public void update(){
          this.updater = new Timer(5, e ->{
-            this.shopManagementUI.update();
-            this.stockManagementUI.update();
              try {
                  checkForAchievements();
              } catch (InvalidUILoadException ex) {
                  throw new RuntimeException(ex);
              }
+             try {
+                 this.shopManagementUI.update();
+             } catch (InvalidUILoadException ex) {
+                 throw new RuntimeException(ex);
+             }
+             this.stockManagementUI.update();
          });
         updater.start();
     }

@@ -22,6 +22,19 @@ public class CustomButton extends JButton {
 
     public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException {
         super();
+        setImages(imgFile, clickedImg);
+
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setFocusPainted(false);
+
+        setSizeOfButton(width,height);
+
+        setMouseListener();
+        setCursor();
+    }
+
+    public void setImages(String imgFile, String clickedImg) throws InvalidUILoadException {
         URL imageURL = getClass().getResource(imgFile);
         URL clickedURL = getClass().getResource(clickedImg);
 
@@ -37,15 +50,6 @@ public class CustomButton extends JButton {
         this.clickedImg = new ImageIcon(clickedURL).getImage();
 
         this.img = idleImg;
-
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setFocusPainted(false);
-
-        setSizeOfButton(width,height);
-
-        setMouseListener();
-        setCursor();
     }
 
     @Override
@@ -118,5 +122,4 @@ public class CustomButton extends JButton {
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }
-
 }

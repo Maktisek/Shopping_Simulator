@@ -28,6 +28,7 @@ public class ItemUI extends BackgroundPanel {
     private final ItemSpecification specification;
     private StrokeLabel price;
     private StrokeLabel name;
+    private CustomButton image;
 
     public ItemUI(String imgFile, Item item, int index, GameData gameData, ItemSpecification specification) throws InvalidUILoadException {
         super(imgFile);
@@ -56,7 +57,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        name = new StrokeLabel(this.item.getItem().getName().toString(), 14.0f);
+        name = new StrokeLabel(this.item.getItem().getName(), 14.0f);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -68,13 +69,12 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeImg() throws InvalidUILoadException{
-//        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products"+item.getItem().getName().toString()+".png");
-        CustomButton image = initializeCustomImageButton();
+        this.image = initializeCustomImageButton();
         add(image);
     }
 
     private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
-        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/BANANA.png", "/MainUI/ShopUI/Products/BANANA.png", 80, 80);
+        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", "/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", 80, 80);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -153,12 +153,18 @@ public class ItemUI extends BackgroundPanel {
         }
     }
 
-    public void updateNPC(String name, String price){
-        this.name.setText(name);
-        this.price.setText(price+ " FR");
+    public void updateNPC() throws InvalidUILoadException {
+        this.name.setText(item.getItem().getName());
+        updateImage();
+        this.price.setText(item.getItem().getCurrentPrice()+ " FR");
         updateNpcColorPrice();
         this.name.repaint();
         this.price.repaint();
+    }
+
+    private void updateImage() throws InvalidUILoadException {
+        this.image.setImages("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", "/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png");
+        this.image.repaint();
     }
 
     private void updateShopColorPrice() {

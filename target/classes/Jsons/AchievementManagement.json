@@ -4,7 +4,7 @@
       "type": "BUY",
       "name": "Better than your mom",
       "description": "Buy 100 products",
-      "bound": 10,
+      "bound": 100,
       "current": 0
     },
     {

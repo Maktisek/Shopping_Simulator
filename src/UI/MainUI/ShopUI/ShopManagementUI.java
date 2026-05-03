@@ -283,7 +283,7 @@ public class ShopManagementUI extends BackgroundPanel {
         this.cardLayout.show(cardPanel, card);
     }
 
-    public void update() {
+    public void update() throws InvalidUILoadException {
         for (ShopUI shopPanel : shopPanels) {
             shopPanel.update();
         }

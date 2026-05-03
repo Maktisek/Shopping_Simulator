@@ -63,7 +63,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeImg(JPanel panel) throws InvalidUILoadException {
-        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/BANANA.png");
+        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/" + this.name + ".png");
 
         if (imageURL == null) {
             throw new InvalidUILoadException(this.name + " picture was not found.");
