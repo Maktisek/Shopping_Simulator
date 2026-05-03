@@ -10,8 +10,8 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.IssueUI.IssueBuyDialogUI;
-import UI.MainUI.IssueUI.IssueFailDialogUI;
+import UI.DialogUI.BuyDialogUI;
+import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Days.DayUI;
@@ -144,7 +144,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_ISSUE: {
                 try {
-                    parent.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -152,7 +152,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
             case FAILED_BUY: {
                 try {
-                    parent.showDialog(new IssueBuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
+                    parent.showDialog(new BuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -1,4 +1,4 @@
-package UI.MainUI.IssueUI;
+package UI.DialogUI;
 
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -11,12 +11,12 @@ import UI.MainUI.MainUI;
 
 import javax.swing.*;
 
-public class IssueBuyDialogUI extends IssueDialogUI {
+public class BuyDialogUI extends BaseDialogUI {
 
     private final GameData gameData;
     private final ShopDirection shopDirection;
 
-    public IssueBuyDialogUI(String imgFile, String message, GameData gameData, ShopDirection shopDirection) throws InvalidUILoadException {
+    public BuyDialogUI(String imgFile, String message, GameData gameData, ShopDirection shopDirection) throws InvalidUILoadException {
         super(imgFile, message);
         this.gameData = gameData;
         this.shopDirection = shopDirection;
@@ -44,7 +44,7 @@ public class IssueBuyDialogUI extends IssueDialogUI {
             if(result.getState() == CommandState.FAILED_ISSUE){
                 try {
                     parent.hideDialog();
-                    parent.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

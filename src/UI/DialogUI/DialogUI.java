@@ -1,16 +1,15 @@
-package UI.MainUI.IssueUI;
+package UI.DialogUI;
 
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 
-public class IssueFailDialogUI extends IssueDialogUI {
+public class DialogUI extends BaseDialogUI {
 
-    public IssueFailDialogUI(String imgFile, String message) throws InvalidUILoadException {
+    public DialogUI(String imgFile, String message) throws InvalidUILoadException {
         super(imgFile, message);
         initializeButton();
     }
@@ -25,7 +24,7 @@ public class IssueFailDialogUI extends IssueDialogUI {
             parent.hideDialog();
         });
 
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentX(CENTER_ALIGNMENT);
         add(button);
     }
 

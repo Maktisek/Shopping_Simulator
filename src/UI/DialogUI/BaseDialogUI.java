@@ -1,4 +1,4 @@
-package UI.MainUI.IssueUI;
+package UI.DialogUI;
 
 import UI.CreationUI.BackgroundPanel;
 import UI.Exceptions.InvalidUILoadException;
@@ -7,11 +7,11 @@ import UI.CreationUI.StrokeLabel;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class IssueDialogUI extends BackgroundPanel {
+public abstract class BaseDialogUI extends BackgroundPanel {
 
     private final String message;
 
-    public IssueDialogUI(String imgFile, String message) throws InvalidUILoadException {
+    public BaseDialogUI(String imgFile, String message) throws InvalidUILoadException {
         super(imgFile);
         this.message = message;
         initialize();
@@ -32,7 +32,6 @@ public abstract class IssueDialogUI extends BackgroundPanel {
         StrokeLabel label = new StrokeLabel(message, 12.0f);
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        label.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         add(label);
     }
 

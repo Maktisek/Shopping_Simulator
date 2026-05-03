@@ -60,16 +60,6 @@ public class Achievement {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Achievement{" +
-                "type=" + type +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", bound=" + bound +
-                ", current=" + current +
-                '}';
-    }
 
     public Achievement(AchievementTypes type, int current, int bound, String description, String name) {
         this.type = type;

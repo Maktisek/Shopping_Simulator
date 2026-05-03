@@ -98,13 +98,4 @@ public class AchievementManagement {
     public void setFreshAchievements(ArrayList<Achievement> freshAchievements) {
         this.freshAchievements = freshAchievements;
     }
-
-    @Override
-    public String toString() {
-        return "AchievementManagement{" +
-                "possibleAchievements=" + possibleAchievements +
-                ", doneAchievements=" + doneAchievements +
-                ", loadedAchievements=" + loadedAchievements +
-                '}';
-    }
 }

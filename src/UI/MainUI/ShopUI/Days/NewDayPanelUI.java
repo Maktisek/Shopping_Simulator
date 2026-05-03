@@ -5,12 +5,12 @@ import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.IssueUI.IssueDialogUI;
+import UI.DialogUI.BaseDialogUI;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;
 
-public class NewDayPanelUI extends IssueDialogUI {
+public class NewDayPanelUI extends BaseDialogUI {
 
     private GameData gameData;
 

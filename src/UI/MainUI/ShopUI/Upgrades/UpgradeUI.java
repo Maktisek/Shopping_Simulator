@@ -7,7 +7,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.IssueUI.IssueFailDialogUI;
+import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
 import UI.CreationUI.StrokeLabel;
 import Upgrade.Upgrade;
@@ -56,7 +56,7 @@ public class UpgradeUI extends BackgroundPanel {
             if(result.getState() == CommandState.FAILED_ISSUE){
                 MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parentShop.showDialog(new IssueFailDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parentShop.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
