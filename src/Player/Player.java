@@ -118,6 +118,14 @@ public class Player {
         return stocks;
     }
 
+    public int calculateAllStocks(){
+        int stocks = calculateStocks();
+        for (ItemDelivery itemDelivery : undeliveredItems){
+            stocks += itemDelivery.getAmount();
+        }
+        return stocks;
+    }
+
     public boolean canBuy(int price) {
         return price <= this.currentBalance;
     }

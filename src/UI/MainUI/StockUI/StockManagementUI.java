@@ -6,6 +6,8 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
+import Upgrade.Utilities.UpgradeNames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,11 +17,12 @@ import static Utilities.Important.initializeScrollPane;
 
 public class StockManagementUI extends JPanel {
 
-    private GameData gameData;
+    private final GameData gameData;
     private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
     private JPanel sidePanel;
-    private ArrayList<ItemPlayerUI> items;
+    private final ArrayList<ItemPlayerUI> items;
+    private BoundPanelUI stockBound;
 
     public StockManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
@@ -113,12 +116,13 @@ public class StockManagementUI extends JPanel {
         bar.setBorder(BorderFactory.createEmptyBorder(5,18,10,10));
 
         initializeExitButton(bar);
+        initializeBoundPanel(bar);
 
         north.add(bar, BorderLayout.NORTH);
     }
 
     private void initializeExitButton(JPanel panel) throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 120, 120);
+        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
         customButton.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");
@@ -126,9 +130,26 @@ public class StockManagementUI extends JPanel {
         panel.add(customButton);
     }
 
+    private void initializeBoundPanel(JPanel panel) throws InvalidUILoadException {
+        String current = String.valueOf(gameData.getPlayer().calculateStocks());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK));
+
+        this.stockBound = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/STOCK_ICON.png");
+
+        panel.add(Box.createHorizontalStrut(20));
+        panel.add(stockBound);
+    }
+
     public void update(){
         for (ItemPlayerUI itemPlayerUI : items){
             itemPlayerUI.update();
+            updateBound();
         }
+    }
+
+    private void updateBound(){
+        String current = String.valueOf(gameData.getPlayer().calculateStocks());
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK));
+        this.stockBound.update(current, bound);
     }
 }

@@ -6,7 +6,7 @@ import Upgrade.Utilities.UpgradeNames;
 public class MaxStockUpgrade extends UpgradeBasicType {
 
     public MaxStockUpgrade() {
-        setData(500);
+        setData(100);
         setPrice(150);
     }
 
