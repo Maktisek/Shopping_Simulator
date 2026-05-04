@@ -21,6 +21,7 @@ public class MainUI extends BackgroundPanel {
     private Timer updater;
     private ShopManagementUI shopManagementUI;
     private StockManagementUI stockManagementUI;
+    private AchievementManagementUI achievementManagementUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
         this.layeredPane = new JLayeredPane();
@@ -45,6 +46,7 @@ public class MainUI extends BackgroundPanel {
         initializeMainPanel();
         initializeShopManagementUI();
         initializeStockManagementUI();
+        initializeAchievementManagementUI();
 
         this.cardLayout.show(mainPanel, "Shop");
 
@@ -64,6 +66,11 @@ public class MainUI extends BackgroundPanel {
     private void initializeStockManagementUI() throws InvalidUILoadException {
         this.stockManagementUI = new StockManagementUI(this.gameData);
         this.mainPanel.add(stockManagementUI, "Stock");
+    }
+
+    private void initializeAchievementManagementUI() throws InvalidUILoadException {
+        this.achievementManagementUI = new AchievementManagementUI(gameData);
+        this.mainPanel.add(achievementManagementUI, "Achievements");
     }
 
     public void switchPanel(String panel){

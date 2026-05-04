@@ -95,22 +95,25 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
+        westPanel.add(Box.createVerticalGlue());
         initializeChangeShopButtons(westPanel);
-        initializeStocksChangeButton(westPanel);
+        initializeChangeButton(westPanel, "Stock");
+        initializeChangeButton(westPanel, "Achievements");
+        westPanel.add(Box.createVerticalGlue());
 
         panel.add(westPanel, BorderLayout.WEST);
     }
 
-    private void initializeStocksChangeButton(JPanel westPanel) throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
-        previous.addActionListener(e ->{
+    private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
+        CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
+        stock.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.switchPanel("Stock");
+            parent.switchPanel(card);
         });
-        previous.setAlignmentX(Component.CENTER_ALIGNMENT);
-        westPanel.add(previous);
-        westPanel.add(Box.createVerticalGlue());
+        stock.setAlignmentX(Component.CENTER_ALIGNMENT);
+        westPanel.add(stock);
     }
+
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalGlue());
