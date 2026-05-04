@@ -37,7 +37,7 @@ public class ShopManagementUI extends BackgroundPanel {
     private DayUI dayUI;
     private final ArrayList<UpgradeUI> upgrades;
     private MoneyPanelUI moneyPanelUI;
-    private ArrayList<MultiplierButton> multiplierButtons;
+    private final ArrayList<MultiplierButton> multiplierButtons;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();

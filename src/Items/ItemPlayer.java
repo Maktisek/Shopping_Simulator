@@ -74,6 +74,7 @@ public class ItemPlayer {
 
     public int sellItem(int amount, int NPCPrice) throws WrongItemException {
         moveWithAmount(-amount);
+        this.sellAmount += amount;
         int result = 0;
         while (amount != 0 && this.evidences.peek() != null) {
             int[] arr = this.evidences.peek().register(amount);
@@ -86,7 +87,6 @@ public class ItemPlayer {
         }
         updateAveragePrice();
         this.wholeEarnings += result;
-        this.sellAmount += amount;
         return result;
     }
 
