@@ -3,6 +3,7 @@ package UI.MainUI.StockUI;
 import Game.GameData;
 import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.BarPanelUI;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -107,28 +108,11 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeBar(JPanel north) throws InvalidUILoadException {
-        BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI_BAR.png");
-        Dimension dimension = new Dimension(1920, 135);
-        bar.setPreferredSize(dimension);
-        bar.setMaximumSize(dimension);
-        bar.setMaximumSize(dimension);
-        bar.setLayout(new BoxLayout(bar, BoxLayout.X_AXIS));
-        bar.setBorder(BorderFactory.createEmptyBorder(5,18,10,10));
-
-        initializeExitButton(bar);
+        BarPanelUI bar = new BarPanelUI();
         initializeBoundPanel(bar);
-
         north.add(bar, BorderLayout.NORTH);
     }
 
-    private void initializeExitButton(JPanel panel) throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
-        customButton.addActionListener(e ->{
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.switchPanel("Shop");
-        });
-        panel.add(customButton);
-    }
 
     private void initializeBoundPanel(JPanel panel) throws InvalidUILoadException {
         String current = String.valueOf(gameData.getPlayer().calculateStocks());
