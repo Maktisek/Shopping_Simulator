@@ -5,6 +5,7 @@ import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.BarPanelUI;
 import UI.CreationUI.CustomButton;
+import UI.CreationUI.GridPanelUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
@@ -56,24 +57,12 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeGrid() throws InvalidUILoadException {
-        JPanel grid = new JPanel();
-        grid.setLayout(new GridLayout(0, 3, 20, 20));
-        grid.setOpaque(false);
-        fillGrid(grid);
+        GridPanelUI gridPanelUI = new GridPanelUI(3, 300);
+        fillGrid(gridPanelUI.getGrid());
+        gridPanelUI.finishGrid();
 
-        JPanel wrapper = new JPanel();
-        wrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
-
-        int gridWidth = (3 * 300) + (2 * 20);
-        grid.setPreferredSize(new Dimension(gridWidth, grid.getPreferredSize().height));
-        wrapper.add(grid);
-
-        JScrollPane scrollPane = initializeScrollPane(wrapper, 16);
+        JScrollPane scrollPane = initializeScrollPane(gridPanelUI, 16);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(135, 0, 0, 0));
-
-
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
