@@ -42,9 +42,6 @@ public class AchievementManagementUI extends JPanel {
     private void initializeMainPanel() throws InvalidUILoadException {
         this.mainPanel = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI.png");
         this.mainPanel.setLayout(new BorderLayout());
-
-
-
     }
 
     private void initializeSidePanel() throws InvalidUILoadException {
