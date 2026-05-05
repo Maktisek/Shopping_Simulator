@@ -113,6 +113,7 @@ public class NPC {
         double k = calculateK(playerAverage);
         double bonus = Math.sqrt(k) / Math.sqrt(playerWhole);
         if(bonus > 5){
+            System.out.println("Bruh");
             bonus = 5;
         }
         return bonus;

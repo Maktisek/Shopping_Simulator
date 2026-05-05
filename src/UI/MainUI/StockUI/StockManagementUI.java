@@ -95,22 +95,13 @@ public class StockManagementUI extends JPanel {
         this.sidePanel.setLayout(new BorderLayout());
         this.sidePanel.setOpaque(false);
 
-        initializeNorth();
+        initializeBar();
     }
 
-    private void initializeNorth() throws InvalidUILoadException {
-        JPanel north = new JPanel();
-        north.setLayout(new BorderLayout());
-
-        initializeBar(north);
-
-        sidePanel.add(north, BorderLayout.NORTH);
-    }
-
-    private void initializeBar(JPanel north) throws InvalidUILoadException {
-        BarPanelUI bar = new BarPanelUI();
+    private void initializeBar() throws InvalidUILoadException {
+        BarPanelUI bar = new BarPanelUI("STOCK");
         initializeBoundPanel(bar);
-        north.add(bar, BorderLayout.NORTH);
+        sidePanel.add(bar, BorderLayout.NORTH);
     }
 
 

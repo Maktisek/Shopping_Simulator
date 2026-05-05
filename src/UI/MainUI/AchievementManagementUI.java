@@ -2,6 +2,7 @@ package UI.MainUI;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.BarPanelUI;
 import UI.Exceptions.InvalidUILoadException;
 
 import javax.swing.*;
@@ -46,11 +47,17 @@ public class AchievementManagementUI extends JPanel {
 
     }
 
-    private void initializeSidePanel(){
+    private void initializeSidePanel() throws InvalidUILoadException {
         this.sidePanel = new JPanel();
         this.sidePanel.setLayout(new BorderLayout());
         this.sidePanel.setOpaque(false);
 
+        initializeBar();
+    }
+
+    private void initializeBar() throws InvalidUILoadException {
+        BarPanelUI barPanelUI = new BarPanelUI("ACHIEVEMENTS");
+        this.sidePanel.add(barPanelUI, BorderLayout.NORTH);
     }
 
 

@@ -97,7 +97,7 @@ public class MainUI extends BackgroundPanel {
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().pollAchievement();
         if(temp != null){
-            String message = "Achievement..." + temp.getName() + "...has been unlocked";
+            String message = "Achievement \"" + temp.getName() + "\" has been unlocked";
             System.out.println(message);
             showDialog(new DialogUI("/MainUI/ShopUI/ACHIEVEMENT_PANE.png", message));
         }

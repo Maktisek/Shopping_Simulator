@@ -68,12 +68,4 @@ public abstract class UpgradeBasicType implements Upgrade{
         this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "UpgradeBasicType{" +
-                "data=" + data +
-                ", price=" + price +
-                ", level=" + level +
-                '}';
-    }
 }

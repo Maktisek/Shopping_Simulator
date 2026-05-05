@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class BarPanelUI extends BackgroundPanel {
 
-    public BarPanelUI() throws InvalidUILoadException {
-        super("/MainUI/ShopUI/STOCK_UI_BAR.png");
+    public BarPanelUI(String type) throws InvalidUILoadException {
+        super("/MainUI/ShopUI/" +type + "_UI_BAR.png");
         initialize();
     }
 
