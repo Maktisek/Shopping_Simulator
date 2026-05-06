@@ -57,7 +57,7 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeGrid() throws InvalidUILoadException {
-        GridPanelUI gridPanelUI = new GridPanelUI(3, 300, 300);
+        GridPanelUI gridPanelUI = new GridPanelUI(3, 300);
         fillGrid(gridPanelUI.getGrid());
         gridPanelUI.finishGrid();
 

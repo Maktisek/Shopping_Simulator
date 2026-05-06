@@ -8,12 +8,10 @@ public class GridPanelUI extends JPanel {
     private JPanel grid;
     private final int cols;
     private final int gridWidth;
-    private final int height;
 
-    public GridPanelUI(int cols, int widthOfBox, int height){
+    public GridPanelUI(int cols, int widthOfBox){
         super();
         this.cols = cols;
-        this.height = height;
         this.gridWidth = (cols * widthOfBox) + ((cols - 1) * 20);
         initialize();
     }

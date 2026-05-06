@@ -72,7 +72,7 @@ public class AchievementManagementUI extends JPanel {
             wrapper.add(typeLabel);
             wrapper.add(Box.createVerticalStrut(20));
 
-            GridPanelUI gridPanelUI = new GridPanelUI(3, 300, 300);
+            GridPanelUI gridPanelUI = new GridPanelUI(3, 500);
             gridPanelUI.setAlignmentX(Component.CENTER_ALIGNMENT);
             fillDoneAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getDoneAchievements().get(type));
             fillBlankSpots(gridPanelUI.getGrid(), type);
@@ -90,8 +90,8 @@ public class AchievementManagementUI extends JPanel {
 //            }
 //        }
         for (int i = 0; i < 10; i++) {
-            ItemPlayerUI panel = new ItemPlayerUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", gameData.getPlayer().findItem("Bread"));
-            Dimension dimension = new Dimension(300, 300);
+            AchievementBoxUI panel = new AchievementBoxUI(AchievementUITypes.DONE);
+            Dimension dimension = new Dimension(500, 250);
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
             panel.setMaximumSize(dimension);
@@ -104,7 +104,7 @@ public class AchievementManagementUI extends JPanel {
         for (int i = 0; i < leftOver; i++) {
             JPanel panel = new JPanel();
             panel.setOpaque(false);
-            Dimension dimension = new Dimension(300, 300);
+            Dimension dimension = new Dimension(500, 250);
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
             panel.setMaximumSize(dimension);
@@ -114,8 +114,8 @@ public class AchievementManagementUI extends JPanel {
 
     private void fillPossibleAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
         for (int i = 0; i < 10; i++) {
-            ItemPlayerUI panel = new ItemPlayerUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", gameData.getPlayer().findItem("Bread"));
-            Dimension dimension = new Dimension(300, 300);
+            AchievementBoxUI panel = new AchievementBoxUI(AchievementUITypes.POSSIBLE);
+            Dimension dimension = new Dimension(500, 250);
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
             panel.setMaximumSize(dimension);
