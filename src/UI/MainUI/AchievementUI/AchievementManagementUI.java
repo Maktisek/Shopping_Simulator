@@ -1,4 +1,4 @@
-package UI.MainUI;
+package UI.MainUI.AchievementUI;
 
 import Achievements.Achievement;
 import Achievements.AchievementTypes;
@@ -7,7 +7,6 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.BarPanelUI;
 import UI.CreationUI.GridPanelUI;
 import UI.CreationUI.StrokeLabel;
-import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.StockUI.ItemPlayerUI;
 
@@ -79,6 +78,7 @@ public class AchievementManagementUI extends JPanel {
             fillBlankSpots(gridPanelUI.getGrid(), type);
             fillPossibleAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getPossibleAchievements().get(type));
             gridPanelUI.finishGrid();
+
             wrapper.add(gridPanelUI);
         }
     }

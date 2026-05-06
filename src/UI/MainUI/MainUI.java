@@ -5,6 +5,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.AchievementUI.AchievementManagementUI;
 import UI.MainUI.ShopUI.ShopManagementUI;
 import UI.MainUI.StockUI.StockManagementUI;
 
