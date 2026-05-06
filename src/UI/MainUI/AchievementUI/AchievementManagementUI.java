@@ -18,7 +18,7 @@ import static Utilities.Important.initializeScrollPane;
 
 public class AchievementManagementUI extends JPanel {
 
-    private GameData gameData;
+    private final GameData gameData;
     private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
     private JPanel sidePanel;
@@ -33,8 +33,6 @@ public class AchievementManagementUI extends JPanel {
         initializeMainPanel();
         initializeSidePanel();
         initializeLayerPane();
-
-
     }
 
     private void initializeLayerPane() {
@@ -53,7 +51,8 @@ public class AchievementManagementUI extends JPanel {
         initializeGrid();
     }
 
-    private void initializeGrid() throws InvalidUILoadException {
+    public void initializeGrid() throws InvalidUILoadException {
+        mainPanel.removeAll();
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
@@ -75,7 +74,6 @@ public class AchievementManagementUI extends JPanel {
             GridPanelUI gridPanelUI = new GridPanelUI(3, 500);
             gridPanelUI.setAlignmentX(Component.CENTER_ALIGNMENT);
             fillDoneAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getDoneAchievements().get(type));
-            fillBlankSpots(gridPanelUI.getGrid(), type);
             fillPossibleAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getPossibleAchievements().get(type));
             gridPanelUI.finishGrid();
 
@@ -84,42 +82,18 @@ public class AchievementManagementUI extends JPanel {
     }
 
     private void fillDoneAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
-//        if(achievements != null) {
-//            for (Achievement achievement : achievements) {
-//                grid.add(new DialogUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", "Test"));
-//            }
-//        }
-        for (int i = 0; i < 10; i++) {
-            AchievementBoxUI panel = new AchievementBoxUI(AchievementUITypes.DONE);
-            Dimension dimension = new Dimension(500, 250);
-            panel.setPreferredSize(dimension);
-            panel.setMaximumSize(dimension);
-            panel.setMaximumSize(dimension);
-            grid.add(panel);
-        }
-    }
-
-    private void fillBlankSpots(JPanel grid, AchievementTypes type) throws InvalidUILoadException {
-        int leftOver = 3 - (10 % 3);
-        for (int i = 0; i < leftOver; i++) {
-            JPanel panel = new JPanel();
-            panel.setOpaque(false);
-            Dimension dimension = new Dimension(500, 250);
-            panel.setPreferredSize(dimension);
-            panel.setMaximumSize(dimension);
-            panel.setMaximumSize(dimension);
-            grid.add(panel);
+        if (achievements != null) {
+            for (Achievement achievement : achievements) {
+                grid.add(new AchievementBoxUI(achievement, AchievementUITypes.DONE));
+            }
         }
     }
 
     private void fillPossibleAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
-        for (int i = 0; i < 10; i++) {
-            AchievementBoxUI panel = new AchievementBoxUI(AchievementUITypes.POSSIBLE);
-            Dimension dimension = new Dimension(500, 250);
-            panel.setPreferredSize(dimension);
-            panel.setMaximumSize(dimension);
-            panel.setMaximumSize(dimension);
-            grid.add(panel);
+        if (achievements != null) {
+            for (Achievement achievement : achievements) {
+                grid.add(new AchievementBoxUI(achievement, AchievementUITypes.POSSIBLE));
+            }
         }
     }
 
@@ -134,6 +108,11 @@ public class AchievementManagementUI extends JPanel {
     private void initializeBar() throws InvalidUILoadException {
         BarPanelUI barPanelUI = new BarPanelUI("ACHIEVEMENTS");
         this.sidePanel.add(barPanelUI, BorderLayout.NORTH);
+    }
+
+    public void update() throws InvalidUILoadException {
+        initializeGrid();
+        this.mainPanel.repaint();
     }
 
 

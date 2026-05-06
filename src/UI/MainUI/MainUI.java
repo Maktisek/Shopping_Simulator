@@ -74,7 +74,10 @@ public class MainUI extends BackgroundPanel {
         this.mainPanel.add(achievementManagementUI, "Achievements");
     }
 
-    public void switchPanel(String panel){
+    public void switchPanel(String panel) throws InvalidUILoadException {
+        if(panel.equalsIgnoreCase("Achievements")){
+            this.achievementManagementUI.update();
+        }
         this.cardLayout.show(mainPanel, panel);
     }
 

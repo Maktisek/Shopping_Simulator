@@ -108,7 +108,11 @@ public class ShopManagementUI extends BackgroundPanel {
         CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
         stock.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.switchPanel(card);
+            try {
+                parent.switchPanel(card);
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         stock.setAlignmentX(Component.CENTER_ALIGNMENT);
         westPanel.add(stock);

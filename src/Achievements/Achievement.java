@@ -61,11 +61,4 @@ public class Achievement {
     }
 
 
-    public Achievement(AchievementTypes type, int current, int bound, String description, String name) {
-        this.type = type;
-        this.current = current;
-        this.bound = bound;
-        this.description = description;
-        this.name = name;
-    }
 }

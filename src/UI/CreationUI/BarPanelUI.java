@@ -27,7 +27,11 @@ public class BarPanelUI extends BackgroundPanel {
         CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.switchPanel("Shop");
+            try {
+                parent.switchPanel("Shop");
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         add(customButton);
     }
