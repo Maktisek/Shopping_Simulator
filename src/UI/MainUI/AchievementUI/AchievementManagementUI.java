@@ -84,7 +84,7 @@ public class AchievementManagementUI extends JPanel {
     private void fillPossibleAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
         if (achievements != null) {
             for (Achievement achievement : achievements) {
-                AchievementBoxUI achievementBoxUI = new AchievementBoxUI(achievement);
+                AchievementBoxUI achievementBoxUI = new AchievementBoxUI(gameData, achievement);
                 grid.add(achievementBoxUI);
                 this.achievements.add(achievementBoxUI);
             }

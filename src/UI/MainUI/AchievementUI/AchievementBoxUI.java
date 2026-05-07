@@ -1,9 +1,16 @@
 package UI.MainUI.AchievementUI;
 
 import Achievements.Achievement;
+import Commands.AchievementCommands.ClaimAchievementRewardCommand;
+import Commands.CommandResult;
+import Commands.CommandState;
+import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.CustomButton;
 import UI.CreationUI.StrokeLabel;
+import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.MainUI;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -12,13 +19,16 @@ import java.net.URL;
 
 public class AchievementBoxUI extends BackgroundPanel {
 
+    private final GameData gameData;
     private final Achievement achievement;
     private AchievementUITypes type;
+    private CustomButton claimButton;
     private StrokeLabel bound;
     private StrokeLabel percentualBound;
 
-    public AchievementBoxUI(Achievement achievement) throws InvalidUILoadException {
+    public AchievementBoxUI(GameData gameData, Achievement achievement) throws InvalidUILoadException {
         this.type = AchievementUITypes.POSSIBLE;
+        this.gameData = gameData;
         this.achievement = achievement;
         initialize();
     }
@@ -29,6 +39,7 @@ public class AchievementBoxUI extends BackgroundPanel {
         setOpaque(false);
 
         initializeImage();
+        initializeClaimButton();
         initializeDimensions();
         initializeIcon();
         initializeEast();
@@ -91,11 +102,16 @@ public class AchievementBoxUI extends BackgroundPanel {
         xPanel.setLayout(new BoxLayout(xPanel, BoxLayout.X_AXIS));
         xPanel.setOpaque(false);
         xPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        Dimension dimension = new Dimension(400, 74);
+        xPanel.setPreferredSize(dimension);
+        xPanel.setMaximumSize(dimension);
+        xPanel.setMinimumSize(dimension);
 
         initializeBound(xPanel);
         initializePercentualBound(xPanel);
+        xPanel.add(this.claimButton);
 
-        wrapper.add(Box.createVerticalStrut(20));
+        wrapper.add(Box.createVerticalStrut(10));
         wrapper.add(xPanel);
     }
 
@@ -109,6 +125,31 @@ public class AchievementBoxUI extends BackgroundPanel {
         xPanel.add(percentualBound);
     }
 
+    private void initializeClaimButton() throws InvalidUILoadException {
+        this.claimButton = new CustomButton("/MainUI/ShopUI/CLAIM_BUTTON.png","/MainUI/ShopUI/CLAIM_BUTTON.png", 256, 74);
+        this.claimButton.setVisible(false);
+        this.claimButton.addActionListener(e ->{
+            CommandResult result = new ClaimAchievementRewardCommand(this.gameData, this.achievement).execute();
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            if(result.getState() == CommandState.DONE){
+                try {
+                    initializeImage();
+                    this.claimButton.setVisible(false);
+                    this.bound.setVisible(true);
+                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }else {
+                try {
+                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Emm, this should not happen"));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
+
     private void initializeDimensions() {
         Dimension dimension = new Dimension(500, 250);
         setPreferredSize(dimension);
@@ -120,8 +161,9 @@ public class AchievementBoxUI extends BackgroundPanel {
         if (this.achievement.isDone() && (type != AchievementUITypes.DONE)) {
             this.type = AchievementUITypes.DONE;
             this.bound.setText("DONE");
+            this.bound.setVisible(false);
             this.percentualBound.setVisible(false);
-            initializeImage();
+            this.claimButton.setVisible(true);
         }
 
         if (this.type == AchievementUITypes.POSSIBLE) {
