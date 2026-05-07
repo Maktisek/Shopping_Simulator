@@ -74,10 +74,7 @@ public class MainUI extends BackgroundPanel {
         this.mainPanel.add(achievementManagementUI, "Achievements");
     }
 
-    public void switchPanel(String panel) throws InvalidUILoadException {
-        if(panel.equalsIgnoreCase("Achievements")){
-            this.achievementManagementUI.update();
-        }
+    public void switchPanel(String panel) {
         this.cardLayout.show(mainPanel, panel);
     }
 
@@ -94,6 +91,11 @@ public class MainUI extends BackgroundPanel {
                  throw new RuntimeException(ex);
              }
              this.stockManagementUI.update();
+             try {
+                 this.achievementManagementUI.update();
+             } catch (InvalidUILoadException ex) {
+                 throw new RuntimeException(ex);
+             }
          });
         updater.start();
     }

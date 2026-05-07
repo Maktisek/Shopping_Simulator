@@ -8,7 +8,6 @@ import UI.CreationUI.BarPanelUI;
 import UI.CreationUI.GridPanelUI;
 import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.StockUI.ItemPlayerUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +20,12 @@ public class AchievementManagementUI extends JPanel {
     private final GameData gameData;
     private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
+    private final ArrayList<AchievementBoxUI> achievements;
     private JPanel sidePanel;
 
     public AchievementManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
+        this.achievements = new ArrayList<>();
         initialize();
     }
 
@@ -73,7 +74,6 @@ public class AchievementManagementUI extends JPanel {
 
             GridPanelUI gridPanelUI = new GridPanelUI(3, 500);
             gridPanelUI.setAlignmentX(Component.CENTER_ALIGNMENT);
-            fillDoneAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getDoneAchievements().get(type));
             fillPossibleAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getPossibleAchievements().get(type));
             gridPanelUI.finishGrid();
 
@@ -81,18 +81,12 @@ public class AchievementManagementUI extends JPanel {
         }
     }
 
-    private void fillDoneAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
-        if (achievements != null) {
-            for (Achievement achievement : achievements) {
-                grid.add(new AchievementBoxUI(achievement, AchievementUITypes.DONE));
-            }
-        }
-    }
-
     private void fillPossibleAchievements(JPanel grid, ArrayList<Achievement> achievements) throws InvalidUILoadException {
         if (achievements != null) {
             for (Achievement achievement : achievements) {
-                grid.add(new AchievementBoxUI(achievement, AchievementUITypes.POSSIBLE));
+                AchievementBoxUI achievementBoxUI = new AchievementBoxUI(achievement);
+                grid.add(achievementBoxUI);
+                this.achievements.add(achievementBoxUI);
             }
         }
     }
@@ -111,7 +105,9 @@ public class AchievementManagementUI extends JPanel {
     }
 
     public void update() throws InvalidUILoadException {
-        initializeGrid();
+        for (AchievementBoxUI achievementBoxUI : achievements){
+            achievementBoxUI.update();
+        }
         this.mainPanel.repaint();
     }
 

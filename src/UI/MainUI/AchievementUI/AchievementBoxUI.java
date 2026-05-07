@@ -13,10 +13,11 @@ import java.net.URL;
 public class AchievementBoxUI extends BackgroundPanel {
 
     private final Achievement achievement;
-    private final AchievementUITypes type;
+    private AchievementUITypes type;
+    private StrokeLabel bound;
 
-    public AchievementBoxUI(Achievement achievement, AchievementUITypes type) throws InvalidUILoadException {
-        this.type = type;
+    public AchievementBoxUI(Achievement achievement) throws InvalidUILoadException {
+        this.type = AchievementUITypes.POSSIBLE;
         this.achievement = achievement;
         initialize();
     }
@@ -100,11 +101,11 @@ public class AchievementBoxUI extends BackgroundPanel {
     private void initializeBound(JPanel xPanel){
         switch (this.type){
             case POSSIBLE -> {
-                StrokeLabel bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 32.0f);
+                this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 32.0f);
                 xPanel.add(bound);
             }
             case DONE -> {
-                StrokeLabel bound = new StrokeLabel("DONE", 32.0f);
+                this.bound = new StrokeLabel("DONE", 32.0f);
                 xPanel.add(bound);
             }
         }
@@ -117,5 +118,17 @@ public class AchievementBoxUI extends BackgroundPanel {
         setMinimumSize(dimension);
     }
 
+    public void update() throws InvalidUILoadException {
+        if(this.achievement.getBound() <= this.achievement.getCurrent() && (type != AchievementUITypes.DONE)){
+            this.type = AchievementUITypes.DONE;
+            this.bound.setText("DONE");
+            initializeImage();
+        }
+
+        if(this.type == AchievementUITypes.POSSIBLE){
+            this.bound.setText(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()));
+        }
+
+    }
 
 }

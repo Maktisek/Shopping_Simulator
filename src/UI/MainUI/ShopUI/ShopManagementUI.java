@@ -106,13 +106,10 @@ public class ShopManagementUI extends BackgroundPanel {
 
     private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
         CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
-        stock.addActionListener(e ->{
+        stock.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.switchPanel(card);
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
+
+            parent.switchPanel(card);
         });
         stock.setAlignmentX(Component.CENTER_ALIGNMENT);
         westPanel.add(stock);
@@ -261,7 +258,7 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
         north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(5,10,15,10));
+        north.setBorder(BorderFactory.createEmptyBorder(5, 10, 15, 10));
 
         initializeBalance(north);
         initializeMultipliers(north);
@@ -279,7 +276,7 @@ public class ShopManagementUI extends BackgroundPanel {
         multiplierButtons.add(new MultiplierButton(100, 100, 5, gameData, multiplierButtons));
         multiplierButtons.add(new MultiplierButton(100, 100, 10, gameData, multiplierButtons));
 
-        for (MultiplierButton multiplierButton : multiplierButtons){
+        for (MultiplierButton multiplierButton : multiplierButtons) {
             north.add(multiplierButton);
             north.add(Box.createHorizontalStrut(10));
         }
@@ -297,7 +294,7 @@ public class ShopManagementUI extends BackgroundPanel {
         this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
         this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
         this.dayUI.update();
-        for (UpgradeUI upgradeUI : upgrades){
+        for (UpgradeUI upgradeUI : upgrades) {
             upgradeUI.update();
         }
         this.moneyPanelUI.update();

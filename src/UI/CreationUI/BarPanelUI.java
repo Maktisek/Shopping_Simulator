@@ -9,7 +9,7 @@ import java.awt.*;
 public class BarPanelUI extends BackgroundPanel {
 
     public BarPanelUI(String type) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/" +type + "_UI_BAR.png");
+        super("/MainUI/ShopUI/" + type + "_UI_BAR.png");
         initialize();
     }
 
@@ -27,11 +27,7 @@ public class BarPanelUI extends BackgroundPanel {
         CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.switchPanel("Shop");
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
+            parent.switchPanel("Shop");
         });
         add(customButton);
     }
