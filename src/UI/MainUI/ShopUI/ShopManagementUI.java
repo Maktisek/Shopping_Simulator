@@ -59,8 +59,6 @@ public class ShopManagementUI extends BackgroundPanel {
         setLayout(new BorderLayout());
         initializeShops();
 
-        //Wrapper stands for an individual panel which is then added within the JLayerPane, so the components
-        //can be shown on top of another components.
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         initializeWestPanel(wrapper);

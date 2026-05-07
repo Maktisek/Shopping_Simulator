@@ -10,13 +10,11 @@ public class AchievementManagement {
 
     private Queue<Achievement> freshAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;
-    private HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements;
     private ArrayList<Achievement> loadedAchievements;
 
     public AchievementManagement() {
         this.freshAchievements = new LinkedList<>();
         this.possibleAchievements = new HashMap<>();
-        this.doneAchievements = new HashMap<>();
         this.loadedAchievements = new ArrayList<>();
     }
 
@@ -40,17 +38,11 @@ public class AchievementManagement {
     private void executeDoneAchievements(){
         for (AchievementTypes key: possibleAchievements.keySet()){
             ArrayList<Achievement> possible = possibleAchievements.get(key);
-
-            ArrayList<Achievement> done = new ArrayList<>();
             for (Achievement achievement : possible){
                 if (achievement.isDone()){
                     freshAchievements.add(achievement);
-                    done.add(achievement);
                 }
             }
-
-            doneAchievements.computeIfAbsent(key, k -> new ArrayList<>()).addAll(done);
-
             possible.removeIf(Achievement::isDone);
         }
     }
@@ -87,14 +79,6 @@ public class AchievementManagement {
 
     public void setPossibleAchievements(HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements) {
         this.possibleAchievements = possibleAchievements;
-    }
-
-    public HashMap<AchievementTypes, ArrayList<Achievement>> getDoneAchievements() {
-        return doneAchievements;
-    }
-
-    public void setDoneAchievements(HashMap<AchievementTypes, ArrayList<Achievement>> doneAchievements) {
-        this.doneAchievements = doneAchievements;
     }
 
     public Queue<Achievement> getFreshAchievements() {

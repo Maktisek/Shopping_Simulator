@@ -128,7 +128,6 @@ public class AchievementBoxUI extends BackgroundPanel {
         if(this.type == AchievementUITypes.POSSIBLE){
             this.bound.setText(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()));
         }
-
     }
 
 }
