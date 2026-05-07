@@ -38,8 +38,10 @@ public class SellProductCommand extends Command {
         }
         product.getAmountManager().decrement(amount);
         getDayManagement().getCurrentDay().incrementDaySoldAmount(amount);
-        getDayManagement().getCurrentDay().incrementDayIncome(amount * price);
+        int income = amount * price;
+        getDayManagement().getCurrentDay().incrementDayIncome(income);
         getAchievementManagement().updateAchievement(AchievementTypes.SELL, amount);
+        getAchievementManagement().updateAchievement(AchievementTypes.MONEY, income);
         return new CommandResult("Sold " + amount + "x " + productName, CommandState.DONE);
     }
 }
