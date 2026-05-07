@@ -25,12 +25,4 @@ public class CommandResult {
     public void setState(CommandState state) {
         this.state = state;
     }
-
-    @Override
-    public String toString() {
-        return "CommandResult{" +
-                "message='" + message + '\'' +
-                ", state=" + state +
-                '}';
-    }
 }

@@ -7,6 +7,7 @@ public class Achievement {
     private String description;
     private int bound;
     private int current;
+    private int reward;
 
     public Achievement() {
     }
@@ -64,5 +65,11 @@ public class Achievement {
         this.description = description;
     }
 
+    public int getReward() {
+        return reward;
+    }
 
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
 }

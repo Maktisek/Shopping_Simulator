@@ -100,12 +100,12 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     private void initializeBound(JPanel xPanel) {
-        this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 27.0f);
+        this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 24.0f);
         xPanel.add(bound);
     }
 
     private void initializePercentualBound(JPanel xPanel) {
-        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",27.0f);
+        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",24.0f);
         xPanel.add(percentualBound);
     }
 
