@@ -15,6 +15,7 @@ public class AchievementBoxUI extends BackgroundPanel {
     private final Achievement achievement;
     private AchievementUITypes type;
     private StrokeLabel bound;
+    private StrokeLabel percentualBound;
 
     public AchievementBoxUI(Achievement achievement) throws InvalidUILoadException {
         this.type = AchievementUITypes.POSSIBLE;
@@ -24,7 +25,7 @@ public class AchievementBoxUI extends BackgroundPanel {
 
     private void initialize() throws InvalidUILoadException {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(10, 10,10,10));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setOpaque(false);
 
         initializeImage();
@@ -34,23 +35,22 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     private void initializeImage() throws InvalidUILoadException {
-        switch (this.type){
+        switch (this.type) {
             case POSSIBLE -> setImg("/MainUI/ShopUI/ACHIEVEMENT_MANAGEMENT_PANE.png");
             case DONE -> setImg("/MainUI/ShopUI/ACHIEVEMENT_MANAGEMENT_PANE_DONE.png");
         }
     }
 
     private void initializeIcon() throws InvalidUILoadException {
-        URL imageURL = getClass().getResource("/MainUI/ShopUI/"+achievement.getType().toString()+"_ICON.png");
+        URL imageURL = getClass().getResource("/MainUI/ShopUI/" + achievement.getType().toString() + "_ICON.png");
 
-        if(imageURL == null){
-            throw new InvalidUILoadException("The image " + "/MainUI/ShopUI/"+achievement.getType().toString()+"_ICON.png" + " was not found");
+        if (imageURL == null) {
+            throw new InvalidUILoadException("The image " + "/MainUI/ShopUI/" + achievement.getType().toString() + "_ICON.png" + " was not found");
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
         Image scaledImage = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         icon.setImage(scaledImage);
-
 
 
         JLabel label = new JLabel(icon, JLabel.CENTER);
@@ -61,7 +61,7 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
 
-    private void initializeEast(){
+    private void initializeEast() {
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
@@ -73,45 +73,43 @@ public class AchievementBoxUI extends BackgroundPanel {
         this.add(wrapper);
     }
 
-    private void initializeName(JPanel wrapper){
+    private void initializeName(JPanel wrapper) {
         StrokeLabel name = new StrokeLabel(this.achievement.getName(), 13.0f);
         name.setAlignmentX(Component.LEFT_ALIGNMENT);
         wrapper.add(name);
     }
 
-    private void initializeDescription(JPanel wrapper){
+    private void initializeDescription(JPanel wrapper) {
         wrapper.add(Box.createVerticalStrut(5));
         StrokeLabel description = new StrokeLabel(this.achievement.getDescription(), 12.0f);
         description.setAlignmentX(Component.LEFT_ALIGNMENT);
         wrapper.add(description);
     }
 
-    private void initializeSouth(JPanel wrapper){
+    private void initializeSouth(JPanel wrapper) {
         JPanel xPanel = new JPanel();
         xPanel.setLayout(new BoxLayout(xPanel, BoxLayout.X_AXIS));
         xPanel.setOpaque(false);
         xPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         initializeBound(xPanel);
+        initializePercentualBound(xPanel);
 
         wrapper.add(Box.createVerticalStrut(20));
         wrapper.add(xPanel);
     }
 
-    private void initializeBound(JPanel xPanel){
-        switch (this.type){
-            case POSSIBLE -> {
-                this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 32.0f);
-                xPanel.add(bound);
-            }
-            case DONE -> {
-                this.bound = new StrokeLabel("DONE", 32.0f);
-                xPanel.add(bound);
-            }
-        }
+    private void initializeBound(JPanel xPanel) {
+        this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 27.0f);
+        xPanel.add(bound);
     }
 
-    private void initializeDimensions(){
+    private void initializePercentualBound(JPanel xPanel) {
+        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",27.0f);
+        xPanel.add(percentualBound);
+    }
+
+    private void initializeDimensions() {
         Dimension dimension = new Dimension(500, 250);
         setPreferredSize(dimension);
         setMaximumSize(dimension);
@@ -119,14 +117,16 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     public void update() throws InvalidUILoadException {
-        if(this.achievement.getBound() <= this.achievement.getCurrent() && (type != AchievementUITypes.DONE)){
+        if (this.achievement.isDone() && (type != AchievementUITypes.DONE)) {
             this.type = AchievementUITypes.DONE;
             this.bound.setText("DONE");
+            this.percentualBound.setVisible(false);
             initializeImage();
         }
 
-        if(this.type == AchievementUITypes.POSSIBLE){
+        if (this.type == AchievementUITypes.POSSIBLE) {
             this.bound.setText(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()));
+            this.percentualBound.setText(this.achievement.calculatePercent() + " pr");
         }
     }
 

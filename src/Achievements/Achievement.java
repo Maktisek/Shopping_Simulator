@@ -11,14 +11,18 @@ public class Achievement {
     public Achievement() {
     }
 
-    public void changeCurrent(int change){
+    public void changeCurrent(int change) {
         int after = this.current + change;
         this.current = Math.min(after, bound);
     }
 
-     public boolean isDone(){
-         return current >= bound;
-     }
+    public int calculatePercent(){
+        return (int) (((float) current / (float) bound) * 100);
+    }
+
+    public boolean isDone() {
+        return current >= bound;
+    }
 
     public AchievementTypes getType() {
         return type;
