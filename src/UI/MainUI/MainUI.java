@@ -17,7 +17,7 @@ public class MainUI extends BackgroundPanel {
     private JPanel mainPanel;
     private CardLayout cardLayout;
     private JLayeredPane layeredPane;
-    private JPanel overlay;
+    private final JPanel overlay;
     private final GameData gameData;
     private Timer updater;
     private ShopManagementUI shopManagementUI;

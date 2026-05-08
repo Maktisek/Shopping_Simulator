@@ -6,6 +6,7 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class MoneyPanelUI extends BackgroundPanel {
@@ -22,7 +23,12 @@ public class MoneyPanelUI extends BackgroundPanel {
     private void initialize(){
         setLayout(new BorderLayout());
         initializeDimensions();
-        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance())+" FR", 24.0f);
+
+        JPanel center = new JPanel();
+        center.setLayout(new BorderLayout());
+        center.setOpaque(false);
+
+        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 24.0f);
         add(price, BorderLayout.CENTER);
     }
 
