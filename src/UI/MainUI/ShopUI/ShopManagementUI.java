@@ -104,7 +104,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
-        CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
+        CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
         stock.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
@@ -115,8 +115,8 @@ public class ShopManagementUI extends BackgroundPanel {
 
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
-        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", "/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 162, 162);
+        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
+        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 162, 162);
 
         previous.setAlignmentX(Component.CENTER_ALIGNMENT);
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -224,7 +224,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException {
-        CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", "/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
+        CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createVerticalStrut(7));
         panel.add(nextDay);

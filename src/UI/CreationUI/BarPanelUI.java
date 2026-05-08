@@ -24,7 +24,7 @@ public class BarPanelUI extends BackgroundPanel {
     }
 
     private void initializeExitButton() throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", "/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
+        CustomButton customButton = new CustomButton("/MainUI/ShopUI/ESCAPE_BUTTON.png", 100, 100);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");

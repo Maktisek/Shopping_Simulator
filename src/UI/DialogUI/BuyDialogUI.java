@@ -30,8 +30,8 @@ public class BuyDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(20));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png","/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
-        CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
 
         ok.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);

@@ -157,7 +157,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     }
 
     private void initializeOkButton(JPanel south) throws InvalidUILoadException {
-        CustomButton okButton = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png","/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        CustomButton okButton = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
         okButton.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();

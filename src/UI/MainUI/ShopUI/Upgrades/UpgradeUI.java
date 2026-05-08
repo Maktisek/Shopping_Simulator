@@ -48,7 +48,7 @@ public class UpgradeUI extends BackgroundPanel {
     }
 
     private void initializeImage() throws InvalidUILoadException {
-        CustomButton buyButton = new CustomButton("/MainUI/ShopUI/" + upgrade.nameInfo().toString() + "_ICON.png", "/MainUI/ShopUI/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80);
+        CustomButton buyButton = new CustomButton("/MainUI/ShopUI/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.addActionListener(e ->{
             CommandResult result = new UpgradeCommand(gameData, this.upgrade.nameInfo()).execute();

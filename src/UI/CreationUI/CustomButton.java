@@ -13,8 +13,6 @@ import java.net.URL;
 public class CustomButton extends JButton {
 
     protected Image img;
-    protected Image idleImg;
-    protected Image clickedImg;
     protected boolean hoovered;
     protected boolean clicked;
 
@@ -22,9 +20,9 @@ public class CustomButton extends JButton {
 
     }
 
-    public CustomButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException {
+    public CustomButton(String imgFile, int width, int height) throws InvalidUILoadException {
         super();
-        setImages(imgFile, clickedImg);
+        setImages(imgFile);
 
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -33,25 +31,16 @@ public class CustomButton extends JButton {
         setSizeOfButton(width,height);
 
         setMouseListener();
-        setCursor();
     }
 
-    public void setImages(String imgFile, String clickedImg) throws InvalidUILoadException {
+    public void setImages(String imgFile) throws InvalidUILoadException {
         URL imageURL = getClass().getResource(imgFile);
-        URL clickedURL = getClass().getResource(clickedImg);
 
         if(imageURL == null){
             throw new InvalidUILoadException("The image "+ imgFile +" was not found");
         }
 
-        if(clickedURL == null){
-            throw new InvalidUILoadException("The image "+ imgFile +" was not found");
-        }
-
-        this.idleImg = new ImageIcon(imageURL).getImage();
-        this.clickedImg = new ImageIcon(clickedURL).getImage();
-
-        this.img = idleImg;
+        this.img = new ImageIcon(imageURL).getImage();
     }
 
     @Override
@@ -104,7 +93,6 @@ public class CustomButton extends JButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                CustomButton.this.img = clickedImg;
                 CustomButton.this.clicked = true;
                 repaint();
             }
@@ -112,7 +100,6 @@ public class CustomButton extends JButton {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                CustomButton.this.img = idleImg;
                 CustomButton.this.clicked = false;
                 repaint();
             }

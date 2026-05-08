@@ -74,7 +74,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
-        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", "/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", 80, 80);
+        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", 80, 80);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -109,12 +109,12 @@ public class ItemUI extends BackgroundPanel {
         Command command = null;
         switch (specification){
             case SHOP:{
-                button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", "/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
+                button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
                 command = new BuyProductCommand(gameData, index);
                 break;
             }
             case NPC:{
-                button = new CustomButton("/MainUI/ShopUI/SELL_BUTTON.png", "/MainUI/ShopUI/SELL_BUTTON.png", 100, 50);
+                button = new CustomButton("/MainUI/ShopUI/SELL_BUTTON.png", 100, 50);
                 command = new SellProductCommand(gameData, index);
                 break;
             }
@@ -163,7 +163,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void updateImage() throws InvalidUILoadException {
-        this.image.setImages("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", "/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png");
+        this.image.setImages("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png");
         this.image.repaint();
     }
 

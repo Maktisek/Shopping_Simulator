@@ -2,13 +2,15 @@ package UI.CreationUI;
 
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.MainUI;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MultiplierButton extends CustomButton {
+public class MultiplierButton extends CustomTitleButton {
 
     private int amount;
     private final GameData gameData;
@@ -31,7 +33,6 @@ public class MultiplierButton extends CustomButton {
             super.clicked = true;
             repaint();
             this.gameData.setAmount(this.amount);
-            deleteCursor();
         });
     }
 
@@ -42,6 +43,10 @@ public class MultiplierButton extends CustomButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 if(!clicked) {
+                    MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, MultiplierButton.this);
+                    if(parent != null) {
+                        parent.setCursor();
+                    }
                     MultiplierButton.super.hoovered = true;
                     repaint();
                 }
@@ -50,6 +55,10 @@ public class MultiplierButton extends CustomButton {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
+                MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, MultiplierButton.this);
+                if(parent != null) {
+                    parent.resetCursor();
+                }
                 MultiplierButton.super.hoovered = false;
             }
         });
@@ -58,15 +67,7 @@ public class MultiplierButton extends CustomButton {
     public void resetClicked(){
         this.clicked = false;
         this.img = super.idleImg;
-        setCursor();
         repaint();
-    }
-
-    private void deleteCursor(){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
-        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
-        this.setCursor(customCursor);
     }
 
     public int getAmount() {

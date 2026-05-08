@@ -107,7 +107,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeSouth() throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", "/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
+        CustomButton customButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();

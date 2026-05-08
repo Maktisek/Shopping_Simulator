@@ -126,7 +126,7 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     private void initializeClaimButton() throws InvalidUILoadException {
-        this.claimButton = new CustomButton("/MainUI/ShopUI/CLAIM_BUTTON.png","/MainUI/ShopUI/CLAIM_BUTTON.png", 256, 74);
+        this.claimButton = new CustomButton("/MainUI/ShopUI/CLAIM_BUTTON.png", 256, 74);
         this.claimButton.setVisible(false);
         this.claimButton.addActionListener(e ->{
             CommandResult result = new ClaimAchievementRewardCommand(this.gameData, this.achievement).execute();
