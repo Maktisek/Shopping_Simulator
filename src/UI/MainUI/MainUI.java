@@ -67,12 +67,12 @@ public class MainUI extends BackgroundPanel {
 
     private void initializeStockManagementUI() throws InvalidUILoadException {
         this.stockManagementUI = new StockManagementUI(this.gameData);
-        this.mainPanel.add(stockManagementUI, "Stock");
+        this.mainPanel.add(stockManagementUI, "STOCK");
     }
 
     private void initializeAchievementManagementUI() throws InvalidUILoadException {
         this.achievementManagementUI = new AchievementManagementUI(gameData);
-        this.mainPanel.add(achievementManagementUI, "Achievements");
+        this.mainPanel.add(achievementManagementUI, "ACHIEVEMENTS");
     }
 
     public void switchPanel(String panel) {
@@ -104,7 +104,7 @@ public class MainUI extends BackgroundPanel {
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().pollAchievement();
         if(temp != null){
-            String message = "Achievement \"" + temp.getName() + "\" has been unlocked";
+            String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
             showDialog(new DialogUI("/MainUI/ShopUI/ACHIEVEMENT_PANE.png", message));
         }

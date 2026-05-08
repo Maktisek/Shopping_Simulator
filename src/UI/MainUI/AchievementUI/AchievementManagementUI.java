@@ -67,7 +67,7 @@ public class AchievementManagementUI extends JPanel {
     private void fillGrid(JPanel wrapper) throws InvalidUILoadException {
         for (AchievementTypes type : AchievementTypes.values()) {
             wrapper.add(Box.createVerticalStrut(20));
-            StrokeLabel typeLabel = new StrokeLabel(type.toString() + " achievements", 40.0f);
+            StrokeLabel typeLabel = new StrokeLabel(type.toString() + " goals", 40.0f);
             typeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             wrapper.add(typeLabel);
             wrapper.add(Box.createVerticalStrut(20));

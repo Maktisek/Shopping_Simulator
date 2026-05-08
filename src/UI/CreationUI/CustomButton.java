@@ -113,10 +113,4 @@ public class CustomButton extends JButton {
         setMinimumSize(dimension);
     }
 
-    public void setCursor(){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CLICKED_CURSOR.png"));
-        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
-        this.setCursor(customCursor);
-    }
 }

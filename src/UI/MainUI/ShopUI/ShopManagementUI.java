@@ -96,21 +96,21 @@ public class ShopManagementUI extends BackgroundPanel {
         westPanel.setOpaque(false);
         westPanel.setBorder(BorderFactory.createEmptyBorder(10, 0,0,0));
         initializeChangeShopButtons(westPanel);
-        initializeChangeButton(westPanel, "Stock");
-        initializeChangeButton(westPanel, "Achievements");
+        initializeChangeButton(westPanel, "STOCK");
+        initializeChangeButton(westPanel, "ACHIEVEMENTS");
 
 
         panel.add(westPanel, BorderLayout.WEST);
     }
 
     private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
-        CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
-        stock.addActionListener(e -> {
+        CustomButton change = new CustomButton("/MainUI/ShopUI/"+ card + "_BUTTON.png", 162, 162);
+        change.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
         });
-        stock.setAlignmentX(Component.CENTER_ALIGNMENT);
-        westPanel.add(stock);
+        change.setAlignmentX(Component.CENTER_ALIGNMENT);
+        westPanel.add(change);
     }
 
 
