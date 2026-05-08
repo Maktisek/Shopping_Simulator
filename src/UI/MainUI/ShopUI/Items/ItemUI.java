@@ -157,7 +157,7 @@ public class ItemUI extends BackgroundPanel {
         this.name.setText(item.getItem().getName());
         updateImage();
         this.price.setText(item.getItem().getCurrentPrice()+ " FR");
-        updateNpcColorPrice();
+//        updateNpcColorPrice();
         this.name.repaint();
         this.price.repaint();
     }
@@ -168,12 +168,18 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void updateShopColorPrice() {
-        if (item.getItem().getBasePrice() > item.getItem().getCurrentPrice()) {
+//        if (item.getItem().getBasePrice() > item.getItem().getCurrentPrice()) {
+//            this.price.setForeground(Color.GREEN);
+//        } else if (item.getItem().getBasePrice() < item.getItem().getCurrentPrice()) {
+//            this.price.setForeground(Color.RED);
+//        }else {
+//            this.price.setForeground(Color.WHITE);
+//        }
+
+        if(item.getItem().getCurrentPrice() * gameData.getAmount() <= gameData.getPlayer().getCurrentBalance()){
             this.price.setForeground(Color.GREEN);
-        } else if (item.getItem().getBasePrice() < item.getItem().getCurrentPrice()) {
-            this.price.setForeground(Color.RED);
         }else {
-            this.price.setForeground(Color.WHITE);
+            this.price.setForeground(Color.RED);
         }
     }
 
