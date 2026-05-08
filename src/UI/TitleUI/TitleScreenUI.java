@@ -41,6 +41,7 @@ public class TitleScreenUI {
     private void initialize() throws InvalidUILoadException{
         initializeTitle();
         initializeMainPanel();
+        setCursor();
     }
 
     private void initializeTitle() throws InvalidUILoadException{
@@ -98,5 +99,12 @@ public class TitleScreenUI {
         quit.addActionListener(e ->{
             this.frame.dispose();
         });
+    }
+
+    public void setCursor(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
+        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
+        this.background.setCursor(customCursor);
     }
 }

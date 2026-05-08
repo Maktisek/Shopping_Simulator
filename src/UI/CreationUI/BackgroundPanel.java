@@ -12,13 +12,11 @@ public class BackgroundPanel extends JPanel {
 
     public BackgroundPanel(){
         super();
-        setCursor();
     }
 
     public BackgroundPanel(String imgFile) throws InvalidUILoadException {
         super();
         loadImage(imgFile);
-        setCursor();
     }
 
     private void loadImage(String imgFile) throws InvalidUILoadException{
@@ -37,14 +35,22 @@ public class BackgroundPanel extends JPanel {
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
-    private void setCursor(){
+    public void setImg(String image) throws InvalidUILoadException{
+        loadImage(image);
+    }
+
+    public void setCursor(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CLICKED_CURSOR.png"));
+        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
+        this.setCursor(customCursor);
+    }
+
+    public void resetCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }
 
-    public void setImg(String image) throws InvalidUILoadException{
-        loadImage(image);
-    }
 }

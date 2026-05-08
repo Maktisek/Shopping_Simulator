@@ -61,21 +61,22 @@ public class ShopManagementUI extends BackgroundPanel {
 
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
-        initializeWestPanel(wrapper);
         initializeBounds(wrapper);
         initializeEast(wrapper);
 
-        JPanel northWrapper = new JPanel(new BorderLayout());
-        northWrapper.setOpaque(false);
-        initializeNorth(northWrapper);
+        JPanel central = new JPanel(new BorderLayout());
+        central.setOpaque(false);
+
+        initializeWestPanel(central);
+        initializeNorth(central);
+
+        wrapper.add(central, BorderLayout.CENTER);
 
         mainPanel.add(cardPanel, BorderLayout.CENTER);
         cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
 
-
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(northWrapper, JLayeredPane.PALETTE_LAYER);
         add(layeredPane);
         update();
     }
@@ -93,11 +94,11 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
-        westPanel.add(Box.createVerticalGlue());
+        westPanel.setBorder(BorderFactory.createEmptyBorder(10, 0,0,0));
         initializeChangeShopButtons(westPanel);
         initializeChangeButton(westPanel, "Stock");
         initializeChangeButton(westPanel, "Achievements");
-        westPanel.add(Box.createVerticalGlue());
+
 
         panel.add(westPanel, BorderLayout.WEST);
     }
@@ -106,7 +107,6 @@ public class ShopManagementUI extends BackgroundPanel {
         CustomButton stock = new CustomButton("/MainUI/ShopUI/STOCK_BUTTON.png", "/MainUI/ShopUI/STOCK_BUTTON.png", 162, 162);
         stock.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-
             parent.switchPanel(card);
         });
         stock.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -115,7 +115,6 @@ public class ShopManagementUI extends BackgroundPanel {
 
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalGlue());
         CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", "/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 162, 162);
         CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", "/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 162, 162);
 
@@ -256,11 +255,9 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
         north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(5, 10, 15, 10));
-
+        north.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
         initializeBalance(north);
         initializeMultipliers(north);
-
         wrapper.add(north, BorderLayout.NORTH);
     }
 

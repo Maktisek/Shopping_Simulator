@@ -44,6 +44,7 @@ public class MainUI extends BackgroundPanel {
     }
 
     private void initialize() throws InvalidUILoadException {
+        resetCursor();
         initializeMainPanel();
         initializeShopManagementUI();
         initializeStockManagementUI();

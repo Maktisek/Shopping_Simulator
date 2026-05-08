@@ -3,6 +3,7 @@ package UI.CreationUI;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MultiplierButton extends CustomButton {
             super.clicked = true;
             repaint();
             this.gameData.setAmount(this.amount);
+            deleteCursor();
         });
     }
 
@@ -56,7 +58,15 @@ public class MultiplierButton extends CustomButton {
     public void resetClicked(){
         this.clicked = false;
         this.img = super.idleImg;
+        setCursor();
         repaint();
+    }
+
+    private void deleteCursor(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
+        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
+        this.setCursor(customCursor);
     }
 
     public int getAmount() {

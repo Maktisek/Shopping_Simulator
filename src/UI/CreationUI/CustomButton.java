@@ -1,6 +1,8 @@
 package UI.CreationUI;
 
 import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.MainUI;
+import UI.TitleUI.TitleScreenUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,6 +83,10 @@ public class CustomButton extends JButton {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 CustomButton.this.hoovered = false;
+                MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
+                if(parent != null) {
+                    parent.resetCursor();
+                }
                 repaint();
             }
 
@@ -88,6 +94,10 @@ public class CustomButton extends JButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 CustomButton.this.hoovered = true;
+                MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
+                if(parent != null) {
+                    parent.setCursor();
+                }
                 repaint();
             }
 
@@ -116,7 +126,7 @@ public class CustomButton extends JButton {
         setMinimumSize(dimension);
     }
 
-    private void setCursor(){
+    public void setCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CLICKED_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
