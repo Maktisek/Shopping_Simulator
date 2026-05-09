@@ -88,14 +88,6 @@ public class Initialization {
     }
 
 
-    private void checkIntervals() throws WrongIntervalException {
-        for (Shop shop : gameData.getShopManagement().getShops()){
-            for (ItemShop item : shop.getItems()){
-                item.getAmountManager().getInterval().testInterval();
-            }
-        }
-    }
-
     private void loadUpgradeManagement(){
         this.gameData.setUpgradeManagement(new UpgradeManagement());
     }

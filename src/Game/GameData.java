@@ -6,6 +6,13 @@ import Player.Player;
 import Shops.ShopManagement;
 import Upgrade.UpgradeManagement;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class GameData {
 
     private Player player;
@@ -62,4 +69,31 @@ public class GameData {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public void writeToFile() throws IOException {
+        Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");
+        try {
+            Files.createDirectories(path.getParent());
+        } catch (IOException e) {
+            throw new IOException("There is a problem with creating the saves folder.");
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(path))) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            throw new IOException(e.getMessage() + " cannot be serialized.");
+        }
+    }
+
+    public static GameData readFromFile() throws IOException {
+        Path path = Paths.get(System.getProperty("user.home"), "LastMemorySaves", "ForestMarketSave" + ".dat");
+        if (!Files.exists(path)) {
+            throw new IOException("Save s názvem " + "ForestMarketSave" + " neexistuje");
+        }
+        try (ObjectInputStream stream = new ObjectInputStream(Files.newInputStream(path))) {
+            return (GameData) stream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+
 }
