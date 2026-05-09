@@ -9,7 +9,7 @@ import java.awt.*;
 
 public abstract class BaseDialogUI extends BackgroundPanel {
 
-    private final String message;
+    protected final String message;
 
     public BaseDialogUI(String imgFile, String message) throws InvalidUILoadException {
         super(imgFile);
@@ -27,7 +27,7 @@ public abstract class BaseDialogUI extends BackgroundPanel {
         initializeLabel();
     }
 
-    private void initializeLabel() {
+    protected void initializeLabel() {
         add(Box.createVerticalStrut(35));
         StrokeLabel label = new StrokeLabel(message, 12.0f);
 

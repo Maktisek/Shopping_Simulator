@@ -107,7 +107,7 @@ public class TitleScreenUI extends JFrame {
             CommandResult result = new LoadSaveCommand(gameData).execute();
             if (result.getState() == CommandState.FAILED_ISSUE) {
                 try {
-                    showDialog(new TitleDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    showDialog(new TitleDialogUI("/TitleScreenUI/TITLE_SCREEN_DIALOG.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
