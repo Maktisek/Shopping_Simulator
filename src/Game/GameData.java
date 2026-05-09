@@ -75,7 +75,7 @@ public class GameData {
         try {
             Files.createDirectories(path.getParent());
         } catch (IOException e) {
-            throw new IOException("There is a problem with creating the saves folder.");
+            throw new IOException("There is a problem with creating the save folder.");
         }
         try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(path))) {
             out.writeObject(this);
