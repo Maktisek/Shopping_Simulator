@@ -87,7 +87,7 @@ public class GameData {
     public static GameData readFromFile() throws IOException {
         Path path = Paths.get(System.getProperty("user.home"), "LastMemorySaves", "ForestMarketSave" + ".dat");
         if (!Files.exists(path)) {
-            throw new IOException("Save s názvem " + "ForestMarketSave" + " neexistuje");
+            throw new IOException("There is no save available");
         }
         try (ObjectInputStream stream = new ObjectInputStream(Files.newInputStream(path))) {
             return (GameData) stream.readObject();

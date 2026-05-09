@@ -10,7 +10,7 @@ import Upgrade.UpgradeManagement;
 
 public abstract class Command {
 
-    private final GameData gameData;
+    private GameData gameData;
     private CommandResult result;
 
     public Command(GameData gameData) {
@@ -57,4 +57,7 @@ public abstract class Command {
         return this.gameData.getShopManagement();
     }
 
+    public void setGameData(GameData gameData) {
+        this.gameData = gameData;
+    }
 }
