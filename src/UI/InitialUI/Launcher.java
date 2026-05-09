@@ -13,7 +13,7 @@ public class Launcher {
             public void run() {
                 try {
                     TitleScreenUI title = new TitleScreenUI();
-                    title.show();
+                    title.makeVisible();
                 }catch (InvalidUILoadException e){
                     System.err.println(e.getMessage());
                 }

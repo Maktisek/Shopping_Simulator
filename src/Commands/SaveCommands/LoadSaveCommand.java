@@ -18,7 +18,7 @@ public class LoadSaveCommand extends Command {
         try {
             setGameData(GameData.readFromFile());
         } catch (IOException e) {
-            return new CommandResult(e.getMessage(), CommandState.FAILED_BUY);
+            return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
         return new CommandResult("The game has been loaded successfully", CommandState.DONE);
     }
