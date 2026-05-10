@@ -13,6 +13,7 @@ public class MoneyPanelUI extends BackgroundPanel {
 
     private final GameData gameData;
     private StrokeLabel price;
+    private Timer timer;
 
     public MoneyPanelUI(String imgFile, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
@@ -23,6 +24,7 @@ public class MoneyPanelUI extends BackgroundPanel {
     private void initialize(){
         setLayout(new BorderLayout());
         initializeDimensions();
+        initializeTimer();
 
         JPanel center = new JPanel();
         center.setLayout(new BorderLayout());
@@ -40,7 +42,39 @@ public class MoneyPanelUI extends BackgroundPanel {
     }
 
     public void update(){
-        this.price.setText(Important.parseMoney(gameData.getPlayer().getCurrentBalance())+" FR");
+        int balance = gameData.getPlayer().getCurrentBalance();
+        this.price.setText(Important.parseMoney(balance)+" FR");
+        updateColors(balance);
         this.price.repaint();
+    }
+
+    private void updateColors(int balance){
+        if(balance < 40){
+            this.price.setForeground(Color.RED);
+            if (!timer.isRunning()){
+                startTimer();
+            }
+        }else {
+            if(timer.isRunning()) {
+                stopTimer();
+            }
+            this.price.setForeground(Color.WHITE);
+
+        }
+    }
+
+    private void initializeTimer() {
+        this.timer = new Timer(500, e -> {
+            this.price.setVisibility(!this.price.isVisibility());
+        });
+    }
+
+    private void startTimer(){
+        this.timer.start();
+        }
+
+    private void stopTimer(){
+        this.timer.stop();
+        this.price.setVisibility(true);
     }
 }

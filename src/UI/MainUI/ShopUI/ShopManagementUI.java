@@ -291,15 +291,6 @@ public class ShopManagementUI extends BackgroundPanel {
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
-
-
-//            CommandResult result = new WriteSaveCommand(gameData).execute();
-//            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-//            try {
-//                parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
-//            } catch (InvalidUILoadException ex) {
-//                throw new RuntimeException(ex);
-//            }
         });
 
         north.add(Box.createHorizontalStrut(10));

@@ -20,6 +20,7 @@ public class MainUI extends BackgroundPanel {
     private final JPanel overlay;
     private final GameData gameData;
     private Timer updater;
+    private Timer achievementUpdater;
     private ShopManagementUI shopManagementUI;
     private StockManagementUI stockManagementUI;
     private AchievementManagementUI achievementManagementUI;
@@ -82,11 +83,6 @@ public class MainUI extends BackgroundPanel {
     public void update(){
          this.updater = new Timer(5, e ->{
              try {
-                 checkForAchievements();
-             } catch (InvalidUILoadException ex) {
-                 throw new RuntimeException(ex);
-             }
-             try {
                  this.shopManagementUI.update();
              } catch (InvalidUILoadException ex) {
                  throw new RuntimeException(ex);
@@ -99,19 +95,28 @@ public class MainUI extends BackgroundPanel {
              }
          });
         updater.start();
+
+        this.achievementUpdater = new Timer(5, e ->{
+            try {
+                checkForAchievements();
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        achievementUpdater.start();
     }
 
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().pollAchievement();
         if(temp != null){
+            this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
             showDialog(new DialogUI("/MainUI/ShopUI/ACHIEVEMENT_PANE.png", message));
         }
     }
 
-    public void showDialog(JPanel customContent) {
-        this.updater.stop();
+    public void showDialog(JPanel customContent) throws InvalidUILoadException {
         overlay.removeAll();
         overlay.add(customContent);
         overlay.setVisible(true);
@@ -119,7 +124,7 @@ public class MainUI extends BackgroundPanel {
     }
 
     public void hideDialog() {
-        this.updater.start();
+        this.achievementUpdater.start();
         overlay.setVisible(false);
         repaint();
     }

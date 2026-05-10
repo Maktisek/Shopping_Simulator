@@ -4,9 +4,9 @@
       "type": "BUY",
       "name": "Better than your mom",
       "description": "Buy 100 products",
-      "bound": 100,
+      "bound": 1,
       "current": 0,
-      "reward": 500
+      "reward": 50000000
     },
     {
       "type": "BUY",

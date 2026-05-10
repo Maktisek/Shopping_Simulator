@@ -8,24 +8,28 @@ import java.awt.*;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.util.Objects;
 
 /**
  * @author Google Gemini
  */
 public class StrokeLabel extends JLabel {
-    private Color strokeColor = Color.BLACK;
+    private final Color strokeColor = Color.BLACK;
     private float strokeWidth = 7.5f;
+    private boolean visibility;
 
     public StrokeLabel(String text, float size) {
         super(text);
         setBorder(new EmptyBorder(0, 10, 0, 10));
         setOpaque(false);
-        setFont(Important.loadFont("/Fonts/Daydream.otf").deriveFont(Font.BOLD,size));
+        setFont(Objects.requireNonNull(Important.loadFont("/Fonts/Daydream.otf")).deriveFont(Font.BOLD,size));
         setForeground(Color.WHITE);
+        this.visibility = true;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        if(visibility){
         Graphics2D g2 = (Graphics2D) g.create();
 
         g2.setClip(null);
@@ -57,5 +61,18 @@ public class StrokeLabel extends JLabel {
         g2.fill(shape);
 
         g2.dispose();
+        }
+    }
+
+    public void setStrokeWidth(float strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }
