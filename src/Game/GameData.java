@@ -91,8 +91,7 @@ public class GameData implements Serializable {
             throw new IOException("There is no save available");
         }
         try (ObjectInputStream stream = new ObjectInputStream(Files.newInputStream(path))) {
-            GameData gameData = (GameData) stream.readObject();
-            return gameData;
+            return (GameData) stream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new IOException(e.getMessage());
         }
@@ -104,17 +103,5 @@ public class GameData implements Serializable {
         this.setDayManagement(gameData.getDayManagement());
         this.setShopManagement(gameData.getShopManagement());
         this.setUpgradeManagement(gameData.getUpgradeManagement());
-    }
-
-    @Override
-    public String toString() {
-        return "GameData{" +
-                "player=" + player +
-                ", dayManagement=" + dayManagement +
-                ", shopManagement=" + shopManagement +
-                ", upgradeManagement=" + upgradeManagement +
-                ", achievementManagement=" + achievementManagement +
-                ", amount=" + amount +
-                '}';
     }
 }

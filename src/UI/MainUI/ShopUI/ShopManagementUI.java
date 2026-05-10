@@ -282,15 +282,18 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initializeSaveButton(JPanel north) throws InvalidUILoadException {
-        CustomButton save = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 100, 100);
+        CustomButton save = new CustomButton("/MainUI/ShopUI/SAVE_BUTTON.png", 100, 100);
         save.addActionListener(e -> {
-            CommandResult result = new WriteSaveCommand(gameData).execute();
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
+
+
+
+//            CommandResult result = new WriteSaveCommand(gameData).execute();
+//            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+//            try {
+//                parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+//            } catch (InvalidUILoadException ex) {
+//                throw new RuntimeException(ex);
+//            }
         });
 
         north.add(Box.createHorizontalStrut(10));
