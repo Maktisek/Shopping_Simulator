@@ -11,12 +11,14 @@ public class AchievementManagement implements Serializable {
 
     private Queue<Achievement> freshAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;
+    private final ArrayList<Achievement> doneAchievements;
     private ArrayList<Achievement> loadedAchievements;
 
     public AchievementManagement() {
         this.freshAchievements = new LinkedList<>();
         this.possibleAchievements = new HashMap<>();
         this.loadedAchievements = new ArrayList<>();
+        this.doneAchievements = new ArrayList<>();
     }
 
     public void loadPossibleAchievements(){
@@ -40,11 +42,11 @@ public class AchievementManagement implements Serializable {
         for (AchievementTypes key: possibleAchievements.keySet()){
             ArrayList<Achievement> possible = possibleAchievements.get(key);
             for (Achievement achievement : possible){
-                if (achievement.isDone()){
+                if (achievement.isDone() && !doneAchievements.contains(achievement)){
                     freshAchievements.add(achievement);
+                    doneAchievements.add(achievement);
                 }
             }
-            possible.removeIf(Achievement::isDone);
         }
     }
 

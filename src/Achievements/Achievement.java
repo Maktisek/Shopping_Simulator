@@ -19,6 +19,12 @@ public class Achievement implements Serializable {
         this.current = Math.min(after, bound);
     }
 
+    public int returnReward(){
+        int preReward = this.reward;
+        this.reward = 0;
+        return preReward;
+    }
+
     public int calculatePercent(){
         return (int) (((float) current / (float) bound) * 100);
     }

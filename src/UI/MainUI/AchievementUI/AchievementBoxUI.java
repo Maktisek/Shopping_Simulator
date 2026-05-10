@@ -158,6 +158,14 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     public void update() throws InvalidUILoadException {
+        if(achievement.getReward() == 0 && (type != AchievementUITypes.DONE)){
+            this.claimButton.setVisible(false);
+            this.type = AchievementUITypes.DONE;
+            this.bound.setText("DONE");
+            this.percentualBound.setVisible(false);
+            initializeImage();
+        }
+
         if (this.achievement.isDone() && (type != AchievementUITypes.DONE)) {
             this.type = AchievementUITypes.DONE;
             this.bound.setText("DONE");

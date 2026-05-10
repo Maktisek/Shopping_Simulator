@@ -18,7 +18,7 @@ public class ClaimAchievementRewardCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int reward = achievement.getReward();
+        int reward = achievement.returnReward();
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() + reward);
         getDayManagement().getCurrentDay().incrementDayIncome(reward);
         getAchievementManagement().updateAchievement(AchievementTypes.MONEY, reward);
