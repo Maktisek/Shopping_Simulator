@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
+import Commands.SaveCommands.WriteSaveCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -258,6 +259,8 @@ public class ShopManagementUI extends BackgroundPanel {
         north.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
         initializeBalance(north);
         initializeMultipliers(north);
+        initializeSaveButton(north);
+
         wrapper.add(north, BorderLayout.NORTH);
     }
 
@@ -276,6 +279,22 @@ public class ShopManagementUI extends BackgroundPanel {
             north.add(Box.createHorizontalStrut(10));
         }
         multiplierButtons.get(0).doClick();
+    }
+
+    private void initializeSaveButton(JPanel north) throws InvalidUILoadException {
+        CustomButton save = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 100, 100);
+        save.addActionListener(e -> {
+            CommandResult result = new WriteSaveCommand(gameData).execute();
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        north.add(Box.createHorizontalStrut(10));
+        north.add(save);
     }
 
     public void changeCard(String card) {

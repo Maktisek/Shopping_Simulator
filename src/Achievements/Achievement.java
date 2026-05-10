@@ -1,6 +1,8 @@
 package Achievements;
 
-public class Achievement {
+import java.io.Serializable;
+
+public class Achievement implements Serializable {
 
     private AchievementTypes type;
     private String name;

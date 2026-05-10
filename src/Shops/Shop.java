@@ -8,9 +8,10 @@ import Player.Player;
 import Shops.Utilities.ShopKey;
 import Shops.Utilities.ShopNames;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Shop {
+public class Shop implements Serializable {
 
     private ShopNames name;
     private ItemShop[] items;

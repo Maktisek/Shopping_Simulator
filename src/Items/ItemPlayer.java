@@ -6,12 +6,13 @@ import Items.Exceptions.WrongItemException;
 import Items.Utilities.Evidence;
 import Utilities.Important;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class ItemPlayer {
+public class ItemPlayer implements Serializable {
 
     private String name;
     private int amount;

@@ -2,7 +2,9 @@ package Items.Utilities;
 
 import Items.Exceptions.WrongEvidenceException;
 
-public class Evidence {
+import java.io.Serializable;
+
+public class Evidence implements Serializable {
     private int amount;
     private int price;
 

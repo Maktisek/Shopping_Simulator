@@ -1,10 +1,11 @@
 package DayCycle;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DayManagement {
+public class DayManagement implements Serializable {
 
     private int numberOfDays;
     private Day currentDay;

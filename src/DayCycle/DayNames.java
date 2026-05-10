@@ -1,5 +1,7 @@
 package DayCycle;
 
-public enum DayNames {
+import java.io.Serializable;
+
+public enum DayNames implements Serializable {
     Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 }

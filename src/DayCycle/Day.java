@@ -2,7 +2,9 @@ package DayCycle;
 
 import Utilities.Important;
 
-public class Day {
+import java.io.Serializable;
+
+public class Day implements Serializable {
 
     private DayNames dayName;
     private final int number;

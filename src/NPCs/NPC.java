@@ -6,10 +6,11 @@ import Shops.Shop;
 import Player.Player;
 
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
-public class NPC {
+public class NPC implements Serializable {
 
     private int quantityWeight;
     private int convenienceWeight;

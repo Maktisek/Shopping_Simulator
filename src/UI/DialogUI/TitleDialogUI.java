@@ -3,12 +3,10 @@ package UI.DialogUI;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class TitleDialogUI extends DialogUI{
 

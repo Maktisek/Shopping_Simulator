@@ -1,6 +1,8 @@
 package Shops.Utilities;
 
-public class ShopKey {
+import java.io.Serializable;
+
+public class ShopKey implements Serializable {
 
     private int price;
     private boolean unlocked;
@@ -24,11 +26,4 @@ public class ShopKey {
         this.unlocked = unlocked;
     }
 
-    @Override
-    public String toString() {
-        return "ShopKey{" +
-                "price=" + price +
-                ", unlocked=" + unlocked +
-                '}';
-    }
 }

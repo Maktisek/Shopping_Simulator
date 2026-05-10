@@ -5,7 +5,9 @@ import Items.Utilities.AmountManager;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
-public class ItemShop implements Item{
+import java.io.Serializable;
+
+public class ItemShop implements Item, Serializable {
 
     private ItemBase item;
     private double penalization;

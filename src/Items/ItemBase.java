@@ -4,7 +4,9 @@ import Items.Exceptions.WrongItemException;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
-public class ItemBase {
+import java.io.Serializable;
+
+public class ItemBase implements Serializable {
 
 
     private String name;

@@ -3,11 +3,12 @@ package Shops;
 import Items.Exceptions.WrongItemException;
 import Player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class ShopManagement {
+public class ShopManagement implements Serializable {
 
     private ArrayList<Shop> shops;
     private Shop currentShop;

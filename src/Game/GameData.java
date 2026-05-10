@@ -9,11 +9,12 @@ import Upgrade.UpgradeManagement;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class GameData {
+public class GameData implements Serializable {
 
     private Player player;
     private DayManagement dayManagement;

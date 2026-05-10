@@ -6,9 +6,10 @@ import Upgrade.Upgrades.MaxSoldUpgrade;
 import Upgrade.Upgrades.MaxStockUpgrade;
 import Upgrade.Utilities.UpgradeNames;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class UpgradeManagement {
+public class UpgradeManagement implements Serializable {
 
     private final HashMap<UpgradeNames, Upgrade> upgrades;
     private Rebirth rebirth;

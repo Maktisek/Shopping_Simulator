@@ -1,6 +1,8 @@
 package Upgrade;
 
-public abstract class UpgradeBasicType implements Upgrade{
+import java.io.Serializable;
+
+public abstract class UpgradeBasicType implements Upgrade, Serializable {
 
     private int data;
     private int price;

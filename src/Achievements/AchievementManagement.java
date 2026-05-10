@@ -1,12 +1,13 @@
 package Achievements;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class AchievementManagement {
+public class AchievementManagement implements Serializable {
 
     private Queue<Achievement> freshAchievements;
     private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;

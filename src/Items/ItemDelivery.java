@@ -1,6 +1,8 @@
 package Items;
 
-public class ItemDelivery {
+import java.io.Serializable;
+
+public class ItemDelivery implements Serializable {
 
     private String name;
     private int boughtPrice;

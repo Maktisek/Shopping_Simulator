@@ -1,6 +1,8 @@
 package Upgrade.Rebirth;
 
-public class Rebirth {
+import java.io.Serializable;
+
+public class Rebirth implements Serializable {
 
     private double multiplier;
     private int price;

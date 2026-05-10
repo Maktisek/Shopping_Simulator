@@ -2,9 +2,10 @@ package Items.Utilities;
 
 import Utilities.Interval;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class AmountManager {
+public class AmountManager implements Serializable {
 
     private final int max;
     private int current;

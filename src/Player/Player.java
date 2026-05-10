@@ -6,10 +6,11 @@ import Items.Exceptions.WrongItemException;
 import Player.Exceptions.InvalidPlayerActionException;
 import Shops.Shop;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Player {
+public class Player implements Serializable {
 
 
     private int currentBalance;

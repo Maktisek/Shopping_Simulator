@@ -18,6 +18,7 @@ public class WriteSaveCommand extends Command {
         try {
             getGameData().writeToFile();
         } catch (IOException e) {
+            System.err.println(e.getMessage());
             return new CommandResult("Oh, this should not have happened", CommandState.FAILED_ISSUE);
         }
         return new CommandResult("The game has been successfully saved", CommandState.DONE);

@@ -2,7 +2,9 @@ package Utilities;
 
 import Utilities.Exceptions.WrongIntervalException;
 
-public class Interval {
+import java.io.Serializable;
+
+public class Interval implements Serializable {
 
     private int upperBound;
     private int lowerBound;

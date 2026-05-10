@@ -4,7 +4,9 @@ import Items.Utilities.AmountManager;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
 import Utilities.Important;
 
-public class ItemNPC implements Item {
+import java.io.Serializable;
+
+public class ItemNPC implements Item, Serializable {
 
     private ItemBase item;
     private AmountManager amountManager;
