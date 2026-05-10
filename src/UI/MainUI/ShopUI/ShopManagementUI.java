@@ -10,6 +10,7 @@ import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
+import UI.DialogUI.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BuyDialogUI;
 import UI.DialogUI.DialogUI;
@@ -284,7 +285,12 @@ public class ShopManagementUI extends BackgroundPanel {
     private void initializeSaveButton(JPanel north) throws InvalidUILoadException {
         CustomButton save = new CustomButton("/MainUI/ShopUI/SAVE_BUTTON.png", 100, 100);
         save.addActionListener(e -> {
-
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new SaveDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
 
 
 //            CommandResult result = new WriteSaveCommand(gameData).execute();
