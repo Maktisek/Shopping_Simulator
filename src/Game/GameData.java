@@ -86,15 +86,35 @@ public class GameData implements Serializable {
     }
 
     public static GameData readFromFile() throws IOException {
-        Path path = Paths.get(System.getProperty("user.home"), "LastMemorySaves", "ForestMarketSave" + ".dat");
+        Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");
         if (!Files.exists(path)) {
             throw new IOException("There is no save available");
         }
         try (ObjectInputStream stream = new ObjectInputStream(Files.newInputStream(path))) {
-            return (GameData) stream.readObject();
+            GameData gameData = (GameData) stream.readObject();
+            return gameData;
         } catch (IOException | ClassNotFoundException e) {
             throw new IOException(e.getMessage());
         }
     }
 
+    public void copyFromLoaded(GameData gameData){
+        this.setPlayer(gameData.getPlayer());
+        this.setAchievementManagement(gameData.getAchievementManagement());
+        this.setDayManagement(gameData.getDayManagement());
+        this.setShopManagement(gameData.getShopManagement());
+        this.setUpgradeManagement(gameData.getUpgradeManagement());
+    }
+
+    @Override
+    public String toString() {
+        return "GameData{" +
+                "player=" + player +
+                ", dayManagement=" + dayManagement +
+                ", shopManagement=" + shopManagement +
+                ", upgradeManagement=" + upgradeManagement +
+                ", achievementManagement=" + achievementManagement +
+                ", amount=" + amount +
+                '}';
+    }
 }

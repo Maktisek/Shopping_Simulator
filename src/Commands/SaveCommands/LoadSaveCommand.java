@@ -16,8 +16,10 @@ public class LoadSaveCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            setGameData(GameData.readFromFile());
+            GameData newGameData = GameData.readFromFile();
+            this.getGameData().copyFromLoaded(newGameData);
         } catch (IOException e) {
+            System.err.println(e.getMessage());
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
         return new CommandResult("The game has been loaded successfully", CommandState.DONE);

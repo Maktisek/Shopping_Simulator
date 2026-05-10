@@ -13,6 +13,7 @@ public abstract class Command {
     private GameData gameData;
     private CommandResult result;
 
+
     public Command(GameData gameData) {
         this.result = null;
         this.gameData = gameData;
