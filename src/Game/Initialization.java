@@ -7,6 +7,7 @@ import NPCs.NPCFinder;
 import Player.Player;
 import Shops.Shop;
 import Shops.ShopManagement;
+import Taxes.Tax;
 import Upgrade.UpgradeManagement;
 import Utilities.Exceptions.WrongIntervalException;
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ public class Initialization {
 
     private void initGameData(){
         loadPlayer();
+        loadTax();
         loadDayManagement();
         loadShopManagement();
         loadNPCs();
@@ -46,6 +48,20 @@ public class Initialization {
             this.gameData.setPlayer(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Player.class));
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Player: " + e.getMessage());
+        }
+    }
+
+    private void loadTax(){
+        Gson gson = new Gson();
+
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Tax.json")){
+            if(is == null){
+                throw new IllegalStateException("The path for Json: /Jsons/Tax.json is invalid and the file could not be found");
+            }
+            this.gameData.setTaxes(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Tax.class));
+            this.gameData.getTaxes().initializeK();
+        }catch (Exception e){
+            throw new RuntimeException("There is an mistake withing loading the Json file while loading Tax: " + e.getMessage());
         }
     }
 

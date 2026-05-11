@@ -4,6 +4,7 @@ import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
 import Player.Player;
 import Shops.ShopManagement;
+import Taxes.Tax;
 import Upgrade.UpgradeManagement;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class GameData implements Serializable {
     private ShopManagement shopManagement;
     private UpgradeManagement upgradeManagement;
     private AchievementManagement achievementManagement;
-    private int amount;
+    private Tax taxes;
+    private transient int amount;
 
     public Player getPlayer() {
         return player;
@@ -69,6 +71,14 @@ public class GameData implements Serializable {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public Tax getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(Tax taxes) {
+        this.taxes = taxes;
     }
 
     public void writeToFile() throws IOException {
