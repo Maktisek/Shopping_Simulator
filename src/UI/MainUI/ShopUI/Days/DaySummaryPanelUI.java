@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class DaySummaryPanelUI extends BackgroundPanel {
 
-    private GameData gameData;
+    private final GameData gameData;
     private Day day;
 
     public DaySummaryPanelUI(GameData gameData) throws InvalidUILoadException {
@@ -87,7 +87,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     }
 
     private void initializeDayStatistics(JPanel center) {
-        String[] description = Important.decodeString(this.day.information());
+        String[] description = Important.decodeString(this.day.information(gameData.getTax().getPrevious()));
         for (String s : description) {
             StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 13.0f);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);

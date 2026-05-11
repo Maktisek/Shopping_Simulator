@@ -96,8 +96,9 @@ public class Day implements Serializable {
         this.daySpending = daySpending;
     }
 
-    public String information() {
-        return "Income:" + Important.parseMoney(dayIncome) + " FR" + "\n" +
+    public String information(int tax) {
+        return "Tax paid:" + Important.parseMoney(tax) + " FR" + "\n" +
+                "Income:" + Important.parseMoney(dayIncome) + " FR" + "\n" +
                 "Spending:" + Important.parseMoney(daySpending) + " FR" + "\n" +
                 "Bought:" + Important.parseMoney(dayBoughtAmount) + " products" + "\n" +
                 "Sold:" + Important.parseMoney(daySoldAmount) + " products" + "\n";

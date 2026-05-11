@@ -1,20 +1,20 @@
-package UI.MainUI.ShopUI.Days;
+package UI.DialogUI;
 
 import Commands.CommandResult;
 import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
-import UI.DialogUI.BaseDialogUI;
 import UI.MainUI.MainUI;
+import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
 
 import javax.swing.*;
 
-public class NewDayPanelUI extends BaseDialogUI {
+public class NewDayDialogUI extends BaseDialogUI {
 
-    private GameData gameData;
+    private final GameData gameData;
 
-    public NewDayPanelUI(String imgFile, String message, GameData gameData) throws InvalidUILoadException {
+    public NewDayDialogUI(String imgFile, String message, GameData gameData) throws InvalidUILoadException {
         super(imgFile, message);
         this.gameData = gameData;
         initialize();

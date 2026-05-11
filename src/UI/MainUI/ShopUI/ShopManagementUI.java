@@ -1,7 +1,6 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
-import Commands.SaveCommands.WriteSaveCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -17,10 +16,11 @@ import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Days.DayUI;
-import UI.MainUI.ShopUI.Days.NewDayPanelUI;
+import UI.DialogUI.NewDayDialogUI;
 import UI.MainUI.ShopUI.Money.MoneyPanelUI;
 import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
 import Upgrade.Utilities.UpgradeNames;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -234,7 +234,7 @@ public class ShopManagementUI extends BackgroundPanel {
         nextDay.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new NewDayPanelUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to proceed into another day?", gameData));
+                parent.showDialog(new NewDayDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to proceed into another day?", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
