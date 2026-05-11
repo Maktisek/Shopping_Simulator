@@ -6,6 +6,7 @@ import UI.CreationUI.BackgroundPanel;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.AchievementUI.AchievementManagementUI;
+import UI.MainUI.EndGameUI.EndPanelUI;
 import UI.MainUI.ShopUI.ShopManagementUI;
 import UI.MainUI.StockUI.StockManagementUI;
 
@@ -24,6 +25,7 @@ public class MainUI extends BackgroundPanel {
     private ShopManagementUI shopManagementUI;
     private StockManagementUI stockManagementUI;
     private AchievementManagementUI achievementManagementUI;
+    private EndPanelUI endPanelUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
         this.layeredPane = new JLayeredPane();
@@ -50,6 +52,7 @@ public class MainUI extends BackgroundPanel {
         initializeShopManagementUI();
         initializeStockManagementUI();
         initializeAchievementManagementUI();
+        initializeEndPanelUI();
 
         this.cardLayout.show(mainPanel, "Shop");
 
@@ -74,6 +77,11 @@ public class MainUI extends BackgroundPanel {
     private void initializeAchievementManagementUI() throws InvalidUILoadException {
         this.achievementManagementUI = new AchievementManagementUI(gameData);
         this.mainPanel.add(achievementManagementUI, "ACHIEVEMENTS");
+    }
+
+    private void initializeEndPanelUI() throws InvalidUILoadException {
+        this.endPanelUI = new EndPanelUI("/MainUI/ShopUI/STOCK_UI.png");
+        this.mainPanel.add(endPanelUI, "END");
     }
 
     public void switchPanel(String panel) {

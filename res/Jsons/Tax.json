@@ -1,6 +1,6 @@
 {
-  "start" : 4,
+  "start" : 2,
   "max": 300,
-  "current" : 4,
-  "startDelay" : 35
+  "current" : 2,
+  "startDelay" : 800
 }

@@ -6,6 +6,7 @@ import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.EndGameUI.EndPanelUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
 
@@ -34,7 +35,7 @@ public class NewDayDialogUI extends BaseDialogUI {
 
     private void initializeCloseButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton closeButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
-        closeButton.addActionListener(e ->{
+        closeButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
@@ -44,24 +45,20 @@ public class NewDayDialogUI extends BaseDialogUI {
 
     private void initializeYesButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton yesButton = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", 130, 75);
-        yesButton.addActionListener(e ->{
+        yesButton.addActionListener(e -> {
             CommandResult commandResult = new NewDayCommand(gameData).execute();
             System.out.println(commandResult.getMessage());
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            if (commandResult.getState() == CommandState.DONE){
+            if (commandResult.getState() == CommandState.DONE) {
                 parent.hideDialog();
                 try {
                     parent.showDialog(new DaySummaryPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
-            }else if(commandResult.getState() == CommandState.FAILED_END){
+            } else if (commandResult.getState() == CommandState.FAILED_END) {
                 parent.hideDialog();
-                try {
-                    parent.showDialog(new DaySummaryPanelUI(gameData));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
+                parent.switchPanel("END");
             }
         });
         wrapper.add(yesButton);
