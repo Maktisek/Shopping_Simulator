@@ -21,28 +21,28 @@ public class AchievementManagement implements Serializable {
         this.doneAchievements = new ArrayList<>();
     }
 
-    public void loadPossibleAchievements(){
+    public void loadPossibleAchievements() {
         for (int i = 0; i < AchievementTypes.values().length; i++) {
             AchievementTypes currentType = AchievementTypes.values()[i];
             this.possibleAchievements.put(currentType, findInLoadedAchievements(currentType));
         }
     }
 
-    private ArrayList<Achievement> findInLoadedAchievements(AchievementTypes type){
+    private ArrayList<Achievement> findInLoadedAchievements(AchievementTypes type) {
         ArrayList<Achievement> result = new ArrayList<>();
-        for (Achievement achievement : loadedAchievements){
-            if(achievement.getType() == type){
+        for (Achievement achievement : loadedAchievements) {
+            if (achievement.getType() == type) {
                 result.add(achievement);
             }
         }
         return result;
     }
 
-    private void executeDoneAchievements(){
-        for (AchievementTypes key: possibleAchievements.keySet()){
+    private void executeDoneAchievements() {
+        for (AchievementTypes key : possibleAchievements.keySet()) {
             ArrayList<Achievement> possible = possibleAchievements.get(key);
-            for (Achievement achievement : possible){
-                if (achievement.isDone() && !doneAchievements.contains(achievement)){
+            for (Achievement achievement : possible) {
+                if (achievement.isDone() && !doneAchievements.contains(achievement)) {
                     freshAchievements.add(achievement);
                     doneAchievements.add(achievement);
                 }
@@ -60,12 +60,18 @@ public class AchievementManagement implements Serializable {
         }
     }
 
-    public Achievement pollAchievement(){
-       if(!freshAchievements.isEmpty()){
-           return this.freshAchievements.poll();
-       }else {
-           return null;
-       }
+    public void pollAchievement() {
+        if (!freshAchievements.isEmpty()) {
+            this.freshAchievements.poll();
+        }
+    }
+
+    public Achievement peekAchievement() {
+        if (!freshAchievements.isEmpty()) {
+            return this.freshAchievements.peek();
+        } else {
+            return null;
+        }
     }
 
     public ArrayList<Achievement> getLoadedAchievements() {

@@ -6,6 +6,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
+import Utilities.Important;
 
 public class ClaimAchievementRewardCommand extends Command {
 
@@ -22,6 +23,6 @@ public class ClaimAchievementRewardCommand extends Command {
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() + reward);
         getDayManagement().getCurrentDay().incrementDayIncome(reward);
         getAchievementManagement().updateAchievement(AchievementTypes.MONEY, reward);
-        return new CommandResult("You got " + reward + " FR as reward from \"" + achievement.getName() +"\"", CommandState.DONE);
+        return new CommandResult("You got " + Important.parseMoney(reward) + " FR as reward from \"" + achievement.getName() +"\"", CommandState.DONE);
     }
 }

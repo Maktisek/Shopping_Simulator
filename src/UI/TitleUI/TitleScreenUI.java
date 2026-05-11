@@ -115,6 +115,7 @@ public class TitleScreenUI extends JFrame {
                 try {
                     MyFrame myFrame = new MyFrame(gameData);
                     myFrame.show();
+                    this.dispose();
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

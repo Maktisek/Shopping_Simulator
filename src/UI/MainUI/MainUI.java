@@ -107,8 +107,9 @@ public class MainUI extends BackgroundPanel {
     }
 
     private void checkForAchievements() throws InvalidUILoadException {
-        Achievement temp = this.gameData.getAchievementManagement().pollAchievement();
-        if(temp != null){
+        Achievement temp = this.gameData.getAchievementManagement().peekAchievement();
+        if(temp != null && overlay.getComponents().length == 0){
+            this.gameData.getAchievementManagement().pollAchievement();
             this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
@@ -117,7 +118,6 @@ public class MainUI extends BackgroundPanel {
     }
 
     public void showDialog(JPanel customContent) throws InvalidUILoadException {
-        overlay.removeAll();
         overlay.add(customContent);
         overlay.setVisible(true);
         repaint();
@@ -126,6 +126,7 @@ public class MainUI extends BackgroundPanel {
     public void hideDialog() {
         this.achievementUpdater.start();
         overlay.setVisible(false);
+        overlay.removeAll();
         repaint();
     }
 
