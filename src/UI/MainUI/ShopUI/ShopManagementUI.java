@@ -234,7 +234,7 @@ public class ShopManagementUI extends BackgroundPanel {
         nextDay.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new NewDayDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to proceed into another day?", gameData));
+                parent.showDialog(new NewDayDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "The tax is  " + Important.parseMoney(gameData.getTax().getCurrent())  + "FR, do you want to proceed into another day?", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

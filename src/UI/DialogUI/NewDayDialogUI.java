@@ -1,6 +1,7 @@
 package UI.DialogUI;
 
 import Commands.CommandResult;
+import Commands.CommandState;
 import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
@@ -47,11 +48,20 @@ public class NewDayDialogUI extends BaseDialogUI {
             CommandResult commandResult = new NewDayCommand(gameData).execute();
             System.out.println(commandResult.getMessage());
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.hideDialog();
-            try {
-                parent.showDialog(new DaySummaryPanelUI(gameData));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
+            if (commandResult.getState() == CommandState.DONE){
+                parent.hideDialog();
+                try {
+                    parent.showDialog(new DaySummaryPanelUI(gameData));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }else if(commandResult.getState() == CommandState.FAILED_END){
+                parent.hideDialog();
+                try {
+                    parent.showDialog(new DaySummaryPanelUI(gameData));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         wrapper.add(yesButton);
