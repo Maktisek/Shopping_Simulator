@@ -27,6 +27,15 @@ public class StrokeLabel extends JLabel {
         this.visibility = true;
     }
 
+    public StrokeLabel(String text, int size) {
+        super(text);
+        setBorder(new EmptyBorder(0, 10, 0, 10));
+        setOpaque(false);
+        setFont(new Font("Arial", Font.BOLD, size));
+        setForeground(Color.WHITE);
+        this.visibility = true;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         if(visibility){

@@ -40,6 +40,9 @@ public class Important {
     }
 
     public static String parseMoney(int number) {
+        if (number < 0){
+            number = number *-1;
+        }
         String parsed = formatCurrency(number);
         int startingIndex = findStartingIndex(parsed);
         int numberOfDigits = 0;

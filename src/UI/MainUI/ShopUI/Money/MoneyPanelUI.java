@@ -27,7 +27,7 @@ public class MoneyPanelUI extends BackgroundPanel {
         initializeTimer();
 
         JPanel center = new JPanel();
-        center.setLayout(new BorderLayout());
+        center.setLayout(new BoxLayout(center, BoxLayout.X_AXIS));
         center.setOpaque(false);
 
         this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 24.0f);
@@ -43,18 +43,19 @@ public class MoneyPanelUI extends BackgroundPanel {
 
     public void update(){
         int balance = gameData.getPlayer().getCurrentBalance();
-        this.price.setText(Important.parseMoney(balance)+" FR");
         updateColors(balance);
         this.price.repaint();
     }
 
     private void updateColors(int balance){
-        if(balance < 40){
+        if(balance < 0){
+            this.price.setText("-"+Important.parseMoney(balance)+" FR");
             this.price.setForeground(Color.RED);
             if (!timer.isRunning()){
                 startTimer();
             }
         }else {
+            this.price.setText(Important.parseMoney(balance)+" FR");
             if(timer.isRunning()) {
                 stopTimer();
             }
