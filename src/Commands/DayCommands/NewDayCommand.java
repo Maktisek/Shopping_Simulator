@@ -24,7 +24,8 @@ public class NewDayCommand extends Command {
         }
         getShopManagement().setNewDays(getPlayer());
         getDayManagement().nextDay();
+        getTax().calculateNewDay(getDayManagement().getNumberOfDays());
+        System.out.println(getTax().getCurrent());
         return new CommandResult("Set new day - " + getDayManagement().getCurrentDay().getDayName(), CommandState.DONE);
-
     }
 }

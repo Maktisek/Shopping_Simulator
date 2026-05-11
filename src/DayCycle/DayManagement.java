@@ -65,13 +65,4 @@ public class DayManagement implements Serializable {
         this.currentDay = currentDay;
     }
 
-    @Override
-    public String toString() {
-        return "DayManagement{" +
-                "numberOfDays=" + numberOfDays +
-                ", currentDay=" + currentDay +
-                ", daysDatabase=" + daysDatabase +
-                ", daysNames=" + daysNames +
-                '}';
-    }
 }

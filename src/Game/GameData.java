@@ -22,7 +22,7 @@ public class GameData implements Serializable {
     private ShopManagement shopManagement;
     private UpgradeManagement upgradeManagement;
     private AchievementManagement achievementManagement;
-    private Tax taxes;
+    private Tax tax;
     private transient int amount;
 
     public Player getPlayer() {
@@ -73,12 +73,12 @@ public class GameData implements Serializable {
         this.amount = amount;
     }
 
-    public Tax getTaxes() {
-        return taxes;
+    public Tax getTax() {
+        return tax;
     }
 
-    public void setTaxes(Tax taxes) {
-        this.taxes = taxes;
+    public void setTax(Tax tax) {
+        this.tax = tax;
     }
 
     public void writeToFile() throws IOException {

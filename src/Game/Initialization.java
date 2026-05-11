@@ -1,15 +1,12 @@
 package Game;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
-import Items.ItemShop;
 import Items.Exceptions.WrongItemException;
 import NPCs.NPCFinder;
 import Player.Player;
-import Shops.Shop;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
-import Utilities.Exceptions.WrongIntervalException;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
@@ -58,8 +55,8 @@ public class Initialization {
             if(is == null){
                 throw new IllegalStateException("The path for Json: /Jsons/Tax.json is invalid and the file could not be found");
             }
-            this.gameData.setTaxes(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Tax.class));
-            this.gameData.getTaxes().initializeK();
+            this.gameData.setTax(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Tax.class));
+            this.gameData.getTax().initializeK();
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Tax: " + e.getMessage());
         }

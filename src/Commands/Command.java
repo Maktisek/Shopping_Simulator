@@ -6,6 +6,7 @@ import Game.GameData;
 import Player.Player;
 import Shops.Shop;
 import Shops.ShopManagement;
+import Taxes.Tax;
 import Upgrade.UpgradeManagement;
 
 public abstract class Command {
@@ -58,7 +59,12 @@ public abstract class Command {
         return this.gameData.getShopManagement();
     }
 
+    public Tax getTax(){
+        return this.gameData.getTax();
+    }
+
     public void setGameData(GameData gameData) {
         this.gameData = gameData;
     }
+
 }

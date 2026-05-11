@@ -2,5 +2,5 @@
   "start" : 4,
   "max": 300,
   "current" : 4,
-  "startDelay" : 10
+  "startDelay" : 35
 }
