@@ -80,7 +80,7 @@ public class MainUI extends BackgroundPanel {
     }
 
     private void initializeEndPanelUI() throws InvalidUILoadException {
-        this.endPanelUI = new EndPanelUI("/MainUI/ShopUI/STOCK_UI.png");
+        this.endPanelUI = new EndPanelUI();
         this.mainPanel.add(endPanelUI, "END");
     }
 

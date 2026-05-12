@@ -4,21 +4,58 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.BarPanelUI;
 import UI.Exceptions.InvalidUILoadException;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class EndPanelUI extends BackgroundPanel {
 
-    public EndPanelUI(String imgFile) throws InvalidUILoadException {
-        super(imgFile);
+    private JPanel mainPanel;
+    private JPanel sidePanel;
+
+    public EndPanelUI() throws InvalidUILoadException {
+        super("/MainUI/ShopUI/STOCK_UI.png");
         initialization();
     }
 
     private void initialization() throws InvalidUILoadException {
         setLayout(new BorderLayout());
-        initializeBarPanel();
+        initializeMainPanel();
+        initializeSidePanel();
+        initializeLayeredPane();
     }
 
-    private void initializeBarPanel() throws InvalidUILoadException {
-        this.add(new BarPanelUI("ACHIEVEMENTS"), BorderLayout.NORTH);
+    private void initializeMainPanel(){
+        this.mainPanel = new JPanel();
+        this.mainPanel.setLayout(new BorderLayout());
+        this.mainPanel.setOpaque(false);
+
     }
+
+    private void initializeSidePanel() throws InvalidUILoadException {
+        this.sidePanel = new JPanel();
+        this.sidePanel.setLayout(new BorderLayout());
+        this.sidePanel.setOpaque(false);
+
+        BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI_BAR.png");
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        Dimension dimension = new Dimension(width, 135);
+        bar.setPreferredSize(dimension);
+        bar.setMaximumSize(dimension);
+        bar.setMinimumSize(dimension);
+
+        this.sidePanel.add(bar, BorderLayout.NORTH);
+    }
+
+    private void initializeLayeredPane(){
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(new OverlayLayout(layeredPane));
+
+        layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(sidePanel, JLayeredPane.PALETTE_LAYER);
+
+        this.add(layeredPane, BorderLayout.CENTER);
+    }
+
+
+
 }

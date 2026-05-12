@@ -33,10 +33,11 @@ public class BarPanelUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(1920, 135);
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        Dimension dimension = new Dimension(width, 135);
         setPreferredSize(dimension);
         setMaximumSize(dimension);
-        setMaximumSize(dimension);
+        setMinimumSize(dimension);
     }
 
 }

@@ -59,10 +59,11 @@ public class NewDayDialogUI extends BaseDialogUI {
             } else if (commandResult.getState() == CommandState.FAILED_END) {
                 parent.hideDialog();
                 parent.switchPanel("END");
-            }
-        });
+                parent.resetCursor();
+        }
+    });
         wrapper.add(yesButton);
-    }
+}
 
 
 }
