@@ -3,6 +3,7 @@ package UI.CreationUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,7 +108,7 @@ public class CustomButton extends JButton {
     }
 
     private void setSizeOfButton(int width, int height){
-        Dimension dimension = new Dimension(width, height);
+        Dimension dimension = new Dimension(width * Important.scale, height * Important.scale);
         setMaximumSize(dimension);
         setPreferredSize(dimension);
         setMinimumSize(dimension);

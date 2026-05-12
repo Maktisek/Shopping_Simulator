@@ -1,8 +1,8 @@
 package UI.MainUI.EndGameUI;
 
 import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.BarPanelUI;
 import UI.Exceptions.InvalidUILoadException;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +29,16 @@ public class EndPanelUI extends BackgroundPanel {
         this.mainPanel.setLayout(new BorderLayout());
         this.mainPanel.setOpaque(false);
 
+        initializeStatistic();
+
+    }
+
+    private void initializeStatistic(){
+        JPanel wrapper = new JPanel();
+        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
+        wrapper.setOpaque(false);
+
+
     }
 
     private void initializeSidePanel() throws InvalidUILoadException {
@@ -37,8 +47,8 @@ public class EndPanelUI extends BackgroundPanel {
         this.sidePanel.setOpaque(false);
 
         BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI_BAR.png");
-        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-        Dimension dimension = new Dimension(width, 135);
+
+        Dimension dimension = new Dimension(Important.width * Important.scale, 135 * Important.scale);
         bar.setPreferredSize(dimension);
         bar.setMaximumSize(dimension);
         bar.setMinimumSize(dimension);
@@ -55,7 +65,4 @@ public class EndPanelUI extends BackgroundPanel {
 
         this.add(layeredPane, BorderLayout.CENTER);
     }
-
-
-
 }

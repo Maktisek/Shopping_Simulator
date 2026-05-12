@@ -10,6 +10,10 @@ import java.io.InputStream;
 
 public class Important {
 
+    public static int scale = Toolkit.getDefaultToolkit().getScreenResolution() / 96;
+    public static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+
     public static Font loadFont(String filePath) {
         try {
             InputStream in = Important.class.getResourceAsStream(filePath);
