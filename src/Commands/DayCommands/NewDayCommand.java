@@ -15,7 +15,7 @@ public class NewDayCommand extends Command {
     @Override
     public CommandResult execute() {
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - getTax().getCurrent());
-        if(getPlayer().bankrupt()){
+        if(getPlayer().bankrupt() && getAchievementManagement().checkForUnclaimed()){
             return new CommandResult("GAME OVER - BANKRUPT", CommandState.FAILED_END);
         }
         try {

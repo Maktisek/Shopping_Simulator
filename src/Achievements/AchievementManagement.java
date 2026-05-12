@@ -50,6 +50,18 @@ public class AchievementManagement implements Serializable {
         }
     }
 
+    public boolean checkForUnclaimed() {
+        for (AchievementTypes key : possibleAchievements.keySet()) {
+            ArrayList<Achievement> possible = possibleAchievements.get(key);
+            for (Achievement achievement : possible) {
+                if (achievement.isDone() && achievement.getReward() != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void updateAchievement(AchievementTypes type, int change) {
         ArrayList<Achievement> temp = possibleAchievements.get(type);
         if (temp != null) {
