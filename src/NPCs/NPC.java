@@ -105,7 +105,7 @@ public class NPC implements Serializable {
 
             double bonus = calculateB(playerAverage, playerWhole);
 
-            double percentUpdate = rd.nextInt(-8, 4) + bonus + calculateL(playerAverage, shopPrice);
+            double percentUpdate = rd.nextInt(-8, 6) + bonus + calculateL(playerAverage, shopPrice);
             item.getItem().setCurrentPrice((int) Math.round(item.getItem().getBasePrice() + (((double) item.getItem().getCurrentPrice() / 100) * percentUpdate)));
         }
     }

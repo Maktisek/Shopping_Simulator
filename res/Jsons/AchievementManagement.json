@@ -4,9 +4,9 @@
       "type": "BUY",
       "name": "Better than your mom",
       "description": "Buy 100 products",
-      "bound": 1,
+      "bound": 100,
       "current": 0,
-      "reward": 50000000
+      "reward": 500
     },
     {
       "type": "BUY",
@@ -94,7 +94,7 @@
       "description": "Earn 10K Tony Franks",
       "bound": 10000,
       "current": 0,
-      "reward": 9000
+      "reward": 2000
     },
     {
       "type": "MONEY",
