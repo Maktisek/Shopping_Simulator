@@ -14,7 +14,6 @@ public class Player implements Serializable {
 
 
     private int currentBalance;
-    private int allTimeBalance;
     private final ArrayList<ItemPlayer> stockItems;
     private final ArrayList<ItemDelivery> undeliveredItems;
     private final ArrayList<ItemDelivery> deliveredItems;
@@ -81,7 +80,6 @@ public class Player implements Serializable {
         try {
             int profit = foundItem.sellItem(amount, npcPrice);
             this.currentBalance += profit;
-            this.allTimeBalance += profit;
         } catch (WrongItemException e) {
             throw new InvalidPlayerActionException(e.getMessage());
         }
@@ -127,6 +125,22 @@ public class Player implements Serializable {
         return stocks;
     }
 
+    public String findFavorite(){
+        int max = 0;
+        String result = "";
+        for (ItemPlayer itemPlayer : stockItems){
+            if (itemPlayer.getSellAmount() > max){
+                max = itemPlayer.getSellAmount();
+                result = itemPlayer.getName();
+            }
+        }
+        if(result.equalsIgnoreCase("")){
+            return "Nothing";
+        }
+
+        return result;
+    }
+
     public boolean canBuy(int price) {
         return price <= this.currentBalance;
     }
@@ -141,14 +155,6 @@ public class Player implements Serializable {
 
     public ArrayList<ItemPlayer> getStockItems() {
         return stockItems;
-    }
-
-    public int getAllTimeBalance() {
-        return allTimeBalance;
-    }
-
-    public void setAllTimeBalance(int allTimeBalance) {
-        this.allTimeBalance = allTimeBalance;
     }
 
     private HashMap<String, Integer> loadMap() {

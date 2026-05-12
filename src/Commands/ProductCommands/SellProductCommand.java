@@ -36,6 +36,8 @@ public class SellProductCommand extends Command {
         } catch (InvalidPlayerActionException e) {
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
+        getStatsCounter().setShipped(getStatsCounter().getShipped() + amount);
+        getStatsCounter().setEarnings(getStatsCounter().getEarnings() + (amount * price));
         product.getAmountManager().decrement(amount);
         getDayManagement().getCurrentDay().incrementDaySoldAmount(amount);
         int income = amount * price;

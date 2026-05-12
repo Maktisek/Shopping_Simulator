@@ -119,6 +119,30 @@ public class ItemPlayer implements Serializable {
         this.name = name;
     }
 
+    public int getSellAmount() {
+        return sellAmount;
+    }
+
+    public void setSellAmount(int sellAmount) {
+        this.sellAmount = sellAmount;
+    }
+
+    public int getWholeEarnings() {
+        return wholeEarnings;
+    }
+
+    public void setWholeEarnings(int wholeEarnings) {
+        this.wholeEarnings = wholeEarnings;
+    }
+
+    public int getWholePrice() {
+        return wholePrice;
+    }
+
+    public void setWholePrice(int wholePrice) {
+        this.wholePrice = wholePrice;
+    }
+
     public void setAmount(int amount) {
         this.amount = amount;
     }

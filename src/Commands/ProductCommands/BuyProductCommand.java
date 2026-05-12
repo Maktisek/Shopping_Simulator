@@ -45,6 +45,8 @@ public class BuyProductCommand extends Command {
         } catch (InvalidPlayerActionException e) {
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
+        getStatsCounter().setBought(getStatsCounter().getBought() + amount);
+        getStatsCounter().setCosts(getStatsCounter().getCosts() + (amount * price));
         product.getAmountManager().decrement(amount);
         getCurrentShop().buyItem(index, amount);
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);

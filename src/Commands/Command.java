@@ -3,6 +3,7 @@ package Commands;
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
 import Game.GameData;
+import Game.StatsCounter;
 import Player.Player;
 import Shops.Shop;
 import Shops.ShopManagement;
@@ -61,6 +62,10 @@ public abstract class Command {
 
     public Tax getTax(){
         return this.gameData.getTax();
+    }
+
+    public StatsCounter getStatsCounter(){
+        return this.gameData.getStatsCounter();
     }
 
     public void setGameData(GameData gameData) {

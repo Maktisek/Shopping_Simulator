@@ -6,7 +6,6 @@ import Player.Player;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
-import Utilities.Important;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,6 +23,7 @@ public class GameData implements Serializable {
     private UpgradeManagement upgradeManagement;
     private AchievementManagement achievementManagement;
     private Tax tax;
+    private StatsCounter statsCounter;
     private transient int amount;
 
     public Player getPlayer() {
@@ -82,6 +82,14 @@ public class GameData implements Serializable {
         this.tax = tax;
     }
 
+    public StatsCounter getStatsCounter() {
+        return statsCounter;
+    }
+
+    public void setStatsCounter(StatsCounter statsCounter) {
+        this.statsCounter = statsCounter;
+    }
+
     public void writeToFile() throws IOException {
         Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");
         try {
@@ -119,7 +127,11 @@ public class GameData implements Serializable {
     @Override
     public String toString() {
         return "Number of days:" + getDayManagement().getNumberOfDays() + "\n" +
-                "Total earnings:" + getPlayer().getAllTimeBalance() + "\n" +
-                "Total ";
+                "Total earnings:" + getStatsCounter().getEarnings() + " FR" + "\n" +
+                "Total shipped:" + getStatsCounter().getShipped() +"\n" +
+                "Total bought:" + getStatsCounter().getBought() + "\n" +
+                "Avg. sell price:" + getStatsCounter().averageShipPrice()  + " FR" + "\n" +
+                "Avg. buy price:" + getStatsCounter().averageBuyPrice() + " FR" + "\n" +
+                "Favorite product:" + getPlayer().findFavorite();
     }
 }

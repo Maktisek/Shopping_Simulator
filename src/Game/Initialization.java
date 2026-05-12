@@ -32,6 +32,7 @@ public class Initialization {
         connectShopAndNPCs();
         loadUpgradeManagement();
         loadAchievementManagement();
+        loadStatsCounter();
         finishInitialization();
     }
 
@@ -92,6 +93,10 @@ public class Initialization {
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
+    }
+
+    private void loadStatsCounter(){
+        this.gameData.setStatsCounter(new StatsCounter());
     }
 
     private void connectShopAndNPCs(){
