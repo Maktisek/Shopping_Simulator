@@ -94,7 +94,7 @@
       "description": "Earn 10K Tony Franks",
       "bound": 10000,
       "current": 0,
-      "reward": 9000
+      "reward": 2000
     },
     {
       "type": "MONEY",
