@@ -14,10 +14,10 @@ public class NewDayCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - getTax().getCurrent());
         if(getPlayer().bankrupt()){
             return new CommandResult("GAME OVER - BANKRUPT", CommandState.FAILED_END);
         }
-        getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - getTax().getCurrent());
         try {
             getPlayer().updateUndelivered();
         }catch (InvalidPlayerActionException e){

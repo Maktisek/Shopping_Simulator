@@ -57,10 +57,6 @@ public class Initialization {
             }
             this.gameData.setTax(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Tax.class));
             this.gameData.getTax().initializeK();
-            for (int i = 1; i < 1000; i++) {
-                System.out.println(i + ". " + gameData.getTax().getCurrent());
-                gameData.getTax().calculateNewDay(i);
-            }
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Tax: " + e.getMessage());
         }
