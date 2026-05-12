@@ -80,7 +80,7 @@ public class MainUI extends BackgroundPanel {
     }
 
     private void initializeEndPanelUI() throws InvalidUILoadException {
-        this.endPanelUI = new EndPanelUI();
+        this.endPanelUI = new EndPanelUI(gameData);
         this.mainPanel.add(endPanelUI, "END");
     }
 

@@ -6,6 +6,7 @@ import Player.Player;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
+import Utilities.Important;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -113,5 +114,12 @@ public class GameData implements Serializable {
         this.setDayManagement(gameData.getDayManagement());
         this.setShopManagement(gameData.getShopManagement());
         this.setUpgradeManagement(gameData.getUpgradeManagement());
+    }
+
+    @Override
+    public String toString() {
+        return "Number of days:" + getDayManagement().getNumberOfDays() + "\n" +
+                "Total earnings:" + getPlayer().getAllTimeBalance() + "\n" +
+                "Total ";
     }
 }
