@@ -14,12 +14,11 @@ import UI.InitialUI.MyFrame;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.IOException;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 
 public class TitleScreenUI extends JFrame {
 
-    private JLayeredPane layeredPane;
     private BackgroundPanel background;
     private JPanel overlay;
 
@@ -95,7 +94,7 @@ public class TitleScreenUI extends JFrame {
         newGame.addActionListener(e -> {
             try {
                 MyFrame myFrame = new MyFrame(new Initialization().getGameData());
-                myFrame.show();
+                myFrame.makeVisible();
                 this.dispose();
             } catch (InvalidUILoadException ex) {
                 System.err.println(ex.getMessage());
@@ -114,7 +113,7 @@ public class TitleScreenUI extends JFrame {
             } else {
                 try {
                     MyFrame myFrame = new MyFrame(gameData);
-                    myFrame.show();
+                    myFrame.makeVisible();
                     this.dispose();
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
@@ -136,11 +135,11 @@ public class TitleScreenUI extends JFrame {
     }
 
     private void initializeLayerPane() {
-        this.layeredPane = new JLayeredPane();
-        this.layeredPane.setLayout(new OverlayLayout(layeredPane));
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(new OverlayLayout(layeredPane));
 
-        this.layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
-        this.layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
 
         this.add(layeredPane, BorderLayout.CENTER);
     }

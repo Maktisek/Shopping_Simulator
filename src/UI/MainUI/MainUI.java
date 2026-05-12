@@ -5,6 +5,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
+import UI.InitialUI.MyFrame;
 import UI.MainUI.AchievementUI.AchievementManagementUI;
 import UI.MainUI.EndGameUI.EndPanelUI;
 import UI.MainUI.ShopUI.ShopManagementUI;
@@ -114,6 +115,11 @@ public class MainUI extends BackgroundPanel {
         achievementUpdater.start();
     }
 
+    public void stopAllTimers(){
+        this.updater.stop();
+        this.achievementUpdater.stop();
+    }
+
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().peekAchievement();
         if(temp != null && overlay.getComponents().length == 0){
@@ -140,5 +146,9 @@ public class MainUI extends BackgroundPanel {
 
     public ShopManagementUI getShopManagementUI() {
         return shopManagementUI;
+    }
+
+    public MyFrame getMyFrame(){
+        return (MyFrame) SwingUtilities.getAncestorOfClass(MyFrame.class, this);
     }
 }

@@ -6,6 +6,7 @@ import UI.CreationUI.CustomButton;
 import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
+import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
 import Utilities.Important;
 
@@ -68,9 +69,10 @@ public class EndPanelUI extends BackgroundPanel {
     private void initializeCloseGameButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton close = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
         close.addActionListener(e ->{
-            JFrame parent = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, this);
+            MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            mainUI.stopAllTimers();
+            MyFrame parent = mainUI.getMyFrame();
             parent.dispose();
-
             TitleScreenUI title;
             try {
                 title = new TitleScreenUI();

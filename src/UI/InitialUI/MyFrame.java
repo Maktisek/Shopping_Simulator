@@ -7,29 +7,28 @@ import UI.MainUI.MainUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyFrame {
+public class MyFrame extends JFrame{
 
-    private final JFrame frame;
     private final GameData gameData;
 
     public MyFrame(GameData gameData) throws InvalidUILoadException{
-        this.frame = new JFrame("Forest Market");
-        this.frame.setLayout(new BorderLayout());
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setLocationRelativeTo(null);
-        this.frame.setResizable(false);
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.frame.setUndecorated(true);
+        setTitle("Forest Market");
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
 
         this.gameData = gameData;
         initialize();
     }
 
     private void initialize() throws InvalidUILoadException {
-        this.frame.add(new MainUI(gameData), BorderLayout.CENTER);
+        add(new MainUI(gameData), BorderLayout.CENTER);
     }
 
-    public void show() {
-        this.frame.setVisible(true);
+    public void makeVisible() {
+        setVisible(true);
     }
 }
