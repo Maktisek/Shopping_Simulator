@@ -18,7 +18,6 @@ public class MainUI extends BackgroundPanel {
 
     private JPanel mainPanel;
     private CardLayout cardLayout;
-    private JLayeredPane layeredPane;
     private final JPanel overlay;
     private final GameData gameData;
     private Timer updater;
@@ -29,8 +28,8 @@ public class MainUI extends BackgroundPanel {
     private EndPanelUI endPanelUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
-        this.layeredPane = new JLayeredPane();
-        this.layeredPane.setLayout(new OverlayLayout(layeredPane));
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(new OverlayLayout(layeredPane));
 
         this.overlay = new JPanel(new GridBagLayout());
         this.overlay.setOpaque(false);
@@ -41,8 +40,8 @@ public class MainUI extends BackgroundPanel {
         this.gameData = gameData;
 
         initialize();
-        this.layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
-        this.layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
         setLayout(new BorderLayout());
         add(layeredPane, BorderLayout.CENTER);
     }

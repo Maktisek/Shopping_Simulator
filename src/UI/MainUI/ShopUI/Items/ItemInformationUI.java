@@ -32,7 +32,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(570, 720);
+        Dimension dimension = new Dimension(Important.calculateDimension(570), Important.calculateDimension(720));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
@@ -43,20 +43,20 @@ public class ItemInformationUI extends BackgroundPanel {
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
 
-        setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(20), 0, 0, 0));
 
 
-        StrokeLabel label = new StrokeLabel(this.name, 48.0f);
+        StrokeLabel label = new StrokeLabel(this.name, 48);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         wrapper.add(label);
-        wrapper.add(Box.createVerticalStrut(20));
+        wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        StrokeLabel heading = new StrokeLabel("Description", 20.0f);
+        StrokeLabel heading = new StrokeLabel("Description", 20);
         wrapper.add(heading);
         heading.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        wrapper.add(Box.createVerticalStrut(80));
+        wrapper.add(Box.createVerticalStrut(Important.calculateDimension(80)));
         initializeImg(wrapper);
 
         add(wrapper, BorderLayout.NORTH);
@@ -70,7 +70,7 @@ public class ItemInformationUI extends BackgroundPanel {
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
-        Image scaledImage = icon.getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT);
+        Image scaledImage = icon.getImage().getScaledInstance(Important.calculateDimension(160), Important.calculateDimension(160), Image.SCALE_DEFAULT);
 
         JLabel image = new JLabel(new ImageIcon(scaledImage));
 
@@ -85,12 +85,12 @@ public class ItemInformationUI extends BackgroundPanel {
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
-        center.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        center.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(10), 0, Important.calculateDimension(10)));
 
         initializeDescriptionLabel(center);
 
         JScrollPane scrollPane = Important.initializeScrollPane(center, 4);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(Important.calculateDimension(10), 0));
 
         add(scrollPane, BorderLayout.CENTER);
     }
@@ -98,12 +98,12 @@ public class ItemInformationUI extends BackgroundPanel {
     private void initializeDescriptionLabel(JPanel panel) {
         String[] description = Important.decodeString(specification);
         for (String s : description) {
-            panel.add(Box.createVerticalStrut(20));
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 14.0f);
+            panel.add(Box.createVerticalStrut(Important.calculateDimension(20)));
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 14);
             panel.add(label);
-            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
-        panel.add(Box.createVerticalStrut(5));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(5)));
     }
 
     private void initializeSouth() throws InvalidUILoadException {
@@ -117,7 +117,7 @@ public class ItemInformationUI extends BackgroundPanel {
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
         wrapper.add(customButton);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(0, 0, Important.calculateDimension(30), 0));
         customButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(wrapper, BorderLayout.SOUTH);
     }

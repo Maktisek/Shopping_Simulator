@@ -8,6 +8,7 @@ import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 
@@ -28,8 +29,8 @@ public class SaveDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(20));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
-        CustomButton save = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton save = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
 
         ok.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
@@ -47,7 +48,7 @@ public class SaveDialogUI extends BaseDialogUI {
             }
         });
         panel.add(ok);
-        panel.add(Box.createHorizontalStrut(20));
+        panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(save);
         add(panel);
     }

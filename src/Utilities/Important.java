@@ -10,9 +10,24 @@ import java.io.InputStream;
 
 public class Important {
 
-    public static int scale = Toolkit.getDefaultToolkit().getScreenResolution() / 96;
-    public static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-    public static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+    private static final double TARGET_WIDTH = 1920.0;
+    private static final double TARGET_HEIGHT = 1080.0;
+
+    public static double getManualScale() {
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        double scaleX = screen.width / TARGET_WIDTH;
+        double scaleY = screen.height / TARGET_HEIGHT;
+        return Math.min(scaleX, scaleY);
+    }
+
+    public static int getWidth(){
+       return Toolkit.getDefaultToolkit().getScreenSize().width;
+    }
+
+
+    public static int calculateDimension(int size){
+        return (int) Math.round(size * getManualScale());
+    }
 
     public static Font loadFont(String filePath) {
         try {
@@ -44,8 +59,8 @@ public class Important {
     }
 
     public static String parseMoney(int number) {
-        if (number < 0){
-            number = number *-1;
+        if (number < 0) {
+            number = number * -1;
         }
         String parsed = formatCurrency(number);
         int startingIndex = findStartingIndex(parsed);

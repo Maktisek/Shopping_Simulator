@@ -37,7 +37,7 @@ public class ItemUI extends BackgroundPanel {
         this.specification = specification;
         this.item = item;
 
-        Dimension dimension = new Dimension(180, 180);
+        Dimension dimension = new Dimension(Important.calculateDimension(180), Important.calculateDimension(180));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
@@ -48,7 +48,7 @@ public class ItemUI extends BackgroundPanel {
     private void initialize() throws InvalidUILoadException{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
-        setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
+        setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(15), 0, 0, 0));
 
         initializeLabel();
         initializeImg();
@@ -57,14 +57,14 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializeLabel(){
-        name = new StrokeLabel(this.item.getItem().getName(), 14.0f);
+        name = new StrokeLabel(this.item.getItem().getName(), 14);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
         add(name);
-        add(Box.createVerticalStrut(8));
+        add(Box.createVerticalStrut(Important.calculateDimension(8)));
 
     }
 
@@ -95,7 +95,7 @@ public class ItemUI extends BackgroundPanel {
         JPanel commandPoint = new JPanel();
         commandPoint.setOpaque(false);
         commandPoint.setLayout(new BoxLayout(commandPoint, BoxLayout.Y_AXIS));
-        commandPoint.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        commandPoint.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(10), 0, Important.calculateDimension(10)));
 
         initializeButton(commandPoint);
         initializePrice(commandPoint);
@@ -139,7 +139,7 @@ public class ItemUI extends BackgroundPanel {
     }
 
     private void initializePrice(JPanel panel){
-        this.price = new StrokeLabel(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR", 13.0f);
+        this.price = new StrokeLabel(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR", 13);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
 //        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 

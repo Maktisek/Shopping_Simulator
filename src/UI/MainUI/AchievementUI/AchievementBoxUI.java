@@ -35,7 +35,7 @@ public class AchievementBoxUI extends BackgroundPanel {
 
     private void initialize() throws InvalidUILoadException {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(10), Important.calculateDimension(10), Important.calculateDimension(10), Important.calculateDimension(10)));
         setOpaque(false);
 
         initializeImage();
@@ -60,7 +60,7 @@ public class AchievementBoxUI extends BackgroundPanel {
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
-        Image scaledImage = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        Image scaledImage = icon.getImage().getScaledInstance(Important.calculateDimension(150), Important.calculateDimension(150), Image.SCALE_SMOOTH);
         icon.setImage(scaledImage);
 
 
@@ -85,14 +85,14 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     private void initializeName(JPanel wrapper) {
-        StrokeLabel name = new StrokeLabel(this.achievement.getName(), 13.0f);
+        StrokeLabel name = new StrokeLabel(this.achievement.getName(), 13);
         name.setAlignmentX(Component.LEFT_ALIGNMENT);
         wrapper.add(name);
     }
 
     private void initializeDescription(JPanel wrapper) {
         wrapper.add(Box.createVerticalStrut(5));
-        StrokeLabel description = new StrokeLabel(this.achievement.getDescription(), 12.0f);
+        StrokeLabel description = new StrokeLabel(this.achievement.getDescription(), 12);
         description.setAlignmentX(Component.LEFT_ALIGNMENT);
         wrapper.add(description);
     }
@@ -102,7 +102,7 @@ public class AchievementBoxUI extends BackgroundPanel {
         xPanel.setLayout(new BoxLayout(xPanel, BoxLayout.X_AXIS));
         xPanel.setOpaque(false);
         xPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        Dimension dimension = new Dimension(400, 74);
+        Dimension dimension = new Dimension(Important.calculateDimension(400), Important.calculateDimension(74));
         xPanel.setPreferredSize(dimension);
         xPanel.setMaximumSize(dimension);
         xPanel.setMinimumSize(dimension);
@@ -111,17 +111,17 @@ public class AchievementBoxUI extends BackgroundPanel {
         initializePercentualBound(xPanel);
         xPanel.add(this.claimButton);
 
-        wrapper.add(Box.createVerticalStrut(10));
+        wrapper.add(Box.createVerticalStrut(Important.calculateDimension(10)));
         wrapper.add(xPanel);
     }
 
     private void initializeBound(JPanel xPanel) {
-        this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 24.0f);
+        this.bound = new StrokeLabel(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()), 24);
         xPanel.add(bound);
     }
 
     private void initializePercentualBound(JPanel xPanel) {
-        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",24.0f);
+        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",24);
         xPanel.add(percentualBound);
     }
 
@@ -151,7 +151,7 @@ public class AchievementBoxUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(500, 250);
+        Dimension dimension = new Dimension(Important.calculateDimension(500), Important.calculateDimension(250));
         setPreferredSize(dimension);
         setMaximumSize(dimension);
         setMinimumSize(dimension);

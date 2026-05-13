@@ -3,6 +3,7 @@ package UI.MainUI.ShopUI.Bounds;
 import UI.CreationUI.BackgroundPanel;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,14 +36,14 @@ public class BoundPanelUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(270, 90);
+        Dimension dimension = new Dimension(Important.calculateDimension(270), Important.calculateDimension(90));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
     }
 
     private void initializeIconLabel() {
-        add(Box.createHorizontalStrut(10));
+        add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         JLabel label = new JLabel(img, JLabel.CENTER);
         label.setAlignmentY(Component.CENTER_ALIGNMENT);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -50,7 +51,7 @@ public class BoundPanelUI extends BackgroundPanel {
     }
 
     private void initializeTextLabel() {
-        label = new StrokeLabel(current + "/" + bound, 24.0f);
+        label = new StrokeLabel(current + "/" + bound, 24);
 
         label.setAlignmentY(Component.CENTER_ALIGNMENT);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -65,8 +66,11 @@ public class BoundPanelUI extends BackgroundPanel {
         if (imageURL == null) {
             throw new InvalidUILoadException("The icon" + fileName + " could not be found");
         }
+        ImageIcon icon = new ImageIcon(imageURL);
+        Image scaledImage = icon.getImage().getScaledInstance(Important.calculateDimension(64), Important.calculateDimension(64), Image.SCALE_SMOOTH);
+        icon.setImage(scaledImage);
 
-        this.img = new ImageIcon(imageURL);
+        this.img = icon;
     }
 
     public void update(String current, String bound) {

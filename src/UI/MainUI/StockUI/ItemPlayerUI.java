@@ -27,7 +27,7 @@ public class ItemPlayerUI extends BackgroundPanel {
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(10), Important.calculateDimension(10), Important.calculateDimension(10), Important.calculateDimension(10)));
 
         labelInitialization(wrapper);
         initializeImageButton(wrapper);
@@ -37,7 +37,7 @@ public class ItemPlayerUI extends BackgroundPanel {
     }
 
     private void labelInitialization(JPanel panel) {
-        StrokeLabel name = new StrokeLabel(itemPlayer.getName(), 22.0f);
+        StrokeLabel name = new StrokeLabel(itemPlayer.getName(), 22);
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(name);
     }
@@ -58,8 +58,8 @@ public class ItemPlayerUI extends BackgroundPanel {
     }
 
     private void initializeAmount(JPanel panel){
-        panel.add(Box.createVerticalStrut(20));
-        this.amount = new StrokeLabel(Important.parseMoney(itemPlayer.getAmount()) + "X", 24.0f);
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(20)));
+        this.amount = new StrokeLabel(Important.parseMoney(itemPlayer.getAmount()) + "X", 24);
         this.amount.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(this.amount);
     }

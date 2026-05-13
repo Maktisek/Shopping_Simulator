@@ -4,6 +4,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
+import Utilities.Important;
 
 import java.awt.*;
 
@@ -27,14 +28,14 @@ public class DayUI extends BackgroundPanel {
     }
 
     private void initializeDimension(){
-        Dimension dimension = new Dimension(250, 90);
+        Dimension dimension = new Dimension(Important.calculateDimension(250), Important.calculateDimension(90));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
     }
 
     private void initializeLabel(){
-        day = new StrokeLabel(gameData.getDayManagement().getCurrentDay().getDayName().toString(), 22.0f);
+        day = new StrokeLabel(gameData.getDayManagement().getCurrentDay().getDayName().toString(), 22);
 
         day.setAlignmentX(Component.CENTER_ALIGNMENT);
         day.setAlignmentY(Component.TOP_ALIGNMENT);

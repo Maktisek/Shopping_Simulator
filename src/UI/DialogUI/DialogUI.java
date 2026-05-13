@@ -3,6 +3,7 @@ package UI.DialogUI;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 
@@ -17,7 +18,7 @@ public class DialogUI extends BaseDialogUI {
     }
 
     protected void initializeButton() throws InvalidUILoadException {
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
         button = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
 

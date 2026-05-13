@@ -19,7 +19,7 @@ public class EndPanelUI extends BackgroundPanel {
 
     private JPanel mainPanel;
     private JPanel sidePanel;
-    private GameData gameData;
+    private final GameData gameData;
 
     public EndPanelUI(GameData gameData) throws InvalidUILoadException {
         super("/MainUI/ShopUI/STOCK_UI.png");
@@ -46,21 +46,21 @@ public class EndPanelUI extends BackgroundPanel {
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(0, 300 * Important.scale, 0, 300 * Important.scale));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(300), 0, Important.calculateDimension(300)));
 
         fillWithStats(wrapper);
         initializeCloseGameButton(wrapper);
 
         JScrollPane scrollPane = initializeScrollPane(wrapper, 16);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(135 * Important.scale, 0, 0, 0));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(135), 0, 0, 0));
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     private void fillWithStats(JPanel wrapper){
         String[] stats = Important.decodeString(this.gameData.toString());
         for (String s : stats){
-            wrapper.add(Box.createVerticalStrut(20 * Important.scale));
-            StrokeLabel stat = new StrokeLabel(Important.insertDots(s, 50), 28.0f);
+            wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
+            StrokeLabel stat = new StrokeLabel(Important.insertDots(s, 50), 28);
             stat.setAlignmentX(Component.CENTER_ALIGNMENT);
             wrapper.add(stat);
         }
@@ -83,7 +83,7 @@ public class EndPanelUI extends BackgroundPanel {
         });
 
         close.setAlignmentX(Component.CENTER_ALIGNMENT);
-        wrapper.add(Box.createVerticalStrut(20 * Important.scale));
+        wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
         wrapper.add(close);
     }
 
@@ -94,7 +94,7 @@ public class EndPanelUI extends BackgroundPanel {
 
         BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/END_BAR_UI.png");
 
-        Dimension dimension = new Dimension(Important.width * Important.scale, 135 * Important.scale);
+        Dimension dimension = new Dimension(Important.calculateDimension(Important.getWidth()), Important.calculateDimension(135));
         bar.setPreferredSize(dimension);
         bar.setMaximumSize(dimension);
         bar.setMinimumSize(dimension);

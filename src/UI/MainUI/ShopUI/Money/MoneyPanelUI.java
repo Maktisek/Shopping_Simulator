@@ -30,12 +30,12 @@ public class MoneyPanelUI extends BackgroundPanel {
         center.setLayout(new BoxLayout(center, BoxLayout.X_AXIS));
         center.setOpaque(false);
 
-        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 24.0f);
+        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 24);
         add(price, BorderLayout.CENTER);
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(240, 80);
+        Dimension dimension = new Dimension(Important.calculateDimension(240), Important.calculateDimension(80));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));

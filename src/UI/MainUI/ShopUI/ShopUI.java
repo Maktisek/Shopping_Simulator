@@ -7,6 +7,7 @@ import UI.CreationUI.BackgroundPanel;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
 import UI.MainUI.ShopUI.Items.ItemUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,6 @@ public class ShopUI extends BackgroundPanel {
     private final Shop shop;
     private final GameData gameData;
     private final ArrayList<ItemUI> items;
-    private JPanel southPanel;
     private final ItemUI[] demandUI;
 
 
@@ -39,10 +39,10 @@ public class ShopUI extends BackgroundPanel {
     }
 
     private void initializeSouth() throws InvalidUILoadException {
-        southPanel = new JPanel();
+        JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         southPanel.setOpaque(false);
-        southPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 40, 40));
+        southPanel.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(40), Important.calculateDimension(40), Important.calculateDimension(40)));
 
         initializeShopItems(southPanel);
         initializeNPCItems(southPanel);
@@ -55,18 +55,18 @@ public class ShopUI extends BackgroundPanel {
             ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i], i, gameData, ItemSpecification.SHOP);
 
             panel.add(itemUI);
-            panel.add(Box.createHorizontalStrut(40));
+            panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));
             this.items.add(itemUI);
         }
     }
 
     private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createHorizontalStrut(40));
+        panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
             ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
             this.demandUI[i] = itemUI;
             panel.add(itemUI);
-            panel.add(Box.createHorizontalStrut(40));
+            panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));
         }
     }
 

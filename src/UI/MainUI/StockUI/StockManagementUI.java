@@ -10,6 +10,7 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import Upgrade.Utilities.UpgradeNames;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,6 @@ import static Utilities.Important.initializeScrollPane;
 public class StockManagementUI extends JPanel {
 
     private final GameData gameData;
-    private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
     private JPanel sidePanel;
     private final ArrayList<ItemPlayerUI> items;
@@ -41,7 +41,7 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeLayerPane() {
-        layeredPane = new JLayeredPane();
+        JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
@@ -57,19 +57,19 @@ public class StockManagementUI extends JPanel {
     }
 
     private void initializeGrid() throws InvalidUILoadException {
-        GridPanelUI gridPanelUI = new GridPanelUI(3, 300);
+        GridPanelUI gridPanelUI = new GridPanelUI(3, Important.calculateDimension(300));
         fillGrid(gridPanelUI.getGrid());
         gridPanelUI.finishGrid();
 
         JScrollPane scrollPane = initializeScrollPane(gridPanelUI, 16);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(135, 0, 0, 0));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(135), 0, 0, 0));
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     private void fillGrid(JPanel grid) throws InvalidUILoadException {
         for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
             ItemPlayerUI panel = new ItemPlayerUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", itemPlayer);
-            Dimension dimension = new Dimension(300, 300);
+            Dimension dimension = new Dimension(Important.calculateDimension(300), Important.calculateDimension(300));
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
             panel.setMaximumSize(dimension);
@@ -100,7 +100,7 @@ public class StockManagementUI extends JPanel {
 
         this.stockBound = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/STOCK_ICON.png");
 
-        panel.add(Box.createHorizontalStrut(20));
+        panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(stockBound);
     }
 

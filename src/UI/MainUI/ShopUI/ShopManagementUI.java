@@ -30,7 +30,6 @@ public class ShopManagementUI extends BackgroundPanel {
 
     private final JPanel cardPanel;
     private final JPanel mainPanel;
-    private JLayeredPane layeredPane;
     private final GameData gameData;
     private CardLayout cardLayout;
     private final ArrayList<ShopUI> shopPanels;
@@ -54,7 +53,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initialize() throws InvalidUILoadException {
-        layeredPane = new JLayeredPane();
+        JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
         this.cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
@@ -96,7 +95,7 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
-        westPanel.setBorder(BorderFactory.createEmptyBorder(10, 0,0,0));
+        westPanel.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(10), 0,0,0));
         initializeChangeShopButtons(westPanel);
         initializeChangeButton(westPanel, "STOCK");
         initializeChangeButton(westPanel, "ACHIEVEMENTS");
@@ -174,9 +173,9 @@ public class ShopManagementUI extends BackgroundPanel {
 
         JPanel setBounds = new JPanel();
         setBounds.setLayout(new BoxLayout(setBounds, BoxLayout.X_AXIS));
-        setBounds.setBorder(BorderFactory.createEmptyBorder(0, 0, 27, 10));
+        setBounds.setBorder(BorderFactory.createEmptyBorder(0, 0, Important.calculateDimension(27), Important.calculateDimension(10)));
 
-        setBounds.add(Box.createHorizontalStrut(1600));
+        setBounds.add(Box.createHorizontalStrut(Important.calculateDimension(1600)));
         setBounds.add(bounds);
         setBounds.setOpaque(false);
 
@@ -185,7 +184,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(12));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
 
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
@@ -196,7 +195,7 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(12));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
 
@@ -209,7 +208,7 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel eastPanel = new JPanel();
         eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
         eastPanel.setOpaque(false);
-        eastPanel.setBorder(BorderFactory.createEmptyBorder(18, 0, 0, 28));
+        eastPanel.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(18), 0, 0, Important.calculateDimension(28)));
 
         initializeDay(eastPanel);
         initializeNewDayButton(eastPanel);
@@ -228,7 +227,7 @@ public class ShopManagementUI extends BackgroundPanel {
     private void initializeNewDayButton(JPanel panel) throws InvalidUILoadException {
         CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(Box.createVerticalStrut(7));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(7)));
         panel.add(nextDay);
 
         nextDay.addActionListener(e -> {
@@ -242,13 +241,13 @@ public class ShopManagementUI extends BackgroundPanel {
     }
 
     private void initializeUpgrades(JPanel eastPanel) throws InvalidUILoadException {
-        eastPanel.add(Box.createVerticalStrut(15));
+        eastPanel.add(Box.createVerticalStrut(Important.calculateDimension(15)));
         for (UpgradeNames upgrade : UpgradeNames.values()) {
             UpgradeUI upgradeUI = new UpgradeUI("/MainUI/ShopUI/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
             upgradeUI.setOpaque(false);
             upgradeUI.setAlignmentX(Component.CENTER_ALIGNMENT);
             eastPanel.add(upgradeUI);
-            eastPanel.add(Box.createVerticalStrut(20));
+            eastPanel.add(Box.createVerticalStrut(Important.calculateDimension(20)));
             upgrades.add(upgradeUI);
         }
     }
@@ -257,7 +256,7 @@ public class ShopManagementUI extends BackgroundPanel {
         JPanel north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
         north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        north.setBorder(BorderFactory.createEmptyBorder(0,Important.calculateDimension(10),Important.calculateDimension(10),Important.calculateDimension(10)));
         initializeBalance(north);
         initializeMultipliers(north);
         initializeSaveButton(north);
@@ -277,7 +276,7 @@ public class ShopManagementUI extends BackgroundPanel {
 
         for (MultiplierButton multiplierButton : multiplierButtons) {
             north.add(multiplierButton);
-            north.add(Box.createHorizontalStrut(10));
+            north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         }
         multiplierButtons.get(0).doClick();
     }
@@ -293,7 +292,7 @@ public class ShopManagementUI extends BackgroundPanel {
             }
         });
 
-        north.add(Box.createHorizontalStrut(10));
+        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         north.add(save);
     }
 

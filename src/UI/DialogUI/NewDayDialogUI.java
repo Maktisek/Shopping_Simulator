@@ -9,6 +9,7 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.EndGameUI.EndPanelUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
+import Utilities.Important;
 
 import javax.swing.*;
 
@@ -29,22 +30,22 @@ public class NewDayDialogUI extends BaseDialogUI {
         initializeCloseButton(wrapper);
         initializeYesButton(wrapper);
 
-        add(Box.createVerticalStrut(15));
+        add(Box.createVerticalStrut(Important.calculateDimension(15)));
         add(wrapper);
     }
 
     private void initializeCloseButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton closeButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
+        CustomButton closeButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         closeButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
         wrapper.add(closeButton);
-        wrapper.add(Box.createHorizontalStrut(20));
+        wrapper.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
     }
 
     private void initializeYesButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton yesButton = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", 130, 75);
+        CustomButton yesButton = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         yesButton.addActionListener(e -> {
             CommandResult commandResult = new NewDayCommand(gameData).execute();
             System.out.println(commandResult.getMessage());

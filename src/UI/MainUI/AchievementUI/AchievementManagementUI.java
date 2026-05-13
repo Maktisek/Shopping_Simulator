@@ -8,6 +8,7 @@ import UI.CreationUI.BarPanelUI;
 import UI.CreationUI.GridPanelUI;
 import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,6 @@ import static Utilities.Important.initializeScrollPane;
 public class AchievementManagementUI extends JPanel {
 
     private final GameData gameData;
-    private JLayeredPane layeredPane;
     private BackgroundPanel mainPanel;
     private final ArrayList<AchievementBoxUI> achievements;
     private JPanel sidePanel;
@@ -37,8 +37,8 @@ public class AchievementManagementUI extends JPanel {
     }
 
     private void initializeLayerPane() {
-        this.layeredPane = new JLayeredPane();
-        this.layeredPane.setLayout(new OverlayLayout(layeredPane));
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setLayout(new OverlayLayout(layeredPane));
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(sidePanel, JLayeredPane.PALETTE_LAYER);
@@ -60,19 +60,19 @@ public class AchievementManagementUI extends JPanel {
         fillGrid(wrapper);
 
         JScrollPane scrollPane = initializeScrollPane(wrapper, 16);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(135, 0, 0, 0));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(135), 0, 0, 0));
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     private void fillGrid(JPanel wrapper) throws InvalidUILoadException {
         for (AchievementTypes type : AchievementTypes.values()) {
-            wrapper.add(Box.createVerticalStrut(20));
-            StrokeLabel typeLabel = new StrokeLabel(type.toString() + " goals", 40.0f);
+            wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
+            StrokeLabel typeLabel = new StrokeLabel(type.toString() + " goals", 40);
             typeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             wrapper.add(typeLabel);
-            wrapper.add(Box.createVerticalStrut(20));
+            wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-            GridPanelUI gridPanelUI = new GridPanelUI(3, 500);
+            GridPanelUI gridPanelUI = new GridPanelUI(3, Important.calculateDimension(500));
             gridPanelUI.setAlignmentX(Component.CENTER_ALIGNMENT);
             fillPossibleAchievements(gridPanelUI.getGrid(), gameData.getAchievementManagement().getPossibleAchievements().get(type));
             gridPanelUI.finishGrid();

@@ -50,7 +50,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         JPanel north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
         north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        north.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(20), 0, 0, 0));
 
         initializeDayName(north);
         initializeSummaryLabel(north);
@@ -62,14 +62,14 @@ public class DaySummaryPanelUI extends BackgroundPanel {
 
 
     private void initializeDayName(JPanel north) {
-        StrokeLabel name = new StrokeLabel(this.day.getDayName().toString(), 48.0f);
+        StrokeLabel name = new StrokeLabel(this.day.getDayName().toString(), 48);
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         north.add(name);
         north.add(Box.createVerticalStrut(20));
     }
 
     private void initializeSummaryLabel(JPanel north) {
-        StrokeLabel summaryLabel = new StrokeLabel("Summary", 24.0f);
+        StrokeLabel summaryLabel = new StrokeLabel("Summary", 24);
         summaryLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         north.add(summaryLabel);
     }
@@ -78,7 +78,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
-        center.setBorder(BorderFactory.createEmptyBorder(120, 5, 0, 5));
+        center.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(120), Important.calculateDimension(5), 0, Important.calculateDimension(5)));
 
         initializeDayStatistics(center);
         center.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -89,10 +89,10 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     private void initializeDayStatistics(JPanel center) {
         String[] description = Important.decodeString(this.day.information(gameData.getTax().getPrevious()));
         for (String s : description) {
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 13.0f);
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 42), 13);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
             center.add(label);
-            center.add(Box.createVerticalStrut(20));
+            center.add(Box.createVerticalStrut(Important.calculateDimension(20)));
         }
     }
 
@@ -100,7 +100,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         JPanel south = new JPanel();
         south.setLayout(new BoxLayout(south, BoxLayout.Y_AXIS));
         south.setOpaque(false);
-        south.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        south.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(20), 0, 0, 0));
 
         initializeDeliveryLabel(south);
         initializeDeliveries(south);
@@ -113,16 +113,16 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         scrollPane.setBorder(null);
 
         scrollPane.getVerticalScrollBar().setUnitIncrement(24);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(Important.calculateDimension(10), 0));
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(20), 0, Important.calculateDimension(10), 0));
 
         mainPanel.add(scrollPane);
     }
 
     private void initializeDeliveryLabel(JPanel south) {
-        StrokeLabel delivery = new StrokeLabel("Delivery", 24.0f);
+        StrokeLabel delivery = new StrokeLabel("Delivery", 24);
         delivery.setAlignmentX(Component.CENTER_ALIGNMENT);
         south.add(delivery);
         south.add(Box.createVerticalStrut(20));
@@ -133,14 +133,14 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
         wrapper.setAlignmentX(Component.CENTER_ALIGNMENT);
-        wrapper.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        wrapper.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(10), Important.calculateDimension(10), Important.calculateDimension(10)));
 
         String info = gameData.getPlayer().information();
         if(info == null){
-                StrokeLabel label = new StrokeLabel("Nothing was delivered", 14.0f);
+                StrokeLabel label = new StrokeLabel("Nothing was delivered", 14);
                 label.setAlignmentX(Component.CENTER_ALIGNMENT);
                 wrapper.add(label);
-                wrapper.add(Box.createVerticalStrut(10));
+                wrapper.add(Box.createVerticalStrut(Important.calculateDimension(10)));
                 south.add(wrapper);
                  return;
             }
@@ -148,10 +148,10 @@ public class DaySummaryPanelUI extends BackgroundPanel {
         String[] deliveries = Important.decodeString(info);
 
         for (String s : deliveries) {
-            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 45), 13.0f);
+            StrokeLabel label = new StrokeLabel(Important.insertDots(s, 45), 13);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
             wrapper.add(label);
-            wrapper.add(Box.createVerticalStrut(20));
+            wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
         }
         south.add(wrapper);
     }
@@ -167,7 +167,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(570, 720);
+        Dimension dimension = new Dimension(Important.calculateDimension(570), Important.calculateDimension(720));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));

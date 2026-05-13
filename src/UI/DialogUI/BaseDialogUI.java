@@ -3,6 +3,7 @@ package UI.DialogUI;
 import UI.CreationUI.BackgroundPanel;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,7 @@ public abstract class BaseDialogUI extends BackgroundPanel {
     private void initialize() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        Dimension dimension = new Dimension(720, 160);
+        Dimension dimension = new Dimension(Important.calculateDimension(720), Important.calculateDimension(160));
         setPreferredSize(dimension);
         setMaximumSize(dimension);
         setMinimumSize(dimension);
@@ -28,8 +29,8 @@ public abstract class BaseDialogUI extends BackgroundPanel {
     }
 
     protected void initializeLabel() {
-        add(Box.createVerticalStrut(35));
-        StrokeLabel label = new StrokeLabel(message, 12.0f);
+        add(Box.createVerticalStrut(Important.calculateDimension(35)));
+        StrokeLabel label = new StrokeLabel(message, 12);
 
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(label);

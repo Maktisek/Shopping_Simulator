@@ -8,6 +8,7 @@ import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 
@@ -28,7 +29,7 @@ public class BuyDialogUI extends BaseDialogUI {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(false);
 
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
         CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
         CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
@@ -54,7 +55,7 @@ public class BuyDialogUI extends BaseDialogUI {
             }
         });
         panel.add(ok);
-        panel.add(Box.createHorizontalStrut(20));
+        panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(buy);
         add(panel);
     }

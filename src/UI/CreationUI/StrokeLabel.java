@@ -15,26 +15,18 @@ import java.util.Objects;
  */
 public class StrokeLabel extends JLabel {
     private final Color strokeColor = Color.BLACK;
-    private float strokeWidth = 7.5f;
+    private float strokeWidth = (float) (7.5f * Important.getManualScale());
     private boolean visibility;
-
-    public StrokeLabel(String text, float size) {
-        super(text);
-        setBorder(new EmptyBorder(0, 10, 0, 10));
-        setOpaque(false);
-        setFont(Objects.requireNonNull(Important.loadFont("/Fonts/Daydream.otf")).deriveFont(Font.BOLD,size));
-        setForeground(Color.WHITE);
-        this.visibility = true;
-    }
 
     public StrokeLabel(String text, int size) {
         super(text);
-        setBorder(new EmptyBorder(0, 10, 0, 10));
+        setBorder(new EmptyBorder(0, Important.calculateDimension(10), 0, Important.calculateDimension(10)));
         setOpaque(false);
-        setFont(new Font("Arial", Font.BOLD, size));
+        setFont(Objects.requireNonNull(Important.loadFont("/Fonts/Daydream.otf")).deriveFont(Font.BOLD,Important.calculateDimension(size)));
         setForeground(Color.WHITE);
         this.visibility = true;
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {

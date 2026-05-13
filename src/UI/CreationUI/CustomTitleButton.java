@@ -2,6 +2,7 @@ package UI.CreationUI;
 
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -111,7 +112,7 @@ public class CustomTitleButton extends JButton {
     }
 
     private void setSizeOfButton(int width, int height){
-        Dimension dimension = new Dimension(width, height);
+        Dimension dimension = new Dimension(Important.calculateDimension(width), Important.calculateDimension(height));
         setMaximumSize(dimension);
         setPreferredSize(dimension);
         setMinimumSize(dimension);

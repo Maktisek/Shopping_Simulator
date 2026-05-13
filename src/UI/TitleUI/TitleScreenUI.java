@@ -10,6 +10,7 @@ import UI.CreationUI.CustomTitleButton;
 import UI.DialogUI.TitleDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
+import Utilities.Important;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,11 +26,11 @@ public class TitleScreenUI extends JFrame {
     public TitleScreenUI() throws InvalidUILoadException {
         this.setTitle("Forest Market Launcher");
 
-        this.setSize(600, 600);
+        this.setSize(Important.calculateDimension(600), Important.calculateDimension(600));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(600, 600));
+        this.setMinimumSize(new Dimension(Important.calculateDimension(600), Important.calculateDimension(600)));
         this.setResizable(false);
         initialize();
     }
@@ -61,8 +62,10 @@ public class TitleScreenUI extends JFrame {
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
+        Image scaledImage = icon.getImage().getScaledInstance(Important.calculateDimension(320), Important.calculateDimension(160), Image.SCALE_SMOOTH);
+        icon.setImage(scaledImage);
         JLabel label = new JLabel(icon, JLabel.CENTER);
-        label.setBorder(new EmptyBorder(50, 0, 0, 0));
+        label.setBorder(new EmptyBorder(Important.calculateDimension(50), 0, 0, 0));
         label.setOpaque(false);
 
         this.background.add(label, BorderLayout.NORTH);
@@ -72,7 +75,7 @@ public class TitleScreenUI extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40));
+        panel.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(40), Important.calculateDimension(20), Important.calculateDimension(40)));
 
         CustomTitleButton newGame = new CustomTitleButton("/TitleScreenUI/NEW_GAME_BUTTON.png", "/TitleScreenUI/NEW_GAME_BUTTON_CLICKED.png", 200, 100);
         CustomTitleButton loadGame = new CustomTitleButton("/TitleScreenUI/LOAD_BUTTON.png", "/TitleScreenUI/LOAD_BUTTON_CLICKED.png", 200, 100);
@@ -82,11 +85,11 @@ public class TitleScreenUI extends JFrame {
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         quit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        panel.add(Box.createVerticalStrut(18));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(18)));
         panel.add(newGame);
-        panel.add(Box.createVerticalStrut(12));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
         panel.add(loadGame);
-        panel.add(Box.createVerticalStrut(12));
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
         panel.add(quit);
 
         this.background.add(panel, BorderLayout.CENTER);

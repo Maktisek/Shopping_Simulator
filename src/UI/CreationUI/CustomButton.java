@@ -108,7 +108,7 @@ public class CustomButton extends JButton {
     }
 
     private void setSizeOfButton(int width, int height){
-        Dimension dimension = new Dimension(width * Important.scale, height * Important.scale);
+        Dimension dimension = new Dimension(Important.calculateDimension(width), Important.calculateDimension(height));
         setMaximumSize(dimension);
         setPreferredSize(dimension);
         setMinimumSize(dimension);

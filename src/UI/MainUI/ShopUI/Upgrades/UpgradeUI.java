@@ -32,7 +32,7 @@ public class UpgradeUI extends BackgroundPanel {
 
     private void initialize() throws InvalidUILoadException {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(10, 10 ,10 ,10));
+        setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(10), Important.calculateDimension(10) ,Important.calculateDimension(10) ,Important.calculateDimension(10)));
         initializeDimensions();
         initializeNameLabel();
         initializeImage();
@@ -41,10 +41,10 @@ public class UpgradeUI extends BackgroundPanel {
     }
 
     private void initializeNameLabel(){
-        StrokeLabel name = new StrokeLabel(this.upgrade.nameInfo().toString(), 22.0f);
+        StrokeLabel name = new StrokeLabel(this.upgrade.nameInfo().toString(), 22);
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(name);
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(Important.calculateDimension(10)));
     }
 
     private void initializeImage() throws InvalidUILoadException {
@@ -67,20 +67,20 @@ public class UpgradeUI extends BackgroundPanel {
 
     private void initializeLevelTextLabel(){
         add(Box.createVerticalStrut(4));
-        this.level = new StrokeLabel("LEVEL " + Important.parseMoney(upgrade.levelInfo()), 14.0f);
+        this.level = new StrokeLabel("LEVEL " + Important.parseMoney(upgrade.levelInfo()), 14);
         this.level.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(this.level);
     }
 
     private void initializePriceLabel(){
         add(Box.createVerticalStrut(8));
-        this.price = new StrokeLabel(Important.parseMoney(upgrade.priceInfo()) + " FR", 13.0f);
+        this.price = new StrokeLabel(Important.parseMoney(upgrade.priceInfo()) + " FR", 13);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(price);
     }
 
     private void initializeDimensions() {
-        Dimension dimension = new Dimension(180, 180);
+        Dimension dimension = new Dimension(Important.calculateDimension(180), Important.calculateDimension(180));
         setMinimumSize(new Dimension(dimension));
         setPreferredSize(new Dimension(dimension));
         setMaximumSize(new Dimension(dimension));
