@@ -72,6 +72,7 @@ public class EndPanelUI extends BackgroundPanel {
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.stopAllTimers();
             MyFrame parent = mainUI.getMyFrame();
+            parent.stopTimer();
             parent.dispose();
             TitleScreenUI title;
             try {

@@ -1,20 +1,20 @@
 package UI.InitialUI;
 
 import Game.GameData;
+import UI.CreationUI.FrameBaseUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MyFrame extends JFrame{
+public class MyFrame extends FrameBaseUI {
 
     private final GameData gameData;
-    private Timer resolutionChecker;
-    private int check;
     private MainUI mainUI;
 
     public MyFrame(GameData gameData) throws InvalidUILoadException{
+        super();
         setTitle("Forest Market");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,26 +24,11 @@ public class MyFrame extends JFrame{
         setUndecorated(true);
 
         this.gameData = gameData;
-        this.check = Toolkit.getDefaultToolkit().getScreenSize().width *  Toolkit.getDefaultToolkit().getScreenSize().height;
         initialize();
     }
 
-    private void initializeResolutionChecker(){
-        this.resolutionChecker = new Timer(500, e -> {
-            int newValue = Toolkit.getDefaultToolkit().getScreenSize().width *  Toolkit.getDefaultToolkit().getScreenSize().height;
-            if (check != newValue){
-                this.check = newValue;
-                try {
-                    refreshUI();
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        this.resolutionChecker.start();
-    }
-
-    private void refreshUI() throws InvalidUILoadException {
+    @Override
+    public void refreshUI() throws InvalidUILoadException {
         this.getContentPane().removeAll();
         this.mainUI.stopAllTimers();
         this.mainUI = new MainUI(this.gameData);
@@ -55,14 +40,9 @@ public class MyFrame extends JFrame{
     private void initialize() throws InvalidUILoadException {
         this.mainUI = new MainUI(gameData);
         getContentPane().add(this.mainUI, BorderLayout.CENTER);
-        initializeResolutionChecker();
     }
 
     public void makeVisible() {
         setVisible(true);
-    }
-
-    public Timer getResolutionChecker() {
-        return resolutionChecker;
     }
 }

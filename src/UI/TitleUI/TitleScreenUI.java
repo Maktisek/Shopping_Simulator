@@ -7,6 +7,7 @@ import Game.GameData;
 import Game.Initialization;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomTitleButton;
+import UI.CreationUI.FrameBaseUI;
 import UI.DialogUI.TitleDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
@@ -18,7 +19,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 
-public class TitleScreenUI extends JFrame {
+public class TitleScreenUI extends FrameBaseUI {
 
     private BackgroundPanel background;
     private JPanel overlay;
@@ -35,6 +36,14 @@ public class TitleScreenUI extends JFrame {
         initialize();
     }
 
+    @Override
+    public void refreshUI() throws InvalidUILoadException {
+        this.getContentPane().removeAll();
+        initialize();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
+    }
+
     public void makeVisible() {
         this.pack();
         this.setVisible(true);
@@ -46,6 +55,8 @@ public class TitleScreenUI extends JFrame {
         initializeLayerPane();
         setCursor();
     }
+
+
 
     private void initializeBackground() throws InvalidUILoadException {
         this.background = new BackgroundPanel("/TitleScreenUI/BACKGROUND.png");
@@ -98,6 +109,7 @@ public class TitleScreenUI extends JFrame {
             try {
                 MyFrame myFrame = new MyFrame(new Initialization().getGameData());
                 myFrame.makeVisible();
+                this.stopTimer();
                 this.dispose();
             } catch (InvalidUILoadException ex) {
                 System.err.println(ex.getMessage());
@@ -117,6 +129,7 @@ public class TitleScreenUI extends JFrame {
                 try {
                     MyFrame myFrame = new MyFrame(gameData);
                     myFrame.makeVisible();
+                    this.stopTimer();
                     this.dispose();
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
@@ -125,6 +138,7 @@ public class TitleScreenUI extends JFrame {
         });
 
         quit.addActionListener(e -> {
+            this.stopTimer();
             this.dispose();
         });
     }
@@ -144,7 +158,7 @@ public class TitleScreenUI extends JFrame {
         layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
 
-        this.add(layeredPane, BorderLayout.CENTER);
+        this.getContentPane().add(layeredPane, BorderLayout.CENTER);
     }
 
     public void showDialog(JPanel customContent) {
