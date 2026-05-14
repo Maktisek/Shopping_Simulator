@@ -29,7 +29,7 @@ public class SaveDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(20));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton ok = new CustomButton("/MainUI/ShopUI/NO_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         CustomButton save = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
 
         ok.addActionListener(e -> {

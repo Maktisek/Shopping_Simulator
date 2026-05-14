@@ -31,7 +31,7 @@ public class BuyDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/MainUI/ShopUI/NO_BUTTON.png", 130, 75);
         CustomButton buy = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 130, 75);
 
         ok.addActionListener(e ->{

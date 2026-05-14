@@ -21,7 +21,7 @@ public class EndPanelUI extends GameDataInfoUI {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton close = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        CustomButton close = new CustomButton("/MainUI/ShopUI/QUIT_BUTTON.png", 130, 75);
         close.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.turnOff();

@@ -20,7 +20,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
         ok.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.switchPanel("Shop");

@@ -57,4 +57,14 @@ public class StatsCounter implements Serializable {
     public void setCosts(int costs) {
         this.costs = costs;
     }
+
+    @Override
+    public String toString() {
+        return "StatsCounter{" +
+                "shipped=" + shipped +
+                ", bought=" + bought +
+                ", earnings=" + earnings +
+                ", costs=" + costs +
+                '}';
+    }
 }

@@ -122,6 +122,8 @@ public class GameData implements Serializable {
         this.setDayManagement(gameData.getDayManagement());
         this.setShopManagement(gameData.getShopManagement());
         this.setUpgradeManagement(gameData.getUpgradeManagement());
+        this.setStatsCounter(gameData.getStatsCounter());
+        this.setTax(gameData.getTax());
     }
 
     @Override

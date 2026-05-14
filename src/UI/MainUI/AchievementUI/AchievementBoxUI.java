@@ -122,7 +122,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializePercentualBound(JPanel xPanel) {
-        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " pr",24);
+        this.percentualBound = new StrokeLabel(this.achievement.calculatePercent() + " %",24);
         xPanel.add(percentualBound);
     }
 
@@ -178,7 +178,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
 
         if (this.type == AchievementUITypes.POSSIBLE) {
             this.bound.setText(Important.parseMoney(this.achievement.getCurrent()) + "/" + Important.parseMoney(this.achievement.getBound()));
-            this.percentualBound.setText(this.achievement.calculatePercent() + " pr");
+            this.percentualBound.setText(this.achievement.calculatePercent() + " %");
         }
     }
 
