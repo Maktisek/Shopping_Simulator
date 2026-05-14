@@ -7,7 +7,7 @@ import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
 import UI.MainUI.AchievementUI.AchievementManagementUI;
-import UI.MainUI.EndGameUI.EndPanelUI;
+import UI.MainUI.StatisticUI.EndPanelUI;
 import UI.MainUI.ShopUI.ShopManagementUI;
 import UI.MainUI.StockUI.StockManagementUI;
 

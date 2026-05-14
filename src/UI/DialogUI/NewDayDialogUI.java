@@ -6,7 +6,6 @@ import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.EndGameUI.EndPanelUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
 import Utilities.Important;

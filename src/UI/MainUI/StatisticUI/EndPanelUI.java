@@ -1,9 +1,8 @@
-package UI.MainUI.EndGameUI;
+package UI.MainUI.StatisticUI;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
-import UI.CreationUI.GameDataInfoUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;

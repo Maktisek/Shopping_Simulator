@@ -1,6 +1,8 @@
-package UI.CreationUI;
+package UI.MainUI.StatisticUI;
 
 import Game.GameData;
+import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
 import Utilities.Important;
 
