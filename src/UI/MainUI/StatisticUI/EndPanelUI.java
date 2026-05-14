@@ -26,6 +26,7 @@ public class EndPanelUI extends GameDataInfoUI {
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.turnOff();
 
+
             TitleScreenUI title;
             try {
                 title = new TitleScreenUI();

@@ -21,6 +21,10 @@ public abstract class Command {
         this.gameData = gameData;
     }
 
+    public Command() {
+        this.result = null;
+    }
+
     public abstract CommandResult execute();
 
 
