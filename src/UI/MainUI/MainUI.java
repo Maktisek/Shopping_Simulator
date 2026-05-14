@@ -9,6 +9,7 @@ import UI.InitialUI.MyFrame;
 import UI.MainUI.AchievementUI.AchievementManagementUI;
 import UI.MainUI.StatisticUI.EndPanelUI;
 import UI.MainUI.ShopUI.ShopManagementUI;
+import UI.MainUI.StatisticUI.PlayerStatisticUI;
 import UI.MainUI.StockUI.StockManagementUI;
 
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class MainUI extends BackgroundPanel {
     private StockManagementUI stockManagementUI;
     private AchievementManagementUI achievementManagementUI;
     private EndPanelUI endPanelUI;
+    private PlayerStatisticUI playerStatisticUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
         JLayeredPane layeredPane = new JLayeredPane();
@@ -53,6 +55,7 @@ public class MainUI extends BackgroundPanel {
         initializeStockManagementUI();
         initializeAchievementManagementUI();
         initializeEndPanelUI();
+        initializeStatistic();
 
         this.cardLayout.show(mainPanel, "Shop");
 
@@ -82,6 +85,11 @@ public class MainUI extends BackgroundPanel {
     private void initializeEndPanelUI() throws InvalidUILoadException {
         this.endPanelUI = new EndPanelUI(gameData);
         this.mainPanel.add(endPanelUI, "END");
+    }
+
+    private void initializeStatistic() throws InvalidUILoadException {
+        this.playerStatisticUI = new PlayerStatisticUI(gameData);
+        this.mainPanel.add(playerStatisticUI, "STATS");
     }
 
     public void switchPanel(String panel) {

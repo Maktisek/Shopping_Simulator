@@ -68,14 +68,6 @@ public abstract class GameDataInfoUI extends BackgroundPanel {
         this.sidePanel = new JPanel();
         this.sidePanel.setLayout(new BorderLayout());
         this.sidePanel.setOpaque(false);
-
-//        BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/END_BAR_UI.png");
-//
-//        Dimension dimension = new Dimension(Important.calculateDimension(Important.getWidth()), Important.calculateDimension(135));
-//        bar.setPreferredSize(dimension);
-//        bar.setMaximumSize(dimension);
-//        bar.setMinimumSize(dimension);
-
         this.sidePanel.add(initializeBar(), BorderLayout.NORTH);
     }
 
