@@ -3,6 +3,7 @@ package UI.MainUI;
 import Achievements.Achievement;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.UpdateAble;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
@@ -15,7 +16,7 @@ import UI.MainUI.StockUI.StockManagementUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainUI extends BackgroundPanel {
+public class MainUI extends BackgroundPanel implements UpdateAble {
 
     private JPanel mainPanel;
     private CardLayout cardLayout;
@@ -67,7 +68,7 @@ public class MainUI extends BackgroundPanel {
         this.mainPanel = new JPanel(cardLayout);
     }
 
-    private void initializeShopManagementUI() throws InvalidUILoadException{
+    private void initializeShopManagementUI() throws InvalidUILoadException {
         this.shopManagementUI = new ShopManagementUI(this.gameData);
         this.mainPanel.add(shopManagementUI, "Shop");
     }
@@ -96,23 +97,25 @@ public class MainUI extends BackgroundPanel {
         this.cardLayout.show(mainPanel, panel);
     }
 
-    public void update(){
-         this.updater = new Timer(5, e ->{
-             try {
-                 this.shopManagementUI.update();
-             } catch (InvalidUILoadException ex) {
-                 throw new RuntimeException(ex);
-             }
-             this.stockManagementUI.update();
-             try {
-                 this.achievementManagementUI.update();
-             } catch (InvalidUILoadException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+    @Override
+    public void update() {
+        this.updater = new Timer(5, e -> {
+            try {
+                this.shopManagementUI.update();
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.stockManagementUI.update();
+            try {
+                this.achievementManagementUI.update();
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.playerStatisticUI.update();
+        });
         updater.start();
 
-        this.achievementUpdater = new Timer(5, e ->{
+        this.achievementUpdater = new Timer(5, e -> {
             try {
                 checkForAchievements();
             } catch (InvalidUILoadException ex) {
@@ -122,14 +125,14 @@ public class MainUI extends BackgroundPanel {
         achievementUpdater.start();
     }
 
-    public void stopAllTimers(){
+    public void stopAllTimers() {
         this.updater.stop();
         this.achievementUpdater.stop();
     }
 
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().peekAchievement();
-        if(temp != null && overlay.getComponents().length == 0){
+        if (temp != null && overlay.getComponents().length == 0) {
             this.gameData.getAchievementManagement().pollAchievement();
             this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
@@ -151,7 +154,7 @@ public class MainUI extends BackgroundPanel {
         repaint();
     }
 
-    public void turnOff(){
+    public void turnOff() {
         stopAllTimers();
         MyFrame parent = getMyFrame();
         parent.stopTimer();
@@ -162,7 +165,7 @@ public class MainUI extends BackgroundPanel {
         return shopManagementUI;
     }
 
-    public MyFrame getMyFrame(){
+    public MyFrame getMyFrame() {
         return (MyFrame) SwingUtilities.getAncestorOfClass(MyFrame.class, this);
     }
 }

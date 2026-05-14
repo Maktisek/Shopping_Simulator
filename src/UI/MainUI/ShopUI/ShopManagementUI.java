@@ -9,12 +9,14 @@ import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
+import UI.CreationUI.UpdateAble;
 import UI.DialogUI.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BuyDialogUI;
 import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
+import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import UI.MainUI.ShopUI.Days.DayUI;
 import UI.DialogUI.NewDayDialogUI;
 import UI.MainUI.ShopUI.Money.MoneyPanelUI;
@@ -26,7 +28,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ShopManagementUI extends BackgroundPanel {
+public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
     private final JPanel cardPanel;
     private final JPanel mainPanel;
@@ -184,10 +186,7 @@ public class ShopManagementUI extends BackgroundPanel {
     private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
 
-        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
-
-        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/BUY_ICON.png");
+        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/BUY_ICON.png", gameData, BoundTypes.BUY_BOUND);
 
         panel.add(buyBounds);
     }
@@ -197,7 +196,7 @@ public class ShopManagementUI extends BackgroundPanel {
         String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
         String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
 
-        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/SELL_ICON.png");
+        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/SELL_ICON.png", gameData, BoundTypes.SELL_BOUND);
 
         panel.add(sellBounds);
     }
@@ -298,6 +297,7 @@ public class ShopManagementUI extends BackgroundPanel {
         this.cardLayout.show(cardPanel, card);
     }
 
+    @Override
     public void update() throws InvalidUILoadException {
         for (ShopUI shopPanel : shopPanels) {
             shopPanel.update();

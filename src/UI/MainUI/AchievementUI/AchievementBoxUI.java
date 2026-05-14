@@ -8,6 +8,7 @@ import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.StrokeLabel;
+import UI.CreationUI.UpdateAble;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -17,7 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
-public class AchievementBoxUI extends BackgroundPanel {
+public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
     private final Achievement achievement;
@@ -157,6 +158,7 @@ public class AchievementBoxUI extends BackgroundPanel {
         setMinimumSize(dimension);
     }
 
+    @Override
     public void update() throws InvalidUILoadException {
         if(achievement.getReward() == 0 && (type != AchievementUITypes.DONE)){
             this.claimButton.setVisible(false);

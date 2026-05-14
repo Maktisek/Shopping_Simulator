@@ -8,18 +8,21 @@ import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static Utilities.Important.initializeScrollPane;
 
 public abstract class GameDataInfoUI extends BackgroundPanel {
 
-    private JPanel mainPanel;
-    private JPanel sidePanel;
-    private final GameData gameData;
+    protected JPanel mainPanel;
+    protected JPanel sidePanel;
+    protected final GameData gameData;
+    protected ArrayList<StrokeLabel> labels;
 
     public GameDataInfoUI(GameData gameData) throws InvalidUILoadException {
         super("/MainUI/ShopUI/STOCK_UI.png");
         this.gameData = gameData;
+        this.labels = new ArrayList<>();
         initialization();
     }
 
@@ -58,6 +61,7 @@ public abstract class GameDataInfoUI extends BackgroundPanel {
             wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
             StrokeLabel stat = new StrokeLabel(Important.insertDots(s, 50), 28);
             stat.setAlignmentX(Component.CENTER_ALIGNMENT);
+            this.labels.add(stat);
             wrapper.add(stat);
         }
     }

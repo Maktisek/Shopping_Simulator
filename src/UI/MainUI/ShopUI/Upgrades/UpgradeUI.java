@@ -6,6 +6,7 @@ import Commands.UpgradeCommands.UpgradeCommand;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
@@ -16,7 +17,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
-public class UpgradeUI extends BackgroundPanel {
+public class UpgradeUI extends BackgroundPanel implements UpdateAble {
 
     private final Upgrade upgrade;
     private StrokeLabel price;
@@ -86,6 +87,7 @@ public class UpgradeUI extends BackgroundPanel {
         setMaximumSize(new Dimension(dimension));
     }
 
+    @Override
     public void update(){
         this.price.setText(Important.parseMoney(upgrade.priceInfo()) + " FR");
         this.level.setText("LEVEL " + Important.parseMoney(upgrade.levelInfo()));

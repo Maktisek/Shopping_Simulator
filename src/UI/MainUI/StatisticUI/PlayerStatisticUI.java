@@ -3,6 +3,7 @@ package UI.MainUI.StatisticUI;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;
@@ -10,7 +11,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerStatisticUI extends GameDataInfoUI{
+public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
 
     public PlayerStatisticUI(GameData gameData) throws InvalidUILoadException {
@@ -42,4 +43,11 @@ public class PlayerStatisticUI extends GameDataInfoUI{
         return bar;
     }
 
+    @Override
+    public void update() {
+        String[] stats = Important.decodeString(this.gameData.toString());
+        for (int i = 0; i < stats.length; i++) {
+            this.labels.get(i).setText(Important.insertDots(stats[i], 50));
+        }
+    }
 }

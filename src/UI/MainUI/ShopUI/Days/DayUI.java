@@ -2,13 +2,14 @@ package UI.MainUI.ShopUI.Days;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
 import java.awt.*;
 
-public class DayUI extends BackgroundPanel {
+public class DayUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
     private StrokeLabel day;
@@ -43,6 +44,7 @@ public class DayUI extends BackgroundPanel {
         add(day, BorderLayout.CENTER);
     }
 
+    @Override
     public void update(){
         day.setText(gameData.getDayManagement().getCurrentDay().getDayName().toString());
     }

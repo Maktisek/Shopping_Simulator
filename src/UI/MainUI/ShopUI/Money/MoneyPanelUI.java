@@ -2,6 +2,7 @@ package UI.MainUI.ShopUI.Money;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
@@ -9,7 +10,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
-public class MoneyPanelUI extends BackgroundPanel {
+public class MoneyPanelUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
     private StrokeLabel price;
@@ -41,6 +42,7 @@ public class MoneyPanelUI extends BackgroundPanel {
         setMaximumSize(new Dimension(dimension));
     }
 
+    @Override
     public void update(){
         int balance = gameData.getPlayer().getCurrentBalance();
         updateColors(balance);

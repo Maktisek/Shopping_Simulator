@@ -3,6 +3,7 @@ package UI.MainUI.StockUI;
 import Items.ItemPlayer;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Items.ItemInformationUI;
@@ -12,7 +13,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
-public class ItemPlayerUI extends BackgroundPanel {
+public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
 
     private final ItemPlayer itemPlayer;
     private StrokeLabel amount;
@@ -64,6 +65,7 @@ public class ItemPlayerUI extends BackgroundPanel {
         panel.add(this.amount);
     }
 
+    @Override
     public void update(){
         this.amount.setText(Important.parseMoney(itemPlayer.getAmount()) + "X");
         this.amount.repaint();

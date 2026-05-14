@@ -3,10 +3,7 @@ package UI.MainUI.AchievementUI;
 import Achievements.Achievement;
 import Achievements.AchievementTypes;
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.BarPanelUI;
-import UI.CreationUI.GridPanelUI;
-import UI.CreationUI.StrokeLabel;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import Utilities.Important;
 
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 
 import static Utilities.Important.initializeScrollPane;
 
-public class AchievementManagementUI extends JPanel {
+public class AchievementManagementUI extends JPanel implements UpdateAble {
 
     private final GameData gameData;
     private BackgroundPanel mainPanel;
@@ -104,6 +101,7 @@ public class AchievementManagementUI extends JPanel {
         this.sidePanel.add(barPanelUI, BorderLayout.NORTH);
     }
 
+    @Override
     public void update() throws InvalidUILoadException {
         for (AchievementBoxUI achievementBoxUI : achievements){
             achievementBoxUI.update();

@@ -4,6 +4,7 @@ import Game.GameData;
 import Items.ItemNPC;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
 import UI.MainUI.ShopUI.Items.ItemUI;
@@ -14,7 +15,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class ShopUI extends BackgroundPanel {
+public class ShopUI extends BackgroundPanel implements UpdateAble {
 
     private final Shop shop;
     private final GameData gameData;
@@ -74,14 +75,15 @@ public class ShopUI extends BackgroundPanel {
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
             ItemNPC item = shop.getNpc().getDemand()[i];
             this.demandUI[i].setItem(item);
-            this.demandUI[i].updateNPC();
+            this.demandUI[i].update();
         }
     }
 
 
+    @Override
     public void update() throws InvalidUILoadException {
         for (ItemUI itemUI : items) {
-            itemUI.updateShop();
+            itemUI.update();
         }
         updateNPCItems();
     }

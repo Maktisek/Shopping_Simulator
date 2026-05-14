@@ -2,13 +2,11 @@ package UI.MainUI.StockUI;
 
 import Game.GameData;
 import Items.ItemPlayer;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.BarPanelUI;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.GridPanelUI;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
+import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import Upgrade.Utilities.UpgradeNames;
 import Utilities.Important;
 
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 
 import static Utilities.Important.initializeScrollPane;
 
-public class StockManagementUI extends JPanel {
+public class StockManagementUI extends JPanel implements UpdateAble {
 
     private final GameData gameData;
     private BackgroundPanel mainPanel;
@@ -95,15 +93,13 @@ public class StockManagementUI extends JPanel {
 
 
     private void initializeBoundPanel(JPanel panel) throws InvalidUILoadException {
-        String current = String.valueOf(gameData.getPlayer().calculateStocks());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK));
-
-        this.stockBound = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", current, bound, "/MainUI/ShopUI/STOCK_ICON.png");
+        this.stockBound = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/STOCK_ICON.png", gameData, BoundTypes.STOCK_BOUND);
 
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(stockBound);
     }
 
+    @Override
     public void update(){
         for (ItemPlayerUI itemPlayerUI : items){
             itemPlayerUI.update();
