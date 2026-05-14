@@ -70,10 +70,8 @@ public class EndPanelUI extends BackgroundPanel {
         CustomButton close = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
         close.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            mainUI.stopAllTimers();
-            MyFrame parent = mainUI.getMyFrame();
-            parent.stopTimer();
-            parent.dispose();
+            mainUI.turnOff();
+
             TitleScreenUI title;
             try {
                 title = new TitleScreenUI();

@@ -143,6 +143,13 @@ public class MainUI extends BackgroundPanel {
         repaint();
     }
 
+    public void turnOff(){
+        stopAllTimers();
+        MyFrame parent = getMyFrame();
+        parent.stopTimer();
+        parent.dispose();
+    }
+
     public ShopManagementUI getShopManagementUI() {
         return shopManagementUI;
     }
