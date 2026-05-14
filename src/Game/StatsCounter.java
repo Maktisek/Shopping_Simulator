@@ -1,6 +1,8 @@
 package Game;
 
-public class StatsCounter {
+import java.io.Serializable;
+
+public class StatsCounter implements Serializable {
 
     private int shipped;
     private int bought;

@@ -8,6 +8,7 @@ import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
+import UI.MainUI.StatisticUI.EndPanelUI;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -58,7 +59,11 @@ public class NewDayDialogUI extends BaseDialogUI {
                 }
             } else if (commandResult.getState() == CommandState.FAILED_END) {
                 parent.hideDialog();
-                parent.switchPanel("END");
+                try {
+                    parent.initAndSwitchPanel(new EndPanelUI(gameData));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
                 parent.resetCursor();
         }
     });

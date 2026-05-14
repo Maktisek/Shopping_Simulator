@@ -27,7 +27,6 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
     private ShopManagementUI shopManagementUI;
     private StockManagementUI stockManagementUI;
     private AchievementManagementUI achievementManagementUI;
-    private EndPanelUI endPanelUI;
     private PlayerStatisticUI playerStatisticUI;
 
     public MainUI(GameData gameData) throws InvalidUILoadException {
@@ -55,7 +54,6 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         initializeShopManagementUI();
         initializeStockManagementUI();
         initializeAchievementManagementUI();
-        initializeEndPanelUI();
         initializeStatistic();
 
         this.cardLayout.show(mainPanel, "Shop");
@@ -83,11 +81,6 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         this.mainPanel.add(achievementManagementUI, "ACHIEVEMENTS");
     }
 
-    private void initializeEndPanelUI() throws InvalidUILoadException {
-        this.endPanelUI = new EndPanelUI(gameData);
-        this.mainPanel.add(endPanelUI, "END");
-    }
-
     private void initializeStatistic() throws InvalidUILoadException {
         this.playerStatisticUI = new PlayerStatisticUI(gameData);
         this.mainPanel.add(playerStatisticUI, "STATS");
@@ -95,6 +88,11 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
 
     public void switchPanel(String panel) {
         this.cardLayout.show(mainPanel, panel);
+    }
+
+    public void initAndSwitchPanel(JPanel panel){
+        this.mainPanel.add(panel, "TEMP");
+        switchPanel("TEMP");
     }
 
     @Override
