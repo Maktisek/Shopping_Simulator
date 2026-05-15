@@ -10,6 +10,7 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
+import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
 import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BuyDialogUI;
@@ -257,6 +258,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         initializeBalance(north);
         initializeMultipliers(north);
         initializeSaveButton(north);
+        initializeQuitAndSaveButton(north);
 
         wrapper.add(north, BorderLayout.NORTH);
     }
@@ -294,18 +296,18 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeQuitAndSaveButton(JPanel north) throws InvalidUILoadException {
-        CustomButton save = new CustomButton("/MainUI/ShopUI/SAVE_BUTTON.png", 100, 100);
-        save.addActionListener(e -> {
+        CustomButton saveAndQuit = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
+        saveAndQuit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new SaveDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+                parent.showDialog(new SaveAndQuitDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
         north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        north.add(save);
+        north.add(saveAndQuit);
     }
 
     public void changeCard(String card) {
