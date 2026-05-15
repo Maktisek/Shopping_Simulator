@@ -1,11 +1,11 @@
-package UI.DialogUI;
+package UI.DialogUI.SaveDialogs;
 
 import Commands.CommandResult;
-import Commands.CommandState;
 import Commands.SaveCommands.WriteSaveCommand;
-import Commands.ShopCommands.BuyShopCommand;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
+import UI.DialogUI.BaseDialogUI;
+import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;

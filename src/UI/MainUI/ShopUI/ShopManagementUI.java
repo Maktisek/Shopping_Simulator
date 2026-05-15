@@ -10,7 +10,7 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
-import UI.DialogUI.SaveDialogUI;
+import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BuyDialogUI;
 import UI.DialogUI.DialogUI;
