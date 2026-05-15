@@ -29,10 +29,10 @@ public class SaveDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(20));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/NO_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton no = new CustomButton("/MainUI/ShopUI/NO_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         CustomButton save = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
 
-        ok.addActionListener(e -> {
+        no.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
@@ -47,7 +47,7 @@ public class SaveDialogUI extends BaseDialogUI {
                 throw new RuntimeException(ex);
             }
         });
-        panel.add(ok);
+        panel.add(no);
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(save);
         add(panel);

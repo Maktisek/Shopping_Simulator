@@ -1,5 +1,7 @@
 package UI.MainUI.StatisticUI;
 
+import Commands.CommandResult;
+import Commands.UICOmmands.TurnOfTheGame;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
@@ -24,16 +26,8 @@ public class EndPanelUI extends GameDataInfoUI {
         CustomButton close = new CustomButton("/MainUI/ShopUI/QUIT_BUTTON.png", 130, 75);
         close.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            mainUI.turnOff();
-
-
-            TitleScreenUI title;
-            try {
-                title = new TitleScreenUI();
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
-            title.makeVisible();
+            CommandResult result = new TurnOfTheGame(mainUI).execute();
+            System.out.println(result.getMessage());
         });
 
         close.setAlignmentX(Component.CENTER_ALIGNMENT);
