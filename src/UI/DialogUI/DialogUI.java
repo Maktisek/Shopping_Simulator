@@ -23,13 +23,16 @@ public class DialogUI extends BaseDialogUI {
         button = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
 
         button.addActionListener(e ->{
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.hideDialog();
+            buttonAction();
         });
 
         button.setAlignmentX(CENTER_ALIGNMENT);
         add(button);
     }
 
+    public void buttonAction(){
+        MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+        parent.hideDialog();
+    }
 
 }

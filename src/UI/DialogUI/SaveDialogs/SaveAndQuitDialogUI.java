@@ -1,4 +1,31 @@
 package UI.DialogUI.SaveDialogs;
 
-public class SaveAndQuitDialogUI {
+import Commands.CommandResult;
+import Commands.SaveCommands.WriteSaveCommand;
+import Commands.UICOmmands.TurnOfTheGame;
+import Game.GameData;
+import UI.DialogUI.DialogUI;
+import UI.DialogUI.TurnOffTheGameDialogUI;
+import UI.Exceptions.InvalidUILoadException;
+import UI.MainUI.MainUI;
+
+import javax.swing.*;
+
+public class SaveAndQuitDialogUI extends SaveBaseDialogUI{
+
+    public SaveAndQuitDialogUI(String imgFile, String message, GameData gameData) throws InvalidUILoadException {
+        super(imgFile, message, gameData);
+    }
+
+    @Override
+    public void loadSaveButton() {
+        CommandResult result = new WriteSaveCommand(super.gameData).execute();
+        MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+        try {
+            parent.hideDialog();
+            parent.showDialog(new TurnOffTheGameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), parent));
+        } catch (InvalidUILoadException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }
