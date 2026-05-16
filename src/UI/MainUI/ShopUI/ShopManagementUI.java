@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
+import Commands.CommandState;
 import Commands.RebirthCommands.NewRebirthCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
@@ -15,9 +16,8 @@ import UI.DialogUI.RefreshFrameDialogUI;
 import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
 import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
-import UI.DialogUI.BuyDialogUI;
+import UI.DialogUI.BuyShopDialogUI;
 import UI.DialogUI.DialogUI;
-import UI.InitialUI.MyFrame;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
@@ -158,7 +158,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
             }
             case FAILED_BUY: {
                 try {
-                    parent.showDialog(new BuyDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), gameData, shopDirection));
+                    parent.showDialog(new BuyShopDialogUI(result.getMessage(), gameData, shopDirection));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -315,10 +315,18 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         rebirthButton.addActionListener(e -> {
             CommandResult result = new NewRebirthCommand(gameData).execute();
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new RefreshFrameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
+            if(result.getState() == CommandState.FAILED_ISSUE){
+                try {
+                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }else {
+                try {
+                    parent.showDialog(new RefreshFrameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

@@ -3,7 +3,6 @@ package UI.DialogUI;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.ShopCommands.BuyShopCommand;
-import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
@@ -12,19 +11,13 @@ import Utilities.Important;
 
 import javax.swing.*;
 
-public class BuyDialogUI extends BaseDialogUI {
+public abstract class BuyDialogUI extends BaseDialogUI {
 
-    private final GameData gameData;
-    private final ShopDirection shopDirection;
-
-    public BuyDialogUI(String imgFile, String message, GameData gameData, ShopDirection shopDirection) throws InvalidUILoadException {
-        super(imgFile, message);
-        this.gameData = gameData;
-        this.shopDirection = shopDirection;
-        initializeButtons();
+    public BuyDialogUI(String message) throws InvalidUILoadException {
+        super("/MainUI/ShopUI/ISSUE_PANE.png", message);
     }
 
-    private void initializeButtons() throws InvalidUILoadException{
+    private void initializeButtons() throws InvalidUILoadException {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(false);
@@ -40,23 +33,13 @@ public class BuyDialogUI extends BaseDialogUI {
         });
 
         buy.addActionListener(e ->{
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            CommandResult result = new BuyShopCommand(gameData, shopDirection).execute();
-            if(result.getState() == CommandState.FAILED_ISSUE){
-                try {
-                    parent.hideDialog();
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }else {
-                parent.hideDialog();
-                parent.getShopManagementUI().changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-            }
+
         });
         panel.add(ok);
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(buy);
         add(panel);
     }
+
+    public abstract void initializeBuyButton();
 }

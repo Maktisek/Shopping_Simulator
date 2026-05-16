@@ -6,12 +6,14 @@ import NPCs.NPCFinder;
 import Player.Player;
 import Shops.ShopManagement;
 import Taxes.Tax;
+import Upgrade.Rebirth.Rebirth;
 import Upgrade.UpgradeManagement;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 public class Initialization {
 
@@ -24,7 +26,6 @@ public class Initialization {
     }
 
     private void initGameData(){
-        loadPlayer();
         loadTax();
         loadDayManagement();
         loadShopManagement();
@@ -33,17 +34,20 @@ public class Initialization {
         loadUpgradeManagement();
         loadAchievementManagement();
         loadStatsCounter();
+        loadPlayer();
         finishInitialization();
     }
 
     private void loadPlayer(){
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Player.json")){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Rebirth.json")){
             if(is == null){
-                throw new IllegalStateException("The path for Json: /Jsons/Player.json is invalid and the file could not be found");
+                throw new IllegalStateException("The path for Json: /Jsons/Rebirth.json is invalid and the file could not be found");
             }
-            this.gameData.setPlayer(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Player.class));
+            this.gameData.getUpgradeManagement().setRebirth(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Rebirth.class));
+            this.gameData.setPlayer(new Player());
+            this.gameData.getPlayer().setCurrentBalance(this.gameData.getUpgradeManagement().getRebirth().getCapital());
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Player: " + e.getMessage());
         }
