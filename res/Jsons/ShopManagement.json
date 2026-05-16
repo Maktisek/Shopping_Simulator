@@ -6,7 +6,8 @@
       "npc": null,
       "shopKey": {
         "price": 0,
-        "unlocked": true
+        "unlocked": true,
+        "rebirthLevel" : 1
       },
       "items": [
         {

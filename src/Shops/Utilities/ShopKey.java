@@ -6,6 +6,7 @@ public class ShopKey implements Serializable {
 
     private int price;
     private boolean unlocked;
+    private int rebirthLevel;
 
     public ShopKey() {
     }
@@ -26,4 +27,11 @@ public class ShopKey implements Serializable {
         this.unlocked = unlocked;
     }
 
+    public int getRebirthLevel() {
+        return rebirthLevel;
+    }
+
+    public void setRebirthLevel(int rebirthLevel) {
+        this.rebirthLevel = rebirthLevel;
+    }
 }

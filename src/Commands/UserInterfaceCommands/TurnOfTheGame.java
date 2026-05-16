@@ -1,4 +1,4 @@
-package Commands.UICOmmands;
+package Commands.UserInterfaceCommands;
 
 import Commands.Command;
 import Commands.CommandResult;

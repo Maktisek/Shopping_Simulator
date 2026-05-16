@@ -15,7 +15,7 @@ public class UpgradeManagement implements Serializable {
     private Rebirth rebirth;
 
     public UpgradeManagement() {
-        this.rebirth = new Rebirth(10000000);
+        this.rebirth = new Rebirth(1000);
         this.upgrades = new HashMap<>();
         loadUpgrades();
     }

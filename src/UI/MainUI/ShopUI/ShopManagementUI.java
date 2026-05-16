@@ -194,11 +194,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
     private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-        String current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
-
         this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/SELL_ICON.png", gameData, BoundTypes.SELL_BOUND);
-
         panel.add(sellBounds);
     }
 

@@ -1,13 +1,12 @@
 package UI.MainUI.StatisticUI;
 
 import Commands.CommandResult;
-import Commands.UICOmmands.TurnOfTheGame;
+import Commands.UserInterfaceCommands.TurnOfTheGame;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.TitleUI.TitleScreenUI;
 import Utilities.Important;
 
 import javax.swing.*;

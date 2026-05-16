@@ -36,6 +36,10 @@ public class BuyShopCommand extends Command {
             return new CommandResult(temp.getName() + " has been already bought", CommandState.FAILED_ISSUE);
         }
 
+        if(temp.getShopKey().getRebirthLevel() > getUpgradeManagement().getRebirth().getLevel()){
+            return new CommandResult("You need rebirth level " + temp.getShopKey().getRebirthLevel() + " for unlocking " + temp.getName(), CommandState.FAILED_ISSUE);
+        }
+
         if(!getPlayer().canBuy(temp.getShopKey().getPrice())){
             return new CommandResult("Not enough money", CommandState.FAILED_ISSUE);
         }

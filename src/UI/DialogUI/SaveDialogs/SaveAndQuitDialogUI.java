@@ -2,9 +2,7 @@ package UI.DialogUI.SaveDialogs;
 
 import Commands.CommandResult;
 import Commands.SaveCommands.WriteSaveCommand;
-import Commands.UICOmmands.TurnOfTheGame;
 import Game.GameData;
-import UI.DialogUI.DialogUI;
 import UI.DialogUI.TurnOffTheGameDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;

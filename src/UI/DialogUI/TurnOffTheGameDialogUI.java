@@ -1,7 +1,7 @@
 package UI.DialogUI;
 
 import Commands.CommandResult;
-import Commands.UICOmmands.TurnOfTheGame;
+import Commands.UserInterfaceCommands.TurnOfTheGame;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
