@@ -6,6 +6,7 @@ import Player.Player;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
+import Upgrade.Utilities.UpgradeNames;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -127,8 +128,9 @@ public class GameData implements Serializable {
     }
 
     public void copyFromRebirth(GameData gameData){
-        this.setAchievementManagement(gameData.getAchievementManagement());
         this.setDayManagement(gameData.getDayManagement());
+        this.dayManagement.getCurrentDay().setDayBoughtAmount(0);
+        this.dayManagement.getCurrentDay().setDaySoldAmount(0);
         this.setStatsCounter(gameData.getStatsCounter());
         this.setTax(gameData.getTax());
         this.getTax().setStart((this.getTax().getCurrent() / 100) * 50);
