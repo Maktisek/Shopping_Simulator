@@ -1,17 +1,15 @@
 package NPCs;
 
-import Shops.Utilities.ShopNames;
-
 public class NPCFinder {
 
-    private ShopNames shopName;
+    private String shopName;
     private NPC npc;
 
-    public ShopNames getShopName() {
+    public String getShopName() {
         return shopName;
     }
 
-    public void setShopName(ShopNames shopName) {
+    public void setShopName(String shopName) {
         this.shopName = shopName;
     }
 

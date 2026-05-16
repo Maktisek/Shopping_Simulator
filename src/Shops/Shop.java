@@ -6,14 +6,12 @@ import Items.Exceptions.WrongItemException;
 import NPCs.NPC;
 import Player.Player;
 import Shops.Utilities.ShopKey;
-import Shops.Utilities.ShopNames;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Shop implements Serializable {
 
-    private ShopNames name;
+    private String name;
     private ItemShop[] items;
     private NPC npc;
     private ShopKey shopKey;
@@ -56,7 +54,7 @@ public class Shop implements Serializable {
         }
     }
 
-    public ItemShop findItem(String name){
+    public ItemShop findItem(java.lang.String name){
         for (ItemShop item : items){
             if(item.getItem().getName().equalsIgnoreCase(name)){
                 return item;
@@ -77,11 +75,11 @@ public class Shop implements Serializable {
         this.items = items;
     }
 
-    public ShopNames getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ShopNames name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -100,14 +98,5 @@ public class Shop implements Serializable {
     public void setShopKey(ShopKey shopKey) {
         this.shopKey = shopKey;
     }
-
-    @Override
-    public String toString() {
-        return "Shop{" +
-                "name=" + name +
-                ", items=" + Arrays.toString(items) +
-                ", npc=" + npc +
-                ", shopKey=" + shopKey +
-                '}';
-    }
+    
 }
