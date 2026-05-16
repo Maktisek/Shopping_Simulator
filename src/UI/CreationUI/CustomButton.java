@@ -95,6 +95,10 @@ public class CustomButton extends JButton {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 CustomButton.this.clicked = true;
+                MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
+                if(parent != null) {
+                    parent.resetCursor();
+                }
                 repaint();
             }
 
