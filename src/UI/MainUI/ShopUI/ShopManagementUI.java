@@ -12,21 +12,19 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
-import UI.DialogUI.RefreshFrameDialogUI;
+import UI.DialogUI.*;
 import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
 import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
-import UI.DialogUI.BuyShopDialogUI;
-import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import UI.MainUI.ShopUI.Days.DayUI;
-import UI.DialogUI.NewDayDialogUI;
 import UI.MainUI.ShopUI.Money.MoneyPanelUI;
 import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
 import Upgrade.Utilities.UpgradeNames;
 import Utilities.Important;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -313,20 +311,11 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     private void initializeRebirthButton(JPanel north) throws InvalidUILoadException {
         CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
         rebirthButton.addActionListener(e -> {
-            CommandResult result = new NewRebirthCommand(gameData).execute();
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            if(result.getState() == CommandState.FAILED_ISSUE){
-                try {
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }else {
-                try {
-                    parent.showDialog(new RefreshFrameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
+           MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new NewRebirthDialog("Do you want to buy new rebirth for " + gameData.getUpgradeManagement().getRebirth().getPrice() + " FR?", gameData));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
             }
         });
 

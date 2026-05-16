@@ -15,6 +15,7 @@ public abstract class BuyDialogUI extends BaseDialogUI {
 
     public BuyDialogUI(String message) throws InvalidUILoadException {
         super("/MainUI/ShopUI/ISSUE_PANE.png", message);
+        initializeButtons();
     }
 
     private void initializeButtons() throws InvalidUILoadException {
@@ -33,7 +34,7 @@ public abstract class BuyDialogUI extends BaseDialogUI {
         });
 
         buy.addActionListener(e ->{
-
+            initializeBuyButton();
         });
         panel.add(ok);
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
