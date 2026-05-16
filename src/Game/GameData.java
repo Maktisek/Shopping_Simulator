@@ -134,6 +134,7 @@ public class GameData implements Serializable {
         this.getTax().setStart((this.getTax().getCurrent() / 100) * 50);
         this.getTax().setCurrent(this.getTax().getStart());
         this.getUpgradeManagement().setRebirth(gameData.getUpgradeManagement().getRebirth());
+        this.getPlayer().setCurrentBalance(this.getUpgradeManagement().getRebirth().getCapital());
     }
 
     @Override
