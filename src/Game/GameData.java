@@ -126,6 +126,16 @@ public class GameData implements Serializable {
         this.setTax(gameData.getTax());
     }
 
+    public void copyFromRebirth(GameData gameData){
+        this.setAchievementManagement(gameData.getAchievementManagement());
+        this.setDayManagement(gameData.getDayManagement());
+        this.setStatsCounter(gameData.getStatsCounter());
+        this.setTax(gameData.getTax());
+        this.getTax().setStart((this.getTax().getCurrent() / 100) * 50);
+        this.getTax().setCurrent(this.getTax().getStart());
+        this.getUpgradeManagement().setRebirth(gameData.getUpgradeManagement().getRebirth());
+    }
+
     @Override
     public String toString() {
         return "Number of days:" + getDayManagement().getNumberOfDays() + "\n" +
