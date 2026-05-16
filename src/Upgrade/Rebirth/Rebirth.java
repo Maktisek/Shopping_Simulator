@@ -4,28 +4,42 @@ import java.io.Serializable;
 
 public class Rebirth implements Serializable {
 
-    private double multiplier;
+    private double upgradeMultiplier;
     private int price;
-    private int amount;
+    private int level;
+    private int capital;
 
     public Rebirth(int price) {
-        this.multiplier = 1;
+        this.upgradeMultiplier = 1;
         this.price = price;
-        this.amount = 1;
+        this.level = 1;
     }
 
-    public void newRebirth(){
-        this.multiplier = this.multiplier * (1 + (0.3/amount));
-        this.price = (int) (this.price * (1 + (amount * 0.04)));
-        this.amount++;
+    public void updateRebirth(){
+        updateUpgradeMultiplier();
+        updateCapital();
+        updatePrice();
+        this.level++;
     }
 
-    public double getMultiplier() {
-        return multiplier;
+    private void updateUpgradeMultiplier(){
+        this.upgradeMultiplier = this.upgradeMultiplier * (1 + (0.3/ level));
     }
 
-    public void setMultiplier(double multiplier) {
-        this.multiplier = multiplier;
+    private void updatePrice(){
+        this.price = (int) (this.price * (1 + (level * 0.04)));
+    }
+
+    private void updateCapital(){
+        this.capital = (this.price / 100) * 5;
+    }
+
+    public double getUpgradeMultiplier() {
+        return upgradeMultiplier;
+    }
+
+    public void setUpgradeMultiplier(double upgradeMultiplier) {
+        this.upgradeMultiplier = upgradeMultiplier;
     }
 
     public int getPrice() {
@@ -36,20 +50,19 @@ public class Rebirth implements Serializable {
         this.price = price;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getLevel() {
+        return level;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "Rebirth{" +
-                "multiplier=" + multiplier +
-                ", price=" + price +
-                ", amount=" + amount +
-                '}';
+    public int getCapital() {
+        return capital;
+    }
+
+    public void setCapital(int capital) {
+        this.capital = capital;
     }
 }

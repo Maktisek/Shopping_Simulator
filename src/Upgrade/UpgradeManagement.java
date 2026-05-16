@@ -31,7 +31,7 @@ public class UpgradeManagement implements Serializable {
     }
 
     public int getUpgradeData(UpgradeNames name){
-        return (int) (this.upgrades.get(name).dataInfo() * rebirth.getMultiplier());
+        return (int) (this.upgrades.get(name).dataInfo() * rebirth.getUpgradeMultiplier());
     }
 
     public int getUpgradePrice(UpgradeNames name){
@@ -43,7 +43,7 @@ public class UpgradeManagement implements Serializable {
     }
 
     public void setNewRebirth(){
-        this.rebirth.newRebirth();
+        this.rebirth.updateRebirth();
     }
 
 
@@ -59,11 +59,4 @@ public class UpgradeManagement implements Serializable {
         this.rebirth = rebirth;
     }
 
-    @Override
-    public String toString() {
-        return "UpgradeManagement{" +
-                "upgrades=" + upgrades +
-                ", rebirthMultiplier=" + rebirth +
-                '}';
-    }
 }
