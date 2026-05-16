@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
+import Commands.RebirthCommands.NewRebirthCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -10,11 +11,13 @@ import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
+import UI.DialogUI.RefreshFrameDialogUI;
 import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
 import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BuyDialogUI;
 import UI.DialogUI.DialogUI;
+import UI.InitialUI.MyFrame;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
@@ -77,7 +80,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         wrapper.add(central, BorderLayout.CENTER);
 
         mainPanel.add(cardPanel, BorderLayout.CENTER);
-        cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName().toString());
+        cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName());
 
         layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
@@ -90,7 +93,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
             Shop currentShop = gameData.getShopManagement().getShops().get(i);
             ShopUI shop = new ShopUI(currentShop, gameData);
             this.shopPanels.add(shop);
-            cardPanel.add(shop, gameData.getShopManagement().getShops().get(i).getName().toString());
+            cardPanel.add(shop, gameData.getShopManagement().getShops().get(i).getName());
         }
     }
 
@@ -255,6 +258,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         initializeMultipliers(north);
         initializeSaveButton(north);
         initializeQuitAndSaveButton(north);
+        initializeRebirthButton(north);
 
         wrapper.add(north, BorderLayout.NORTH);
     }
@@ -304,6 +308,22 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
         north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         north.add(saveAndQuit);
+    }
+
+    private void initializeRebirthButton(JPanel north) throws InvalidUILoadException {
+        CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
+        rebirthButton.addActionListener(e -> {
+            CommandResult result = new NewRebirthCommand(gameData).execute();
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new RefreshFrameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
+        north.add(rebirthButton);
     }
 
     public void changeCard(String card) {

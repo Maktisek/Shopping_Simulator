@@ -8,6 +8,7 @@ import Game.Initialization;
 
 public class NewRebirthCommand extends Command {
 
+
     public NewRebirthCommand(GameData gameData) {
         super(gameData);
     }
@@ -20,11 +21,12 @@ public class NewRebirthCommand extends Command {
         }
 
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
-
         getUpgradeManagement().setNewRebirth();
+
         GameData temp = new Initialization().getGameData();
-        temp.copyFromRebirth(getGameData());
-        setGameData(temp);
+        temp.copyFromRebirth(this.getGameData());
+        this.getGameData().copyFromLoaded(temp);
+
         return new CommandResult("New rebirth - level: " + getUpgradeManagement().getRebirth().getLevel(), CommandState.DONE);
     }
 }
