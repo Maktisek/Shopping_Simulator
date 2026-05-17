@@ -7,6 +7,7 @@ import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
 import Upgrade.Utilities.UpgradeNames;
+import Utilities.Important;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -117,7 +118,7 @@ public class GameData implements Serializable {
         }
     }
 
-    public void copyFromLoaded(GameData gameData){
+    public void copyFromLoaded(GameData gameData) {
         this.setPlayer(gameData.getPlayer());
         this.setAchievementManagement(gameData.getAchievementManagement());
         this.setDayManagement(gameData.getDayManagement());
@@ -127,14 +128,13 @@ public class GameData implements Serializable {
         this.setTax(gameData.getTax());
     }
 
-    public void copyFromRebirth(GameData gameData){
+    public void copyFromRebirth(GameData gameData) {
         this.setDayManagement(gameData.getDayManagement());
         this.dayManagement.getCurrentDay().setDayBoughtAmount(0);
         this.dayManagement.getCurrentDay().setDaySoldAmount(0);
         this.setStatsCounter(gameData.getStatsCounter());
         this.setTax(gameData.getTax());
-        this.getTax().setStart((this.getTax().getCurrent() / 100) * 50);
-        this.getTax().setCurrent(this.getTax().getStart());
+        this.getTax().updateAfterRebirth();
         this.getUpgradeManagement().setRebirth(gameData.getUpgradeManagement().getRebirth());
         this.getPlayer().setCurrentBalance(this.getUpgradeManagement().getRebirth().getCapital());
     }
@@ -143,9 +143,9 @@ public class GameData implements Serializable {
     public String toString() {
         return "Number of days:" + getDayManagement().getNumberOfDays() + "\n" +
                 "Total earnings:" + getStatsCounter().getEarnings() + " FR" + "\n" +
-                "Total shipped:" + getStatsCounter().getShipped() +"\n" +
+                "Total shipped:" + getStatsCounter().getShipped() + "\n" +
                 "Total bought:" + getStatsCounter().getBought() + "\n" +
-                "Avg. sell price:" + getStatsCounter().averageShipPrice()  + " FR" + "\n" +
+                "Avg. sell price:" + getStatsCounter().averageShipPrice() + " FR" + "\n" +
                 "Avg. buy price:" + getStatsCounter().averageBuyPrice() + " FR" + "\n" +
                 "Favorite product:" + getPlayer().findFavorite();
     }

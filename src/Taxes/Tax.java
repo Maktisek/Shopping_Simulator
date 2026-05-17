@@ -1,5 +1,7 @@
 package Taxes;
 
+import Utilities.Important;
+
 import java.io.Serializable;
 
 public class Tax implements Serializable {
@@ -9,23 +11,34 @@ public class Tax implements Serializable {
     private int current;
     private int previous;
     private int startDelay;
+    private int dayNumber;
     private double k;
 
     public void initializeK(){
         this.k = (Math.log(1000 + startDelay) - Math.log(startDelay + 1));
     }
 
-    public void calculateNewDay(int dayNumber) {
+    public void calculateNewDay() {
         this.previous = this.current;
-        this.current = start + (int) Math.round((calculateAmplitude() * calculateCoefficient(dayNumber)));
+        this.current = start + (int) Math.round((calculateAmplitude() * calculateCoefficient()));
     }
 
     private int calculateAmplitude() {
         return max - start;
     }
 
-    private double calculateCoefficient(int dayNumber) {
+    private double calculateCoefficient() {
         return ((Math.log(dayNumber + startDelay) - Math.log(startDelay + 1)) / k);
+    }
+
+    public void updateAfterRebirth(){
+        this.start = ((Important.choseOver(2, (int) (((double) this.current / (double) 100) * 50))));
+        this.current = this.start;
+        this.dayNumber = 1;
+    }
+
+    public void incrementDayNumber(){
+        this.dayNumber++;
     }
 
 

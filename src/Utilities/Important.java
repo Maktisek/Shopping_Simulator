@@ -138,5 +138,9 @@ public class Important {
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         return scrollPane;
     }
+
+    public static int choseOver(int over, int calculation){
+       return Math.max(over, calculation);
+    }
 }
 

@@ -24,7 +24,7 @@ public class ShopUI extends BackgroundPanel implements UpdateAble {
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/MAIN_BACKGROUND_TEST.png");
+        super("/MainUI/ShopUI/" + shop.getName() + "_SHOP.png");
         this.shop = shop;
         this.gameData = gameData;
         this.items = new ArrayList<>();

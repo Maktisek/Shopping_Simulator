@@ -1,8 +1,6 @@
 package UI.MainUI.ShopUI;
 
 import Commands.CommandResult;
-import Commands.CommandState;
-import Commands.RebirthCommands.NewRebirthCommand;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
@@ -99,27 +97,30 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         JPanel westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         westPanel.setOpaque(false);
+        westPanel.add(Box.createVerticalGlue());
         initializeChangeShopButtons(westPanel);
         initializeChangeButton(westPanel, "STOCK");
         initializeChangeButton(westPanel, "ACHIEVEMENTS");
         initializeChangeButton(westPanel, "STATS");
+        westPanel.add(Box.createVerticalGlue());
         panel.add(westPanel, BorderLayout.WEST);
     }
 
     private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
-        CustomButton change = new CustomButton("/MainUI/ShopUI/"+ card + "_BUTTON.png", 140, 140);
+        CustomButton change = new CustomButton("/MainUI/ShopUI/"+ card + "_BUTTON.png", 110, 110);
         change.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
         });
         change.setAlignmentX(Component.CENTER_ALIGNMENT);
         westPanel.add(change);
+        westPanel.add(Box.createVerticalStrut(20));
     }
 
 
     private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 140, 140);
-        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 140, 140);
+        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 110, 110);
+        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 110, 110);
 
         previous.setAlignmentX(Component.CENTER_ALIGNMENT);
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -135,7 +136,9 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         });
 
         panel.add(previous);
+        panel.add(Box.createVerticalStrut(20));
         panel.add(next);
+        panel.add(Box.createVerticalStrut(20));
     }
 
     private void proceedCommandResult(CommandResult result, ShopDirection shopDirection) {
