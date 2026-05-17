@@ -34,6 +34,7 @@ public class NewRebirthDialog extends BuyDialogUI{
         }else {
             try {
                 parent.hideDialog();
+                parent.stopAllTimers();
                 parent.showDialog(new RefreshFrameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);

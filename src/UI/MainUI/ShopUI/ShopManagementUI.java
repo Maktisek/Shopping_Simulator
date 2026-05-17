@@ -309,7 +309,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeRebirthButton(JPanel north) throws InvalidUILoadException {
-        CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
+        CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/REBIRTH_BUTTON.png", 100, 100);
         rebirthButton.addActionListener(e -> {
            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {

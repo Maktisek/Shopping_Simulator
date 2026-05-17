@@ -128,6 +128,11 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         this.achievementUpdater.stop();
     }
 
+    public void startAllTimers(){
+        this.updater.start();
+        this.achievementUpdater.start();
+    }
+
     private void checkForAchievements() throws InvalidUILoadException {
         Achievement temp = this.gameData.getAchievementManagement().peekAchievement();
         if (temp != null && overlay.getComponents().length == 0) {
