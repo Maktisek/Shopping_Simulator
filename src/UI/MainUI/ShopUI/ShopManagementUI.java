@@ -313,7 +313,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         rebirthButton.addActionListener(e -> {
            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new NewRebirthDialog("Do you want to buy new rebirth for " + gameData.getUpgradeManagement().getRebirth().getPrice() + " FR?", gameData));
+                parent.showDialog(new NewRebirthDialog("Do you want to buy new rebirth for " + Important.parseMoney(gameData.getUpgradeManagement().getRebirth().getPrice()) + " FR?", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

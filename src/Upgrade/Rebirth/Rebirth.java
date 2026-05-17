@@ -23,15 +23,15 @@ public class Rebirth implements Serializable {
     }
 
     private void updateUpgradeMultiplier(){
-        this.upgradeMultiplier = this.upgradeMultiplier * (1 + (0.3/ level));
+        this.upgradeMultiplier = this.upgradeMultiplier * (1 + ((double) 2 / level));
     }
 
     private void updatePrice(){
-        this.price = (int) (this.price * (1 + (level * 0.04)));
+        this.price = (int) (this.price * (1 + (level * 5)));
     }
 
     private void updateCapital(){
-        this.capital = (this.price / 100) * 5;
+        this.capital = (this.price / 100) * 25;
     }
 
     public double getUpgradeMultiplier() {

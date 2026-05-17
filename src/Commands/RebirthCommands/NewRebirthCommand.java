@@ -27,6 +27,6 @@ public class NewRebirthCommand extends Command {
         temp.copyFromRebirth(this.getGameData());
         this.getGameData().copyFromLoaded(temp);
 
-        return new CommandResult("New rebirth - level: " + getUpgradeManagement().getRebirth().getLevel(), CommandState.DONE);
+        return new CommandResult("New rebirth - level " + getUpgradeManagement().getRebirth().getLevel(), CommandState.DONE);
     }
 }
