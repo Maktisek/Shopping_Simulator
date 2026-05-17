@@ -34,6 +34,8 @@ public class Tax implements Serializable {
     public void updateAfterRebirth(){
         this.start = ((Important.choseOver(2, (int) (((double) this.current / (double) 100) * 50))));
         this.current = this.start;
+        this.max = (int) (((double) max / (double) 100) * 150);
+        System.out.println(max);
         this.dayNumber = 1;
     }
 
