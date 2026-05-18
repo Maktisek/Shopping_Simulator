@@ -39,15 +39,13 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     private BoundPanelUI sellBounds;
     private DayUI dayUI;
     private final ArrayList<UpgradeUI> upgrades;
-    private MoneyPanelUI moneyPanelUI;
-    private final ArrayList<MultiplierButton> multiplierButtons;
+    private ShopManagementNorthUI shopManagementNorthUI;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
         this.gameData = gameData;
         this.shopPanels = new ArrayList<>();
         this.upgrades = new ArrayList<>();
-        this.multiplierButtons = new ArrayList<>();
         this.cardPanel = new JPanel();
         this.mainPanel = new JPanel(new BorderLayout());
 
@@ -251,94 +249,8 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeNorth(JPanel wrapper) throws InvalidUILoadException {
-        JPanel north = new JPanel();
-        north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
-        north.setOpaque(false);
-        north.setBorder(BorderFactory.createEmptyBorder(0,Important.calculateDimension(10),Important.calculateDimension(10),Important.calculateDimension(10)));
-        initializeBalance(north);
-        initializeMultipliers(north);
-        initializeQuitButton(north);
-        initializeSaveButton(north);
-        initializeQuitAndSaveButton(north);
-        initializeRebirthButton(north);
-
-        wrapper.add(north, BorderLayout.NORTH);
-    }
-
-    private void initializeBalance(JPanel north) throws InvalidUILoadException {
-        this.moneyPanelUI = new MoneyPanelUI("/MainUI/ShopUI/MONEY_PANEL.png", gameData);
-        north.add(moneyPanelUI);
-    }
-
-    private void initializeMultipliers(JPanel north) throws InvalidUILoadException {
-        multiplierButtons.add(new MultiplierButton(100, 100, 1, gameData, multiplierButtons));
-        multiplierButtons.add(new MultiplierButton(100, 100, 5, gameData, multiplierButtons));
-        multiplierButtons.add(new MultiplierButton(100, 100, 10, gameData, multiplierButtons));
-
-        for (MultiplierButton multiplierButton : multiplierButtons) {
-            north.add(multiplierButton);
-            north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        }
-        multiplierButtons.get(0).doClick();
-    }
-
-    private void initializeSaveButton(JPanel north) throws InvalidUILoadException {
-        CustomButton save = new CustomButton("/MainUI/ShopUI/SAVE_BUTTON.png", 100, 100);
-        save.addActionListener(e -> {
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new SaveDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        north.add(save);
-    }
-
-    private void initializeQuitAndSaveButton(JPanel north) throws InvalidUILoadException {
-        CustomButton saveAndQuit = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
-        saveAndQuit.addActionListener(e -> {
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new SaveAndQuitDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        north.add(saveAndQuit);
-    }
-
-    private void initializeQuitButton(JPanel north) throws InvalidUILoadException {
-        CustomButton quit = new CustomButton("/MainUI/ShopUI/QUIT_GAME_BUTTON.png", 100, 100);
-        quit.addActionListener(e ->{
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new TurnOffTheGameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to turn off the game without saving?", parent));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        north.add(quit);
-    }
-
-    private void initializeRebirthButton(JPanel north) throws InvalidUILoadException {
-        CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/REBIRTH_BUTTON.png", 100, 100);
-        rebirthButton.addActionListener(e -> {
-           MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            try {
-                parent.showDialog(new NewRebirthDialog("Do you want to buy new rebirth for " + Important.parseMoney(gameData.getUpgradeManagement().getRebirth().getPrice()) + " FR?", gameData));
-            } catch (InvalidUILoadException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
-        north.add(rebirthButton);
+        this.shopManagementNorthUI = new ShopManagementNorthUI(gameData);
+        wrapper.add(shopManagementNorthUI, BorderLayout.NORTH);
     }
 
     public void changeCard(String card) {
@@ -356,6 +268,8 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         for (UpgradeUI upgradeUI : upgrades) {
             upgradeUI.update();
         }
-        this.moneyPanelUI.update();
+        this.shopManagementNorthUI.update();
     }
+
+
 }
