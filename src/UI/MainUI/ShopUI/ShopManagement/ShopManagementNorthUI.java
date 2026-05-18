@@ -1,7 +1,6 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
-import Shops.ShopManagement;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;

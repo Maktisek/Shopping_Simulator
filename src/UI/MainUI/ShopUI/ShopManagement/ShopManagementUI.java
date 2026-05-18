@@ -92,78 +92,8 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeWestPanel(JPanel panel) throws InvalidUILoadException {
-        JPanel westPanel = new JPanel();
-        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
-        westPanel.setOpaque(false);
-        westPanel.add(Box.createVerticalGlue());
-        initializeChangeShopButtons(westPanel);
-        initializeChangeButton(westPanel, "STOCK");
-        initializeChangeButton(westPanel, "ACHIEVEMENTS");
-        initializeChangeButton(westPanel, "STATS");
-        westPanel.add(Box.createVerticalGlue());
-        panel.add(westPanel, BorderLayout.WEST);
-    }
-
-    private void initializeChangeButton(JPanel westPanel, String card) throws InvalidUILoadException {
-        CustomButton change = new CustomButton("/MainUI/ShopUI/"+ card + "_BUTTON.png", 110, 110);
-        change.addActionListener(e -> {
-            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-            parent.switchPanel(card);
-        });
-        change.setAlignmentX(Component.CENTER_ALIGNMENT);
-        westPanel.add(change);
-        westPanel.add(Box.createVerticalStrut(20));
-    }
-
-
-    private void initializeChangeShopButtons(JPanel panel) throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/MainUI/ShopUI/PREVIOUS_SHOP_BUTTON.png", 110, 110);
-        CustomButton next = new CustomButton("/MainUI/ShopUI/NEXT_SHOP_BUTTON.png", 110, 110);
-
-        previous.setAlignmentX(Component.CENTER_ALIGNMENT);
-        next.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        previous.addActionListener(e -> {
-            CommandResult result = new ChangeShopLeftCommand(gameData).execute();
-            proceedCommandResult(result, ShopDirection.LEFT);
-        });
-
-        next.addActionListener(e -> {
-            CommandResult result = new ChangeShopRightCommand(gameData).execute();
-            proceedCommandResult(result, ShopDirection.RIGHT);
-        });
-
-        panel.add(previous);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(next);
-        panel.add(Box.createVerticalStrut(20));
-    }
-
-    private void proceedCommandResult(CommandResult result, ShopDirection shopDirection) {
-        System.out.println(result.getMessage());
-        MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
-        switch (result.getState()) {
-            case DONE: {
-                changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
-                break;
-            }
-            case FAILED_ISSUE: {
-                try {
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-                break;
-            }
-            case FAILED_BUY: {
-                try {
-                    parent.showDialog(new BuyShopDialogUI(result.getMessage(), gameData, shopDirection));
-                } catch (InvalidUILoadException ex) {
-                    throw new RuntimeException(ex);
-                }
-                break;
-            }
-        }
+        ShopManagementWestUI shopManagementWestUI = new ShopManagementWestUI(gameData);
+        panel.add(shopManagementWestUI, BorderLayout.WEST);
     }
 
     private void initializeBounds(JPanel panel) throws InvalidUILoadException {
