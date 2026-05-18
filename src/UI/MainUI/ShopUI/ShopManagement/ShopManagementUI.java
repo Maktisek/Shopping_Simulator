@@ -1,24 +1,16 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
-import Commands.CommandResult;
-import Commands.ShopCommands.ChangeShopLeftCommand;
-import Commands.ShopCommands.ChangeShopRightCommand;
-import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.CustomButton;
-import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
 import UI.DialogUI.*;
-import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
-import UI.DialogUI.SaveDialogs.SaveDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import UI.MainUI.ShopUI.Days.DayUI;
-import UI.MainUI.ShopUI.Money.MoneyPanelUI;
 import UI.MainUI.ShopUI.ShopUI;
 import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
 import Upgrade.Utilities.UpgradeNames;
@@ -40,6 +32,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     private DayUI dayUI;
     private final ArrayList<UpgradeUI> upgrades;
     private ShopManagementNorthUI shopManagementNorthUI;
+    private ShopManagementSouthUI shopManagementSouthUI;
 
     public ShopManagementUI(GameData gameData) throws InvalidUILoadException {
         super();
@@ -62,7 +55,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
-        initializeBounds(wrapper);
+        initializeSouthPanel(wrapper);
         initializeEast(wrapper);
 
         JPanel central = new JPanel(new BorderLayout());
@@ -96,39 +89,12 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         panel.add(shopManagementWestUI, BorderLayout.WEST);
     }
 
-    private void initializeBounds(JPanel panel) throws InvalidUILoadException {
-        JPanel bounds = new JPanel();
-        bounds.setLayout(new BoxLayout(bounds, BoxLayout.Y_AXIS));
-        bounds.setOpaque(false);
+    private void initializeSouthPanel(JPanel panel) throws InvalidUILoadException {
+        this.shopManagementSouthUI = new ShopManagementSouthUI(gameData);
 
-        addBuyBoundPanel(bounds);
-        addSellBoundPanel(bounds);
-
-        JPanel setBounds = new JPanel();
-        setBounds.setLayout(new BoxLayout(setBounds, BoxLayout.X_AXIS));
-        setBounds.setBorder(BorderFactory.createEmptyBorder(0, 0, Important.calculateDimension(27), Important.calculateDimension(10)));
-
-        setBounds.add(Box.createHorizontalStrut(Important.calculateDimension(1600)));
-        setBounds.add(bounds);
-        setBounds.setOpaque(false);
-
-
-        panel.add(setBounds, BorderLayout.SOUTH);
+        panel.add(shopManagementSouthUI, BorderLayout.SOUTH);
     }
 
-    private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-
-        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/BUY_ICON.png", gameData, BoundTypes.BUY_BOUND);
-
-        panel.add(buyBounds);
-    }
-
-    private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
-        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/SELL_ICON.png", gameData, BoundTypes.SELL_BOUND);
-        panel.add(sellBounds);
-    }
 
     private void initializeEast(JPanel panel) throws InvalidUILoadException {
         JPanel eastPanel = new JPanel();
@@ -192,13 +158,12 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         for (ShopUI shopPanel : shopPanels) {
             shopPanel.update();
         }
-        this.buyBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY)));
-        this.sellBounds.update(String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount()), String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL)));
         this.dayUI.update();
         for (UpgradeUI upgradeUI : upgrades) {
             upgradeUI.update();
         }
         this.shopManagementNorthUI.update();
+        this.shopManagementSouthUI.update();
     }
 
 
