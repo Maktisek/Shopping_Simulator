@@ -1,4 +1,4 @@
-package UI.MainUI.ShopUI;
+package UI.MainUI.ShopUI.ShopManagement;
 
 import Commands.CommandResult;
 import Commands.ShopCommands.ChangeShopLeftCommand;
@@ -19,10 +19,10 @@ import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import UI.MainUI.ShopUI.Days.DayUI;
 import UI.MainUI.ShopUI.Money.MoneyPanelUI;
+import UI.MainUI.ShopUI.ShopUI;
 import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
 import Upgrade.Utilities.UpgradeNames;
 import Utilities.Important;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -257,6 +257,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         north.setBorder(BorderFactory.createEmptyBorder(0,Important.calculateDimension(10),Important.calculateDimension(10),Important.calculateDimension(10)));
         initializeBalance(north);
         initializeMultipliers(north);
+        initializeQuitButton(north);
         initializeSaveButton(north);
         initializeQuitAndSaveButton(north);
         initializeRebirthButton(north);
@@ -309,6 +310,20 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
         north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         north.add(saveAndQuit);
+    }
+
+    private void initializeQuitButton(JPanel north) throws InvalidUILoadException {
+        CustomButton quit = new CustomButton("/MainUI/ShopUI/QUIT_GAME_BUTTON.png", 100, 100);
+        quit.addActionListener(e ->{
+            MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+            try {
+                parent.showDialog(new TurnOffTheGameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to turn off the game without saving?", parent));
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        north.add(Box.createHorizontalStrut(Important.calculateDimension(10)));
+        north.add(quit);
     }
 
     private void initializeRebirthButton(JPanel north) throws InvalidUILoadException {
