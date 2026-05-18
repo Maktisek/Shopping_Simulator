@@ -33,14 +33,30 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initialize() throws InvalidUILoadException {
+        initializeCardPanel();
+        initializeWrapper();
+        mainPanel.add(cardPanel, BorderLayout.CENTER);
+        cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName());
+        update();
+    }
+
+    private void initializeLayeredPane(JPanel wrapper){
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
 
+        layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
+        add(layeredPane);
+    }
+
+    private void initializeCardPanel() throws InvalidUILoadException {
         this.cardLayout = new CardLayout();
         cardPanel.setLayout(cardLayout);
         setLayout(new BorderLayout());
         initializeShops();
+    }
 
+    private void initializeWrapper() throws InvalidUILoadException {
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
         initializeSouthPanel(wrapper);
@@ -53,14 +69,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         initializeNorth(central);
 
         wrapper.add(central, BorderLayout.CENTER);
-
-        mainPanel.add(cardPanel, BorderLayout.CENTER);
-        cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName());
-
-        layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(wrapper, JLayeredPane.PALETTE_LAYER);
-        add(layeredPane);
-        update();
+        initializeLayeredPane(wrapper);
     }
 
     private void initializeShops() throws InvalidUILoadException {
