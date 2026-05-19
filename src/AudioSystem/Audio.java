@@ -23,6 +23,7 @@ public class Audio implements Serializable {
 
     private String filePath;
     private String title;
+    private boolean music;
 
     private transient Clip clip;
     private boolean infiniteLoop;
@@ -39,10 +40,9 @@ public class Audio implements Serializable {
      * <p>
      * This system was originally taken from Matěj Chaloupka, but implemented in a different way.
      *
-     * @param music         True if the audio file is a music. When true, then the audio will fade in via {@link #fadeIn(long)} method
      * @param startPosition Represents the position from where will the audio start.
      */
-    private void implementAudio(boolean music, long startPosition) {
+    private void implementAudio(long startPosition) {
         try {
             InputStream input = Audio.class.getResourceAsStream(this.filePath);
             if (input == null) {
@@ -68,14 +68,14 @@ public class Audio implements Serializable {
         loop(infiniteLoop);
     }
 
-    /**
-     * Method which starts music via thread.
-     * Uses {@link #implementMusic(long)} method to play the audio.
-     */
-    public void startMusic(long startingPosition) {
-        final Thread playThread = new Thread(() -> implementAudio(true, startingPosition));
-        playThread.start();
-    }
+//    /**
+//     * Method which starts music via thread.
+//     * Uses {@link #implementMusic(long)} method to play the audio.
+//     */
+//    public void startMusic(long startingPosition) {
+//        final Thread playThread = new Thread(() -> implementAudio(true, startingPosition));
+//        playThread.start();
+//    }
 
 //    /**
 //     * Represents a way how to boot a background music.
@@ -89,25 +89,22 @@ public class Audio implements Serializable {
 //    }
 
     /**
-     * Method which starts a sound via thread.
-     * The clip has not to be null to play the sound.
-     * Created for basic one shot sounds.
-     * Uses {@link #implementAudio(boolean, long)} method to play the audio.
+     * Method which starts a sound or music via thread.
+     * The clip has not to be null to play.
      * <p>
-     * It sets automatically boolean music to false and startPosition to 0.
+     * @param startPosition stands for from where the sound should start
      */
-    public void startAudio() {
-        final Thread playThread = new Thread(() -> implementAudio(false, 0));
+    public void startAudio(long startPosition) {
+        final Thread playThread = new Thread(() -> implementAudio(startPosition));
         playThread.start();
     }
 
     /**
-     * Method which stops the music.
+     * Method which stops the sound.
      * <p>
-     * Normal one shot sound don't have to be stopped, so this method is made just for music.
-     * It sets the clip to null, so the music can be replayed in the future.
+     * It sets the clip to null, so the sound can be replayed in the future.
      */
-    public void stopMusic() {
+    public void stopSound() {
         if (clip != null) {
             Thread t = new Thread(() -> {
                 this.clip.close();
@@ -117,15 +114,15 @@ public class Audio implements Serializable {
         }
     }
 
-    /**
-     * Method which stops the sound by {@link #clip}'s method close()
-     */
-    public void stopSound() {
-        if (clip != null) {
-            this.clip.close();
-            this.clip = null; //Kdyby chyba, tak tady
-        }
-    }
+//    /**
+//     * Method which stops the sound by {@link #clip}'s method close()
+//     */
+//    public void stopSound() {
+//        if (clip != null) {
+//            this.clip.close();
+//            this.clip = null; //Kdyby chyba, tak tady
+//        }
+//    }
 
     /**
      * Method which pauses the audio.
@@ -310,5 +307,13 @@ public class Audio implements Serializable {
 
     public void setInitialVolume(float initialVolume) {
         this.initialVolume = initialVolume;
+    }
+
+    public boolean isMusic() {
+        return music;
+    }
+
+    public void setMusic(boolean music) {
+        this.music = music;
     }
 }

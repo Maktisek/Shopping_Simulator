@@ -9,6 +9,64 @@ public class AudioManagement {
     private ArrayList<Audio> background;
 
 
+    public void playSound(String title, AudioType type, long startPosition){
+        ArrayList<Audio> temp = getAudioListByType(type);
+        if(temp != null) {
+            for (Audio audio : temp) {
+                if(audio.getTitle().equalsIgnoreCase(title)){
+                    audio.startAudio(startPosition);
+                }
+            }
+        }
+    }
+
+    public void stopSound(String title, AudioType type){
+        ArrayList<Audio> temp = getAudioListByType(type);
+        if(temp != null) {
+            for (Audio audio : temp) {
+                if(audio.getTitle().equalsIgnoreCase(title)){
+                    audio.stopSound();
+                }
+            }
+        }
+    }
+
+    public void pauseSound(String title, AudioType type){
+        ArrayList<Audio> temp = getAudioListByType(type);
+        if(temp != null) {
+            for (Audio audio : temp) {
+                if(audio.getTitle().equalsIgnoreCase(title)){
+                    audio.pause();
+                }
+            }
+        }
+    }
+
+    public void resumeSound(String title, AudioType type){
+        ArrayList<Audio> temp = getAudioListByType(type);
+        if(temp != null) {
+            for (Audio audio : temp) {
+                if(audio.getTitle().equalsIgnoreCase(title)){
+                    audio.resume();
+                }
+            }
+        }
+    }
+
+    private ArrayList<Audio> getAudioListByType(AudioType type){
+        switch (type){
+            case MUSIC -> {
+                return music;
+            }
+            case SOUNDS -> {
+                return sounds;
+            }
+            case BACKGROUND -> {
+                return background;
+            }
+        }
+        return null;
+    }
 
 
     public ArrayList<Audio> getMusic() {
