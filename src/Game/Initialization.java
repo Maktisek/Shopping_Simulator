@@ -1,5 +1,6 @@
 package Game;
 import Achievements.AchievementManagement;
+import AudioSystem.AudioManagement;
 import DayCycle.DayManagement;
 import Items.Exceptions.WrongItemException;
 import NPCs.NPCFinder;
@@ -35,6 +36,7 @@ public class Initialization {
         loadAchievementManagement();
         loadStatsCounter();
         loadPlayer();
+        loadAudioManagement();
         finishInitialization();
     }
 
@@ -132,13 +134,12 @@ public class Initialization {
     private void loadAudioManagement(){
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/AchievementManagement.json")){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Audios.json")){
             if(is == null){
-                throw new IllegalStateException("The path for Json: /Jsons/AchievementManagement.json is invalid and the file could not be found");
+                throw new IllegalStateException("The path for Json: /Jsons/Audios.json is invalid and the file could not be found");
             }
-            AchievementManagement achievementManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
-            achievementManagement.loadPossibleAchievements();
-            this.gameData.setAchievementManagement(achievementManagement);
+            this.gameData.setAudioManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AudioManagement.class));
+            System.out.println(this.gameData.getAudioManagement().toString());
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }

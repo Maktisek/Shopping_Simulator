@@ -80,4 +80,21 @@ public class AudioManagement {
     public ArrayList<Audio> getBackground() {
         return background;
     }
+
+    public void setMusic(ArrayList<Audio> music) {
+        this.music = music;
+    }
+
+    public void setSounds(ArrayList<Audio> sounds) {
+        this.sounds = sounds;
+    }
+
+    public void setBackground(ArrayList<Audio> background) {
+        this.background = background;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(music.size());
+    }
 }
