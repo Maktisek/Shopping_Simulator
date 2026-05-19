@@ -95,6 +95,7 @@ public class AudioManagement {
 
     @Override
     public String toString() {
+        playSound("Test", AudioType.MUSIC, 0);
         return String.valueOf(music.size());
     }
 }

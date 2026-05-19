@@ -2,7 +2,7 @@
   "music": [
     {
       "title" : "Test",
-      "filePath" : "/Audio/Music/test.wav",
+      "filePath" : "/Audio/test.wav",
       "infiniteLoop" : true,
       "paused" : false,
       "initialVolume" : -10.0,

@@ -1,8 +1,8 @@
 {
   "music": [
     {
-      "title" : "Test",
-      "filePath" : "/Audio/Music/test.wav",
+      "title" : "Tesst",
+      "filePath" : "/Audio/test.wav",
       "infiniteLoop" : true,
       "paused" : false,
       "initialVolume" : -10.0,
