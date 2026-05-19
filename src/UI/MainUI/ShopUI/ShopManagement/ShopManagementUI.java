@@ -82,13 +82,11 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeWestPanel(JPanel panel) throws InvalidUILoadException {
-        System.out.println("West");
         ShopManagementWestUI shopManagementWestUI = new ShopManagementWestUI(gameData);
         panel.add(shopManagementWestUI, BorderLayout.WEST);
     }
 
     private void initializeSouthPanel(JPanel panel) throws InvalidUILoadException {
-        System.out.println("South");
         this.shopManagementSouthUI = new ShopManagementSouthUI(gameData);
         panel.add(shopManagementSouthUI, BorderLayout.SOUTH);
     }
@@ -96,11 +94,9 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
     private void initializeEast(JPanel panel) throws InvalidUILoadException {
         this.shopManagementEastUI = new ShopManagementEastUI(gameData);
         panel.add(this.shopManagementEastUI, BorderLayout.EAST);
-        System.out.println("East");
     }
 
     private void initializeNorth(JPanel wrapper) throws InvalidUILoadException {
-        System.out.println("North");
         this.shopManagementNorthUI = new ShopManagementNorthUI(gameData);
         wrapper.add(shopManagementNorthUI, BorderLayout.NORTH);
     }
