@@ -1,6 +1,7 @@
 package Game;
 
 import Achievements.AchievementManagement;
+import AudioSystem.AudioManagement;
 import DayCycle.DayManagement;
 import Player.Player;
 import Shops.ShopManagement;
@@ -26,6 +27,7 @@ public class GameData implements Serializable {
     private AchievementManagement achievementManagement;
     private Tax tax;
     private StatsCounter statsCounter;
+    private AudioManagement audioManagement;
     private transient int amount;
 
     public Player getPlayer() {
@@ -90,6 +92,14 @@ public class GameData implements Serializable {
 
     public void setStatsCounter(StatsCounter statsCounter) {
         this.statsCounter = statsCounter;
+    }
+
+    public AudioManagement getAudioManagement() {
+        return audioManagement;
+    }
+
+    public void setAudioManagement(AudioManagement audioManagement) {
+        this.audioManagement = audioManagement;
     }
 
     public void writeToFile() throws IOException {

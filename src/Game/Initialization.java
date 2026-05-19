@@ -129,6 +129,21 @@ public class Initialization {
         }
     }
 
+    private void loadAudioManagement(){
+        Gson gson = new Gson();
+
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/AchievementManagement.json")){
+            if(is == null){
+                throw new IllegalStateException("The path for Json: /Jsons/AchievementManagement.json is invalid and the file could not be found");
+            }
+            AchievementManagement achievementManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
+            achievementManagement.loadPossibleAchievements();
+            this.gameData.setAchievementManagement(achievementManagement);
+        }catch (Exception e){
+            throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
+        }
+    }
+
     private void finishInitialization(){
         try {
             this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
