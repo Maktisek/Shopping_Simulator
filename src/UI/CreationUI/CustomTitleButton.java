@@ -1,7 +1,6 @@
 package UI.CreationUI;
 
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.MainUI;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -120,7 +119,7 @@ public class CustomTitleButton extends JButton {
 
     public void setCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/TitleScreenUI/CLICKED_CURSOR.png"));
+        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/TitleScreenSprites/CLICKED_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.setCursor(customCursor);
     }

@@ -28,7 +28,7 @@ public class BuyShopDialogUI extends BuyDialogUI {
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
                 parent.hideDialog();
-                parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png",result.getMessage()));
+                parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

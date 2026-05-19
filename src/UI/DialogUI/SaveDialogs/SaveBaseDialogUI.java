@@ -27,8 +27,8 @@ public abstract class SaveBaseDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(20));
 
-        CustomButton no = new CustomButton("/ShopSprites/NO_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
-        CustomButton save = new CustomButton("/ShopSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton no = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton save = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
 
         no.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);

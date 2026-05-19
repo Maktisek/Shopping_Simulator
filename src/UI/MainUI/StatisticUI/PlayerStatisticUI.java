@@ -20,7 +20,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton ok = new CustomButton("/ShopSprites/CLOSE_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75);
         ok.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.switchPanel("Shop");
@@ -33,7 +33,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
     @Override
     public BackgroundPanel initializeBar() throws InvalidUILoadException {
-        BackgroundPanel bar = new BackgroundPanel("/ShopSprites/STATISTICS_BAR.png");
+        BackgroundPanel bar = new BackgroundPanel("/Sprites/BarSprites/STATISTICS_BAR.png");
 
         Dimension dimension = new Dimension(Important.calculateDimension(Important.getWidth()), Important.calculateDimension(135));
         bar.setPreferredSize(dimension);

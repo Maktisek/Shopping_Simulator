@@ -38,7 +38,7 @@ public class ShopManagementWestUI extends JPanel {
     }
 
     private void initializeChangeButton(String card) throws InvalidUILoadException {
-        CustomButton change = new CustomButton("/ShopSprites/" + card + "_BUTTON.png", 110, 110);
+        CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110);
         change.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
@@ -50,8 +50,8 @@ public class ShopManagementWestUI extends JPanel {
 
 
     private void initializeChangeShopButtons() throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/ShopSprites/PREVIOUS_SHOP_BUTTON.png", 110, 110);
-        CustomButton next = new CustomButton("/ShopSprites/NEXT_SHOP_BUTTON.png", 110, 110);
+        CustomButton previous = new CustomButton("/Sprites/ButtonSprites/PREVIOUS_SHOP_BUTTON.png", 110, 110);
+        CustomButton next = new CustomButton("/Sprites/ButtonSprites/NEXT_SHOP_BUTTON.png", 110, 110);
 
         previous.setAlignmentX(Component.CENTER_ALIGNMENT);
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -83,7 +83,7 @@ public class ShopManagementWestUI extends JPanel {
             }
             case FAILED_ISSUE: {
                 try {
-                    parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png", result.getMessage()));
+                    parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -19,7 +19,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     private Day day;
 
     public DaySummaryPanelUI(GameData gameData) throws InvalidUILoadException {
-        setImg("/ShopSprites/INFO_PANE.png");
+        setImg("/Sprites/UtilityPanels/INFO_PANE.png");
         this.gameData = gameData;
         setLayout(new BorderLayout());
         initialization();
@@ -157,7 +157,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     }
 
     private void initializeOkButton(JPanel south) throws InvalidUILoadException {
-        CustomButton okButton = new CustomButton("/ShopSprites/OK_BUTTON.png", 130, 75);
+        CustomButton okButton = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75);
         okButton.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();

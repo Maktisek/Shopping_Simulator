@@ -66,11 +66,13 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeShopManagementUI() throws InvalidUILoadException {
+        System.out.println("Shop");
         this.shopManagementUI = new ShopManagementUI(this.gameData);
         this.mainPanel.add(shopManagementUI, "Shop");
     }
 
     private void initializeStockManagementUI() throws InvalidUILoadException {
+        System.out.println("Stock");
         this.stockManagementUI = new StockManagementUI(this.gameData);
         this.mainPanel.add(stockManagementUI, "STOCK");
     }
@@ -78,9 +80,11 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
     private void initializeAchievementManagementUI() throws InvalidUILoadException {
         this.achievementManagementUI = new AchievementManagementUI(gameData);
         this.mainPanel.add(achievementManagementUI, "ACHIEVEMENTS");
+        System.out.println("Achievements");
     }
 
     private void initializeStatistic() throws InvalidUILoadException {
+        System.out.println("Statistics");
         this.playerStatisticUI = new PlayerStatisticUI(gameData);
         this.mainPanel.add(playerStatisticUI, "STATS");
     }
@@ -139,7 +143,7 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
             this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
-            showDialog(new DialogUI("/ShopSprites/ACHIEVEMENT_PANE.png", message));
+            showDialog(new DialogUI("/Sprites/AchievementSprites/ACHIEVEMENT_PANE.png", message));
         }
     }
 

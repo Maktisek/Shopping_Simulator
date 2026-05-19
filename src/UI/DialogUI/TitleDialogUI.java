@@ -28,7 +28,7 @@ public class TitleDialogUI extends DialogUI{
     protected void initializeButton() throws InvalidUILoadException {
         add(Box.createVerticalStrut(Important.calculateDimension(10)));
 
-        button = new CustomButton("/ShopSprites/OK_BUTTON.png", Important.calculateDimension(110), Important.calculateDimension(62));
+        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", Important.calculateDimension(110), Important.calculateDimension(62));
         button.setAlignmentX(CENTER_ALIGNMENT);
         add(button);
 

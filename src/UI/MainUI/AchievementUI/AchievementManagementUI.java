@@ -44,7 +44,7 @@ public class AchievementManagementUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMainPanel() throws InvalidUILoadException {
-        this.mainPanel = new BackgroundPanel("/ShopSprites/STOCK_UI.png");
+        this.mainPanel = new BackgroundPanel("/Sprites/BackgroundSprites/BACKGROUND_PANE.png");
         this.mainPanel.setLayout(new BorderLayout());
         initializeGrid();
     }

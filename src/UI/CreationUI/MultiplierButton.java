@@ -16,7 +16,7 @@ public class MultiplierButton extends CustomTitleButton {
     private final ArrayList<MultiplierButton> givenButtons;
 
     public MultiplierButton(int width, int height, int amount, GameData gameData, ArrayList<MultiplierButton> givenButtons) throws InvalidUILoadException {
-        super("/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png", width, height);
+        super("/Sprites/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Sprites/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png", width, height);
         this.amount = amount;
         this.gameData = gameData;
         this.givenButtons = givenButtons;

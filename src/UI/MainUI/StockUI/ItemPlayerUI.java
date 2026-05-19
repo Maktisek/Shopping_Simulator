@@ -45,7 +45,7 @@ public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
 
     private void initializeImageButton(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(20));
-        CustomButton productButton = new CustomButton("/Products/" + itemPlayer.getName() + ".png", 140, 140);
+        CustomButton productButton = new CustomButton("/Sprites/Products/" + itemPlayer.getName() + ".png", 140, 140);
         productButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {

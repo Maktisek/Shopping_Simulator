@@ -35,7 +35,7 @@ public class NewDayDialogUI extends BaseDialogUI {
     }
 
     private void initializeCloseButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton closeButton = new CustomButton("/ShopSprites/CLOSE_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton closeButton = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         closeButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
@@ -45,7 +45,7 @@ public class NewDayDialogUI extends BaseDialogUI {
     }
 
     private void initializeYesButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton yesButton = new CustomButton("/ShopSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton yesButton = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
         yesButton.addActionListener(e -> {
             CommandResult commandResult = new NewDayCommand(gameData).execute();
             System.out.println(commandResult.getMessage());

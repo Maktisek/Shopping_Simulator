@@ -27,7 +27,7 @@ public class NewRebirthDialog extends BuyDialogUI{
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
                 parent.hideDialog();
-                parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png",result.getMessage()));
+                parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -35,7 +35,7 @@ public class NewRebirthDialog extends BuyDialogUI{
             try {
                 parent.hideDialog();
                 parent.stopAllTimers();
-                parent.showDialog(new RefreshFrameDialogUI("/ShopSprites/ISSUE_PANE.png",result.getMessage()));
+                parent.showDialog(new RefreshFrameDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

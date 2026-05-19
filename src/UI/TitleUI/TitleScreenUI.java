@@ -58,14 +58,14 @@ public class TitleScreenUI extends FrameBaseUI {
 
 
     private void initializeBackground() throws InvalidUILoadException {
-        this.background = new BackgroundPanel("/TitleScreenUI/BACKGROUND.png");
+        this.background = new BackgroundPanel("/Sprites/TitleScreenSprites/BACKGROUND.png");
         this.background.setLayout(new BorderLayout());
         initializeTitle();
         initializeMainPanel();
     }
 
     private void initializeTitle() throws InvalidUILoadException {
-        URL imageURL = getClass().getResource("/TitleScreenUI/TITLE_SCREEN_NAME.png");
+        URL imageURL = getClass().getResource("/Sprites/TitleScreenSprites/TITLE_SCREEN_NAME.png");
 
         if (imageURL == null) {
             throw new InvalidUILoadException("The title screen name image was not found");
@@ -87,9 +87,9 @@ public class TitleScreenUI extends FrameBaseUI {
         panel.setOpaque(false);
         panel.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(40), Important.calculateDimension(20), Important.calculateDimension(40)));
 
-        CustomTitleButton newGame = new CustomTitleButton("/TitleScreenUI/NEW_GAME_BUTTON.png", "/TitleScreenUI/NEW_GAME_BUTTON_CLICKED.png", 200, 100);
-        CustomTitleButton loadGame = new CustomTitleButton("/TitleScreenUI/LOAD_BUTTON.png", "/TitleScreenUI/LOAD_BUTTON_CLICKED.png", 200, 100);
-        CustomTitleButton quit = new CustomTitleButton("/TitleScreenUI/QUIT_BUTTON.png", "/TitleScreenUI/QUIT_BUTTON_CLICKED.png", 200, 100);
+        CustomTitleButton newGame = new CustomTitleButton("/Sprites/TitleScreenSprites/NEW_GAME_BUTTON.png", "/Sprites/TitleScreenSprites/NEW_GAME_BUTTON_CLICKED.png", 200, 100);
+        CustomTitleButton loadGame = new CustomTitleButton("/Sprites/TitleScreenSprites/LOAD_BUTTON.png", "/Sprites/TitleScreenSprites/LOAD_BUTTON_CLICKED.png", 200, 100);
+        CustomTitleButton quit = new CustomTitleButton("/Sprites/TitleScreenSprites/QUIT_BUTTON.png", "/Sprites/TitleScreenSprites/QUIT_BUTTON_CLICKED.png", 200, 100);
 
         newGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -120,7 +120,7 @@ public class TitleScreenUI extends FrameBaseUI {
             CommandResult result = new LoadSaveCommand(gameData).execute();
             if (result.getState() == CommandState.FAILED_ISSUE) {
                 try {
-                    showDialog(new TitleDialogUI("/TitleScreenUI/TITLE_SCREEN_DIALOG.png", result.getMessage()));
+                    showDialog(new TitleDialogUI("/Sprites/TitleScreenSprites/TITLE_SCREEN_DIALOG.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -174,7 +174,7 @@ public class TitleScreenUI extends FrameBaseUI {
 
     public void setCursor() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/MainSprites/MAIN_CURSOR.png"));
+        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/MainSprites/MAIN_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.background.setCursor(customCursor);
     }
