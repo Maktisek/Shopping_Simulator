@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 
 /**
- * This class stands for playing individual wav audio files. Those files have to be implemented into res\\Audio.
+ * This class stands for playing individual wav audio files. Those files have to be implemented into vložte cestu.
  * It uses Clip interface, which is responsible for the whole audio system logic.
  * <p>
  * {@link #filePath} stands for path, from where the .wav file can be loaded. <p>
@@ -34,12 +34,12 @@ public class Audio implements Serializable {
     }
 
     /**
-     * This method implements and audio. It creates a clip and loads it with .wav file from {@link #filePath}.
+     * This method implements an audio. It creates a clip and loads it with .wav file from {@link #filePath}.
      * Then it uses {@link #loop(boolean)} to start looping the audio.
      * <p>
      * This system was originally taken from Matěj Chaloupka, but implemented in a different way.
      *
-     * @param music         True if the audio file is music. When true, then the audio will fade in via {@link #fadeIn(long)} method
+     * @param music         True if the audio file is a music. When true, then the audio will fade in via {@link #fadeIn(long)} method
      * @param startPosition Represents the position from where will the audio start.
      */
     private void implementAudio(boolean music, long startPosition) {
@@ -73,20 +73,20 @@ public class Audio implements Serializable {
      * Uses {@link #implementMusic(long)} method to play the audio.
      */
     public void startMusic(long startingPosition) {
-        final Thread playThread = new Thread(() -> implementMusic(startingPosition));
+        final Thread playThread = new Thread(() -> implementAudio(true, startingPosition));
         playThread.start();
     }
 
-    /**
-     * Represents a way how to boot a background music.
-     * <p>
-     * Uses {@link #implementAudio(boolean, long)} method to play music, and it sets the boolean music to true by itself.
-     */
-    public void implementMusic(long startingPosition) {
-        if (clip == null) {
-            implementAudio(true, startingPosition);
-        }
-    }
+//    /**
+//     * Represents a way how to boot a background music.
+//     * <p>
+//     * Uses {@link #implementAudio(boolean, long)} method to play music, and it sets the boolean music to true by itself.
+//     */
+//    private void implementMusic(long startingPosition) {
+//        if (clip == null) {
+//            implementAudio(true, startingPosition);
+//        }
+//    }
 
     /**
      * Method which starts a sound via thread.
@@ -123,6 +123,7 @@ public class Audio implements Serializable {
     public void stopSound() {
         if (clip != null) {
             this.clip.close();
+            this.clip = null; //Kdyby chyba, tak tady
         }
     }
 
