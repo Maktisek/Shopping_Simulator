@@ -16,7 +16,6 @@ import Utilities.Important;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 import java.net.URL;
 
 public class TitleScreenUI extends FrameBaseUI {
@@ -175,7 +174,7 @@ public class TitleScreenUI extends FrameBaseUI {
 
     public void setCursor() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/MainUI/MAIN_CURSOR.png"));
+        Image cursorImg = toolkit.getImage(getClass().getResource("/MainSprites/MAIN_CURSOR.png"));
         Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
         this.background.setCursor(customCursor);
     }

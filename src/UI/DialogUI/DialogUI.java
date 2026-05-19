@@ -20,7 +20,7 @@ public class DialogUI extends BaseDialogUI {
     protected void initializeButton() throws InvalidUILoadException {
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        button = new CustomButton("/MainUI/ShopUI/OK_BUTTON.png", 130, 75);
+        button = new CustomButton("/ShopSprites/OK_BUTTON.png", 130, 75);
 
         button.addActionListener(e ->{
             buttonAction();

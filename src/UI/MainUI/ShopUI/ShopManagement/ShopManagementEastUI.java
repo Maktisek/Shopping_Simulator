@@ -39,14 +39,14 @@ public class ShopManagementEastUI extends JPanel implements UpdateAble {
     }
 
     private void initializeDay() throws InvalidUILoadException {
-        this.dayUI = new DayUI("/MainUI/ShopUI/DAY_FRAME.png", gameData);
+        this.dayUI = new DayUI("/ShopSprites/DAY_FRAME.png", gameData);
         dayUI.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.add(dayUI);
     }
 
     private void initializeNewDayButton() throws InvalidUILoadException {
-        CustomButton nextDay = new CustomButton("/MainUI/ShopUI/NEXT_DAY_BUTTON.png", 200, 85);
+        CustomButton nextDay = new CustomButton("/ShopSprites/NEXT_DAY_BUTTON.png", 200, 85);
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.add(Box.createVerticalStrut(Important.calculateDimension(7)));
         this.add(nextDay);
@@ -54,7 +54,7 @@ public class ShopManagementEastUI extends JPanel implements UpdateAble {
         nextDay.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new NewDayDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "The tax is  " + Important.parseMoney(gameData.getTax().getCurrent())  + "FR, do you want to proceed into another day?", gameData));
+                parent.showDialog(new NewDayDialogUI("/ShopSprites/ISSUE_PANE.png", "The tax is  " + Important.parseMoney(gameData.getTax().getCurrent())  + "FR, do you want to proceed into another day?", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -64,7 +64,7 @@ public class ShopManagementEastUI extends JPanel implements UpdateAble {
     private void initializeUpgrades() throws InvalidUILoadException {
         this.add(Box.createVerticalStrut(Important.calculateDimension(15)));
         for (UpgradeNames upgrade : UpgradeNames.values()) {
-            UpgradeUI upgradeUI = new UpgradeUI("/MainUI/ShopUI/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
+            UpgradeUI upgradeUI = new UpgradeUI("/ShopSprites/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
             upgradeUI.setOpaque(false);
             upgradeUI.setAlignmentX(Component.CENTER_ALIGNMENT);
             this.add(upgradeUI);

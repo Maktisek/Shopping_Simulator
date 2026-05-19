@@ -41,14 +41,14 @@ public class ShopManagementSouthUI extends JPanel implements UpdateAble {
     private void addBuyBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
 
-        this.buyBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/BUY_ICON.png", gameData, BoundTypes.BUY_BOUND);
+        this.buyBounds = new BoundPanelUI("/ShopSprites/CURRENT_PANE.png", "/ShopSprites/BUY_ICON.png", gameData, BoundTypes.BUY_BOUND);
 
         panel.add(buyBounds);
     }
 
     private void addSellBoundPanel(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-        this.sellBounds = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/SELL_ICON.png", gameData, BoundTypes.SELL_BOUND);
+        this.sellBounds = new BoundPanelUI("/ShopSprites/CURRENT_PANE.png", "/ShopSprites/SELL_ICON.png", gameData, BoundTypes.SELL_BOUND);
         panel.add(sellBounds);
     }
 

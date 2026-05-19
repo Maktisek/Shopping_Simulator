@@ -17,8 +17,8 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
 
     public CustomScrollBarUI() throws InvalidUILoadException {
 
-        this.thumbImage = loadImage("/MainUI/ShopUI/SCROLL.png");
-        this.trackImage = loadImage("/MainUI/ShopUI/BAR.png");
+        this.thumbImage = loadImage("/ShopSprites/SCROLL.png");
+        this.trackImage = loadImage("/ShopSprites/BAR.png");
 
 
     }

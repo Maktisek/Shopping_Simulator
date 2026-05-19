@@ -5,10 +5,8 @@ import Commands.CommandState;
 import Commands.ShopCommands.BuyShopCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
-import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import Utilities.Important;
 
 import javax.swing.*;
 
@@ -30,7 +28,7 @@ public class BuyShopDialogUI extends BuyDialogUI {
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
                 parent.hideDialog();
-                parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png",result.getMessage()));
+                parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

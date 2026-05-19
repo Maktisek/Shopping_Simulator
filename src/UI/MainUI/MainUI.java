@@ -139,7 +139,7 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
             this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
-            showDialog(new DialogUI("/MainUI/ShopUI/ACHIEVEMENT_PANE.png", message));
+            showDialog(new DialogUI("/ShopSprites/ACHIEVEMENT_PANE.png", message));
         }
     }
 

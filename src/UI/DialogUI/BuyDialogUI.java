@@ -1,9 +1,5 @@
 package UI.DialogUI;
 
-import Commands.CommandResult;
-import Commands.CommandState;
-import Commands.ShopCommands.BuyShopCommand;
-import Game.GameData;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -14,7 +10,7 @@ import javax.swing.*;
 public abstract class BuyDialogUI extends BaseDialogUI {
 
     public BuyDialogUI(String message) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/ISSUE_PANE.png", message);
+        super("/ShopSprites/ISSUE_PANE.png", message);
         initializeButtons();
     }
 
@@ -25,8 +21,8 @@ public abstract class BuyDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        CustomButton ok = new CustomButton("/MainUI/ShopUI/NO_BUTTON.png", 130, 75);
-        CustomButton buy = new CustomButton("/MainUI/ShopUI/YES_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/ShopSprites/NO_BUTTON.png", 130, 75);
+        CustomButton buy = new CustomButton("/ShopSprites/YES_BUTTON.png", 130, 75);
 
         ok.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);

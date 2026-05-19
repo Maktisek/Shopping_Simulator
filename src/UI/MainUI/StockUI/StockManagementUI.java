@@ -4,7 +4,6 @@ import Game.GameData;
 import Items.ItemPlayer;
 import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
-import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
 import Upgrade.Utilities.UpgradeNames;
@@ -49,7 +48,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMainPanel() throws InvalidUILoadException {
-        this.mainPanel = new BackgroundPanel("/MainUI/ShopUI/STOCK_UI.png");
+        this.mainPanel = new BackgroundPanel("/ShopSprites/STOCK_UI.png");
         this.mainPanel.setLayout(new BorderLayout());
         initializeGrid();
     }
@@ -66,7 +65,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
 
     private void fillGrid(JPanel grid) throws InvalidUILoadException {
         for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
-            ItemPlayerUI panel = new ItemPlayerUI("/MainUI/ShopUI/ITEMPLAYER_FRAME.png", itemPlayer);
+            ItemPlayerUI panel = new ItemPlayerUI("/ShopSprites/ITEMPLAYER_FRAME.png", itemPlayer);
             Dimension dimension = new Dimension(Important.calculateDimension(300), Important.calculateDimension(300));
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);
@@ -93,7 +92,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
 
 
     private void initializeBoundPanel(JPanel panel) throws InvalidUILoadException {
-        this.stockBound = new BoundPanelUI("/MainUI/ShopUI/CURRENT_PANE.png", "/MainUI/ShopUI/STOCK_ICON.png", gameData, BoundTypes.STOCK_BOUND);
+        this.stockBound = new BoundPanelUI("/ShopSprites/CURRENT_PANE.png", "/ShopSprites/STOCK_ICON.png", gameData, BoundTypes.STOCK_BOUND);
 
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(stockBound);

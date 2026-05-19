@@ -20,7 +20,7 @@ public abstract class GameDataInfoUI extends BackgroundPanel {
     protected ArrayList<StrokeLabel> labels;
 
     public GameDataInfoUI(GameData gameData) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/STOCK_UI.png");
+        super("/ShopSprites/STOCK_UI.png");
         this.gameData = gameData;
         this.labels = new ArrayList<>();
         initialization();

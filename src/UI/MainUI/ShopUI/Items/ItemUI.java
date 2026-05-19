@@ -75,7 +75,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
-        CustomButton image = new CustomButton("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png", 80, 80);
+        CustomButton image = new CustomButton("/Products/" + item.getItem().getName() + ".png", 80, 80);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -110,12 +110,12 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
         Command command = null;
         switch (specification) {
             case SHOP: {
-                button = new CustomButton("/MainUI/ShopUI/BUY_BUTTON.png", 100, 50);
+                button = new CustomButton("/ShopSprites/BUY_BUTTON.png", 100, 50);
                 command = new BuyProductCommand(gameData, index);
                 break;
             }
             case NPC: {
-                button = new CustomButton("/MainUI/ShopUI/SELL_BUTTON.png", 100, 50);
+                button = new CustomButton("/ShopSprites/SELL_BUTTON.png", 100, 50);
                 command = new SellProductCommand(gameData, index);
                 break;
             }
@@ -130,7 +130,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -162,7 +162,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void updateImage() throws InvalidUILoadException {
-        this.image.setImages("/MainUI/ShopUI/Products/" + item.getItem().getName() + ".png");
+        this.image.setImages("/Products/" + item.getItem().getName() + ".png");
         this.image.repaint();
     }
 

@@ -22,7 +22,7 @@ public class EndPanelUI extends GameDataInfoUI {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton close = new CustomButton("/MainUI/ShopUI/QUIT_BUTTON.png", 130, 75);
+        CustomButton close = new CustomButton("/ShopSprites/QUIT_BUTTON.png", 130, 75);
         close.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             CommandResult result = new TurnOfTheGame(mainUI).execute();
@@ -36,7 +36,7 @@ public class EndPanelUI extends GameDataInfoUI {
 
     @Override
     public BackgroundPanel initializeBar() throws InvalidUILoadException {
-        BackgroundPanel bar = new BackgroundPanel("/MainUI/ShopUI/END_BAR_UI.png");
+        BackgroundPanel bar = new BackgroundPanel("/ShopSprites/END_BAR_UI.png");
 
         Dimension dimension = new Dimension(Important.calculateDimension(Important.getWidth()), Important.calculateDimension(135));
         bar.setPreferredSize(dimension);

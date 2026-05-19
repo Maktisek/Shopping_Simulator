@@ -21,7 +21,7 @@ public class SaveAndQuitDialogUI extends SaveBaseDialogUI{
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         try {
             parent.hideDialog();
-            parent.showDialog(new TurnOffTheGameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage(), parent));
+            parent.showDialog(new TurnOffTheGameDialogUI("/ShopSprites/ISSUE_PANE.png", result.getMessage(), parent));
         } catch (InvalidUILoadException ex) {
             throw new RuntimeException(ex);
         }

@@ -49,7 +49,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeImage() throws InvalidUILoadException {
-        CustomButton buyButton = new CustomButton("/MainUI/ShopUI/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80);
+        CustomButton buyButton = new CustomButton("/ShopSprites/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.addActionListener(e ->{
             CommandResult result = new UpgradeCommand(gameData, this.upgrade.nameInfo()).execute();
@@ -57,7 +57,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
             if(result.getState() == CommandState.FAILED_ISSUE){
                 MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parentShop.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parentShop.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

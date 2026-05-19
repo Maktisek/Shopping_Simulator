@@ -5,7 +5,6 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class MultiplierButton extends CustomTitleButton {
     private final ArrayList<MultiplierButton> givenButtons;
 
     public MultiplierButton(int width, int height, int amount, GameData gameData, ArrayList<MultiplierButton> givenButtons) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/Multipliers/MULTIPLIER_BUTTON_"+ amount + ".png", "/MainUI/ShopUI/Multipliers/MULTIPLIER_BUTTON_CLICKED_"+ amount + ".png", width, height);
+        super("/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png", width, height);
         this.amount = amount;
         this.gameData = gameData;
         this.givenButtons = givenButtons;

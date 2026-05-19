@@ -48,16 +48,16 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
 
     private void initializeImage() throws InvalidUILoadException {
         switch (this.type) {
-            case POSSIBLE -> setImg("/MainUI/ShopUI/ACHIEVEMENT_MANAGEMENT_PANE.png");
-            case DONE -> setImg("/MainUI/ShopUI/ACHIEVEMENT_MANAGEMENT_PANE_DONE.png");
+            case POSSIBLE -> setImg("/ShopSprites/ACHIEVEMENT_MANAGEMENT_PANE.png");
+            case DONE -> setImg("/ShopSprites/ACHIEVEMENT_MANAGEMENT_PANE_DONE.png");
         }
     }
 
     private void initializeIcon() throws InvalidUILoadException {
-        URL imageURL = getClass().getResource("/MainUI/ShopUI/" + achievement.getType().toString() + "_ICON.png");
+        URL imageURL = getClass().getResource("/ShopSprites/" + achievement.getType().toString() + "_ICON.png");
 
         if (imageURL == null) {
-            throw new InvalidUILoadException("The image " + "/MainUI/ShopUI/" + achievement.getType().toString() + "_ICON.png" + " was not found");
+            throw new InvalidUILoadException("The image " + "/ShopSprites/" + achievement.getType().toString() + "_ICON.png" + " was not found");
         }
 
         ImageIcon icon = new ImageIcon(imageURL);
@@ -127,7 +127,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeClaimButton() throws InvalidUILoadException {
-        this.claimButton = new CustomButton("/MainUI/ShopUI/CLAIM_BUTTON.png", 256, 74);
+        this.claimButton = new CustomButton("/ShopSprites/CLAIM_BUTTON.png", 256, 74);
         this.claimButton.setVisible(false);
         this.claimButton.addActionListener(e ->{
             CommandResult result = new ClaimAchievementRewardCommand(this.gameData, this.achievement).execute();
@@ -137,13 +137,13 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
                     initializeImage();
                     this.claimButton.setVisible(false);
                     this.bound.setVisible(true);
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", result.getMessage()));
+                    parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
             }else {
                 try {
-                    parent.showDialog(new DialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Emm, this should not happen"));
+                    parent.showDialog(new DialogUI("/ShopSprites/ISSUE_PANE.png", "Emm, this should not happen"));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

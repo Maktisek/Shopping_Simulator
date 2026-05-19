@@ -24,7 +24,7 @@ public class ShopUI extends BackgroundPanel implements UpdateAble {
 
 
     public ShopUI(Shop shop, GameData gameData) throws InvalidUILoadException {
-        super("/MainUI/ShopUI/" + shop.getName() + "_SHOP.png");
+        super("/ShopSprites/" + shop.getName() + "_SHOP.png");
         this.shop = shop;
         this.gameData = gameData;
         this.items = new ArrayList<>();
@@ -53,7 +53,7 @@ public class ShopUI extends BackgroundPanel implements UpdateAble {
 
     private void initializeShopItems(JPanel panel) throws InvalidUILoadException {
         for (int i = 0; i < shop.getItems().length; i++) {
-            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getItems()[i], i, gameData, ItemSpecification.SHOP);
+            ItemUI itemUI = new ItemUI("/ShopSprites/ITEM_FRAME.png", shop.getItems()[i], i, gameData, ItemSpecification.SHOP);
 
             panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));
@@ -64,7 +64,7 @@ public class ShopUI extends BackgroundPanel implements UpdateAble {
     private void initializeNPCItems(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));
         for (int i = 0; i < shop.getNpc().getDemand().length; i++) {
-            ItemUI itemUI = new ItemUI("/MainUI/ShopUI/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
+            ItemUI itemUI = new ItemUI("/ShopSprites/ITEM_FRAME.png", shop.getNpc().getDemand()[i], i, gameData, ItemSpecification.NPC);
             this.demandUI[i] = itemUI;
             panel.add(itemUI);
             panel.add(Box.createHorizontalStrut(Important.calculateDimension(40)));

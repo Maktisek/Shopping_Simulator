@@ -43,7 +43,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeBalance() throws InvalidUILoadException {
-        this.moneyPanelUI = new MoneyPanelUI("/MainUI/ShopUI/MONEY_PANEL.png", gameData);
+        this.moneyPanelUI = new MoneyPanelUI("/ShopSprites/MONEY_PANEL.png", gameData);
         add(moneyPanelUI);
     }
 
@@ -60,11 +60,11 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeSaveButton() throws InvalidUILoadException {
-        CustomButton save = new CustomButton("/MainUI/ShopUI/SAVE_BUTTON.png", 100, 100);
+        CustomButton save = new CustomButton("/ShopSprites/SAVE_BUTTON.png", 100, 100);
         save.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new SaveDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+                parent.showDialog(new SaveDialogUI("/ShopSprites/ISSUE_PANE.png", "Do you wish to save the game", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -75,11 +75,11 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeQuitAndSaveButton() throws InvalidUILoadException {
-        CustomButton saveAndQuit = new CustomButton("/MainUI/ShopUI/SAVE_QUIT_BUTTON.png", 100, 100);
+        CustomButton saveAndQuit = new CustomButton("/ShopSprites/SAVE_QUIT_BUTTON.png", 100, 100);
         saveAndQuit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new SaveAndQuitDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+                parent.showDialog(new SaveAndQuitDialogUI("/ShopSprites/ISSUE_PANE.png", "Do you wish to save the game", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -90,11 +90,11 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeQuitButton() throws InvalidUILoadException {
-        CustomButton quit = new CustomButton("/MainUI/ShopUI/QUIT_GAME_BUTTON.png", 100, 100);
+        CustomButton quit = new CustomButton("/ShopSprites/QUIT_GAME_BUTTON.png", 100, 100);
         quit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new TurnOffTheGameDialogUI("/MainUI/ShopUI/ISSUE_PANE.png", "Do you want to turn off the game without saving?", parent));
+                parent.showDialog(new TurnOffTheGameDialogUI("/ShopSprites/ISSUE_PANE.png", "Do you want to turn off the game without saving?", parent));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -104,7 +104,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeRebirthButton() throws InvalidUILoadException {
-        CustomButton rebirthButton = new CustomButton("/MainUI/ShopUI/REBIRTH_BUTTON.png", 100, 100);
+        CustomButton rebirthButton = new CustomButton("/ShopSprites/REBIRTH_BUTTON.png", 100, 100);
         rebirthButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {

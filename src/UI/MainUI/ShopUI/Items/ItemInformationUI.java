@@ -17,7 +17,7 @@ public class ItemInformationUI extends BackgroundPanel {
     private final String specification;
 
     public ItemInformationUI(String name, String specification) throws InvalidUILoadException {
-        setImg("/MainUI/ShopUI/INFO_PANE.png");
+        setImg("/ShopSprites/INFO_PANE.png");
         this.name = name;
         this.specification = specification;
         initialization();
@@ -63,7 +63,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeImg(JPanel panel) throws InvalidUILoadException {
-        URL imageURL = getClass().getResource("/MainUI/ShopUI/Products/" + this.name + ".png");
+        URL imageURL = getClass().getResource("/Products/" + this.name + ".png");
 
         if (imageURL == null) {
             throw new InvalidUILoadException(this.name + " picture was not found.");
@@ -107,7 +107,7 @@ public class ItemInformationUI extends BackgroundPanel {
     }
 
     private void initializeSouth() throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/MainUI/ShopUI/CLOSE_BUTTON.png", 130, 75);
+        CustomButton customButton = new CustomButton("/ShopSprites/CLOSE_BUTTON.png", 130, 75);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();

@@ -2,7 +2,7 @@
   "currentShop": null,
   "shops": [
     {
-      "name": "Test",
+      "name": "TEST",
       "npc": null,
       "shopKey": {
         "price": 0,
@@ -12,7 +12,7 @@
       "items": [
         {
           "item": {
-            "name": "Bread",
+            "name": "BREAD",
             "basePrice": 15,
             "currentPrice": 15
           },
@@ -31,7 +31,7 @@
         },
         {
           "item": {
-            "name": "Banana",
+            "name": "BANANA",
             "basePrice": 30,
             "currentPrice": 30
           },
@@ -50,7 +50,7 @@
         },
         {
           "item": {
-            "name": "Apple",
+            "name": "APPLE",
             "basePrice": 50,
             "currentPrice": 50
           },
@@ -69,7 +69,7 @@
         },
         {
           "item": {
-            "name": "Chocolate",
+            "name": "CHOCOLATE",
             "basePrice": 100,
             "currentPrice": 100
           },
@@ -88,7 +88,7 @@
         },
         {
           "item": {
-            "name": "Whisky",
+            "name": "WHISKY",
             "basePrice": 300,
             "currentPrice": 300
           },
