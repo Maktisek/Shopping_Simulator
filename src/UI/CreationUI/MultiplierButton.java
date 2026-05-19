@@ -5,6 +5,7 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class MultiplierButton extends CustomTitleButton {
             for (MultiplierButton multiplierButton : givenButtons){
                 multiplierButton.resetClicked();
             }
+            resetCursor();
             super.img = clickedImg;
             super.clicked = true;
             repaint();
@@ -42,6 +44,7 @@ public class MultiplierButton extends CustomTitleButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 if(!clicked) {
+                    setCursor();
                     MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, MultiplierButton.this);
                     if(parent != null) {
                         parent.setCursor();
@@ -67,6 +70,13 @@ public class MultiplierButton extends CustomTitleButton {
         this.clicked = false;
         this.img = super.idleImg;
         repaint();
+    }
+
+    public void resetCursor(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/MainSprites/MAIN_CURSOR.png"));
+        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
+        super.setCursor(customCursor);
     }
 
     public int getAmount() {

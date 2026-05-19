@@ -1,7 +1,7 @@
 {
   "music": [
     {
-      "title" : "Tesst",
+      "title" : "Test",
       "filePath" : "/Audio/test.wav",
       "infiniteLoop" : true,
       "paused" : false,
