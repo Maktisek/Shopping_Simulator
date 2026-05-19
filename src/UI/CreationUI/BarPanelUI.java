@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class BarPanelUI extends BackgroundPanel {
 
+
     public BarPanelUI(String type) throws InvalidUILoadException {
         super("/Sprites/BarSprites/" + type + "_UI_BAR.png");
         initialize();
@@ -25,7 +26,7 @@ public class BarPanelUI extends BackgroundPanel {
     }
 
     private void initializeExitButton() throws InvalidUILoadException {
-        CustomButton customButton = new CustomButton("/Sprites/ButtonSprites/ESCAPE_BUTTON.png", Important.calculateDimension(100), Important.calculateDimension(100));
+        CustomButton customButton = new CustomButton("/Sprites/ButtonSprites/ESCAPE_BUTTON.png", Important.calculateDimension(100), Important.calculateDimension(100), ButtonType.EXIT);
         customButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");

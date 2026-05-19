@@ -1,15 +1,31 @@
 {
   "music": [
     {
-      "title" : "Test",
-      "filePath" : "/Audio/test.wav",
-      "infiniteLoop" : true,
-      "paused" : false,
-      "initialVolume" : -10.0,
-      "music" : true
+      "title": "Test",
+      "filePath": "/Audio/test.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": true
     }
   ],
   "sounds": [
+    {
+      "title": "EnterClick",
+      "filePath": "/Audio/EnterClick.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false
+    },
+    {
+      "title": "ExitClick",
+      "filePath": "/Audio/ExitClick.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false
+    }
   ],
   "background": [
   ]

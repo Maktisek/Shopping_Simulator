@@ -5,6 +5,7 @@ import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.DialogUI.BuyShopDialogUI;
 import UI.DialogUI.DialogUI;
@@ -38,7 +39,7 @@ public class ShopManagementWestUI extends JPanel {
     }
 
     private void initializeChangeButton(String card) throws InvalidUILoadException {
-        CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110);
+        CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110, ButtonType.ENTER);
         change.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
@@ -50,8 +51,8 @@ public class ShopManagementWestUI extends JPanel {
 
 
     private void initializeChangeShopButtons() throws InvalidUILoadException {
-        CustomButton previous = new CustomButton("/Sprites/ButtonSprites/PREVIOUS_SHOP_BUTTON.png", 110, 110);
-        CustomButton next = new CustomButton("/Sprites/ButtonSprites/NEXT_SHOP_BUTTON.png", 110, 110);
+        CustomButton previous = new CustomButton("/Sprites/ButtonSprites/PREVIOUS_SHOP_BUTTON.png", 110, 110, ButtonType.ENTER);
+        CustomButton next = new CustomButton("/Sprites/ButtonSprites/NEXT_SHOP_BUTTON.png", 110, 110, ButtonType.ENTER);
 
         previous.setAlignmentX(Component.CENTER_ALIGNMENT);
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -78,7 +79,7 @@ public class ShopManagementWestUI extends JPanel {
         ShopManagementUI shopUI = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
         switch (result.getState()) {
             case DONE: {
-                shopUI.changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
+                shopUI.changeCard(gameData.getShopManagement().getCurrentShop().getName());
                 break;
             }
             case FAILED_ISSUE: {

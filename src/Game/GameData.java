@@ -27,7 +27,7 @@ public class GameData implements Serializable {
     private AchievementManagement achievementManagement;
     private Tax tax;
     private StatsCounter statsCounter;
-    private AudioManagement audioManagement;
+    public static AudioManagement audioManagement;
     private transient int amount;
 
     public Player getPlayer() {

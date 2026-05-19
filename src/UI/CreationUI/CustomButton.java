@@ -1,5 +1,8 @@
 package UI.CreationUI;
 
+import AudioSystem.AudioManagement;
+import AudioSystem.AudioType;
+import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
@@ -16,6 +19,7 @@ public class CustomButton extends JButton {
     protected Image img;
     protected boolean hoovered;
     protected boolean clicked;
+    protected ButtonType buttonType;
 
     public CustomButton(){
 
@@ -34,6 +38,21 @@ public class CustomButton extends JButton {
         setMouseListener();
     }
 
+    public CustomButton(String imgFile, int width, int height, ButtonType buttonType) throws InvalidUILoadException {
+        super();
+        this.buttonType = buttonType;
+        setImages(imgFile);
+        initializeSound();
+
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setFocusPainted(false);
+
+        setSizeOfButton(width,height);
+
+        setMouseListener();
+    }
+
     public void setImages(String imgFile) throws InvalidUILoadException {
         URL imageURL = getClass().getResource(imgFile);
 
@@ -42,6 +61,19 @@ public class CustomButton extends JButton {
         }
 
         this.img = new ImageIcon(imageURL).getImage();
+    }
+
+    private void initializeSound(){
+        this.addActionListener(e ->{
+            switch (this.buttonType){
+                case EXIT -> {
+                    GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
+                }
+                case ENTER -> {
+                    GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
+                }
+            }
+        });
     }
 
     @Override

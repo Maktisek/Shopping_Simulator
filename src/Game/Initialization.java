@@ -139,7 +139,6 @@ public class Initialization {
                 throw new IllegalStateException("The path for Json: /Jsons/Audios.json is invalid and the file could not be found");
             }
             this.gameData.setAudioManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AudioManagement.class));
-            System.out.println(this.gameData.getAudioManagement().toString());
         }catch (Exception e){
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }
