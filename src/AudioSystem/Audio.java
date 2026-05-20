@@ -4,6 +4,7 @@ import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -25,7 +26,8 @@ public class Audio implements Serializable {
     private String title;
     private boolean music;
 
-    private transient Clip clip;
+    private transient Clip currentClip;
+    private ArrayList<Clip> clips;
     private boolean infiniteLoop;
     private transient long pausePosition;
     private transient boolean paused;
@@ -42,19 +44,32 @@ public class Audio implements Serializable {
      *
      */
     public void initializeAudio() {
+        this.clips = new ArrayList<>();
         try {
-            InputStream input = Audio.class.getResourceAsStream(this.filePath);
-            if (input == null) {
-                throw new RuntimeException("Audio file " + title + " not found!");
+            for (int i = 0; i < 5; i++) {
+                InputStream input = Audio.class.getResourceAsStream(this.filePath);
+                if (input == null) {
+                    throw new RuntimeException("Audio file " + title + " not found!");
+                }
+                final AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(input));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                setVolume(this.initialVolume - 15, clip);
+                clips.add(clip);
             }
-            final AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(input));
-            this.clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            setVolume(this.initialVolume - 15);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         initializeLoop(infiniteLoop);
+    }
+
+    public Clip findClip() {
+        for (Clip clip : clips) {
+            if (!clip.isRunning()) {
+                return clip;
+            }
+        }
+        return null;
     }
 
     /**
@@ -65,8 +80,6 @@ public class Audio implements Serializable {
      * @param startPosition stands for from where the sound should start
      */
     public void startAudio(long startPosition) {
-//        final Thread playThread = new Thread(() -> startClip(startPosition));
-//        playThread.start();
         startClip(startPosition);
     }
 
@@ -76,9 +89,9 @@ public class Audio implements Serializable {
      * It sets the clip to null, so the sound can be replayed in the future.
      */
     public void stopSound() {
-        if (clip != null) {
+        if (currentClip != null) {
             Thread t = new Thread(() -> {
-                this.clip.stop();
+                this.currentClip.stop();
             });
             t.start();
         }
@@ -92,10 +105,10 @@ public class Audio implements Serializable {
      * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
      */
     public void pause() {
-        if (clip != null && !paused) {
-            pausePosition = clip.getMicrosecondPosition();
+        if (currentClip != null && !paused) {
+            pausePosition = currentClip.getMicrosecondPosition();
             paused = true;
-            clip.stop();
+            currentClip.stop();
         }
     }
 
@@ -109,9 +122,9 @@ public class Audio implements Serializable {
      * Uses {@link #fadeIn(long)}} method for cleaner transition.
      */
     public void resume() {
-        if (clip != null && paused) {
+        if (currentClip != null && paused) {
             Thread t = new Thread(() -> {
-                clip.setMicrosecondPosition(pausePosition);
+                currentClip.setMicrosecondPosition(pausePosition);
                 fadeIn(20);
                 paused = false;
                 try {
@@ -119,8 +132,8 @@ public class Audio implements Serializable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                if (clip != null) {
-                    clip.start();
+                if (currentClip != null) {
+                    currentClip.start();
                 }
             });
             t.start();
@@ -129,7 +142,7 @@ public class Audio implements Serializable {
 
     /**
      * Loops the audio if requested.
-     * Uses {@link #clip} method addLineListener to attach new lineListener.
+     * Uses {@link #currentClip} method addLineListener to attach new lineListener.
      * The listener reacts to STOP events by restarting the audio.
      * <p>
      * If the event.getType() is LineEvent.Type.STOP then it checks if the STOP state was because of end of the audio file.
@@ -141,29 +154,32 @@ public class Audio implements Serializable {
      * @author ChatGPT (originally made for my first game S.T.A.L.K.E.R. Echoes of Chernobyl in May 2025)
      */
     public void initializeLoop(boolean loop) {
-        if (loop) {
-            clip.addLineListener(event -> {
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            });
+        for (Clip clip : clips){
+            if (loop) {
+                clip.addLineListener(event -> {
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                });
+            }
         }
     }
 
     private void startClip(long startPosition) {
-        if (clip != null) {
-            if (clip.isRunning()) {
-                clip.stop();
+        this.currentClip = findClip();
+        if (currentClip != null) {
+            if (currentClip.isRunning()) {
+                currentClip.stop();
             }
-            clip.setMicrosecondPosition(startPosition);
+            currentClip.setMicrosecondPosition(startPosition);
             if (music) {
                 if (startPosition != 0) {
-                    setVolume(this.initialVolume);
+                    setVolume(this.initialVolume, this.currentClip);
                 } else {
                     fadeIn(20);
                 }
             } else {
-                setVolume(this.initialVolume);
+                setVolume(this.initialVolume, this.currentClip);
             }
-            clip.start();
+            currentClip.start();
         }
     }
 
@@ -177,7 +193,7 @@ public class Audio implements Serializable {
      *
      * @param db requested volume in decibels (-80.0 to cca 6.0 accepted)
      */
-    public void setVolume(float db) {
+    public void setVolume(float db, Clip clip) {
         if (clip != null && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
             FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gain.setValue(db);
@@ -186,7 +202,7 @@ public class Audio implements Serializable {
 
     /**
      * Fades in audio from {@link #initialVolume} - 15 to {@link #initialVolume}.
-     * Uses {@link #setVolume(float)}} to set the current volume level.
+     * Uses {@link #setVolume(float, Clip)}} to set the current volume level.
      *
      * @param milliseconds the desired time that the thread will wait until updating the volume again.
      *                     More millisecond the more time the fade will take, but the less will be cleaner.
@@ -200,7 +216,7 @@ public class Audio implements Serializable {
 
 
             for (float f = 0; f <= steps; f++) {
-                setVolume(start + (stepSize * f));
+                setVolume(start + (stepSize * f), this.currentClip);
                 if (f == 0) {
                     try {
                         Thread.sleep(50);
@@ -239,12 +255,12 @@ public class Audio implements Serializable {
         this.pausePosition = pausePosition;
     }
 
-    public Clip getClip() {
-        return clip;
+    public Clip getCurrentClip() {
+        return currentClip;
     }
 
-    public void setClip(Clip clip) {
-        this.clip = clip;
+    public void setCurrentClip(Clip currentClip) {
+        this.currentClip = currentClip;
     }
 
     public boolean isInfiniteLoop() {

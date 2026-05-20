@@ -25,6 +25,22 @@
       "paused": false,
       "initialVolume": -10.0,
       "music": false
+    },
+    {
+      "title": "Buy",
+      "filePath": "/Audio/Buy.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false
+    },
+    {
+      "title": "Sell",
+      "filePath": "/Audio/Sell.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false
     }
   ],
   "background": [

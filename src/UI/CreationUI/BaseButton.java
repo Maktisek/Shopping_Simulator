@@ -1,5 +1,6 @@
 package UI.CreationUI;
 
+import AudioSystem.Audio;
 import AudioSystem.AudioType;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
@@ -27,15 +28,15 @@ public abstract class BaseButton extends JButton {
 
     private void initializeSound(ButtonType type) {
         this.addActionListener(e -> {
-            System.out.println("DEBUG: Přehrávám zvuk pro typ: " + type + " na objektu: " + this.hashCode());
             switch (type) {
                 case EXIT -> GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
-                case ENTER -> {
-                    GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
-                }
-
+                case ENTER -> GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
             }
         });
+    }
+
+    public void addAdditionalSound(String name) {
+        GameData.audioManagement.playSound(name, AudioType.SOUNDS, 0);
     }
 
     public abstract void setImages() throws InvalidUILoadException;

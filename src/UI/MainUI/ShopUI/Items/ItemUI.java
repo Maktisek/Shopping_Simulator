@@ -104,14 +104,17 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     private void initializeButton(JPanel panel) throws InvalidUILoadException {
         CustomButton button = new CustomButton();
         Command command = null;
+        String name = "";
         switch (specification) {
             case SHOP: {
                 button = new CustomButton("/Sprites/ButtonSprites/BUY_BUTTON.png", 100, 50, ButtonType.NONE);
+                name = "Buy";
                 command = new BuyProductCommand(gameData, index);
                 break;
             }
             case NPC: {
                 button = new CustomButton("/Sprites/ButtonSprites/SELL_BUTTON.png", 100, 50, ButtonType.NONE);
+                name = "Sell";
                 command = new SellProductCommand(gameData, index);
                 break;
             }
@@ -120,6 +123,8 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         Command finalCommand = command;
+        String finalName = name;
+        CustomButton finalButton = button;
         button.addActionListener(e -> {
             CommandResult result = finalCommand.execute();
             System.out.println(result.getMessage());
@@ -130,6 +135,8 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
+            } else {
+                finalButton.addAdditionalSound(finalName);
             }
         });
         panel.add(button);
