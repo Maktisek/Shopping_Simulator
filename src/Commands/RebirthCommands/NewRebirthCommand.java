@@ -5,6 +5,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Game.Initialization;
+import Game.InitializationType;
 
 public class NewRebirthCommand extends Command {
 
@@ -23,7 +24,7 @@ public class NewRebirthCommand extends Command {
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().setNewRebirth();
 
-        GameData temp = new Initialization().getGameData();
+        GameData temp = new Initialization(InitializationType.ALL).getGameData();
         temp.copyFromRebirth(this.getGameData());
         this.getGameData().copyFromLoaded(temp);
 

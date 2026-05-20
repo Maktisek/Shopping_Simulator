@@ -1,8 +1,9 @@
 package AudioSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AudioManagement {
+public class AudioManagement implements Serializable {
 
     private ArrayList<Audio> music;
     private ArrayList<Audio> sounds;
@@ -59,8 +60,10 @@ public class AudioManagement {
         temp.addAll(sounds);
         temp.addAll(background);
         for (Audio audio : temp){
+            System.out.println(audio.getTitle());
             audio.initializeAudio();
         }
+        playSound("blank", AudioType.SOUNDS, 0);
     }
 
     private ArrayList<Audio> getAudioListByType(AudioType type){

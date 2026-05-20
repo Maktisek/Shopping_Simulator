@@ -1,4 +1,5 @@
 package Game;
+
 import Achievements.AchievementManagement;
 import AudioSystem.AudioManagement;
 import DayCycle.DayManagement;
@@ -21,12 +22,15 @@ public class Initialization {
     private final GameData gameData;
     private NPCFinder[] npcs;
 
-    public Initialization() {
+    public Initialization(InitializationType type) {
         this.gameData = new GameData();
-        initGameData();
+        switch (type) {
+            case ALL -> initGameData();
+            case SOUNDS -> initSounds();
+        }
     }
 
-    private void initGameData(){
+    private void initGameData() {
         loadTax();
         loadDayManagement();
         loadShopManagement();
@@ -36,116 +40,119 @@ public class Initialization {
         loadAchievementManagement();
         loadStatsCounter();
         loadPlayer();
-        loadAudioManagement();
         finishInitialization();
     }
 
-    private void loadPlayer(){
+    private void initSounds() {
+        loadAudioManagement();
+    }
+
+    private void loadPlayer() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Rebirth.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Rebirth.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/Rebirth.json is invalid and the file could not be found");
             }
             this.gameData.getUpgradeManagement().setRebirth(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Rebirth.class));
             this.gameData.setPlayer(new Player());
             this.gameData.getPlayer().setCurrentBalance(this.gameData.getUpgradeManagement().getRebirth().getCapital());
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Player: " + e.getMessage());
         }
     }
 
-    private void loadTax(){
+    private void loadTax() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Tax.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Tax.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/Tax.json is invalid and the file could not be found");
             }
             this.gameData.setTax(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), Tax.class));
             this.gameData.getTax().initializeK();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading Tax: " + e.getMessage());
         }
     }
 
-    private void loadDayManagement(){
+    private void loadDayManagement() {
         this.gameData.setDayManagement(new DayManagement());
     }
 
-    private void loadShopManagement(){
+    private void loadShopManagement() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/ShopManagement.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/ShopManagement.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/ShopManagement.json is invalid and the file could not be found");
             }
             ShopManagement shopManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), ShopManagement.class);
             shopManagement.loadStacks();
             this.gameData.setShopManagement(shopManagement);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
     }
 
-    private void loadNPCs(){
+    private void loadNPCs() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/NPCs.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/NPCs.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/NPCs.json is invalid and the file could not be found");
             }
             this.npcs = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), NPCFinder[].class);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
     }
 
-    private void loadStatsCounter(){
+    private void loadStatsCounter() {
         this.gameData.setStatsCounter(new StatsCounter());
     }
 
-    private void connectShopAndNPCs(){
+    private void connectShopAndNPCs() {
         for (int i = 0; i < gameData.getShopManagement().getShops().size(); i++) {
             gameData.getShopManagement().getShops().get(i).setNpc(npcs[i].getNpc());
         }
     }
 
 
-    private void loadUpgradeManagement(){
+    private void loadUpgradeManagement() {
         this.gameData.setUpgradeManagement(new UpgradeManagement());
     }
 
-    private void loadAchievementManagement(){
+    private void loadAchievementManagement() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/AchievementManagement.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/AchievementManagement.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/AchievementManagement.json is invalid and the file could not be found");
             }
             AchievementManagement achievementManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
             achievementManagement.loadPossibleAchievements();
             this.gameData.setAchievementManagement(achievementManagement);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }
     }
 
-    private void loadAudioManagement(){
+    private void loadAudioManagement() {
         Gson gson = new Gson();
 
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Audios.json")){
-            if(is == null){
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Audios.json")) {
+            if (is == null) {
                 throw new IllegalStateException("The path for Json: /Jsons/Audios.json is invalid and the file could not be found");
             }
             this.gameData.setAudioManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AudioManagement.class));
             this.gameData.getAudioManagement().initializeSounds();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }
     }
 
-    private void finishInitialization(){
+    private void finishInitialization() {
         try {
             this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
             this.gameData.getShopManagement().loadAllNpc(this.getGameData().getPlayer());

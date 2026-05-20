@@ -1,15 +1,15 @@
 {
   "music": [
-    {
-      "title": "Test",
-      "filePath": "/Audio/test.wav",
-      "infiniteLoop": true,
-      "paused": false,
-      "initialVolume": -10.0,
-      "music": true
-    }
   ],
   "sounds": [
+    {
+      "title": "Blank",
+      "filePath": "/Audio/Blank.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -50.0,
+      "music": true
+    },
     {
       "title": "EnterClick",
       "filePath": "/Audio/EnterClick.wav",

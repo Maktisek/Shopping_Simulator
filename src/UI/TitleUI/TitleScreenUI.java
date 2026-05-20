@@ -5,7 +5,9 @@ import Commands.CommandState;
 import Commands.SaveCommands.LoadSaveCommand;
 import Game.GameData;
 import Game.Initialization;
+import Game.InitializationType;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomTitleButton;
 import UI.CreationUI.FrameBaseUI;
 import UI.DialogUI.TitleDialogUI;
@@ -48,6 +50,10 @@ public class TitleScreenUI extends FrameBaseUI {
         this.setVisible(true);
     }
 
+    public void initializeFirstGameData(){
+        new Initialization(InitializationType.SOUNDS);
+    }
+
     private void initialize() throws InvalidUILoadException {
         initializeBackground();
         initializeOverlay();
@@ -87,9 +93,9 @@ public class TitleScreenUI extends FrameBaseUI {
         panel.setOpaque(false);
         panel.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(40), Important.calculateDimension(20), Important.calculateDimension(40)));
 
-        CustomTitleButton newGame = new CustomTitleButton("/Sprites/TitleScreenSprites/NEW_GAME_BUTTON.png", "/Sprites/TitleScreenSprites/NEW_GAME_BUTTON_CLICKED.png", 200, 100);
-        CustomTitleButton loadGame = new CustomTitleButton("/Sprites/TitleScreenSprites/LOAD_BUTTON.png", "/Sprites/TitleScreenSprites/LOAD_BUTTON_CLICKED.png", 200, 100);
-        CustomTitleButton quit = new CustomTitleButton("/Sprites/TitleScreenSprites/QUIT_BUTTON.png", "/Sprites/TitleScreenSprites/QUIT_BUTTON_CLICKED.png", 200, 100);
+        CustomTitleButton newGame = new CustomTitleButton("/Sprites/TitleScreenSprites/NEW_GAME_BUTTON.png", "/Sprites/TitleScreenSprites/NEW_GAME_BUTTON_CLICKED.png", 200, 100, ButtonType.ENTER);
+        CustomTitleButton loadGame = new CustomTitleButton("/Sprites/TitleScreenSprites/LOAD_BUTTON.png", "/Sprites/TitleScreenSprites/LOAD_BUTTON_CLICKED.png", 200, 100, ButtonType.ENTER);
+        CustomTitleButton quit = new CustomTitleButton("/Sprites/TitleScreenSprites/QUIT_BUTTON.png", "/Sprites/TitleScreenSprites/QUIT_BUTTON_CLICKED.png", 200, 100, ButtonType.EXIT);
 
         newGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -106,7 +112,7 @@ public class TitleScreenUI extends FrameBaseUI {
 
         newGame.addActionListener(e -> {
             try {
-                MyFrame myFrame = new MyFrame(new Initialization().getGameData());
+                MyFrame myFrame = new MyFrame(new Initialization(InitializationType.ALL).getGameData());
                 myFrame.makeVisible();
                 this.stopTimer();
                 this.dispose();

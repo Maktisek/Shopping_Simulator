@@ -14,6 +14,7 @@ public class Launcher {
             public void run() {
                 try {
                     TitleScreenUI title = new TitleScreenUI();
+                    title.initializeFirstGameData();
                     title.makeVisible();
                 }catch (InvalidUILoadException e){
                     System.err.println(e.getMessage());

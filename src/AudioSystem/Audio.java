@@ -57,26 +57,6 @@ public class Audio implements Serializable {
         initializeLoop(infiniteLoop);
     }
 
-//    /**
-//     * Method which starts music via thread.
-//     * Uses {@link #implementMusic(long)} method to play the audio.
-//     */
-//    public void startMusic(long startingPosition) {
-//        final Thread playThread = new Thread(() -> implementAudio(true, startingPosition));
-//        playThread.start();
-//    }
-
-//    /**
-//     * Represents a way how to boot a background music.
-//     * <p>
-//     * Uses {@link #implementAudio(boolean, long)} method to play music, and it sets the boolean music to true by itself.
-//     */
-//    private void implementMusic(long startingPosition) {
-//        if (clip == null) {
-//            implementAudio(true, startingPosition);
-//        }
-//    }
-
     /**
      * Method which starts a sound or music via thread.
      * The clip has not to be null to play.

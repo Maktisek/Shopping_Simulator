@@ -1,5 +1,7 @@
 package UI.CreationUI;
 
+import AudioSystem.AudioType;
+import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import Utilities.Important;
 
@@ -8,6 +10,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+
 
 public class CustomTitleButton extends JButton {
 
@@ -21,7 +24,7 @@ public class CustomTitleButton extends JButton {
 
     }
 
-    public CustomTitleButton(String imgFile, String clickedImg, int width, int height) throws InvalidUILoadException {
+    public CustomTitleButton(String imgFile, String clickedImg, int width, int height, ButtonType type) throws InvalidUILoadException {
         super();
         setImages(imgFile, clickedImg);
 
@@ -33,6 +36,20 @@ public class CustomTitleButton extends JButton {
 
         setMouseListener();
         setCursor();
+        initializeSound(type);
+    }
+
+    private void initializeSound(ButtonType type){
+        this.addActionListener(e ->{
+            switch (type){
+                case EXIT -> {
+                    GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
+                }
+                case ENTER -> {
+                    GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
+                }
+            }
+        });
     }
 
     public void setImages(String imgFile, String clickedImg) throws InvalidUILoadException {
