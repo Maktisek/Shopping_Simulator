@@ -5,10 +5,7 @@ import Commands.AchievementCommands.ClaimAchievementRewardCommand;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.StrokeLabel;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.*;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -127,7 +124,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeClaimButton() throws InvalidUILoadException {
-        this.claimButton = new CustomButton("/Sprites/ButtonSprites/CLAIM_BUTTON.png", 256, 74);
+        this.claimButton = new CustomButton("/Sprites/ButtonSprites/CLAIM_BUTTON.png", 256, 74, ButtonType.NONE);
         this.claimButton.setVisible(false);
         this.claimButton.addActionListener(e ->{
             CommandResult result = new ClaimAchievementRewardCommand(this.gameData, this.achievement).execute();

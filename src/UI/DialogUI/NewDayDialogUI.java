@@ -4,6 +4,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -35,7 +36,7 @@ public class NewDayDialogUI extends BaseDialogUI {
     }
 
     private void initializeCloseButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton closeButton = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton closeButton = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75), ButtonType.EXIT);
         closeButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
@@ -45,7 +46,7 @@ public class NewDayDialogUI extends BaseDialogUI {
     }
 
     private void initializeYesButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton yesButton = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75));
+        CustomButton yesButton = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", Important.calculateDimension(130), Important.calculateDimension(75), ButtonType.ENTER);
         yesButton.addActionListener(e -> {
             CommandResult commandResult = new NewDayCommand(gameData).execute();
             System.out.println(commandResult.getMessage());

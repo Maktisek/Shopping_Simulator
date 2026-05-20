@@ -4,13 +4,10 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.UpgradeCommands.UpgradeCommand;
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
-import UI.CreationUI.StrokeLabel;
 import Upgrade.Upgrade;
 import Utilities.Important;
 
@@ -49,7 +46,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeImage() throws InvalidUILoadException {
-        CustomButton buyButton = new CustomButton("/Sprites/IconSprites/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80);
+        CustomButton buyButton = new CustomButton("/Sprites/IconSprites/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80, ButtonType.NONE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.addActionListener(e ->{
             CommandResult result = new UpgradeCommand(gameData, this.upgrade.nameInfo()).execute();

@@ -2,6 +2,7 @@ package UI.MainUI.StatisticUI;
 
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
@@ -20,7 +21,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75, ButtonType.EXIT);
         ok.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.switchPanel("Shop");

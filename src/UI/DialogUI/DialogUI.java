@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -20,7 +21,7 @@ public class DialogUI extends BaseDialogUI {
     protected void initializeButton() throws InvalidUILoadException {
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75);
+        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75, ButtonType.ENTER);
 
         button.addActionListener(e ->{
             buttonAction();

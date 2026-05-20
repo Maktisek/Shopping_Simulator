@@ -11,47 +11,59 @@ public class AudioManagement implements Serializable {
 
 
     public void playSound(String title, AudioType type, long startPosition){
-        ArrayList<Audio> temp = getAudioListByType(type);
-        if(temp != null) {
-            for (Audio audio : temp) {
-                if(audio.getTitle().equalsIgnoreCase(title)){
-                    audio.startAudio(startPosition);
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if(temp != null) {
+                for (Audio audio : temp) {
+                    if(audio.getTitle().equalsIgnoreCase(title)){
+                        audio.startAudio(startPosition);
+                    }
                 }
             }
-        }
+        });
+        playThread.start();
     }
 
     public void stopSound(String title, AudioType type){
-        ArrayList<Audio> temp = getAudioListByType(type);
-        if(temp != null) {
-            for (Audio audio : temp) {
-                if(audio.getTitle().equalsIgnoreCase(title)){
-                    audio.stopSound();
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if (temp != null) {
+                for (Audio audio : temp) {
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
+                        audio.stopSound();
+                    }
                 }
             }
-        }
+        });
+        playThread.start();
     }
 
     public void pauseSound(String title, AudioType type){
-        ArrayList<Audio> temp = getAudioListByType(type);
-        if(temp != null) {
-            for (Audio audio : temp) {
-                if(audio.getTitle().equalsIgnoreCase(title)){
-                    audio.pause();
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if (temp != null) {
+                for (Audio audio : temp) {
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
+                        audio.pause();
+                    }
                 }
             }
-        }
+        });
+        playThread.start();
     }
 
     public void resumeSound(String title, AudioType type){
-        ArrayList<Audio> temp = getAudioListByType(type);
-        if(temp != null) {
-            for (Audio audio : temp) {
-                if(audio.getTitle().equalsIgnoreCase(title)){
-                    audio.resume();
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if (temp != null) {
+                for (Audio audio : temp) {
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
+                        audio.resume();
+                    }
                 }
             }
-        }
+        });
+        playThread.start();
     }
 
     public void initializeSounds(){

@@ -2,5 +2,5 @@ package UI.CreationUI;
 
 public enum ButtonType {
     
-    ENTER, EXIT
+    ENTER, EXIT, NONE
 }

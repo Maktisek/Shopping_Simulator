@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.UpdateAble;
 import UI.DialogUI.NewDayDialogUI;
@@ -46,7 +47,7 @@ public class ShopManagementEastUI extends JPanel implements UpdateAble {
     }
 
     private void initializeNewDayButton() throws InvalidUILoadException {
-        CustomButton nextDay = new CustomButton("/Sprites/ButtonSprites/NEXT_DAY_BUTTON.png", 200, 85);
+        CustomButton nextDay = new CustomButton("/Sprites/ButtonSprites/NEXT_DAY_BUTTON.png", 200, 85, ButtonType.ENTER);
         nextDay.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.add(Box.createVerticalStrut(Important.calculateDimension(7)));
         this.add(nextDay);

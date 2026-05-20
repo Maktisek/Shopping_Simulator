@@ -1,13 +1,10 @@
 package UI.MainUI.StockUI;
 
 import Items.ItemPlayer;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Items.ItemInformationUI;
-import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -45,7 +42,7 @@ public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
 
     private void initializeImageButton(JPanel panel) throws InvalidUILoadException {
         panel.add(Box.createVerticalStrut(20));
-        CustomButton productButton = new CustomButton("/Sprites/Products/" + itemPlayer.getName() + ".png", 140, 140);
+        CustomButton productButton = new CustomButton("/Sprites/Products/" + itemPlayer.getName() + ".png", 140, 140, ButtonType.ENTER);
         productButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {

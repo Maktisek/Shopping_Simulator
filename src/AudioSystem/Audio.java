@@ -65,8 +65,9 @@ public class Audio implements Serializable {
      * @param startPosition stands for from where the sound should start
      */
     public void startAudio(long startPosition) {
-        final Thread playThread = new Thread(() -> startClip(startPosition));
-        playThread.start();
+//        final Thread playThread = new Thread(() -> startClip(startPosition));
+//        playThread.start();
+        startClip(startPosition);
     }
 
     /**
@@ -77,7 +78,7 @@ public class Audio implements Serializable {
     public void stopSound() {
         if (clip != null) {
             Thread t = new Thread(() -> {
-                this.clip.close();
+                this.clip.stop();
             });
             t.start();
         }
@@ -149,6 +150,9 @@ public class Audio implements Serializable {
 
     private void startClip(long startPosition) {
         if (clip != null) {
+            if (clip.isRunning()) {
+                clip.stop();
+            }
             clip.setMicrosecondPosition(startPosition);
             if (music) {
                 if (startPosition != 0) {

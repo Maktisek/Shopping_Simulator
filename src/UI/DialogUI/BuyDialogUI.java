@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -21,8 +22,8 @@ public abstract class BuyDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75);
-        CustomButton buy = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", 130, 75);
+        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75, ButtonType.ENTER);
+        CustomButton buy = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", 130, 75, ButtonType.NONE);
 
         ok.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);

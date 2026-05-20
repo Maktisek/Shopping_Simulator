@@ -2,12 +2,9 @@ package UI.MainUI.ShopUI.Days;
 
 import DayCycle.Day;
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.CustomScrollBarUI;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -157,7 +154,7 @@ public class DaySummaryPanelUI extends BackgroundPanel {
     }
 
     private void initializeOkButton(JPanel south) throws InvalidUILoadException {
-        CustomButton okButton = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75);
+        CustomButton okButton = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75, ButtonType.ENTER);
         okButton.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();

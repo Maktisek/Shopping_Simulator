@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.StrokeLabel;
 import UI.Exceptions.InvalidUILoadException;
@@ -28,7 +29,7 @@ public class TitleDialogUI extends DialogUI{
     protected void initializeButton() throws InvalidUILoadException {
         add(Box.createVerticalStrut(Important.calculateDimension(10)));
 
-        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", Important.calculateDimension(110), Important.calculateDimension(62));
+        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", Important.calculateDimension(110), Important.calculateDimension(62), ButtonType.ENTER);
         button.setAlignmentX(CENTER_ALIGNMENT);
         add(button);
 

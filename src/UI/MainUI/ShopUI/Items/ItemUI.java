@@ -8,13 +8,10 @@ import Commands.ProductCommands.BuyProductCommand;
 import Commands.ProductCommands.SellProductCommand;
 import Game.GameData;
 import Items.Item;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.DialogUI;
 import UI.MainUI.MainUI;
-import UI.CreationUI.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -62,7 +59,6 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
-//        label.setBorder(BorderFactory.createLineBorder(Color.RED)); //Debugging
 
         add(name);
         add(Box.createVerticalStrut(Important.calculateDimension(8)));
@@ -75,7 +71,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
-        CustomButton image = new CustomButton("/Sprites/Products/" + item.getItem().getName() + ".png", 80, 80);
+        CustomButton image = new CustomButton("/Sprites/Products/" + item.getItem().getName() + ".png", 80, 80, ButtonType.ENTER);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -110,12 +106,12 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
         Command command = null;
         switch (specification) {
             case SHOP: {
-                button = new CustomButton("/Sprites/ButtonSprites/BUY_BUTTON.png", 100, 50);
+                button = new CustomButton("/Sprites/ButtonSprites/BUY_BUTTON.png", 100, 50, ButtonType.NONE);
                 command = new BuyProductCommand(gameData, index);
                 break;
             }
             case NPC: {
-                button = new CustomButton("/Sprites/ButtonSprites/SELL_BUTTON.png", 100, 50);
+                button = new CustomButton("/Sprites/ButtonSprites/SELL_BUTTON.png", 100, 50, ButtonType.NONE);
                 command = new SellProductCommand(gameData, index);
                 break;
             }

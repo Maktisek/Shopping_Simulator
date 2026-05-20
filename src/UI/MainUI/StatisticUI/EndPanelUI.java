@@ -4,6 +4,7 @@ import Commands.CommandResult;
 import Commands.UserInterfaceCommands.TurnOfTheGame;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
@@ -22,7 +23,7 @@ public class EndPanelUI extends GameDataInfoUI {
 
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
-        CustomButton close = new CustomButton("/Sprites/ButtonSprites/QUIT_BUTTON.png", 130, 75);
+        CustomButton close = new CustomButton("/Sprites/ButtonSprites/QUIT_BUTTON.png", 130, 75, ButtonType.EXIT);
         close.addActionListener(e ->{
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             CommandResult result = new TurnOfTheGame(mainUI).execute();

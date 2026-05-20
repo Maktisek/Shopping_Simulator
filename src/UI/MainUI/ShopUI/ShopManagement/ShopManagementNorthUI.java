@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
+import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.CreationUI.MultiplierButton;
 import UI.CreationUI.UpdateAble;
@@ -60,7 +61,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeSaveButton() throws InvalidUILoadException {
-        CustomButton save = new CustomButton("/Sprites/ButtonSprites/SAVE_BUTTON.png", 100, 100);
+        CustomButton save = new CustomButton("/Sprites/ButtonSprites/SAVE_BUTTON.png", 100, 100, ButtonType.ENTER);
         save.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
@@ -75,7 +76,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeQuitAndSaveButton() throws InvalidUILoadException {
-        CustomButton saveAndQuit = new CustomButton("/Sprites/ButtonSprites/SAVE_QUIT_BUTTON.png", 100, 100);
+        CustomButton saveAndQuit = new CustomButton("/Sprites/ButtonSprites/SAVE_QUIT_BUTTON.png", 100, 100, ButtonType.ENTER);
         saveAndQuit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
@@ -90,7 +91,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeQuitButton() throws InvalidUILoadException {
-        CustomButton quit = new CustomButton("/Sprites/ButtonSprites/QUIT_GAME_BUTTON.png", 100, 100);
+        CustomButton quit = new CustomButton("/Sprites/ButtonSprites/QUIT_GAME_BUTTON.png", 100, 100, ButtonType.ENTER);
         quit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
@@ -104,7 +105,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeRebirthButton() throws InvalidUILoadException {
-        CustomButton rebirthButton = new CustomButton("/Sprites/ButtonSprites/REBIRTH_BUTTON.png", 100, 100);
+        CustomButton rebirthButton = new CustomButton("/Sprites/ButtonSprites/REBIRTH_BUTTON.png", 100, 100, ButtonType.ENTER);
         rebirthButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
