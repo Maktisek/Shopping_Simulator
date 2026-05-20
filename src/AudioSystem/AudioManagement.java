@@ -53,6 +53,16 @@ public class AudioManagement {
         }
     }
 
+    public void initializeSounds(){
+        ArrayList<Audio> temp = new ArrayList<>();
+        temp.addAll(music);
+        temp.addAll(sounds);
+        temp.addAll(background);
+        for (Audio audio : temp){
+            audio.initializeAudio();
+        }
+    }
+
     private ArrayList<Audio> getAudioListByType(AudioType type){
         switch (type){
             case MUSIC -> {

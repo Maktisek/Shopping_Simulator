@@ -36,13 +36,12 @@ public class Audio implements Serializable {
 
     /**
      * This method implements an audio. It creates a clip and loads it with .wav file from {@link #filePath}.
-     * Then it uses {@link #loop(boolean)} to start looping the audio.
+     * Then it uses {@link #initializeLoop(boolean)} to start looping the audio.
      * <p>
      * This system was originally taken from Matěj Chaloupka, but implemented in a different way.
      *
-     * @param startPosition Represents the position from where will the audio start.
      */
-    private void implementAudio(long startPosition) {
+    public void initializeAudio() {
         try {
             InputStream input = Audio.class.getResourceAsStream(this.filePath);
             if (input == null) {
@@ -52,20 +51,10 @@ public class Audio implements Serializable {
             this.clip = AudioSystem.getClip();
             clip.open(audioStream);
             setVolume(this.initialVolume - 15);
-            if (music) {
-                if (startPosition != 0) {
-                    clip.setMicrosecondPosition(startPosition);
-                    setVolume(this.initialVolume);
-                }else {
-                    fadeIn(20);
-                }
-            } else {
-                setVolume(this.initialVolume);
-            }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        loop(infiniteLoop);
+        initializeLoop(infiniteLoop);
     }
 
 //    /**
@@ -92,10 +81,11 @@ public class Audio implements Serializable {
      * Method which starts a sound or music via thread.
      * The clip has not to be null to play.
      * <p>
+     *
      * @param startPosition stands for from where the sound should start
      */
     public void startAudio(long startPosition) {
-        final Thread playThread = new Thread(() -> implementAudio(startPosition));
+        final Thread playThread = new Thread(() -> startClip(startPosition));
         playThread.start();
     }
 
@@ -108,21 +98,10 @@ public class Audio implements Serializable {
         if (clip != null) {
             Thread t = new Thread(() -> {
                 this.clip.close();
-                this.clip = null;
             });
             t.start();
         }
     }
-
-//    /**
-//     * Method which stops the sound by {@link #clip}'s method close()
-//     */
-//    public void stopSound() {
-//        if (clip != null) {
-//            this.clip.close();
-//            this.clip = null; //Kdyby chyba, tak tady
-//        }
-//    }
 
     /**
      * Method which pauses the audio.
@@ -180,23 +159,26 @@ public class Audio implements Serializable {
      * @param loop is true if the audio should be looped.
      * @author ChatGPT (originally made for my first game S.T.A.L.K.E.R. Echoes of Chernobyl in May 2025)
      */
-    public void loop(boolean loop) {
+    public void initializeLoop(boolean loop) {
         if (loop) {
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    if (clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
-                        clip.setMicrosecondPosition(0);
-                        clip.start();
-                    }
-                }
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
             });
         }
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    }
+
+    private void startClip(long startPosition) {
         if (clip != null) {
+            clip.setMicrosecondPosition(startPosition);
+            if (music) {
+                if (startPosition != 0) {
+                    setVolume(this.initialVolume);
+                } else {
+                    fadeIn(20);
+                }
+            } else {
+                setVolume(this.initialVolume);
+            }
             clip.start();
         }
     }

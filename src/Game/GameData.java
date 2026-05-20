@@ -99,7 +99,7 @@ public class GameData implements Serializable {
     }
 
     public void setAudioManagement(AudioManagement audioManagement) {
-        this.audioManagement = audioManagement;
+        GameData.audioManagement = audioManagement;
     }
 
     public void writeToFile() throws IOException {
