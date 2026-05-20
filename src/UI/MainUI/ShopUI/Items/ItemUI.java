@@ -162,7 +162,8 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void updateImage() throws InvalidUILoadException {
-        this.image.setImages("/Sprites/Products/" + item.getItem().getName() + ".png");
+        this.image.setImgFile("/Sprites/Products/" + item.getItem().getName() + ".png");
+        this.image.setImages();
         this.image.repaint();
     }
 

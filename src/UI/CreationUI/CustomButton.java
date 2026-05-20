@@ -1,11 +1,9 @@
 package UI.CreationUI;
 
-import AudioSystem.AudioManagement;
 import AudioSystem.AudioType;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.TitleUI.TitleScreenUI;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -14,46 +12,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-public class CustomButton extends JButton {
+public class CustomButton extends BaseButton {
 
+    protected String imgFile;
     protected Image img;
-    protected boolean hoovered;
-    protected boolean clicked;
-    protected ButtonType buttonType;
 
     public CustomButton(){
-
+        super();
     }
 
     public CustomButton(String imgFile, int width, int height) throws InvalidUILoadException {
-        super();
-        setImages(imgFile);
-
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setFocusPainted(false);
-
-        setSizeOfButton(width,height);
-
-        setMouseListener();
+        super(width, height);
+        this.imgFile = imgFile;
+        setImages();
     }
 
     public CustomButton(String imgFile, int width, int height, ButtonType buttonType) throws InvalidUILoadException {
-        super();
-        this.buttonType = buttonType;
-        setImages(imgFile);
-        initializeSound();
-
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setFocusPainted(false);
-
-        setSizeOfButton(width,height);
-
-        setMouseListener();
+        super(width, height, buttonType);
+        this.imgFile = imgFile;
+        setImages();
     }
 
-    public void setImages(String imgFile) throws InvalidUILoadException {
+    @Override
+    public void setImages() throws InvalidUILoadException {
         URL imageURL = getClass().getResource(imgFile);
 
         if(imageURL == null){
@@ -61,19 +42,6 @@ public class CustomButton extends JButton {
         }
 
         this.img = new ImageIcon(imageURL).getImage();
-    }
-
-    private void initializeSound(){
-        this.addActionListener(e ->{
-            switch (this.buttonType){
-                case EXIT -> {
-                    GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
-                }
-                case ENTER -> {
-                    GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
-                }
-            }
-        });
     }
 
     @Override
@@ -89,22 +57,13 @@ public class CustomButton extends JButton {
 
     }
 
-    private int calculateOffset(){
-        if(clicked){
-            return 5;
-        }
-        if(hoovered){
-            return 0;
-        }
-        return 5;
-    }
-
-    protected void setMouseListener(){
+    @Override
+    public void setMouseListener(){
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                CustomButton.this.hoovered = false;
+                CustomButton.super.hoovered = false;
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
                 if(parent != null) {
                     parent.resetCursor();
@@ -115,7 +74,7 @@ public class CustomButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                CustomButton.this.hoovered = true;
+                CustomButton.super.hoovered = true;
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
                 if(parent != null) {
                     parent.setCursor();
@@ -126,7 +85,7 @@ public class CustomButton extends JButton {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                CustomButton.this.clicked = true;
+                CustomButton.super.clicked = true;
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, CustomButton.this);
                 if(parent != null) {
                     parent.resetCursor();
@@ -137,17 +96,13 @@ public class CustomButton extends JButton {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                CustomButton.this.clicked = false;
+                CustomButton.super.clicked = false;
                 repaint();
             }
         });
     }
 
-    private void setSizeOfButton(int width, int height){
-        Dimension dimension = new Dimension(Important.calculateDimension(width), Important.calculateDimension(height));
-        setMaximumSize(dimension);
-        setPreferredSize(dimension);
-        setMinimumSize(dimension);
+    public void setImgFile(String imgFile) {
+        this.imgFile = imgFile;
     }
-
 }

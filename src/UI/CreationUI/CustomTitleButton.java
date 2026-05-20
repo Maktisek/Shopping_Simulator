@@ -12,49 +12,29 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 
 
-public class CustomTitleButton extends JButton {
+public class CustomTitleButton extends BaseButton {
 
     protected Image img;
     protected Image idleImg;
     protected Image clickedImg;
-    protected boolean hoovered;
-    protected boolean clicked;
+    protected String imgFile;
+    protected String clickedImgFile;
 
     public CustomTitleButton(){
 
     }
 
     public CustomTitleButton(String imgFile, String clickedImg, int width, int height, ButtonType type) throws InvalidUILoadException {
-        super();
-        setImages(imgFile, clickedImg);
-
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setFocusPainted(false);
-
-        setSizeOfButton(width,height);
-
-        setMouseListener();
-        setCursor();
-        initializeSound(type);
+        super(width, height, type);
+        this.imgFile = imgFile;
+        this.clickedImgFile = clickedImg;
+        setImages();
     }
 
-    private void initializeSound(ButtonType type){
-        this.addActionListener(e ->{
-            switch (type){
-                case EXIT -> {
-                    GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
-                }
-                case ENTER -> {
-                    GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
-                }
-            }
-        });
-    }
-
-    public void setImages(String imgFile, String clickedImg) throws InvalidUILoadException {
+    @Override
+    public void setImages() throws InvalidUILoadException {
         URL imageURL = getClass().getResource(imgFile);
-        URL clickedURL = getClass().getResource(clickedImg);
+        URL clickedURL = getClass().getResource(clickedImgFile);
 
         if(imageURL == null){
             throw new InvalidUILoadException("The image "+ imgFile +" was not found");
@@ -83,17 +63,8 @@ public class CustomTitleButton extends JButton {
 
     }
 
-    private int calculateOffset(){
-        if(clicked){
-            return 5;
-        }
-        if(hoovered){
-            return 0;
-        }
-        return 5;
-    }
-
-    protected void setMouseListener(){
+    @Override
+    public void setMouseListener(){
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
@@ -125,13 +96,6 @@ public class CustomTitleButton extends JButton {
                 repaint();
             }
         });
-    }
-
-    private void setSizeOfButton(int width, int height){
-        Dimension dimension = new Dimension(Important.calculateDimension(width), Important.calculateDimension(height));
-        setMaximumSize(dimension);
-        setPreferredSize(dimension);
-        setMinimumSize(dimension);
     }
 
     public void setCursor(){

@@ -38,7 +38,7 @@ public class MultiplierButton extends CustomTitleButton {
     }
 
     @Override
-    protected void setMouseListener() {
+    public void setMouseListener() {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
