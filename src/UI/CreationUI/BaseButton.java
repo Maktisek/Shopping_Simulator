@@ -20,37 +20,27 @@ public abstract class BaseButton extends JButton {
         setContentAreaFilled(false);
         setBorderPainted(false);
         setFocusPainted(false);
-
-    }
-
-    public BaseButton(int width, int height) {
-        setSizeOfButton(width, height);
-        setMouseListener();
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setFocusPainted(false);
-
     }
 
     public BaseButton() {
     }
 
-    private void initializeSound(ButtonType type){
-        this.addActionListener(e ->{
-            switch (type){
-                case EXIT -> {
-                    GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
-                }
+    private void initializeSound(ButtonType type) {
+        this.addActionListener(e -> {
+            System.out.println("DEBUG: Přehrávám zvuk pro typ: " + type + " na objektu: " + this.hashCode());
+            switch (type) {
+                case EXIT -> GameData.audioManagement.playSound("ExitClick", AudioType.SOUNDS, 0);
                 case ENTER -> {
                     GameData.audioManagement.playSound("EnterClick", AudioType.SOUNDS, 0);
                 }
+
             }
         });
     }
 
     public abstract void setImages() throws InvalidUILoadException;
 
-    public void setSizeOfButton(int width, int height){
+    public void setSizeOfButton(int width, int height) {
         Dimension dimension = new Dimension(Important.calculateDimension(width), Important.calculateDimension(height));
         setMaximumSize(dimension);
         setPreferredSize(dimension);
@@ -59,11 +49,11 @@ public abstract class BaseButton extends JButton {
 
     public abstract void setMouseListener();
 
-    public int calculateOffset(){
-        if(clicked){
+    public int calculateOffset() {
+        if (clicked) {
             return 5;
         }
-        if(hoovered){
+        if (hoovered) {
             return 0;
         }
         return 5;

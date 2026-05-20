@@ -7,32 +7,33 @@ import UI.TitleUI.TitleScreenUI;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class FrameBaseUI extends JFrame{
+public abstract class FrameBaseUI extends JFrame {
 
     private Timer resolutionChecker;
     private int check;
 
     public FrameBaseUI() {
-        this.check = Toolkit.getDefaultToolkit().getScreenSize().width *  Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.check = Toolkit.getDefaultToolkit().getScreenSize().width * Toolkit.getDefaultToolkit().getScreenSize().height;
         loadResolutionChecker();
     }
 
-    private void loadResolutionChecker(){
-            this.resolutionChecker = new Timer(500, e -> {
-                int newValue = Toolkit.getDefaultToolkit().getScreenSize().width *  Toolkit.getDefaultToolkit().getScreenSize().height;
-                if (check != newValue){
-                    this.check = newValue;
-                    try {
-                        refreshUI();
-                    } catch (InvalidUILoadException ex) {
-                        throw new RuntimeException(ex);
-                    }
+    private void loadResolutionChecker() {
+        this.resolutionChecker = new Timer(500, e -> {
+            int newValue = Toolkit.getDefaultToolkit().getScreenSize().width * Toolkit.getDefaultToolkit().getScreenSize().height;
+            if (check != newValue) {
+                this.check = newValue;
+                try {
+                    refreshUI();
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
                 }
-            });
-            this.resolutionChecker.start();
+            }
+        });
+        this.resolutionChecker.setInitialDelay(2000);
+        this.resolutionChecker.start();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         this.resolutionChecker.stop();
     }
 

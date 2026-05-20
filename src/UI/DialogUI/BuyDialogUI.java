@@ -22,7 +22,7 @@ public abstract class BuyDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75, ButtonType.ENTER);
+        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75, ButtonType.EXIT);
         CustomButton buy = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", 130, 75, ButtonType.NONE);
 
         ok.addActionListener(e ->{

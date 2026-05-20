@@ -21,7 +21,7 @@ public class DialogUI extends BaseDialogUI {
     protected void initializeButton() throws InvalidUILoadException {
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75, ButtonType.ENTER);
+        button = new CustomButton("/Sprites/ButtonSprites/OK_BUTTON.png", 130, 75, ButtonType.EXIT);
 
         button.addActionListener(e ->{
             buttonAction();

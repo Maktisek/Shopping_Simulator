@@ -27,7 +27,6 @@ public class TitleScreenUI extends FrameBaseUI {
 
     public TitleScreenUI() throws InvalidUILoadException {
         this.setTitle("Forest Market Launcher");
-
         this.setSize(Important.calculateDimension(600), Important.calculateDimension(600));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,8 +59,6 @@ public class TitleScreenUI extends FrameBaseUI {
         initializeLayerPane();
         setCursor();
     }
-
-
 
     private void initializeBackground() throws InvalidUILoadException {
         this.background = new BackgroundPanel("/Sprites/TitleScreenSprites/BACKGROUND.png");
@@ -101,12 +98,6 @@ public class TitleScreenUI extends FrameBaseUI {
         loadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         quit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        panel.add(Box.createVerticalStrut(Important.calculateDimension(18)));
-        panel.add(newGame);
-        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-        panel.add(loadGame);
-        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
-        panel.add(quit);
 
         this.background.add(panel, BorderLayout.CENTER);
 
@@ -146,6 +137,13 @@ public class TitleScreenUI extends FrameBaseUI {
             this.stopTimer();
             this.dispose();
         });
+
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(18)));
+        panel.add(newGame);
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
+        panel.add(loadGame);
+        panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
+        panel.add(quit);
     }
 
     private void initializeOverlay() {

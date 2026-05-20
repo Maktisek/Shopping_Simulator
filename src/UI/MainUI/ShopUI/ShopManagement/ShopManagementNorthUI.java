@@ -57,7 +57,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
             add(multiplierButton);
             add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         }
-        multiplierButtons.get(0).doClick();
+        multiplierButtons.get(0).click();
     }
 
     private void initializeSaveButton() throws InvalidUILoadException {

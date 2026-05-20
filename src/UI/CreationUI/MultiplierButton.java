@@ -24,17 +24,22 @@ public class MultiplierButton extends CustomTitleButton {
         initialization();
     }
 
+
     private void initialization(){
         addActionListener(e ->{
-            for (MultiplierButton multiplierButton : givenButtons){
-                multiplierButton.resetClicked();
-            }
-            resetCursor();
-            super.img = clickedImg;
-            super.clicked = true;
-            repaint();
-            this.gameData.setAmount(this.amount);
+            click();
         });
+    }
+
+    public void click(){
+        for (MultiplierButton multiplierButton : givenButtons){
+            multiplierButton.resetClicked();
+        }
+        resetCursor();
+        super.img = clickedImg;
+        super.clicked = true;
+        repaint();
+        this.gameData.setAmount(this.amount);
     }
 
     @Override

@@ -21,12 +21,6 @@ public class CustomButton extends BaseButton {
         super();
     }
 
-    public CustomButton(String imgFile, int width, int height) throws InvalidUILoadException {
-        super(width, height);
-        this.imgFile = imgFile;
-        setImages();
-    }
-
     public CustomButton(String imgFile, int width, int height, ButtonType buttonType) throws InvalidUILoadException {
         super(width, height, buttonType);
         this.imgFile = imgFile;
