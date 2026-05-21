@@ -86,15 +86,12 @@ public class Audio {
 
     /**
      * Method which stops the sound.
-     * <p>
-     * It sets the clip to null, so the sound can be replayed in the future.
      */
     public void stopSound() {
         if (currentClip != null) {
-            Thread t = new Thread(() -> {
-                this.currentClip.stop();
-            });
-            t.start();
+            currentClip.loop(0);
+            currentClip.setMicrosecondPosition(0);
+            currentClip.stop();
         }
     }
 
@@ -152,13 +149,17 @@ public class Audio {
      * Also, starts the audio initially, do not call clip.start() before this method.
      *
      * @param loop is true if the audio should be looped.
-     * @author ChatGPT (originally made for my first game S.T.A.L.K.E.R. Echoes of Chernobyl in May 2025)
      */
     public void initializeLoop(boolean loop) {
-        for (Clip clip : clips){
+        for (Clip clip : clips) {
             if (loop) {
                 clip.addLineListener(event -> {
-                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    if (event.getType() == LineEvent.Type.STOP) {
+                        if (clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
+                            clip.setMicrosecondPosition(0);
+                            clip.start();
+                        }
+                    }
                 });
             }
         }
@@ -167,9 +168,6 @@ public class Audio {
     private void startClip(long startPosition) {
         this.currentClip = findClip();
         if (currentClip != null) {
-            if (currentClip.isRunning()) {
-                currentClip.stop();
-            }
             currentClip.setMicrosecondPosition(startPosition);
             if (music) {
                 if (startPosition != 0) {

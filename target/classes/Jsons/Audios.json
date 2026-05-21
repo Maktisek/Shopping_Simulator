@@ -1,5 +1,14 @@
 {
   "music": [
+    {
+      "title": "MenuOST",
+      "filePath": "/Audio/Music/MenuOST.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": -18.0,
+      "music": true,
+      "soundPool" : 1
+    }
   ],
   "sounds": [
     {
@@ -8,7 +17,7 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -50.0,
-      "music": true,
+      "music": false,
       "soundPool" : 1
     },
     {

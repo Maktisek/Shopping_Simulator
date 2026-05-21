@@ -1,5 +1,6 @@
 package UI.TitleUI;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.SaveCommands.LoadSaveCommand;
@@ -45,6 +46,7 @@ public class TitleScreenUI extends FrameBaseUI {
     }
 
     public void makeVisible() {
+        Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
         this.pack();
         this.setVisible(true);
     }
@@ -102,6 +104,7 @@ public class TitleScreenUI extends FrameBaseUI {
                 MyFrame myFrame = new MyFrame(new Initialization().getGameData());
                 myFrame.makeVisible();
                 this.stopTimer();
+                Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                 this.dispose();
             } catch (InvalidUILoadException ex) {
                 System.err.println(ex.getMessage());
@@ -122,6 +125,7 @@ public class TitleScreenUI extends FrameBaseUI {
                     MyFrame myFrame = new MyFrame(gameData);
                     myFrame.makeVisible();
                     this.stopTimer();
+                    Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                     this.dispose();
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);

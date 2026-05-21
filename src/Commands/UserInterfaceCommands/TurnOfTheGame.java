@@ -9,7 +9,7 @@ import UI.TitleUI.TitleScreenUI;
 
 public class TurnOfTheGame extends Command {
 
-    private MainUI mainUI;
+    private final MainUI mainUI;
 
     public TurnOfTheGame(MainUI mainUI) {
         this.mainUI = mainUI;
