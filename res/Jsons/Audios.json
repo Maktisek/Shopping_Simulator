@@ -73,6 +73,15 @@
       "initialVolume": -10.0,
       "music": false,
       "soundPool" : 1
+    },
+    {
+      "title": "NewDay",
+      "filePath": "/Audio/NewDay.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 1
     }
   ],
   "background": [

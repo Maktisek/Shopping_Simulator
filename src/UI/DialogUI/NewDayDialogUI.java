@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.DayCommands.NewDayCommand;
@@ -54,6 +55,7 @@ public class NewDayDialogUI extends BaseDialogUI {
             if (commandResult.getState() == CommandState.DONE) {
                 parent.hideDialog();
                 try {
+                    Important.getAudioManagement().playSound("NewDay", AudioType.SOUNDS, 0);
                     parent.showDialog(new DaySummaryPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
