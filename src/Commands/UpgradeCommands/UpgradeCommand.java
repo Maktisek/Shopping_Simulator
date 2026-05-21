@@ -17,13 +17,15 @@ public class UpgradeCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int price = getUpgradeManagement().getUpgradePrice(name);
+        int price = getUpgradeManagement().getUpgradePrice(name) * getGameData().getAmount();
         if (!getPlayer().canBuy(price)) {
             return new CommandResult("Not enough money", CommandState.FAILED_ISSUE);
         }
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getDayManagement().getCurrentDay().incrementDaySpending(price);
-        getUpgradeManagement().levelUpUpgrade(name);
+        for (int i = 0; i < getGameData().getAmount(); i++) {
+            getUpgradeManagement().levelUpUpgrade(name);
+        }
         return new CommandResult("Skill " + name + " was upgraded - level: " + getUpgradeManagement().getUpgradeLevel(name),
                 CommandState.DONE);
     }

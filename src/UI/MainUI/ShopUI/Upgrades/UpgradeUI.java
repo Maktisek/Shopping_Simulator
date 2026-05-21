@@ -75,7 +75,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
 
     private void initializePriceLabel(){
         add(Box.createVerticalStrut(8));
-        this.price = new StrokeLabel(Important.parseMoney(upgrade.priceInfo()) + " FR", 13);
+        this.price = new StrokeLabel(Important.parseMoney(upgrade.priceInfo() * gameData.getAmount()) + " FR", 13);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(price);
     }
@@ -89,7 +89,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
 
     @Override
     public void update(){
-        this.price.setText(Important.parseMoney(upgrade.priceInfo()) + " FR");
+        this.price.setText(Important.parseMoney(upgrade.priceInfo() * gameData.getAmount()) + " FR");
         this.level.setText("LEVEL " + Important.parseMoney(upgrade.levelInfo()));
         this.level.repaint();
         this.price.repaint();
