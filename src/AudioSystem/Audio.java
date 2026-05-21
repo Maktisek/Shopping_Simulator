@@ -175,7 +175,6 @@ public class Audio {
                         setVolume(this.initialVolume, this.currentClip);
                         currentClip.start();
                     } else {
-                        setVolume(-50, this.currentClip);
                         fadeIn(20);
                     }
                 } else {
@@ -216,6 +215,7 @@ public class Audio {
         float penalizationStep = 0.12f;
         float steps = 100;
         float start = this.initialVolume - 10;
+        setVolume(start, this.currentClip);
         float end = this.initialVolume + (penalizationStep * steps);
         float stepSize = (end - start) / steps;
 

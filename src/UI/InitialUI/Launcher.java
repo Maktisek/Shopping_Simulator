@@ -10,18 +10,26 @@ public class Launcher {
     public static void main(String[] args){
         System.setProperty("sun.java2d.uiScale", "1");
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TitleScreenUI title = new TitleScreenUI();
-                    Important.loadAudioManagement();
-                    title.makeVisible();
-                }catch (InvalidUILoadException e){
-                    System.err.println(e.getMessage());
+        Thread loadThread = new Thread(() ->{
+            Important.loadAudioManagement();
+
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        TitleScreenUI title = new TitleScreenUI();
+                        title.makeVisible();
+                    }catch (InvalidUILoadException e){
+                        System.err.println(e.getMessage());
+                    }
                 }
-            }
+            });
+
         });
+        loadThread.start();
+
+
+
     }
 
 }

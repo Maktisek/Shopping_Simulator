@@ -5,7 +5,7 @@
       "filePath": "/Audio/Music/MenuOST.wav",
       "infiniteLoop": true,
       "paused": false,
-      "initialVolume": -18.0,
+      "initialVolume": -10.0,
       "music": true,
       "soundPool" : 1
     }
@@ -25,7 +25,7 @@
       "filePath": "/Audio/Sounds/EnterClick.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 3
     },
@@ -34,7 +34,7 @@
       "filePath": "/Audio/Sounds/ExitClick.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 3
     },
@@ -43,7 +43,7 @@
       "filePath": "/Audio/Sounds/Buy.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 10
     },
@@ -52,7 +52,7 @@
       "filePath": "/Audio/Sounds/Sell.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 10
     },
@@ -61,7 +61,7 @@
       "filePath": "/Audio/Sounds/NewUpgrade.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 10
     },
@@ -70,7 +70,7 @@
       "filePath": "/Audio/Sounds/Error.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 2
     },
@@ -79,7 +79,7 @@
       "filePath": "/Audio/Sounds/NewGoal.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 1
     },
@@ -88,7 +88,7 @@
       "filePath": "/Audio/Sounds/NewDay.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 1
     },
@@ -97,7 +97,7 @@
       "filePath": "/Audio/Sounds/ButtonPoint.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -30.0,
+      "initialVolume": -14.0,
       "music": false,
       "soundPool" : 15
     },
@@ -106,7 +106,7 @@
       "filePath": "/Audio/Sounds/ClaimGoal.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": -10.0,
+      "initialVolume": -5.0,
       "music": false,
       "soundPool" : 1
     },
