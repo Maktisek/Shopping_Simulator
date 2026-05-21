@@ -8,7 +8,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -50.0,
-      "music": true
+      "music": true,
+      "soundPool" : 1
     },
     {
       "title": "EnterClick",
@@ -16,7 +17,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
-      "music": false
+      "music": false,
+      "soundPool" : 3
     },
     {
       "title": "ExitClick",
@@ -24,7 +26,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
-      "music": false
+      "music": false,
+      "soundPool" : 3
     },
     {
       "title": "Buy",
@@ -32,7 +35,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
-      "music": false
+      "music": false,
+      "soundPool" : 10
     },
     {
       "title": "Sell",
@@ -40,7 +44,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
-      "music": false
+      "music": false,
+      "soundPool" : 10
     },
     {
       "title": "NewUpgrade",
@@ -48,7 +53,8 @@
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
-      "music": false
+      "music": false,
+      "soundPool" : 10
     }
   ],
   "background": [

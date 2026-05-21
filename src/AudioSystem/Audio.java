@@ -20,11 +20,12 @@ import java.util.ArrayList;
  *
  * @author Matěj Pospíšil, Matěj Chaloupka, ChatGPT
  */
-public class Audio implements Serializable {
+public class Audio {
 
     private String filePath;
     private String title;
     private boolean music;
+    private int soundPool;
 
     private transient Clip currentClip;
     private ArrayList<Clip> clips;
@@ -46,7 +47,7 @@ public class Audio implements Serializable {
     public void initializeAudio() {
         this.clips = new ArrayList<>();
         try {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < soundPool; i++) {
                 InputStream input = Audio.class.getResourceAsStream(this.filePath);
                 if (input == null) {
                     throw new RuntimeException("Audio file " + title + " not found!");
@@ -297,5 +298,21 @@ public class Audio implements Serializable {
 
     public void setMusic(boolean music) {
         this.music = music;
+    }
+
+    public int getSoundPool() {
+        return soundPool;
+    }
+
+    public void setSoundPool(int soundPool) {
+        this.soundPool = soundPool;
+    }
+
+    public ArrayList<Clip> getClips() {
+        return clips;
+    }
+
+    public void setClips(ArrayList<Clip> clips) {
+        this.clips = clips;
     }
 }
