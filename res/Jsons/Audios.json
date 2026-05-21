@@ -4,7 +4,7 @@
   "sounds": [
     {
       "title": "Blank",
-      "filePath": "/Audio/Blank.wav",
+      "filePath": "/Audio/Sounds/Blank.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -50.0,
@@ -13,7 +13,7 @@
     },
     {
       "title": "EnterClick",
-      "filePath": "/Audio/EnterClick.wav",
+      "filePath": "/Audio/Sounds/EnterClick.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -22,7 +22,7 @@
     },
     {
       "title": "ExitClick",
-      "filePath": "/Audio/ExitClick.wav",
+      "filePath": "/Audio/Sounds/ExitClick.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -31,7 +31,7 @@
     },
     {
       "title": "Buy",
-      "filePath": "/Audio/Buy.wav",
+      "filePath": "/Audio/Sounds/Buy.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -40,7 +40,7 @@
     },
     {
       "title": "Sell",
-      "filePath": "/Audio/Sell.wav",
+      "filePath": "/Audio/Sounds/Sell.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -49,7 +49,7 @@
     },
     {
       "title": "NewUpgrade",
-      "filePath": "/Audio/NewUpgrade.wav",
+      "filePath": "/Audio/Sounds/NewUpgrade.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -58,7 +58,7 @@
     },
     {
       "title": "Error",
-      "filePath": "/Audio/Error.wav",
+      "filePath": "/Audio/Sounds/Error.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -67,7 +67,7 @@
     },
     {
       "title": "NewGoal",
-      "filePath": "/Audio/NewGoal.wav",
+      "filePath": "/Audio/Sounds/NewGoal.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -76,7 +76,7 @@
     },
     {
       "title": "NewDay",
-      "filePath": "/Audio/NewDay.wav",
+      "filePath": "/Audio/Sounds/NewDay.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -85,7 +85,7 @@
     },
     {
       "title": "ButtonPoint",
-      "filePath": "/Audio/ButtonPoint.wav",
+      "filePath": "/Audio/Sounds/ButtonPoint.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -30.0,
@@ -94,7 +94,7 @@
     },
     {
       "title": "ClaimGoal",
-      "filePath": "/Audio/ClaimGoal.wav",
+      "filePath": "/Audio/Sounds/ClaimGoal.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -103,7 +103,7 @@
     },
     {
       "title": "NewRebirth",
-      "filePath": "/Audio/NewRebirth.wav",
+      "filePath": "/Audio/Sounds/NewRebirth.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
@@ -112,7 +112,7 @@
     },
     {
       "title": "Save",
-      "filePath": "/Audio/Save.wav",
+      "filePath": "/Audio/Sounds/Save.wav",
       "infiniteLoop": false,
       "paused": false,
       "initialVolume": -10.0,
