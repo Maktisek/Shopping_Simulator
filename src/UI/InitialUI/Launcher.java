@@ -1,5 +1,6 @@
 package UI.InitialUI;
 
+import AudioSystem.AudioType;
 import UI.Exceptions.InvalidUILoadException;
 import UI.TitleUI.TitleScreenUI;
 import Utilities.Important;
@@ -12,6 +13,7 @@ public class Launcher {
 
         Thread loadThread = new Thread(() ->{
             Important.loadAudioManagement();
+            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
 
             EventQueue.invokeLater(new Runnable() {
                 @Override

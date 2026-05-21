@@ -3,7 +3,6 @@ package AudioSystem;
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -55,7 +54,7 @@ public class Audio {
                 final AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(input));
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioStream);
-                setVolume(this.initialVolume - 15, clip);
+                setVolume(this.initialVolume, clip);
                 clips.add(clip);
             }
         } catch (Exception e) {
@@ -89,53 +88,48 @@ public class Audio {
      */
     public void stopSound() {
         if (currentClip != null) {
-            currentClip.loop(0);
-            currentClip.setMicrosecondPosition(0);
+            fadeOut();
             currentClip.stop();
         }
     }
 
-    /**
-     * Method which pauses the audio.
-     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
-     * This value has to be false in order to proceed. Also, the clip has to be initialized. If it's null then it can't be stopped.
-     * <p>
-     * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
-     */
-    public void pause() {
-        if (currentClip != null && !paused) {
-            pausePosition = currentClip.getMicrosecondPosition();
-            paused = true;
-            currentClip.stop();
+    private void setVolume(double value, Clip clip) {
+        value = (value <= 0.0) ? 0.0001 : (Math.min(value, 1.0));
+        float dB = (float) (Math.log(value) / Math.log(10.0) * 20.0);
+        setVolumeDB(dB, clip);
+    }
+
+    private void shiftVolume(double value, Clip clip, long milliSeconds) {
+        value = (value <= 0.0) ? 0.0001 : (Math.min(value, 1.0));
+        float targetDB = (float) (Math.log(value) / Math.log(10.0) * 20.0);
+        FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float currDB = gain.getValue();
+        float fadePerStep = .1F;
+
+        if (currDB > targetDB) {
+            while (currDB > targetDB) {
+                currDB -= fadePerStep;
+                gain.setValue(currDB);
+                try {Thread.sleep(milliSeconds);} catch (Exception ignored) {}
+            }
+        }
+        else if (currDB < targetDB) {
+            while (currDB < targetDB) {
+                currDB += fadePerStep;
+                gain.setValue(currDB);
+                try {Thread.sleep(milliSeconds);} catch (Exception ignored) {}
+            }
         }
     }
 
-    /**
-     * Method which resumes the audio
-     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
-     * This value has to be true in order to proceed. Also, the clip has to be initialized. If it's null then it can't be resumed.
-     * <p>
-     * Uses {@link #pausePosition} to save current microsecond position, so the audio can be resumed later, where it stopped.
-     * <p>
-     * Uses {@link #fadeIn(long)}} method for cleaner transition.
-     */
-    public void resume() {
-        if (currentClip != null && paused) {
-            Thread t = new Thread(() -> {
-                currentClip.setMicrosecondPosition(pausePosition);
-                fadeIn(20);
-                paused = false;
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                if (currentClip != null) {
-                    currentClip.start();
-                }
-            });
-            t.start();
-        }
+    public void fadeIn(){
+        setVolume(0.2, currentClip);
+        currentClip.start();
+        shiftVolume(initialVolume, currentClip, 20);
+    }
+
+    public void fadeOut(){
+        shiftVolume(0.01, currentClip, 0);
     }
 
     /**
@@ -175,7 +169,7 @@ public class Audio {
                         setVolume(this.initialVolume, this.currentClip);
                         currentClip.start();
                     } else {
-                        fadeIn(20);
+                        fadeIn();
                     }
                 } else {
                     setVolume(this.initialVolume, this.currentClip);
@@ -196,46 +190,10 @@ public class Audio {
      *
      * @param db requested volume in decibels (-80.0 to cca 6.0 accepted)
      */
-    public void setVolume(float db, Clip clip) {
+    public void setVolumeDB(float db, Clip clip) {
         if (clip != null && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
             FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gain.setValue(db);
-        }
-    }
-
-    /**
-     * Fades in audio from {@link #initialVolume} - 10 to {@link #initialVolume}.
-     * Uses {@link #setVolume(float, Clip)}} to set the current volume level.
-     *
-     * @param milliseconds the desired time that the thread will wait until updating the volume again.
-     *                     More millisecond the more time the fade will take, but the less will be cleaner.
-     */
-    public void fadeIn(long milliseconds) {
-        float penalization = 0;
-        float penalizationStep = 0.12f;
-        float steps = 100;
-        float start = this.initialVolume - 10;
-        setVolume(start, this.currentClip);
-        float end = this.initialVolume + (penalizationStep * steps);
-        float stepSize = (end - start) / steps;
-
-
-        currentClip.start();
-        for (float f = 0; f <= steps; f++) {
-            setVolume(start + (stepSize * f) - penalization, this.currentClip);
-            if (f == 0) {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            try {
-                Thread.sleep(milliseconds);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            penalization += penalizationStep;
         }
     }
 

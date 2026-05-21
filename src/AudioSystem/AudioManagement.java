@@ -37,33 +37,33 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void pauseSound(String title, AudioType type){
-        final Thread playThread = new Thread(() -> {
-            ArrayList<Audio> temp = getAudioListByType(type);
-            if (temp != null) {
-                for (Audio audio : temp) {
-                    if (audio.getTitle().equalsIgnoreCase(title)) {
-                        audio.pause();
-                    }
-                }
-            }
-        });
-        playThread.start();
-    }
-
-    public void resumeSound(String title, AudioType type){
-        final Thread playThread = new Thread(() -> {
-            ArrayList<Audio> temp = getAudioListByType(type);
-            if (temp != null) {
-                for (Audio audio : temp) {
-                    if (audio.getTitle().equalsIgnoreCase(title)) {
-                        audio.resume();
-                    }
-                }
-            }
-        });
-        playThread.start();
-    }
+//    public void pauseSound(String title, AudioType type){
+//        final Thread playThread = new Thread(() -> {
+//            ArrayList<Audio> temp = getAudioListByType(type);
+//            if (temp != null) {
+//                for (Audio audio : temp) {
+//                    if (audio.getTitle().equalsIgnoreCase(title)) {
+//                        audio.pause();
+//                    }
+//                }
+//            }
+//        });
+//        playThread.start();
+//    }
+//
+//    public void resumeSound(String title, AudioType type){
+//        final Thread playThread = new Thread(() -> {
+//            ArrayList<Audio> temp = getAudioListByType(type);
+//            if (temp != null) {
+//                for (Audio audio : temp) {
+//                    if (audio.getTitle().equalsIgnoreCase(title)) {
+//                        audio.resume();
+//                    }
+//                }
+//            }
+//        });
+//        playThread.start();
+//    }
 
     public void initializeSounds(){
         ArrayList<Audio> temp = new ArrayList<>();
@@ -71,10 +71,25 @@ public class AudioManagement {
         temp.addAll(sounds);
         temp.addAll(background);
         for (Audio audio : temp){
-            System.out.println(audio.getTitle());
             audio.initializeAudio();
         }
-        playSound("blank", AudioType.SOUNDS, 0);
+    }
+
+    public void stopAll(){
+        stopAllBackground();
+        stopAllMusic();
+    }
+
+    public void stopAllMusic(){
+        for (Audio audio : music){
+            audio.stopSound();
+        }
+    }
+
+    public void stopAllBackground(){
+        for (Audio audio : background){
+            audio.stopSound();
+        }
     }
 
     private ArrayList<Audio> getAudioListByType(AudioType type){

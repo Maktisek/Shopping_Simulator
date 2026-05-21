@@ -34,7 +34,6 @@ public class TitleScreenUI extends FrameBaseUI {
         this.setLocationRelativeTo(null);
         this.setMinimumSize(new Dimension(Important.calculateDimension(600), Important.calculateDimension(600)));
         this.setResizable(false);
-        Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
         initialize();
     }
 
@@ -135,6 +134,7 @@ public class TitleScreenUI extends FrameBaseUI {
 
         quit.addActionListener(e -> {
             this.stopTimer();
+            Important.getAudioManagement().stopAll();
             this.dispose();
         });
 

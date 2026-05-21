@@ -1,11 +1,13 @@
 package Commands.UserInterfaceCommands;
 
+import AudioSystem.AudioType;
 import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
+import Utilities.Important;
 
 public class TurnOfTheGame extends Command {
 
@@ -21,6 +23,7 @@ public class TurnOfTheGame extends Command {
 
         TitleScreenUI title;
         try {
+            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
             title = new TitleScreenUI();
         } catch (InvalidUILoadException ex) {
             return new CommandResult("There is a problem with loading TitleScreenUI", CommandState.FAILED_ISSUE);
