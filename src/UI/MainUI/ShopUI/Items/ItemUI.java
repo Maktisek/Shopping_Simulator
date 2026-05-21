@@ -152,7 +152,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
 
     private void updateShop() {
         if (this.price != null) {
-            this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR");
+            this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice() * gameData.getAmount()) + " FR");
             updateShopColorPrice();
         }
     }
@@ -160,7 +160,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     private void updateNPC() throws InvalidUILoadException {
         this.name.setText(item.getItem().getName());
         updateImage();
-        this.price.setText(item.getItem().getCurrentPrice() + " FR");
+        this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice() * gameData.getAmount()) + " FR");
         this.name.repaint();
         this.price.repaint();
     }
