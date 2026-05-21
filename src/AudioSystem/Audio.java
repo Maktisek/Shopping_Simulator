@@ -167,19 +167,24 @@ public class Audio {
 
     private void startClip(long startPosition) {
         this.currentClip = findClip();
-        if (currentClip != null) {
-            currentClip.setMicrosecondPosition(startPosition);
-            if (music) {
-                if (startPosition != 0) {
-                    setVolume(this.initialVolume, this.currentClip);
+        Thread t = new Thread(() -> {
+            if (currentClip != null) {
+                currentClip.setMicrosecondPosition(startPosition);
+                if (music) {
+                    if (startPosition != 0) {
+                        setVolume(this.initialVolume, this.currentClip);
+                        currentClip.start();
+                    } else {
+                        setVolume(-50, this.currentClip);
+                        fadeIn(20);
+                    }
                 } else {
-                    fadeIn(20);
+                    setVolume(this.initialVolume, this.currentClip);
+                    currentClip.start();
                 }
-            } else {
-                setVolume(this.initialVolume, this.currentClip);
             }
-            currentClip.start();
-        }
+        });
+        t.start();
     }
 
     /**
@@ -200,37 +205,38 @@ public class Audio {
     }
 
     /**
-     * Fades in audio from {@link #initialVolume} - 15 to {@link #initialVolume}.
+     * Fades in audio from {@link #initialVolume} - 10 to {@link #initialVolume}.
      * Uses {@link #setVolume(float, Clip)}} to set the current volume level.
      *
      * @param milliseconds the desired time that the thread will wait until updating the volume again.
      *                     More millisecond the more time the fade will take, but the less will be cleaner.
      */
     public void fadeIn(long milliseconds) {
-        Thread t = new Thread(() -> {
-            float start = this.initialVolume - 15;
-            float end = this.initialVolume;
-            float steps = 100;
-            float stepSize = (end - start) / steps;
+        float penalization = 0;
+        float penalizationStep = 0.12f;
+        float steps = 100;
+        float start = this.initialVolume - 10;
+        float end = this.initialVolume + (penalizationStep * steps);
+        float stepSize = (end - start) / steps;
 
 
-            for (float f = 0; f <= steps; f++) {
-                setVolume(start + (stepSize * f), this.currentClip);
-                if (f == 0) {
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+        currentClip.start();
+        for (float f = 0; f <= steps; f++) {
+            setVolume(start + (stepSize * f) - penalization, this.currentClip);
+            if (f == 0) {
                 try {
-                    Thread.sleep(milliseconds);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
-        });
-        t.start();
+            try {
+                Thread.sleep(milliseconds);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            penalization += penalizationStep;
+        }
     }
 
 
