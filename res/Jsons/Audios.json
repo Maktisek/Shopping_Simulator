@@ -55,6 +55,24 @@
       "initialVolume": -10.0,
       "music": false,
       "soundPool" : 10
+    },
+    {
+      "title": "Error",
+      "filePath": "/Audio/Error.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 2
+    },
+    {
+      "title": "NewGoal",
+      "filePath": "/Audio/NewGoal.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 1
     }
   ],
   "background": [

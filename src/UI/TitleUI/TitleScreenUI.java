@@ -25,6 +25,7 @@ public class TitleScreenUI extends FrameBaseUI {
     private JPanel overlay;
 
     public TitleScreenUI() throws InvalidUILoadException {
+        super("/Sprites/IconSprites/MONEY_ICON.png");
         this.setTitle("Forest Market Launcher");
         this.setSize(Important.calculateDimension(600), Important.calculateDimension(600));
         this.setLayout(new BorderLayout());
@@ -47,10 +48,6 @@ public class TitleScreenUI extends FrameBaseUI {
         this.pack();
         this.setVisible(true);
     }
-
-//    public void initializeFirstGameData(){
-//        new Initialization(InitializationType.SOUNDS);
-//    }
 
     private void initialize() throws InvalidUILoadException {
         initializeBackground();

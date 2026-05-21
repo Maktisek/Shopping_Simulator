@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import AudioSystem.AudioType;
 import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
@@ -11,10 +12,16 @@ import javax.swing.*;
 
 public class DialogUI extends BaseDialogUI {
 
-    CustomButton button;
+    protected CustomButton button;
 
     public DialogUI(String imgFile, String message) throws InvalidUILoadException {
         super(imgFile, message);
+        initializeButton();
+    }
+
+    public DialogUI(String imgFile, String message, String sound) throws InvalidUILoadException {
+        super(imgFile, message);
+        Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0);
         initializeButton();
     }
 

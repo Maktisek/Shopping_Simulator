@@ -6,15 +6,27 @@ import UI.TitleUI.TitleScreenUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public abstract class FrameBaseUI extends JFrame {
 
     private Timer resolutionChecker;
     private int check;
 
-    public FrameBaseUI() {
+    public FrameBaseUI(String filePath) {
         this.check = Toolkit.getDefaultToolkit().getScreenSize().width * Toolkit.getDefaultToolkit().getScreenSize().height;
+        iconLoader(filePath);
         loadResolutionChecker();
+    }
+
+    private void iconLoader(String filePath){
+        URL iconURL = getClass().getResource(filePath);
+        if (iconURL != null) {
+            ImageIcon icon = new ImageIcon(iconURL);
+            setIconImage(icon.getImage());
+        } else {
+            System.err.println("Ikonku se nepodařilo najít!");
+        }
     }
 
     private void loadResolutionChecker() {

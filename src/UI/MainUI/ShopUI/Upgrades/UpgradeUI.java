@@ -55,7 +55,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
             if(result.getState() == CommandState.FAILED_ISSUE){
                 MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parentShop.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage()));
+                    parentShop.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error"));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
