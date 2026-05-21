@@ -8,6 +8,15 @@
       "initialVolume": 1,
       "music": true,
       "soundPool" : 2
+    },
+    {
+      "title": "PIER",
+      "filePath": "/Audio/Music/Pierre.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": 0.8,
+      "music": true,
+      "soundPool" : 2
     }
   ],
   "sounds": [

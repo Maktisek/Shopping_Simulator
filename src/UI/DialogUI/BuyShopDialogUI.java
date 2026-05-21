@@ -34,7 +34,7 @@ public class BuyShopDialogUI extends BuyDialogUI {
             }
         }else {
             parent.hideDialog();
-            parent.getShopManagementUI().changeCard(gameData.getShopManagement().getCurrentShop().getName().toString());
+            parent.getShopManagementUI().changeCard(gameData.getShopManagement().getCurrentShop().getName());
         }
     }
 }

@@ -1,5 +1,6 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
+import AudioSystem.AudioType;
 import Game.GameData;
 import Shops.Shop;
 import UI.CreationUI.BackgroundPanel;
@@ -7,6 +8,8 @@ import UI.CreationUI.UpdateAble;
 import UI.DialogUI.*;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.ShopUI;
+import Utilities.Important;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         initializeCardPanel();
         initializeWrapper();
         mainPanel.add(cardPanel, BorderLayout.CENTER);
-        cardLayout.show(cardPanel, gameData.getShopManagement().getShops().get(0).getName());
+        changeCard(gameData.getShopManagement().getCurrentShop().getName());
         update();
     }
 
@@ -103,6 +106,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
     public void changeCard(String card) {
         this.cardLayout.show(cardPanel, card);
+        Important.getAudioManagement().playSound(card, AudioType.MUSIC, 0);
     }
 
     @Override

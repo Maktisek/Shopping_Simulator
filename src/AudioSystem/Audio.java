@@ -7,17 +7,17 @@ import java.util.ArrayList;
 
 
 /**
- * This class stands for playing individual wav audio files. Those files have to be implemented into vložte cestu.
+ * This class stands for playing individual wav audio files. Those files have to be implemented into res//Audio.
  * It uses Clip interface, which is responsible for the whole audio system logic.
+ * This class was originally taken from my game "Last Memory", but it went through deep changes.
  * <p>
  * {@link #filePath} stands for path, from where the .wav file can be loaded. <p>
  * {@link #initialVolume} stands for the volume of the whole audio clip. <p>
  * {@link #paused} is true if the audio is currently paused and false if not. <p>
  * <p>
- * The concept of this whole class was taken from Matěj Chaloupka. But I made tons of changes during the time.
- * Used ChatGPT to help me understand whole the Clip interface.
- *
- * @author Matěj Pospíšil, Matěj Chaloupka, ChatGPT
+ * Used Stack Overflow to help me understand whole the deciBells system.
+ * Used Gemini to help me find bugs and fix issues.
+ * @author Matěj Pospíšil, Gemini, Tim (Stack Overflow)
  */
 public class Audio {
 
@@ -152,6 +152,7 @@ public class Audio {
                         if (clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
                             clip.setMicrosecondPosition(0);
                             clip.start();
+                            fadeIn();
                         }
                     }
                 });

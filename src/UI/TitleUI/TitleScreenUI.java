@@ -100,10 +100,10 @@ public class TitleScreenUI extends FrameBaseUI {
 
         newGame.addActionListener(e -> {
             try {
+                Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                 MyFrame myFrame = new MyFrame(new Initialization().getGameData());
                 myFrame.makeVisible();
                 this.stopTimer();
-                Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                 this.dispose();
             } catch (InvalidUILoadException ex) {
                 System.err.println(ex.getMessage());
@@ -121,10 +121,10 @@ public class TitleScreenUI extends FrameBaseUI {
                 }
             } else {
                 try {
+                    Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                     MyFrame myFrame = new MyFrame(gameData);
                     myFrame.makeVisible();
                     this.stopTimer();
-                    Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                     this.dispose();
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
