@@ -5,7 +5,6 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Game.Initialization;
-import Game.InitializationType;
 
 public class NewRebirthCommand extends Command {
 

@@ -5,7 +5,6 @@ import Commands.CommandState;
 import Commands.SaveCommands.LoadSaveCommand;
 import Game.GameData;
 import Game.Initialization;
-import Game.InitializationType;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.ButtonType;
 import UI.CreationUI.CustomTitleButton;

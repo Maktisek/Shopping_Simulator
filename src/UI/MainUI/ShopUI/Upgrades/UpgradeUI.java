@@ -1,5 +1,6 @@
 package UI.MainUI.ShopUI.Upgrades;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.UpgradeCommands.UpgradeCommand;
@@ -58,6 +59,8 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
+            }else{
+                Important.getAudioManagement().playSound("NewUpgrade", AudioType.SOUNDS, 0);
             }
         });
         add(buyButton);

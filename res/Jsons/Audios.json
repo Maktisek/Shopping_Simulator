@@ -41,6 +41,14 @@
       "paused": false,
       "initialVolume": -10.0,
       "music": false
+    },
+    {
+      "title": "NewUpgrade",
+      "filePath": "/Audio/NewUpgrade.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false
     }
   ],
   "background": [
