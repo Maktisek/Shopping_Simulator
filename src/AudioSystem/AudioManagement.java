@@ -1,9 +1,8 @@
 package AudioSystem;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AudioManagement implements Serializable {
+public class AudioManagement {
 
     private ArrayList<Audio> music;
     private ArrayList<Audio> sounds;

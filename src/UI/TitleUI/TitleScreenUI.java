@@ -49,9 +49,9 @@ public class TitleScreenUI extends FrameBaseUI {
         this.setVisible(true);
     }
 
-    public void initializeFirstGameData(){
-        new Initialization(InitializationType.SOUNDS);
-    }
+//    public void initializeFirstGameData(){
+//        new Initialization(InitializationType.SOUNDS);
+//    }
 
     private void initialize() throws InvalidUILoadException {
         initializeBackground();
@@ -103,7 +103,7 @@ public class TitleScreenUI extends FrameBaseUI {
 
         newGame.addActionListener(e -> {
             try {
-                MyFrame myFrame = new MyFrame(new Initialization(InitializationType.ALL).getGameData());
+                MyFrame myFrame = new MyFrame(new Initialization().getGameData());
                 myFrame.makeVisible();
                 this.stopTimer();
                 this.dispose();

@@ -27,7 +27,6 @@ public class GameData implements Serializable {
     private AchievementManagement achievementManagement;
     private Tax tax;
     private StatsCounter statsCounter;
-    public static AudioManagement audioManagement;
     private transient int amount;
 
     public Player getPlayer() {
@@ -94,13 +93,6 @@ public class GameData implements Serializable {
         this.statsCounter = statsCounter;
     }
 
-    public AudioManagement getAudioManagement() {
-        return audioManagement;
-    }
-
-    public void setAudioManagement(AudioManagement audioManagement) {
-        GameData.audioManagement = audioManagement;
-    }
 
     public void writeToFile() throws IOException {
         Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");

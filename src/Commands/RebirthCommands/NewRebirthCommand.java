@@ -24,7 +24,7 @@ public class NewRebirthCommand extends Command {
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getUpgradeManagement().setNewRebirth();
 
-        GameData temp = new Initialization(InitializationType.ALL).getGameData();
+        GameData temp = new Initialization().getGameData();
         temp.copyFromRebirth(this.getGameData());
         this.getGameData().copyFromLoaded(temp);
 

@@ -22,12 +22,9 @@ public class Initialization {
     private final GameData gameData;
     private NPCFinder[] npcs;
 
-    public Initialization(InitializationType type) {
+    public Initialization(){
         this.gameData = new GameData();
-        switch (type) {
-            case ALL -> initGameData();
-            case SOUNDS -> initSounds();
-        }
+        initGameData();
     }
 
     private void initGameData() {
@@ -41,10 +38,6 @@ public class Initialization {
         loadStatsCounter();
         loadPlayer();
         finishInitialization();
-    }
-
-    private void initSounds() {
-        loadAudioManagement();
     }
 
     private void loadPlayer() {
@@ -133,20 +126,6 @@ public class Initialization {
             AchievementManagement achievementManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AchievementManagement.class);
             achievementManagement.loadPossibleAchievements();
             this.gameData.setAchievementManagement(achievementManagement);
-        } catch (Exception e) {
-            throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
-        }
-    }
-
-    private void loadAudioManagement() {
-        Gson gson = new Gson();
-
-        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Audios.json")) {
-            if (is == null) {
-                throw new IllegalStateException("The path for Json: /Jsons/Audios.json is invalid and the file could not be found");
-            }
-            this.gameData.setAudioManagement(gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AudioManagement.class));
-            this.gameData.getAudioManagement().initializeSounds();
         } catch (Exception e) {
             throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
         }

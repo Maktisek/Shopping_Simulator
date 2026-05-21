@@ -1,17 +1,37 @@
 package Utilities;
 
+import AudioSystem.AudioManagement;
+import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.CustomScrollBarUI;
+import com.google.gson.Gson;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class Important {
 
     private static final double TARGET_WIDTH = 1920.0;
     private static final double TARGET_HEIGHT = 1080.0;
+    private static AudioManagement audioManagement;
+
+
+    public static void loadAudioManagement() {
+        Gson gson = new Gson();
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Audios.json")) {
+            if (is == null) {
+                throw new IllegalStateException("The path for Json: /Jsons/Audios.json is invalid and the file could not be found");
+            }
+            audioManagement = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), AudioManagement.class);
+            audioManagement.initializeSounds();
+            } catch(IOException e){
+                throw new RuntimeException("There is an mistake withing loading the Json file while loading AchievementManagement: " + e.getMessage());
+        }
+    }
 
     public static double getManualScale() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -141,6 +161,10 @@ public class Important {
 
     public static int choseOver(int over, int calculation){
        return Math.max(over, calculation);
+    }
+
+    public static AudioManagement getAudioManagement() {
+        return audioManagement;
     }
 }
 

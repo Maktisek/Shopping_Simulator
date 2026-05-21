@@ -2,6 +2,7 @@ package UI.InitialUI;
 
 import UI.Exceptions.InvalidUILoadException;
 import UI.TitleUI.TitleScreenUI;
+import Utilities.Important;
 
 import java.awt.*;
 
@@ -14,7 +15,7 @@ public class Launcher {
             public void run() {
                 try {
                     TitleScreenUI title = new TitleScreenUI();
-                    title.initializeFirstGameData();
+                    Important.loadAudioManagement();
                     title.makeVisible();
                 }catch (InvalidUILoadException e){
                     System.err.println(e.getMessage());
