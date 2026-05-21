@@ -1,11 +1,13 @@
 package UI.DialogUI;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.RebirthCommands.NewRebirthCommand;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 
@@ -33,6 +35,7 @@ public class NewRebirthDialog extends BuyDialogUI{
             }
         }else {
             try {
+                Important.getAudioManagement().playSound("NewRebirth", AudioType.SOUNDS, 0);
                 parent.hideDialog();
                 parent.stopAllTimers();
                 parent.showDialog(new RefreshFrameDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));

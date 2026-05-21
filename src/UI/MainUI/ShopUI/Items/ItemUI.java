@@ -1,6 +1,7 @@
 package UI.MainUI.ShopUI.Items;
 
 
+import AudioSystem.AudioType;
 import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -136,7 +137,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
                     throw new RuntimeException(ex);
                 }
             } else {
-                finalButton.addAdditionalSound(finalName);
+                Important.getAudioManagement().playSound(finalName, AudioType.SOUNDS, 0);
             }
         });
         panel.add(button);

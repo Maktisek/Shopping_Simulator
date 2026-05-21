@@ -62,6 +62,7 @@ public class CustomTitleButton extends BaseButton {
 
     @Override
     public void setMouseListener(){
+        super.setMouseListener();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {

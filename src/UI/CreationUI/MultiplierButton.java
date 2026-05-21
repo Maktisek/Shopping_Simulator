@@ -1,8 +1,10 @@
 package UI.CreationUI;
 
+import AudioSystem.AudioType;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,6 +51,7 @@ public class MultiplierButton extends CustomTitleButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 if(!clicked) {
+                    Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
                     setCursor();
                     MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, MultiplierButton.this);
                     if(parent != null) {

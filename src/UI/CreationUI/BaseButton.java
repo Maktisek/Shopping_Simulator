@@ -8,6 +8,8 @@ import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public abstract class BaseButton extends JButton {
 
@@ -35,9 +37,6 @@ public abstract class BaseButton extends JButton {
         });
     }
 
-    public void addAdditionalSound(String name) {
-        Important.getAudioManagement().playSound(name, AudioType.SOUNDS, 0);
-    }
 
     public abstract void setImages() throws InvalidUILoadException;
 
@@ -48,7 +47,15 @@ public abstract class BaseButton extends JButton {
         setMinimumSize(dimension);
     }
 
-    public abstract void setMouseListener();
+    public void setMouseListener(){
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
+            }
+        });
+    }
 
     public int calculateOffset() {
         if (clicked) {

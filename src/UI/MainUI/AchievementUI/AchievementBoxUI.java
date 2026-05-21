@@ -1,6 +1,7 @@
 package UI.MainUI.AchievementUI;
 
 import Achievements.Achievement;
+import AudioSystem.AudioType;
 import Commands.AchievementCommands.ClaimAchievementRewardCommand;
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -131,6 +132,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             if(result.getState() == CommandState.DONE){
                 try {
+                    Important.getAudioManagement().playSound("ClaimGoal", AudioType.SOUNDS, 0);
                     initializeImage();
                     this.claimButton.setVisible(false);
                     this.bound.setVisible(true);

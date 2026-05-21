@@ -82,6 +82,42 @@
       "initialVolume": -10.0,
       "music": false,
       "soundPool" : 1
+    },
+    {
+      "title": "ButtonPoint",
+      "filePath": "/Audio/ButtonPoint.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -30.0,
+      "music": false,
+      "soundPool" : 15
+    },
+    {
+      "title": "ClaimGoal",
+      "filePath": "/Audio/ClaimGoal.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 1
+    },
+    {
+      "title": "NewRebirth",
+      "filePath": "/Audio/NewRebirth.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 1
+    },
+    {
+      "title": "Save",
+      "filePath": "/Audio/Save.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": -10.0,
+      "music": false,
+      "soundPool" : 1
     }
   ],
   "background": [
