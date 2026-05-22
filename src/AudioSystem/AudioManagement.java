@@ -65,34 +65,6 @@ public class AudioManagement {
         playThread.start();
     }
 
-//    public void pauseSound(String title, AudioType type){
-//        final Thread playThread = new Thread(() -> {
-//            ArrayList<Audio> temp = getAudioListByType(type);
-//            if (temp != null) {
-//                for (Audio audio : temp) {
-//                    if (audio.getTitle().equalsIgnoreCase(title)) {
-//                        audio.pause();
-//                    }
-//                }
-//            }
-//        });
-//        playThread.start();
-//    }
-//
-//    public void resumeSound(String title, AudioType type){
-//        final Thread playThread = new Thread(() -> {
-//            ArrayList<Audio> temp = getAudioListByType(type);
-//            if (temp != null) {
-//                for (Audio audio : temp) {
-//                    if (audio.getTitle().equalsIgnoreCase(title)) {
-//                        audio.resume();
-//                    }
-//                }
-//            }
-//        });
-//        playThread.start();
-//    }
-
     public void initializeSounds(){
         ArrayList<Audio> temp = new ArrayList<>();
         temp.addAll(music);
@@ -110,13 +82,13 @@ public class AudioManagement {
 
     public void stopAllMusic(){
         for (Audio audio : music){
-            audio.stopSound();
+            audio.stopAll();
         }
     }
 
     public void stopAllBackground(){
         for (Audio audio : background){
-            audio.stopSound();
+            audio.stopAll();
         }
     }
 

@@ -95,6 +95,12 @@ public class Audio {
         }
     }
 
+    public void stopAll(){
+        for (Clip clip: clips){
+            clip.stop();
+        }
+    }
+
     private void setVolume(double value, Clip clip) {
         value = (value <= 0.0) ? 0.0001 : (Math.min(value, 1.0));
         float dB = (float) (Math.log(value) / Math.log(10.0) * 20.0);

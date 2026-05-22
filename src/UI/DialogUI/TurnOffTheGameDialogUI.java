@@ -1,5 +1,6 @@
 package UI.DialogUI;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.UserInterfaceCommands.TurnOfTheGame;
 import UI.Exceptions.InvalidUILoadException;
@@ -18,6 +19,7 @@ public class TurnOffTheGameDialogUI extends DialogUI {
     public void buttonAction() {
         CommandResult result = new TurnOfTheGame(mainUI).execute();
         Important.getAudioManagement().stopAll();
+        Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
         System.out.println(result.getMessage());
     }
 }

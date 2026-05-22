@@ -23,7 +23,6 @@ public class TurnOfTheGame extends Command {
 
         TitleScreenUI title;
         try {
-            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
             title = new TitleScreenUI();
         } catch (InvalidUILoadException ex) {
             return new CommandResult("There is a problem with loading TitleScreenUI", CommandState.FAILED_ISSUE);

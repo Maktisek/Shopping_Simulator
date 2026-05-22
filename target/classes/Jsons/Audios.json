@@ -5,7 +5,7 @@
       "filePath": "/Audio/Music/MenuOST.wav",
       "infiniteLoop": true,
       "paused": false,
-      "initialVolume": 1,
+      "initialVolume": 0.8,
       "music": true,
       "soundPool" : 2,
       "shifting" : true
@@ -15,7 +15,7 @@
       "filePath": "/Audio/Music/Pierre.wav",
       "infiniteLoop": true,
       "paused": false,
-      "initialVolume": 0.8,
+      "initialVolume": 0.7,
       "music": true,
       "soundPool" : 2,
       "shifting" : true
