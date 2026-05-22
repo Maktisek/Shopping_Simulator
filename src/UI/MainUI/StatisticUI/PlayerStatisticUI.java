@@ -1,5 +1,6 @@
 package UI.MainUI.StatisticUI;
 
+import AudioSystem.AudioType;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.ButtonType;
@@ -23,6 +24,8 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75, ButtonType.EXIT);
         ok.addActionListener(e ->{
+            Important.getAudioManagement().stopSound("StatsOST", AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.switchPanel("Shop");
         });
