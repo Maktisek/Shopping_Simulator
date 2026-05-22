@@ -21,6 +21,16 @@
       "shifting" : true
     },
     {
+      "title": "AchievementsOST",
+      "filePath": "/Audio/Music/AchievementsOST.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": 0.8,
+      "music": true,
+      "soundPool" : 2,
+      "shifting" : true
+    },
+    {
       "title": "PIER",
       "filePath": "/Audio/Music/Pierre.wav",
       "infiniteLoop": true,
