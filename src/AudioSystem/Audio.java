@@ -90,7 +90,6 @@ public class Audio {
      */
     public void stopSound() {
         if (currentClip != null) {
-            fadeOut();
             currentClip.stop();
             shifting = false;
         }
@@ -146,9 +145,9 @@ public class Audio {
         shiftVolume(initialVolume, currentClip, milliSeconds);
     }
 
-    public void fadeOut() {
-        shiftVolume(0.01, currentClip, 0);
-    }
+//    public void fadeOut() {
+//        shiftVolume(0.01, currentClip, 0);
+//    }
 
     /**
      * Loops the audio if requested.
@@ -247,6 +246,7 @@ public class Audio {
                 currentClip.setMicrosecondPosition(pausePosition);
                 paused = false;
                 if (currentClip != null) {
+                    fadeIn(20);
                     currentClip.start();
                 }
             });
