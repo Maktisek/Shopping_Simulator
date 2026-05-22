@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * <p>
  * Used Stack Overflow to help me understand whole the deciBells system.
  * Used Gemini to help me find bugs and fix issues.
+ *
  * @author Matěj Pospíšil, Gemini, Tim (Stack Overflow)
  */
 public class Audio {
@@ -32,6 +33,7 @@ public class Audio {
     private transient long pausePosition;
     private transient boolean paused;
     private float initialVolume;
+    private boolean shifting;
 
     public Audio() {
     }
@@ -107,28 +109,37 @@ public class Audio {
         float fadePerStep = .1F;
 
         if (currDB > targetDB) {
-            while (currDB > targetDB) {
-                currDB -= fadePerStep;
-                gain.setValue(currDB);
-                try {Thread.sleep(milliSeconds);} catch (Exception ignored) {}
+            if(shifting) {
+                while (currDB > targetDB) {
+                    currDB -= fadePerStep;
+                    gain.setValue(currDB);
+                    try {
+                        Thread.sleep(milliSeconds);
+                    } catch (Exception ignored) {
+                    }
+                }
             }
-        }
-        else if (currDB < targetDB) {
-            while (currDB < targetDB) {
-                currDB += fadePerStep;
-                gain.setValue(currDB);
-                try {Thread.sleep(milliSeconds);} catch (Exception ignored) {}
+        } else if (currDB < targetDB) {
+            if(shifting) {
+                while (currDB < targetDB) {
+                    currDB += fadePerStep;
+                    gain.setValue(currDB);
+                    try {
+                        Thread.sleep(milliSeconds);
+                    } catch (Exception ignored) {
+                    }
+                }
             }
         }
     }
 
-    public void fadeIn(long milliSeconds){
+    public void fadeIn(long milliSeconds) {
         setVolume(0.2, currentClip);
         currentClip.start();
         shiftVolume(initialVolume, currentClip, milliSeconds);
     }
 
-    public void fadeOut(){
+    public void fadeOut() {
         shiftVolume(0.01, currentClip, 0);
     }
 
@@ -209,7 +220,7 @@ public class Audio {
         if (currentClip != null && !paused) {
             pausePosition = currentClip.getMicrosecondPosition();
             paused = true;
-            fadeOut();
+            shifting = false;
             currentClip.stop();
         }
     }
@@ -228,12 +239,7 @@ public class Audio {
             Thread t = new Thread(() -> {
                 currentClip.setMicrosecondPosition(pausePosition);
                 paused = false;
-                fadeIn(0);
-//                try {
-//                    Thread.sleep(20);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
+                shifting = true;
                 if (currentClip != null) {
                     currentClip.start();
                 }

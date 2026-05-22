@@ -7,7 +7,8 @@
       "paused": false,
       "initialVolume": 1,
       "music": true,
-      "soundPool" : 2
+      "soundPool" : 2,
+      "shifting" : true
     },
     {
       "title": "PIER",
@@ -16,7 +17,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2
+      "soundPool" : 2,
+      "shifting" : true
     }
   ],
   "sounds": [
@@ -27,7 +29,8 @@
       "paused": false,
       "initialVolume": 0,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     },
     {
       "title": "EnterClick",
@@ -36,7 +39,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 3
+      "soundPool" : 3,
+      "shifting" : true
     },
     {
       "title": "ExitClick",
@@ -45,7 +49,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 3
+      "soundPool" : 3,
+      "shifting" : true
     },
     {
       "title": "Buy",
@@ -54,7 +59,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10
+      "soundPool" : 10,
+      "shifting" : true
     },
     {
       "title": "Sell",
@@ -63,7 +69,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10
+      "soundPool" : 10,
+      "shifting" : true
     },
     {
       "title": "NewUpgrade",
@@ -72,7 +79,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10
+      "soundPool" : 10,
+      "shifting" : true
     },
     {
       "title": "Error",
@@ -81,7 +89,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 2
+      "soundPool" : 2,
+      "shifting" : true
     },
     {
       "title": "NewGoal",
@@ -90,7 +99,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     },
     {
       "title": "NewDay",
@@ -99,7 +109,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     },
     {
       "title": "ButtonPoint",
@@ -108,7 +119,8 @@
       "paused": false,
       "initialVolume": 0.2,
       "music": false,
-      "soundPool" : 15
+      "soundPool" : 15,
+      "shifting" : true
     },
     {
       "title": "ClaimGoal",
@@ -117,7 +129,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     },
     {
       "title": "NewRebirth",
@@ -126,7 +139,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     },
     {
       "title": "Save",
@@ -135,7 +149,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 1
+      "soundPool" : 1,
+      "shifting" : true
     }
   ],
   "background": [
