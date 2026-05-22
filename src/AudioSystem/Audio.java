@@ -27,11 +27,11 @@ public class Audio {
     private boolean music;
     private int soundPool;
 
-    private transient Clip currentClip;
+    private Clip currentClip;
     private ArrayList<Clip> clips;
     private boolean infiniteLoop;
-    private transient long pausePosition;
-    private transient boolean paused;
+    private long pausePosition;
+    private boolean paused;
     private float initialVolume;
     private boolean shifting;
 
@@ -65,6 +65,17 @@ public class Audio {
         initializeLoop(infiniteLoop);
     }
 
+    /**
+     * Method which starts a sound or music via thread.
+     * The clip has not to be null to play.
+     * <p>
+     *
+     * @param startPosition stands for from where the sound should start
+     */
+    public void startAudio(long startPosition) {
+        startClip(startPosition);
+    }
+
     public Clip findClip() {
         for (Clip clip : clips) {
             if (!clip.isRunning()) {
@@ -75,14 +86,41 @@ public class Audio {
     }
 
     /**
-     * Method which starts a sound or music via thread.
-     * The clip has not to be null to play.
+     * Method which pauses the audio.
+     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
+     * This value has to be false in order to proceed. Also, the clip has to be initialized. If it's null then it can't be stopped.
      * <p>
-     *
-     * @param startPosition stands for from where the sound should start
+     * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
      */
-    public void startAudio(long startPosition) {
-        startClip(startPosition);
+    public void pause() {
+        if (currentClip != null && !paused) {
+            pausePosition = currentClip.getMicrosecondPosition();
+            paused = true;
+            currentClip.stop();
+        }
+    }
+
+    /**
+     * Method which resumes the audio
+     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
+     * This value has to be true in order to proceed. Also, the clip has to be initialized. If it's null then it can't be resumed.
+     * <p>
+     * Uses {@link #pausePosition} to save current microsecond position, so the audio can be resumed later, where it stopped.
+     * <p>
+     * Uses {@link #fadeIn(long)}} method for cleaner transition.
+     */
+    public void resume() {
+        if (currentClip != null && paused) {
+            Thread t = new Thread(() -> {
+                currentClip.setMicrosecondPosition(pausePosition);
+                paused = false;
+                if (currentClip != null) {
+                    fadeIn(20);
+                    currentClip.start();
+                }
+            });
+            t.start();
+        }
     }
 
     /**
@@ -216,43 +254,7 @@ public class Audio {
         }
     }
 
-    /**
-     * Method which pauses the audio.
-     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
-     * This value has to be false in order to proceed. Also, the clip has to be initialized. If it's null then it can't be stopped.
-     * <p>
-     * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
-     */
-    public void pause() {
-        if (currentClip != null && !paused) {
-            pausePosition = currentClip.getMicrosecondPosition();
-            paused = true;
-            currentClip.stop();
-        }
-    }
 
-    /**
-     * Method which resumes the audio
-     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
-     * This value has to be true in order to proceed. Also, the clip has to be initialized. If it's null then it can't be resumed.
-     * <p>
-     * Uses {@link #pausePosition} to save current microsecond position, so the audio can be resumed later, where it stopped.
-     * <p>
-     * Uses {@link #fadeIn(long)}} method for cleaner transition.
-     */
-    public void resume() {
-        if (currentClip != null && paused) {
-            Thread t = new Thread(() -> {
-                currentClip.setMicrosecondPosition(pausePosition);
-                paused = false;
-                if (currentClip != null) {
-                    fadeIn(20);
-                    currentClip.start();
-                }
-            });
-            t.start();
-        }
-    }
 
 
     public String getFilePath() {

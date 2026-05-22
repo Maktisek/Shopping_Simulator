@@ -1,10 +1,9 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
+import Commands.AudioCommands.SwapMuteCommand;
+import Commands.CommandResult;
 import Game.GameData;
-import UI.CreationUI.ButtonType;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.MultiplierButton;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.*;
 import UI.DialogUI.NewRebirthDialog;
 import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
 import UI.DialogUI.SaveDialogs.SaveDialogUI;
@@ -41,6 +40,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         initializeSaveButton();
         initializeQuitAndSaveButton();
         initializeRebirthButton();
+        initializeMuteButton();
     }
 
     private void initializeBalance() throws InvalidUILoadException {
@@ -53,8 +53,8 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         multiplierButtons.add(new MultiplierButton(100, 100, 5, gameData, multiplierButtons));
         multiplierButtons.add(new MultiplierButton(100, 100, 10, gameData, multiplierButtons));
 
-        for (MultiplierButton multiplierButton : multiplierButtons) {
-            add(multiplierButton);
+        for (ChangingButton changingButton : multiplierButtons) {
+            add(changingButton);
             add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         }
         multiplierButtons.get(0).click();
@@ -118,6 +118,18 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         add(rebirthButton);
     }
+
+    private void initializeMuteButton() throws InvalidUILoadException {
+        ChangingButton muteButton = new ChangingButton("/Sprites/ButtonSprites/UNMUTE_BUTTON.png", "/Sprites/ButtonSprites/MUTE_BUTTON.png", 100, 100, gameData);
+        muteButton.addActionListener(e -> {
+            CommandResult result = new SwapMuteCommand().execute();
+            System.out.println(result.getMessage());
+        });
+
+        add(Box.createHorizontalStrut(Important.calculateDimension(10)));
+        add(muteButton);
+    }
+
 
     @Override
     public void update() throws InvalidUILoadException {

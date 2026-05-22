@@ -7,41 +7,20 @@ import UI.MainUI.MainUI;
 import Utilities.Important;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MultiplierButton extends CustomTitleButton {
+public class MultiplierButton extends ChangingButton {
 
-    private int amount;
-    private final GameData gameData;
-    private final ArrayList<MultiplierButton> givenButtons;
+    private final ArrayList<MultiplierButton> multiplierButtons;
+    private final int amount;
 
-    public MultiplierButton(int width, int height, int amount, GameData gameData, ArrayList<MultiplierButton> givenButtons) throws InvalidUILoadException {
-        super("/Sprites/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Sprites/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png", width, height, ButtonType.ENTER);
+    public MultiplierButton(int width, int height, int amount, GameData gameData, ArrayList<MultiplierButton> multiplierButtons) throws InvalidUILoadException {
+        super("/Sprites/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Sprites/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png",width, height,gameData);
+        this.multiplierButtons = multiplierButtons;
         this.amount = amount;
-        this.gameData = gameData;
-        this.givenButtons = givenButtons;
         initialization();
-    }
-
-
-    private void initialization(){
-        addActionListener(e ->{
-            click();
-        });
-    }
-
-    public void click(){
-        for (MultiplierButton multiplierButton : givenButtons){
-            multiplierButton.resetClicked();
-        }
-        resetCursor();
-        super.img = clickedImg;
-        super.clicked = true;
-        repaint();
-        this.gameData.setAmount(this.amount);
     }
 
     @Override
@@ -74,24 +53,22 @@ public class MultiplierButton extends CustomTitleButton {
         });
     }
 
-    public void resetClicked(){
-        this.clicked = false;
-        this.img = super.idleImg;
+    public void click(){
+        for (ChangingButton changingButton : multiplierButtons){
+            changingButton.resetClicked();
+        }
+        resetCursor();
+        super.img = clickedImg;
+        super.clicked = true;
         repaint();
+        super.getGameData().setAmount(this.amount);
     }
 
-    public void resetCursor(){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/MainSprites/MAIN_CURSOR.png"));
-        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
-        super.setCursor(customCursor);
+    public void initialization(){
+        addActionListener(e ->{
+            click();
+        });
     }
 
-    public int getAmount() {
-        return amount;
-    }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 }
