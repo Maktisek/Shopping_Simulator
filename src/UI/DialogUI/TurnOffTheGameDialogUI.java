@@ -4,6 +4,7 @@ import Commands.CommandResult;
 import Commands.UserInterfaceCommands.TurnOfTheGame;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 public class TurnOffTheGameDialogUI extends DialogUI {
     private final MainUI mainUI;
@@ -16,6 +17,7 @@ public class TurnOffTheGameDialogUI extends DialogUI {
     @Override
     public void buttonAction() {
         CommandResult result = new TurnOfTheGame(mainUI).execute();
+        Important.getAudioManagement().stopAll();
         System.out.println(result.getMessage());
     }
 }

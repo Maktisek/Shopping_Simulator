@@ -1,5 +1,7 @@
 package UI.CreationUI;
 
+import AudioSystem.AudioType;
+import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;
@@ -9,9 +11,11 @@ import java.awt.*;
 
 public class BarPanelUI extends BackgroundPanel {
 
+    private final GameData gameData;
 
-    public BarPanelUI(String type) throws InvalidUILoadException {
+    public BarPanelUI(String type, GameData gameData) throws InvalidUILoadException {
         super("/Sprites/BarSprites/" + type + "_UI_BAR.png");
+        this.gameData = gameData;
         initialize();
     }
 
@@ -28,6 +32,7 @@ public class BarPanelUI extends BackgroundPanel {
     private void initializeExitButton() throws InvalidUILoadException {
         CustomButton customButton = new CustomButton("/Sprites/ButtonSprites/ESCAPE_BUTTON.png", Important.calculateDimension(100), Important.calculateDimension(100), ButtonType.EXIT);
         customButton.addActionListener(e -> {
+            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");
         });

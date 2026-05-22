@@ -97,7 +97,7 @@ public class AchievementManagementUI extends JPanel implements UpdateAble {
     }
 
     private void initializeBar() throws InvalidUILoadException {
-        BarPanelUI barPanelUI = new BarPanelUI("ACHIEVEMENTS");
+        BarPanelUI barPanelUI = new BarPanelUI("ACHIEVEMENTS", gameData);
         this.sidePanel.add(barPanelUI, BorderLayout.NORTH);
     }
 

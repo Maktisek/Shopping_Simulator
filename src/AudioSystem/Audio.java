@@ -99,9 +99,9 @@ public class Audio {
         setVolumeDB(dB, clip);
     }
 
-    private void shiftVolume(double value, Clip clip, long milliSeconds) {
-        value = (value <= 0.0) ? 0.0001 : (Math.min(value, 1.0));
-        float targetDB = (float) (Math.log(value) / Math.log(10.0) * 20.0);
+    private void shiftVolume(double desiredValue, Clip clip, long milliSeconds) {
+        desiredValue = (desiredValue <= 0.0) ? 0.0001 : (Math.min(desiredValue, 1.0));
+        float targetDB = (float) (Math.log(desiredValue) / Math.log(10.0) * 20.0);
         FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         float currDB = gain.getValue();
         float fadePerStep = .1F;
@@ -122,10 +122,10 @@ public class Audio {
         }
     }
 
-    public void fadeIn(){
+    public void fadeIn(long milliSeconds){
         setVolume(0.2, currentClip);
         currentClip.start();
-        shiftVolume(initialVolume, currentClip, 20);
+        shiftVolume(initialVolume, currentClip, milliSeconds);
     }
 
     public void fadeOut(){
@@ -152,7 +152,7 @@ public class Audio {
                         if (clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
                             clip.setMicrosecondPosition(0);
                             clip.start();
-                            fadeIn();
+                            fadeIn(20);
                         }
                     }
                 });
@@ -170,7 +170,7 @@ public class Audio {
                         setVolume(this.initialVolume, this.currentClip);
                         currentClip.start();
                     } else {
-                        fadeIn();
+                        fadeIn(20);
                     }
                 } else {
                     setVolume(this.initialVolume, this.currentClip);
@@ -195,6 +195,50 @@ public class Audio {
         if (clip != null && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
             FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gain.setValue(db);
+        }
+    }
+
+    /**
+     * Method which pauses the audio.
+     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
+     * This value has to be false in order to proceed. Also, the clip has to be initialized. If it's null then it can't be stopped.
+     * <p>
+     * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
+     */
+    public void pause() {
+        if (currentClip != null && !paused) {
+            pausePosition = currentClip.getMicrosecondPosition();
+            paused = true;
+            fadeOut();
+            currentClip.stop();
+        }
+    }
+
+    /**
+     * Method which resumes the audio
+     * There is a boolean value {@link #paused} which holds an information if the audio is paused.
+     * This value has to be true in order to proceed. Also, the clip has to be initialized. If it's null then it can't be resumed.
+     * <p>
+     * Uses {@link #pausePosition} to save current microsecond position, so the audio can be resumed later, where it stopped.
+     * <p>
+     * Uses {@link #fadeIn(long)}} method for cleaner transition.
+     */
+    public void resume() {
+        if (currentClip != null && paused) {
+            Thread t = new Thread(() -> {
+                currentClip.setMicrosecondPosition(pausePosition);
+                paused = false;
+                fadeIn(0);
+//                try {
+//                    Thread.sleep(20);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+                if (currentClip != null) {
+                    currentClip.start();
+                }
+            });
+            t.start();
         }
     }
 

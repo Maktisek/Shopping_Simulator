@@ -23,6 +23,34 @@ public class AudioManagement {
         playThread.start();
     }
 
+    public void pauseSound(String title, AudioType type){
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if(temp != null) {
+                for (Audio audio : temp) {
+                    if(audio.getTitle().equalsIgnoreCase(title)){
+                        audio.pause();
+                    }
+                }
+            }
+        });
+        playThread.start();
+    }
+
+    public void resumeSound(String title, AudioType type){
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if(temp != null) {
+                for (Audio audio : temp) {
+                    if(audio.getTitle().equalsIgnoreCase(title)){
+                        audio.resume();
+                    }
+                }
+            }
+        });
+        playThread.start();
+    }
+
     public void stopSound(String title, AudioType type){
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);

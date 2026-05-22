@@ -1,5 +1,6 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.ShopCommands.ChangeShopLeftCommand;
 import Commands.ShopCommands.ChangeShopRightCommand;
@@ -11,6 +12,7 @@ import UI.DialogUI.BuyShopDialogUI;
 import UI.DialogUI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +43,7 @@ public class ShopManagementWestUI extends JPanel {
     private void initializeChangeButton(String card) throws InvalidUILoadException {
         CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110, ButtonType.ENTER);
         change.addActionListener(e -> {
+            Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
         });
@@ -80,6 +83,7 @@ public class ShopManagementWestUI extends JPanel {
         switch (result.getState()) {
             case DONE: {
                 shopUI.changeCard(gameData.getShopManagement().getCurrentShop().getName());
+                Important.getAudioManagement().stopSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                 break;
             }
             case FAILED_ISSUE: {

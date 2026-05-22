@@ -85,7 +85,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
     }
 
     private void initializeBar() throws InvalidUILoadException {
-        BarPanelUI bar = new BarPanelUI("STOCK");
+        BarPanelUI bar = new BarPanelUI("STOCK", gameData);
         initializeBoundPanel(bar);
         sidePanel.add(bar, BorderLayout.NORTH);
     }
