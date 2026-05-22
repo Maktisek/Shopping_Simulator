@@ -3,7 +3,6 @@ package UI.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
 import UI.MainUI.MainUI;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 

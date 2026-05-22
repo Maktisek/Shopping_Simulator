@@ -10,7 +10,7 @@ import UI.MainUI.MainUI;
 
 import javax.swing.*;
 
-public class BuyShopDialogUI extends BuyDialogUI {
+public class BuyShopDialogUI extends YesNoDialogUI {
 
     private final GameData gameData;
     private final ShopDirection shopDirection;

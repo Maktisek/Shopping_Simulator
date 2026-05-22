@@ -95,7 +95,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         quit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new TurnOffTheGameDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", "Do you want to turn off the game without saving?", parent));
+                parent.showDialog(new TurnOffTheGameDialogUI("Do you want to turn off the game without saving?", parent));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

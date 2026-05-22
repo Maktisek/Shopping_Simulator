@@ -8,9 +8,9 @@ import Utilities.Important;
 
 import javax.swing.*;
 
-public abstract class BuyDialogUI extends BaseDialogUI {
+public abstract class YesNoDialogUI extends BaseDialogUI {
 
-    public BuyDialogUI(String message) throws InvalidUILoadException {
+    public YesNoDialogUI(String message) throws InvalidUILoadException {
         super("/Sprites/UtilityPanels/ISSUE_PANE.png", message);
         initializeButtons();
     }

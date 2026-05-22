@@ -11,7 +11,7 @@ import Utilities.Important;
 
 import javax.swing.*;
 
-public class NewRebirthDialog extends BuyDialogUI{
+public class NewRebirthDialog extends YesNoDialogUI {
 
     private final GameData gameData;
 

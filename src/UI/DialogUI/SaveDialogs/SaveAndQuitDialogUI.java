@@ -24,7 +24,7 @@ public class SaveAndQuitDialogUI extends SaveBaseDialogUI{
         try {
             Important.getAudioManagement().playSound("Save", AudioType.SOUNDS, 0);
             parent.hideDialog();
-            parent.showDialog(new TurnOffTheGameDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), parent));
+            parent.showDialog(new TurnOffTheGameDialogUI(result.getMessage(), parent));
         } catch (InvalidUILoadException ex) {
             throw new RuntimeException(ex);
         }

@@ -7,16 +7,16 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;
 
-public class TurnOffTheGameDialogUI extends DialogUI {
+public class TurnOffTheGameDialogUI extends YesNoDialogUI {
     private final MainUI mainUI;
 
-    public TurnOffTheGameDialogUI(String imgFile, String message, MainUI mainUI) throws InvalidUILoadException {
-        super(imgFile, message);
+    public TurnOffTheGameDialogUI(String message, MainUI mainUI) throws InvalidUILoadException {
+        super(message);
         this.mainUI = mainUI;
     }
 
     @Override
-    public void buttonAction() {
+    public void initializeBuyButton() {
         CommandResult result = new TurnOfTheGame(mainUI).execute();
         Important.getAudioManagement().stopAll();
         Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
