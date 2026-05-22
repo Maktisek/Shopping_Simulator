@@ -28,6 +28,7 @@ public class NewRebirthDialog extends YesNoDialogUI {
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
+                Important.getAudioManagement().playSound("Error", AudioType.SOUNDS, 0);
                 parent.hideDialog();
                 parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
