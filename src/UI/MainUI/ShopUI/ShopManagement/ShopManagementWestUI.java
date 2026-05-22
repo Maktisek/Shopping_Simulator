@@ -44,6 +44,7 @@ public class ShopManagementWestUI extends JPanel {
         CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110, ButtonType.ENTER);
         change.addActionListener(e -> {
             Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(card+"OST", AudioType.MUSIC);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
         });

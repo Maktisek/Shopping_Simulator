@@ -12,10 +12,12 @@ import java.awt.*;
 public class BarPanelUI extends BackgroundPanel {
 
     private final GameData gameData;
+    private String type;
 
     public BarPanelUI(String type, GameData gameData) throws InvalidUILoadException {
         super("/Sprites/BarSprites/" + type + "_UI_BAR.png");
         this.gameData = gameData;
+        this.type = type;
         initialize();
     }
 
@@ -33,6 +35,7 @@ public class BarPanelUI extends BackgroundPanel {
         CustomButton customButton = new CustomButton("/Sprites/ButtonSprites/ESCAPE_BUTTON.png", Important.calculateDimension(100), Important.calculateDimension(100), ButtonType.EXIT);
         customButton.addActionListener(e -> {
             Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            Important.getAudioManagement().stopSound(type+"OST",AudioType.MUSIC);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");
         });
