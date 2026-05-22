@@ -1,6 +1,7 @@
 package Items;
 
 
+import Game.GameData;
 import Items.Exceptions.WrongEvidenceException;
 import Items.Exceptions.WrongItemException;
 import Items.Utilities.Evidence;
@@ -166,8 +167,7 @@ public class ItemPlayer implements Serializable {
         return 0;
     }
 
-    @Override
-    public String toString() {
-        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "Avg. Buy Price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Total earnings:" + Important.parseMoney(wholeEarnings) + " FR"+  "\n" + "Total Spent:" + Important.parseMoney(wholePrice) + " FR" +"\n"+ "Total Avg. buy price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Total Avg. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
+    public String description(GameData gameData) {
+        return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "To be delivered:" + Important.parseMoney(gameData.getPlayer().findNumberOfUndelivered(this.name)) + "X" +"\n" + "Avg. Buy Price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Total earnings:" + Important.parseMoney(wholeEarnings) + " FR"+  "\n" + "Total Spent:" + Important.parseMoney(wholePrice) + " FR" +"\n"+ "Total Avg. buy price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Total Avg. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
     }
 }

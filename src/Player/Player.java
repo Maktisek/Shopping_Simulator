@@ -33,6 +33,16 @@ public class Player implements Serializable {
         return null;
     }
 
+    public int findNumberOfUndelivered(String name){
+        int result = 0;
+        for (ItemDelivery itemDelivery : undeliveredItems){
+            if (itemDelivery.getName().equalsIgnoreCase(name)){
+                result++;
+            }
+        }
+        return result;
+    }
+
     public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException {
         if (delivery.getBoughtPrice() * delivery.getAmount() > this.currentBalance) {
             throw new InvalidPlayerActionException("Not enough money for " + delivery.getName());

@@ -1,5 +1,8 @@
 {
   "mute" : false,
+  "paused": [
+
+  ],
   "music": [
     {
       "title": "MenuOST",

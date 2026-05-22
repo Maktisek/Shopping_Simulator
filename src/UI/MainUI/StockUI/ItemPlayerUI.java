@@ -1,5 +1,6 @@
 package UI.MainUI.StockUI;
 
+import Game.GameData;
 import Items.ItemPlayer;
 import UI.CreationUI.*;
 import UI.Exceptions.InvalidUILoadException;
@@ -12,12 +13,14 @@ import java.awt.*;
 
 public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
 
+    private final GameData gameData;
     private final ItemPlayer itemPlayer;
     private StrokeLabel amount;
 
-    public ItemPlayerUI(String imgFile, ItemPlayer itemPlayer) throws InvalidUILoadException {
+    public ItemPlayerUI(String imgFile, ItemPlayer itemPlayer, GameData gameData) throws InvalidUILoadException {
         super(imgFile);
         this.itemPlayer = itemPlayer;
+        this.gameData = gameData;
         initialization();
     }
 
@@ -46,7 +49,7 @@ public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
         productButton.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new ItemInformationUI(this.itemPlayer.getName(), this.itemPlayer.toString()));
+                parent.showDialog(new ItemInformationUI(this.itemPlayer.getName(), this.itemPlayer.description(gameData)));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

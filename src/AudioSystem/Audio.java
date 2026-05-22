@@ -116,7 +116,6 @@ public class Audio {
                 paused = false;
                 if (currentClip != null) {
                     fadeIn(20);
-                    currentClip.start();
                 }
             });
             t.start();

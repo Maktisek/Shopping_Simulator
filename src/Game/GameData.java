@@ -144,11 +144,11 @@ public class GameData implements Serializable {
     @Override
     public String toString() {
         return "Number of days:" + getDayManagement().getNumberOfDays() + "\n" +
-                "Total earnings:" + getStatsCounter().getEarnings() + " FR" + "\n" +
-                "Total shipped:" + getStatsCounter().getShipped() + "\n" +
-                "Total bought:" + getStatsCounter().getBought() + "\n" +
-                "Avg. sell price:" + getStatsCounter().averageShipPrice() + " FR" + "\n" +
-                "Avg. buy price:" + getStatsCounter().averageBuyPrice() + " FR" + "\n" +
+                "Total earnings:" + Important.parseMoney(getStatsCounter().getEarnings()) + " FR" + "\n" +
+                "Total shipped:" + Important.parseMoney(getStatsCounter().getShipped()) + "\n" +
+                "Total bought:" + Important.parseMoney(getStatsCounter().getBought()) + "\n" +
+                "Avg. sell price:" + Important.parseMoney(getStatsCounter().averageShipPrice()) + " FR" + "\n" +
+                "Avg. buy price:" + Important.parseMoney(getStatsCounter().averageBuyPrice()) + " FR" + "\n" +
                 "Favorite product:" + getPlayer().findFavorite();
     }
 }

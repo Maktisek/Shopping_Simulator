@@ -65,7 +65,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
 
     private void fillGrid(JPanel grid) throws InvalidUILoadException {
         for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
-            ItemPlayerUI panel = new ItemPlayerUI("/Sprites/UtilityPanels/ITEMPLAYER_PANE.png", itemPlayer);
+            ItemPlayerUI panel = new ItemPlayerUI("/Sprites/UtilityPanels/ITEMPLAYER_PANE.png", itemPlayer, gameData);
             Dimension dimension = new Dimension(Important.calculateDimension(300), Important.calculateDimension(300));
             panel.setPreferredSize(dimension);
             panel.setMaximumSize(dimension);

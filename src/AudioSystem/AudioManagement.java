@@ -1,5 +1,6 @@
 package AudioSystem;
 
+import javax.sound.sampled.Clip;
 import java.util.ArrayList;
 
 public class AudioManagement {
@@ -7,6 +8,7 @@ public class AudioManagement {
     private ArrayList<Audio> music;
     private ArrayList<Audio> sounds;
     private ArrayList<Audio> background;
+    private ArrayList<Audio> paused;
     private boolean mute;
 
 
@@ -89,15 +91,48 @@ public class AudioManagement {
         t.start();
     }
 
+    public void pauseAll(){
+        Thread t = new Thread(() ->{
+            pauseAllMusic();
+        });
+        t.start();
+    }
+
+    public void resumeAll(){
+        Thread t = new Thread(() ->{
+            for (Audio audio : paused){
+                audio.resume();
+            }
+        });
+        t.start();
+    }
+
     private void stopAllMusic(){
         for (Audio audio : music){
             audio.stopAll();
         }
     }
 
+    private void pauseAllMusic(){
+        for (Audio audio: music){
+            Clip clip = audio.getCurrentClip();
+            if(clip != null && clip.isRunning()){
+                audio.pause();
+                paused.add(audio);
+            }
+        }
+    }
+
+
     private void stopAllBackground(){
         for (Audio audio : background){
             audio.stopAll();
+        }
+    }
+
+    private void pauseAllBackground(){
+        for (Audio audio : background){
+            audio.pause();
         }
     }
 
