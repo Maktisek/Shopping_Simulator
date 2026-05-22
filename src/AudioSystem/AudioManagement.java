@@ -43,7 +43,11 @@ public class AudioManagement {
             if(temp != null) {
                 for (Audio audio : temp) {
                     if(audio.getTitle().equalsIgnoreCase(title)){
-                        audio.resume();
+                        if(audio.isPaused()){
+                            audio.resume();
+                        }else {
+                            audio.startAudio(0);
+                        }
                     }
                 }
             }

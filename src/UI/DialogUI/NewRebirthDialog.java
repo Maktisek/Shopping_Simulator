@@ -35,6 +35,7 @@ public class NewRebirthDialog extends BuyDialogUI{
             }
         }else {
             try {
+                Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                 Important.getAudioManagement().playSound("NewRebirth", AudioType.SOUNDS, 0);
                 parent.hideDialog();
                 parent.stopAllTimers();

@@ -106,7 +106,7 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
     public void changeCard(String card) {
         this.cardLayout.show(cardPanel, card);
-        Important.getAudioManagement().playSound(card, AudioType.MUSIC, 0);
+        Important.getAudioManagement().resumeSound(card, AudioType.MUSIC);
     }
 
     @Override
