@@ -1,5 +1,6 @@
 package UI.MainUI.StatisticUI;
 
+import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.UserInterfaceCommands.TurnOfTheGame;
 import Game.GameData;
@@ -25,6 +26,7 @@ public class EndPanelUI extends GameDataInfoUI {
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton close = new CustomButton("/Sprites/ButtonSprites/QUIT_BUTTON.png", 130, 75, ButtonType.EXIT);
         close.addActionListener(e ->{
+            Important.getAudioManagement().stopSound("EndOST", AudioType.MUSIC);
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             CommandResult result = new TurnOfTheGame(mainUI).execute();
             System.out.println(result.getMessage());

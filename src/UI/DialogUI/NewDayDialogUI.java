@@ -63,6 +63,8 @@ public class NewDayDialogUI extends BaseDialogUI {
             } else if (commandResult.getState() == CommandState.FAILED_END) {
                 parent.hideDialog();
                 try {
+                    Important.getAudioManagement().playSound("EndOST", AudioType.MUSIC, 0);
+                    Important.getAudioManagement().stopSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                     parent.initAndSwitchPanel(new EndPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);

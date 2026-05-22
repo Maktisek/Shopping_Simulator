@@ -18,8 +18,6 @@ public class TurnOffTheGameDialogUI extends YesNoDialogUI {
     @Override
     public void initializeBuyButton() {
         CommandResult result = new TurnOfTheGame(mainUI).execute();
-        Important.getAudioManagement().stopAll();
-        Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
         System.out.println(result.getMessage());
     }
 }

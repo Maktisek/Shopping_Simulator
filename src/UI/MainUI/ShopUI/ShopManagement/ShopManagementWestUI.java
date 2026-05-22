@@ -89,6 +89,7 @@ public class ShopManagementWestUI extends JPanel {
             }
             case FAILED_ISSUE: {
                 try {
+                    Important.getAudioManagement().playSound("Error", AudioType.SOUNDS, 0);
                     parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage()));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
