@@ -1,6 +1,7 @@
 package UI.MainUI;
 
 import Achievements.Achievement;
+import AudioSystem.AudioType;
 import Game.GameData;
 import UI.CreationUI.BackgroundPanel;
 import UI.CreationUI.UpdateAble;
@@ -11,6 +12,7 @@ import UI.MainUI.AchievementUI.AchievementManagementUI;
 import UI.MainUI.ShopUI.ShopManagement.ShopManagementUI;
 import UI.MainUI.StatisticUI.PlayerStatisticUI;
 import UI.MainUI.StockUI.StockManagementUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -139,7 +141,8 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
             this.achievementUpdater.stop();
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
-            showDialog(new DialogUI("/Sprites/AchievementSprites/ACHIEVEMENT_PANE.png", message, "NewGoal"));
+            Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            showDialog(new DialogUI("/Sprites/AchievementSprites/ACHIEVEMENT_PANE.png", message, "NewGoal", gameData));
         }
     }
 

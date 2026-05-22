@@ -56,6 +56,7 @@ public class NewDayDialogUI extends BaseDialogUI {
                 parent.hideDialog();
                 try {
                     Important.getAudioManagement().playSound("NewDay", AudioType.SOUNDS, 0);
+                    Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                     parent.showDialog(new DaySummaryPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
