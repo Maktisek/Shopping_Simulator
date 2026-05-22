@@ -28,7 +28,6 @@ public class ChangingButton extends CustomTitleButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                System.out.println(ChangingButton.super.clicked);
                     Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
                     setCursor();
                     MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, ChangingButton.this);
@@ -85,6 +84,13 @@ public class ChangingButton extends CustomTitleButton {
                 resetClicked();
             }
         });
+    }
+
+    public int calculateOffset() {
+        if (hoovered) {
+            return 0;
+        }
+        return 5;
     }
 
     public GameData getGameData() {
