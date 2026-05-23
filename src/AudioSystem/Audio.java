@@ -253,8 +253,13 @@ public class Audio {
         }
     }
 
-
-
+    public void closeAllClips(){
+        for (Clip clip : clips){
+            this.shifting = false;
+            clip.stop();
+            clip.close();
+        }
+    }
 
     public String getFilePath() {
         return filePath;

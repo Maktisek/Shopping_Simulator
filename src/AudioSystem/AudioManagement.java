@@ -12,12 +12,12 @@ public class AudioManagement {
     private boolean mute;
 
 
-    public void playSound(String title, AudioType type, long startPosition){
+    public void playSound(String title, AudioType type, long startPosition) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if(temp != null && !mute) {
+            if (temp != null && !mute) {
                 for (Audio audio : temp) {
-                    if(audio.getTitle().equalsIgnoreCase(title)){
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
                         audio.startAudio(startPosition);
                     }
                 }
@@ -26,12 +26,12 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void pauseSound(String title, AudioType type){
+    public void pauseSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if(temp != null && !mute) {
+            if (temp != null && !mute) {
                 for (Audio audio : temp) {
-                    if(audio.getTitle().equalsIgnoreCase(title)){
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
                         audio.pause();
                     }
                 }
@@ -40,15 +40,15 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void resumeSound(String title, AudioType type){
+    public void resumeSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if(temp != null && !mute) {
+            if (temp != null && !mute) {
                 for (Audio audio : temp) {
-                    if(audio.getTitle().equalsIgnoreCase(title)){
-                        if(audio.isPaused()){
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
+                        if (audio.isPaused()) {
                             audio.resume();
-                        }else {
+                        } else {
                             audio.startAudio(0);
                         }
                     }
@@ -58,7 +58,7 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void stopSound(String title, AudioType type){
+    public void stopSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
             if (temp != null && !mute) {
@@ -72,18 +72,18 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void initializeSounds(){
+    public void initializeSounds() {
         ArrayList<Audio> temp = new ArrayList<>();
         temp.addAll(music);
         temp.addAll(sounds);
         temp.addAll(background);
-        for (Audio audio : temp){
+        for (Audio audio : temp) {
             audio.initializeAudio();
         }
     }
 
-    public void stopAll(){
-        Thread t = new Thread(() ->{
+    public void stopAll() {
+        Thread t = new Thread(() -> {
             stopAllMusic();
             stopAllBackground();
             stopAllSounds();
@@ -91,32 +91,32 @@ public class AudioManagement {
         t.start();
     }
 
-    public void pauseAll(){
-        Thread t = new Thread(() ->{
+    public void pauseAll() {
+        Thread t = new Thread(() -> {
             pauseAllMusic();
         });
         t.start();
     }
 
-    public void resumeAll(){
-        Thread t = new Thread(() ->{
-            for (Audio audio : paused){
+    public void resumeAll() {
+        Thread t = new Thread(() -> {
+            for (Audio audio : paused) {
                 audio.resume();
             }
         });
         t.start();
     }
 
-    private void stopAllMusic(){
-        for (Audio audio : music){
+    private void stopAllMusic() {
+        for (Audio audio : music) {
             audio.stopAll();
         }
     }
 
-    private void pauseAllMusic(){
-        for (Audio audio: music){
+    private void pauseAllMusic() {
+        for (Audio audio : music) {
             Clip clip = audio.getCurrentClip();
-            if(clip != null && clip.isRunning()){
+            if (clip != null && clip.isRunning()) {
                 audio.pause();
                 paused.add(audio);
             }
@@ -124,26 +124,39 @@ public class AudioManagement {
     }
 
 
-    private void stopAllBackground(){
-        for (Audio audio : background){
+    private void stopAllBackground() {
+        for (Audio audio : background) {
             audio.stopAll();
         }
     }
 
-    private void pauseAllBackground(){
-        for (Audio audio : background){
+    private void pauseAllBackground() {
+        for (Audio audio : background) {
             audio.pause();
         }
     }
 
-    private void stopAllSounds(){
-        for (Audio audio : sounds){
+    private void stopAllSounds() {
+        for (Audio audio : sounds) {
             audio.stopAll();
         }
     }
 
-    private ArrayList<Audio> getAudioListByType(AudioType type){
-        switch (type){
+    public void closeAll() {
+        Thread t = new Thread(() -> {
+            ArrayList<Audio> temp = new ArrayList<>();
+            temp.addAll(music);
+            temp.addAll(sounds);
+            temp.addAll(background);
+            for (Audio audio : temp) {
+                audio.closeAllClips();
+            }
+        });
+        t.start();
+    }
+
+    private ArrayList<Audio> getAudioListByType(AudioType type) {
+        switch (type) {
             case MUSIC -> {
                 return music;
             }

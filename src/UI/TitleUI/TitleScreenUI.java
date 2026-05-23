@@ -134,8 +134,9 @@ public class TitleScreenUI extends FrameBaseUI {
 
         quit.addActionListener(e -> {
             this.stopTimer();
-            Important.getAudioManagement().stopAll();
+            Important.getAudioManagement().closeAll();
             this.dispose();
+            System.exit(0);
         });
 
         panel.add(Box.createVerticalStrut(Important.calculateDimension(18)));

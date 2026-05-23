@@ -118,4 +118,5 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         this.shopManagementSouthUI.update();
         this.shopManagementEastUI.update();
     }
+
 }

@@ -163,6 +163,7 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         stopAllTimers();
         MyFrame parent = getMyFrame();
         parent.stopTimer();
+        System.out.println("TEST");
         parent.dispose();
     }
 
