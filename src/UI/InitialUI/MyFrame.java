@@ -4,6 +4,7 @@ import Game.GameData;
 import UI.CreationUI.FrameBaseUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +30,7 @@ public class MyFrame extends FrameBaseUI {
 
     @Override
     public void refreshUI() throws InvalidUILoadException {
+        Important.getAudioManagement().pauseAll();
         this.getContentPane().removeAll();
         this.mainUI.stopAllTimers();
         this.mainUI = new MainUI(this.gameData);

@@ -28,11 +28,8 @@ public class TitleScreenUI extends FrameBaseUI {
     public TitleScreenUI() throws InvalidUILoadException {
         super("/Sprites/IconSprites/MONEY_ICON.png");
         this.setTitle("Forest Market Launcher");
-        this.setSize(Important.calculateDimension(600), Important.calculateDimension(600));
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(Important.calculateDimension(600), Important.calculateDimension(600)));
         this.setResizable(false);
         initialize();
     }
@@ -51,6 +48,9 @@ public class TitleScreenUI extends FrameBaseUI {
     }
 
     private void initialize() throws InvalidUILoadException {
+        this.setSize(Important.calculateDimension(600), Important.calculateDimension(600));
+        this.setMinimumSize(new Dimension(Important.calculateDimension(600), Important.calculateDimension(600)));
+        this.setLocationRelativeTo(null);
         initializeBackground();
         initializeOverlay();
         initializeLayerPane();
@@ -75,7 +75,7 @@ public class TitleScreenUI extends FrameBaseUI {
         Image scaledImage = icon.getImage().getScaledInstance(Important.calculateDimension(320), Important.calculateDimension(160), Image.SCALE_SMOOTH);
         icon.setImage(scaledImage);
         JLabel label = new JLabel(icon, JLabel.CENTER);
-        label.setBorder(new EmptyBorder(Important.calculateDimension(50), 0, 0, 0));
+        label.setBorder(new EmptyBorder(Important.calculateDimension(30), 0, 0, 0));
         label.setOpaque(false);
 
         this.background.add(label, BorderLayout.NORTH);
