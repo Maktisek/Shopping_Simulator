@@ -7,19 +7,22 @@ import UI.MainUI.MainUI;
 import Utilities.Important;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MultiplierButton extends ChangingButton {
+public class MultiplierButton extends CustomBaseChangingButton {
 
     private final ArrayList<MultiplierButton> multiplierButtons;
     private final int amount;
+    private final GameData gameData;
 
     public MultiplierButton(int width, int height, int amount, GameData gameData, ArrayList<MultiplierButton> multiplierButtons) throws InvalidUILoadException {
-        super("/Sprites/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Sprites/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png",width, height,gameData);
+        super(width, height, ButtonType.ENTER, "/Sprites/Multipliers/MULTIPLIER_BUTTON_" + amount + ".png", "/Sprites/Multipliers/MULTIPLIER_BUTTON_CLICKED_" + amount + ".png");
         this.multiplierButtons = multiplierButtons;
         this.amount = amount;
+        this.gameData = gameData;
         initialization();
     }
 
@@ -54,14 +57,14 @@ public class MultiplierButton extends ChangingButton {
     }
 
     public void click(){
-        for (ChangingButton changingButton : multiplierButtons){
-            changingButton.resetClicked();
+        for (MultiplierButton multiplierButton : multiplierButtons){
+            multiplierButton.resetClicked();
         }
         resetCursor();
         super.img = clickedImg;
         super.clicked = true;
         repaint();
-        super.getGameData().setAmount(this.amount);
+        gameData.setAmount(this.amount);
     }
 
     public void initialization(){
@@ -70,5 +73,9 @@ public class MultiplierButton extends ChangingButton {
         });
     }
 
-
+    public void resetClicked(){
+        this.clicked = false;
+        this.img = super.idleImg;
+        repaint();
+    }
 }

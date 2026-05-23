@@ -10,14 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
-public class ChangingButton extends CustomTitleButton {
+public class ChangingButton extends CustomBaseChangingButton {
 
     private final GameData gameData;
 
     public ChangingButton(String filePathOne, String filePathTwo,int width, int height, GameData gameData) throws InvalidUILoadException {
-        super(filePathOne, filePathTwo, width, height, ButtonType.ENTER);
+        super(width, height, ButtonType.ENTER, filePathOne, filePathTwo);
         this.gameData = gameData;
         initialization();
     }
@@ -30,10 +29,6 @@ public class ChangingButton extends CustomTitleButton {
                 super.mouseEntered(e);
                     Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
                     setCursor();
-                    MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, ChangingButton.this);
-                    if(parent != null) {
-                        parent.setCursor();
-                    }
                     ChangingButton.super.hoovered = true;
                     repaint();
             }
@@ -41,10 +36,7 @@ public class ChangingButton extends CustomTitleButton {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, ChangingButton.this);
-                if(parent != null) {
-                    parent.resetCursor();
-                }
+                resetCursor();
                 ChangingButton.super.hoovered = false;
             }
 
@@ -56,21 +48,13 @@ public class ChangingButton extends CustomTitleButton {
         });
     }
 
-    public void resetClicked(){
+    public void changeToFirst(){
         this.clicked = false;
         this.img = super.idleImg;
         repaint();
     }
 
-    public void resetCursor(){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/MainSprites/MAIN_CURSOR.png"));
-        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
-        super.setCursor(customCursor);
-    }
-
-    public void click(){
-        resetCursor();
+    public void changeToSecond(){
         super.img = clickedImg;
         super.clicked = true;
         repaint();
@@ -79,13 +63,14 @@ public class ChangingButton extends CustomTitleButton {
     public void initialization(){
         addActionListener(e ->{
             if(clicked){
-                click();
+                changeToSecond();
             }else {
-                resetClicked();
+                changeToFirst();
             }
         });
     }
 
+    @Override
     public int calculateOffset() {
         if (hoovered) {
             return 0;

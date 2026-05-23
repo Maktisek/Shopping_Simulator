@@ -6,63 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.URL;
 
 
-public class CustomTitleButton extends BaseButton {
+public class CustomTitleButton extends CustomBaseChangingButton {
 
-    protected Image img;
-    protected Image idleImg;
-    protected Image clickedImg;
-    protected String imgFile;
-    protected String clickedImgFile;
-
-    public CustomTitleButton(){
-
-    }
 
     public CustomTitleButton(String imgFile, String clickedImg, int width, int height, ButtonType type) throws InvalidUILoadException {
-        super(width, height, type);
+        super(width, height, type, imgFile, clickedImg);
         this.imgFile = imgFile;
         this.clickedImgFile = clickedImg;
         setImages();
     }
 
-    @Override
-    public void setImages() throws InvalidUILoadException {
-        URL imageURL = getClass().getResource(imgFile);
-        URL clickedURL = getClass().getResource(clickedImgFile);
-
-        if(imageURL == null){
-            throw new InvalidUILoadException("The image "+ imgFile +" was not found");
-        }
-
-        if(clickedURL == null){
-            throw new InvalidUILoadException("The image "+ imgFile +" was not found");
-        }
-
-        this.idleImg = new ImageIcon(imageURL).getImage();
-        this.clickedImg = new ImageIcon(clickedURL).getImage();
-
-        this.img = idleImg;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-
-        int w = getWidth();
-        int h = getHeight();
-
-        int offset2 = calculateOffset();
-        g.drawImage(img, offset2, offset2, w - (offset2 * 2), h - (offset2 * 2), this);
-
-
-    }
 
     @Override
     public void setMouseListener(){
-        super.setMouseListener();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {

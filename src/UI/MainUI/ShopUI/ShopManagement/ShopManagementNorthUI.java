@@ -53,8 +53,8 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         multiplierButtons.add(new MultiplierButton(100, 100, 5, gameData, multiplierButtons));
         multiplierButtons.add(new MultiplierButton(100, 100, 10, gameData, multiplierButtons));
 
-        for (ChangingButton changingButton : multiplierButtons) {
-            add(changingButton);
+        for (MultiplierButton multiplierButton : multiplierButtons) {
+            add(multiplierButton);
             add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         }
         multiplierButtons.get(0).click();
