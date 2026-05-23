@@ -81,9 +81,9 @@
       "filePath": "/Audio/Sounds/EnterClick.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 3,
+      "soundPool" : 5,
       "shifting" : true
     },
     {
@@ -91,9 +91,9 @@
       "filePath": "/Audio/Sounds/ExitClick.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 3,
+      "soundPool" : 5,
       "shifting" : true
     },
     {
@@ -131,7 +131,7 @@
       "filePath": "/Audio/Sounds/Error.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.6,
       "music": false,
       "soundPool" : 2,
       "shifting" : true
@@ -141,7 +141,7 @@
       "filePath": "/Audio/Sounds/NewGoal.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.6,
       "music": false,
       "soundPool" : 1,
       "shifting" : true
@@ -151,7 +151,7 @@
       "filePath": "/Audio/Sounds/NewDay.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.5,
       "music": false,
       "soundPool" : 1,
       "shifting" : true
@@ -161,7 +161,7 @@
       "filePath": "/Audio/Sounds/ButtonPoint.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.2,
+      "initialVolume": 0.3,
       "music": false,
       "soundPool" : 15,
       "shifting" : true
@@ -171,7 +171,7 @@
       "filePath": "/Audio/Sounds/ClaimGoal.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.5,
       "music": false,
       "soundPool" : 1,
       "shifting" : true
@@ -181,7 +181,7 @@
       "filePath": "/Audio/Sounds/NewRebirth.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.6,
       "music": false,
       "soundPool" : 1,
       "shifting" : true
@@ -191,7 +191,7 @@
       "filePath": "/Audio/Sounds/Save.wav",
       "infiniteLoop": false,
       "paused": false,
-      "initialVolume": 0.4,
+      "initialVolume": 0.5,
       "music": false,
       "soundPool" : 1,
       "shifting" : true

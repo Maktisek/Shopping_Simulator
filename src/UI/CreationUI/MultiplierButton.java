@@ -28,6 +28,7 @@ public class MultiplierButton extends CustomBaseChangingButton {
 
     @Override
     public void setMouseListener() {
+        super.setMouseListener();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

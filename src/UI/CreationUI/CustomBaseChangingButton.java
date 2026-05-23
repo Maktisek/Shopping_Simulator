@@ -65,5 +65,7 @@ public abstract class CustomBaseChangingButton extends BaseButton{
         super.setCursor(customCursor);
     }
 
-    public abstract void setMouseListener();
+    public void setMouseListener(){
+        super.setMouseListener();
+    }
 }

@@ -177,7 +177,7 @@ public class Audio {
     }
 
     public void fadeIn(long milliSeconds) {
-        setVolume(0.2, currentClip);
+        setVolume(initialVolume - 0.4, currentClip);
         currentClip.start();
         shiftVolume(initialVolume, currentClip, milliSeconds);
     }

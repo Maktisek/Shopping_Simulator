@@ -1,6 +1,7 @@
 package UI.CreationUI;
 
 import UI.Exceptions.InvalidUILoadException;
+import com.sun.source.tree.UsesTree;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class CustomTitleButton extends CustomBaseChangingButton {
 
     @Override
     public void setMouseListener(){
+        super.setMouseListener();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
