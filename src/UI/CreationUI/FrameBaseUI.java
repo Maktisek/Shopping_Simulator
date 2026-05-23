@@ -25,7 +25,7 @@ public abstract class FrameBaseUI extends JFrame {
             ImageIcon icon = new ImageIcon(iconURL);
             setIconImage(icon.getImage());
         } else {
-            System.err.println("Ikonku se nepodařilo najít!");
+            System.err.println("Icon " + filePath + " was not found");
         }
     }
 

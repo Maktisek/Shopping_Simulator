@@ -15,7 +15,7 @@ public class MyFrame extends FrameBaseUI {
     private MainUI mainUI;
 
     public MyFrame(GameData gameData) throws InvalidUILoadException{
-        super("/Sprites/IconSprites/MONEY_ICON.png");
+        super("/Sprites/IconSprites/MAIN_ICON.png");
         setTitle("Forest Market");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

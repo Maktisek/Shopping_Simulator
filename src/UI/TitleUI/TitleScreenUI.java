@@ -26,7 +26,7 @@ public class TitleScreenUI extends FrameBaseUI {
     private JPanel overlay;
 
     public TitleScreenUI() throws InvalidUILoadException {
-        super("/Sprites/IconSprites/MONEY_ICON.png");
+        super("/Sprites/IconSprites/TITLE_SCREEN_ICON.png");
         this.setTitle("Forest Market Launcher");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
