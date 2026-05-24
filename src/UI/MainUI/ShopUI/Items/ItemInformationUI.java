@@ -1,11 +1,11 @@
 package UI.MainUI.ShopUI.Items;
 
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.ButtonType;
-import UI.CreationUI.CustomButton;
+import UI.CreationUI.Panels.BackgroundPanel;
+import UI.CreationUI.Buttons.ButtonType;
+import UI.CreationUI.Buttons.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
-import UI.CreationUI.StrokeLabel;
+import UI.CreationUI.Labels.StrokeLabel;
 import Utilities.Important;
 
 import javax.swing.*;

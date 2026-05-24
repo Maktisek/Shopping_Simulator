@@ -1,10 +1,10 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
-import UI.CreationUI.ButtonType;
-import UI.CreationUI.CustomButton;
-import UI.CreationUI.UpdateAble;
-import UI.DialogUI.NewDayDialogUI;
+import UI.CreationUI.Buttons.ButtonType;
+import UI.CreationUI.Buttons.CustomButton;
+import UI.CreationUI.Utilities.UpdateAble;
+import UI.DialogUI.DecisionDialogs.NewDayDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DayUI;

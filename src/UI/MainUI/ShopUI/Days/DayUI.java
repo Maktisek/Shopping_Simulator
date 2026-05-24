@@ -1,10 +1,10 @@
 package UI.MainUI.ShopUI.Days;
 
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.Panels.BackgroundPanel;
+import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
-import UI.CreationUI.StrokeLabel;
+import UI.CreationUI.Labels.StrokeLabel;
 import Utilities.Important;
 
 import java.awt.*;

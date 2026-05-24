@@ -3,7 +3,7 @@ package UI.DialogUI.SaveDialogs;
 import Commands.CommandResult;
 import Commands.SaveCommands.WriteSaveCommand;
 import Game.GameData;
-import UI.DialogUI.DialogUI;
+import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 

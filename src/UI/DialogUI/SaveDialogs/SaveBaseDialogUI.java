@@ -2,9 +2,9 @@ package UI.DialogUI.SaveDialogs;
 
 
 import Game.GameData;
-import UI.CreationUI.ButtonType;
-import UI.CreationUI.CustomButton;
-import UI.DialogUI.BaseDialogUI;
+import UI.CreationUI.Buttons.ButtonType;
+import UI.CreationUI.Buttons.CustomButton;
+import UI.DialogUI.BasicDialogs.BaseDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;

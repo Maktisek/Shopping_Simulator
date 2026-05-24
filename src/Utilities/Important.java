@@ -3,7 +3,7 @@ package Utilities;
 import AudioSystem.AudioManagement;
 import Game.GameData;
 import UI.Exceptions.InvalidUILoadException;
-import UI.CreationUI.CustomScrollBarUI;
+import UI.CreationUI.Scrollers.CustomScrollBarUI;
 import com.google.gson.Gson;
 
 import javax.swing.*;

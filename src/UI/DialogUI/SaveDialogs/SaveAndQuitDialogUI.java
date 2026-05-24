@@ -4,7 +4,7 @@ import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.SaveCommands.WriteSaveCommand;
 import Game.GameData;
-import UI.DialogUI.TurnOffTheGameDialogUI;
+import UI.DialogUI.DecisionDialogs.TurnOffTheGameDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;

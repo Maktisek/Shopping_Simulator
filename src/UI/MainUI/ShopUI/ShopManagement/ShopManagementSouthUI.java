@@ -1,7 +1,7 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
-import UI.CreationUI.UpdateAble;
+import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;

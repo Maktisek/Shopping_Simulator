@@ -1,7 +1,7 @@
 package UI.InitialUI;
 
 import Game.GameData;
-import UI.CreationUI.FrameBaseUI;
+import UI.CreationUI.Frames.FrameBaseUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;

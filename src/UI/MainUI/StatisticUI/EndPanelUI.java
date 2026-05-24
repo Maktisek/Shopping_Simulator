@@ -1,12 +1,11 @@
 package UI.MainUI.StatisticUI;
 
-import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.UserInterfaceCommands.TurnOfTheGame;
 import Game.GameData;
-import UI.CreationUI.BackgroundPanel;
-import UI.CreationUI.ButtonType;
-import UI.CreationUI.CustomButton;
+import UI.CreationUI.Panels.BackgroundPanel;
+import UI.CreationUI.Buttons.ButtonType;
+import UI.CreationUI.Buttons.CustomButton;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;
