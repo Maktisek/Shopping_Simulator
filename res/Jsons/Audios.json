@@ -205,6 +205,16 @@
       "music": false,
       "soundPool" : 1,
       "shifting" : true
+    },
+    {
+      "title": "ChangeShop",
+      "filePath": "/Audio/Sounds/ChangeShop.wav",
+      "infiniteLoop": false,
+      "paused": false,
+      "initialVolume": 0.2,
+      "music": false,
+      "soundPool" : 8,
+      "shifting" : true
     }
   ],
   "background": [

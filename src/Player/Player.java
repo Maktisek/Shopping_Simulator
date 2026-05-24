@@ -33,10 +33,10 @@ public class Player implements Serializable {
         return null;
     }
 
-    public int findNumberOfUndelivered(String name){
+    public int findNumberOfUndelivered(String name) {
         int result = 0;
-        for (ItemDelivery itemDelivery : undeliveredItems){
-            if (itemDelivery.getName().equalsIgnoreCase(name)){
+        for (ItemDelivery itemDelivery : undeliveredItems) {
+            if (itemDelivery.getName().equalsIgnoreCase(name)) {
                 result++;
             }
         }
@@ -111,11 +111,17 @@ public class Player implements Serializable {
         return false;
     }
 
-    public void loadItems(ArrayList<Shop> shops) throws WrongItemException {
-        for (Shop shop : shops) {
-            for (int i = 0; i < shop.getItems().length; i++) {
-                this.stockItems.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
-            }
+//    public void loadItems(ArrayList<Shop> shops) throws WrongItemException {
+//        for (Shop shop : shops) {
+//            for (int i = 0; i < shop.getItems().length; i++) {
+//                this.stockItems.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
+//            }
+//        }
+//    }
+
+    public void loadItems(ItemShop[] itemShop) throws WrongItemException {
+        for (ItemShop item : itemShop) {
+            this.stockItems.add(new ItemPlayer(item.getItem().getName()));
         }
     }
 
@@ -127,24 +133,24 @@ public class Player implements Serializable {
         return stocks;
     }
 
-    public int calculateAllStocks(){
+    public int calculateAllStocks() {
         int stocks = calculateStocks();
-        for (ItemDelivery itemDelivery : undeliveredItems){
+        for (ItemDelivery itemDelivery : undeliveredItems) {
             stocks += itemDelivery.getAmount();
         }
         return stocks;
     }
 
-    public String findFavorite(){
+    public String findFavorite() {
         int max = 0;
         String result = "";
-        for (ItemPlayer itemPlayer : stockItems){
-            if (itemPlayer.getSellAmount() > max){
+        for (ItemPlayer itemPlayer : stockItems) {
+            if (itemPlayer.getSellAmount() > max) {
                 max = itemPlayer.getSellAmount();
                 result = itemPlayer.getName();
             }
         }
-        if(result.equalsIgnoreCase("")){
+        if (result.equalsIgnoreCase("")) {
             return "Nothing";
         }
 
@@ -181,13 +187,13 @@ public class Player implements Serializable {
         return map;
     }
 
-    public String information(){
+    public String information() {
         HashMap<String, Integer> map = loadMap();
         StringBuilder sb = new StringBuilder();
-        for (String name: map.keySet()){
+        for (String name : map.keySet()) {
             sb.append(name).append(":").append(map.get(name)).append("\n");
         }
-        if(sb.isEmpty()){
+        if (sb.isEmpty()) {
             return null;
         }
         return sb.toString();

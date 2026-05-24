@@ -6,6 +6,7 @@ import DayCycle.DayManagement;
 import Items.Exceptions.WrongItemException;
 import NPCs.NPCFinder;
 import Player.Player;
+import Shops.Shop;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.Rebirth.Rebirth;
@@ -133,7 +134,11 @@ public class Initialization {
 
     private void finishInitialization() {
         try {
-            this.gameData.getPlayer().loadItems(this.gameData.getShopManagement().getShops());
+            for (Shop shop : this.gameData.getShopManagement().getShops()){
+                if (shop.getShopKey().isUnlocked()){
+                    this.gameData.getPlayer().loadItems(shop.getItems());
+                }
+            }
             this.gameData.getShopManagement().loadAllNpc(this.getGameData().getPlayer());
         } catch (WrongItemException e) {
             throw new RuntimeException(e);

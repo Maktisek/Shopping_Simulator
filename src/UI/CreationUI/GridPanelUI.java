@@ -35,7 +35,13 @@ public class GridPanelUI extends JPanel {
     }
 
     public void finishGrid(){
-        this.grid.setPreferredSize(new Dimension(gridWidth, this.grid.getPreferredSize().height));
+        int componentCount = this.grid.getComponentCount();
+        if (componentCount == 0) return;
+
+        int rows = (int) Math.ceil((double) componentCount / cols);
+        int componentHeight = this.grid.getComponent(0).getPreferredSize().height;
+        int totalHeight = (rows * componentHeight) + ((rows - 1) * Important.calculateDimension(20));
+        this.grid.setPreferredSize(new Dimension(gridWidth, totalHeight));
     }
 
     public JPanel getGrid() {

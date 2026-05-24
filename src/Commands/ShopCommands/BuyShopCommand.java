@@ -4,6 +4,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
+import Items.Exceptions.WrongItemException;
 import Shops.Shop;
 
 public class BuyShopCommand extends Command {
@@ -46,6 +47,11 @@ public class BuyShopCommand extends Command {
 
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - temp.getShopKey().getPrice());
         temp.getShopKey().setUnlocked(true);
+        try {
+            getPlayer().loadItems(temp.getItems());
+        } catch (WrongItemException e) {
+            return new CommandResult("This should not happen", CommandState.FAILED_ISSUE);
+        }
         switch (direction){
             case LEFT -> getShopManagement().switchLeft();
             case RIGHT -> getShopManagement().switchRight();

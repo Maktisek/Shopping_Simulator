@@ -104,7 +104,11 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
-            this.stockManagementUI.update();
+            try {
+                this.stockManagementUI.update();
+            } catch (InvalidUILoadException ex) {
+                throw new RuntimeException(ex);
+            }
             try {
                 this.achievementManagementUI.update();
             } catch (InvalidUILoadException ex) {

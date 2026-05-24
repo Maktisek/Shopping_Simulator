@@ -113,7 +113,7 @@
       "shopKey": {
         "price": 2000,
         "unlocked": true,
-        "rebirthLevel" : 1
+        "rebirthLevel" : 2
       },
       "items": [
         {

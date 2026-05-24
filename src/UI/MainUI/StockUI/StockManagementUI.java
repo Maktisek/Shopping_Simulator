@@ -21,11 +21,14 @@ public class StockManagementUI extends JPanel implements UpdateAble {
     private BackgroundPanel mainPanel;
     private JPanel sidePanel;
     private final ArrayList<ItemPlayerUI> items;
+    private final ArrayList<ItemPlayer> evidenceItems;
     private BoundPanelUI stockBound;
+    private GridPanelUI gridPanelUI;
 
     public StockManagementUI(GameData gameData) throws InvalidUILoadException {
         this.gameData = gameData;
         this.items = new ArrayList<>();
+        this.evidenceItems = new ArrayList<>();
         initialization();
     }
 
@@ -54,8 +57,8 @@ public class StockManagementUI extends JPanel implements UpdateAble {
     }
 
     private void initializeGrid() throws InvalidUILoadException {
-        GridPanelUI gridPanelUI = new GridPanelUI(3, Important.calculateDimension(300));
-        fillGrid(gridPanelUI.getGrid());
+        gridPanelUI = new GridPanelUI(3, Important.calculateDimension(300));
+        fillGrid();
         gridPanelUI.finishGrid();
 
         JScrollPane scrollPane = initializeScrollPane(gridPanelUI, 16);
@@ -63,16 +66,21 @@ public class StockManagementUI extends JPanel implements UpdateAble {
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void fillGrid(JPanel grid) throws InvalidUILoadException {
+    private void fillGrid() throws InvalidUILoadException {
         for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
-            ItemPlayerUI panel = new ItemPlayerUI("/Sprites/UtilityPanels/ITEMPLAYER_PANE.png", itemPlayer, gameData);
-            Dimension dimension = new Dimension(Important.calculateDimension(300), Important.calculateDimension(300));
-            panel.setPreferredSize(dimension);
-            panel.setMaximumSize(dimension);
-            panel.setMaximumSize(dimension);
-            grid.add(panel);
-            items.add(panel);
+            addIntoGrid(itemPlayer);
         }
+    }
+
+    private void addIntoGrid(ItemPlayer itemPlayer) throws InvalidUILoadException {
+        evidenceItems.add(itemPlayer);
+        ItemPlayerUI panel = new ItemPlayerUI("/Sprites/UtilityPanels/ITEMPLAYER_PANE.png", itemPlayer, gameData);
+        Dimension dimension = new Dimension(Important.calculateDimension(300), Important.calculateDimension(300));
+        panel.setPreferredSize(dimension);
+        panel.setMaximumSize(dimension);
+        panel.setMaximumSize(dimension);
+        gridPanelUI.getGrid().add(panel);
+        items.add(panel);
     }
 
 
@@ -99,11 +107,25 @@ public class StockManagementUI extends JPanel implements UpdateAble {
     }
 
     @Override
-    public void update(){
+    public void update() throws InvalidUILoadException {
+        boolean addedNewItem = false;
+        for (ItemPlayer itemPlayer : gameData.getPlayer().getStockItems()) {
+            if(!evidenceItems.contains(itemPlayer)){
+               addIntoGrid(itemPlayer);
+               addedNewItem = true;
+            }
+        }
+
+        if(addedNewItem){
+            gridPanelUI.finishGrid();
+            gridPanelUI.getGrid().revalidate();
+            gridPanelUI.getGrid().repaint();
+        }
+
         for (ItemPlayerUI itemPlayerUI : items){
             itemPlayerUI.update();
-            updateBound();
         }
+        updateBound();
     }
 
     private void updateBound(){

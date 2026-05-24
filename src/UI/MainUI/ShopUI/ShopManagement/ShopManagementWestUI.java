@@ -86,6 +86,7 @@ public class ShopManagementWestUI extends JPanel {
         switch (result.getState()) {
             case DONE: {
                 Important.getAudioManagement().stopSound(previousShop, AudioType.MUSIC);
+                Important.getAudioManagement().playSound("ChangeShop", AudioType.SOUNDS, 0);
                 shopUI.changeCard(gameData.getShopManagement().getCurrentShop().getName());
                 break;
             }
