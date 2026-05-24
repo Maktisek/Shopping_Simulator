@@ -96,6 +96,7 @@ public class Audio {
         if (currentClip != null && !paused) {
             pausePosition = currentClip.getMicrosecondPosition();
             paused = true;
+            shifting = false;
             currentClip.stop();
         }
     }
@@ -114,6 +115,7 @@ public class Audio {
             Thread t = new Thread(() -> {
                 currentClip.setMicrosecondPosition(pausePosition);
                 paused = false;
+                shifting = true;
                 if (currentClip != null) {
                     fadeIn(20);
                 }
@@ -132,8 +134,8 @@ public class Audio {
         }
     }
 
-    public void stopAll(){
-        for (Clip clip: clips){
+    public void stopAll() {
+        for (Clip clip : clips) {
             clip.stop();
         }
     }
@@ -152,7 +154,7 @@ public class Audio {
         float fadePerStep = .1F;
 
         if (currDB > targetDB) {
-            if(!paused) {
+            if (!paused) {
                 while (currDB > targetDB && shifting) {
                     currDB -= fadePerStep;
                     gain.setValue(currDB);
@@ -163,7 +165,7 @@ public class Audio {
                 }
             }
         } else if (currDB < targetDB) {
-            if(!paused) {
+            if (!paused) {
                 while (currDB < targetDB && shifting) {
                     currDB += fadePerStep;
                     gain.setValue(currDB);
@@ -253,8 +255,8 @@ public class Audio {
         }
     }
 
-    public void closeAllClips(){
-        for (Clip clip : clips){
+    public void closeAllClips() {
+        for (Clip clip : clips) {
             this.shifting = false;
             clip.stop();
             clip.close();

@@ -6,7 +6,7 @@
       "description": "Buy 100 products",
       "bound": 100,
       "current": 0,
-      "reward": 500
+      "reward": 5000
     },
     {
       "type": "BUY",
@@ -14,7 +14,7 @@
       "description": "Buy 1K products",
       "bound": 1000,
       "current": 0,
-      "reward": 2000
+      "reward": 20000
     },
     {
       "type": "BUY",
@@ -22,7 +22,7 @@
       "description": "Buy 10K products",
       "bound": 10000,
       "current": 0,
-      "reward": 5000
+      "reward": 50000
     },
     {
       "type": "BUY",
@@ -30,7 +30,7 @@
       "description": "Buy 100K products",
       "bound": 100000,
       "current": 0,
-      "reward": 10000
+      "reward": 100000
     },
     {
       "type": "BUY",
@@ -38,7 +38,15 @@
       "description": "Buy 1M products",
       "bound": 1000000,
       "current": 0,
-      "reward": 100000
+      "reward": 10000000
+    },
+    {
+      "type": "BUY",
+      "name": "No sugar mommy needed",
+      "description": "Buy 10M products",
+      "bound": 10000000,
+      "current": 0,
+      "reward": 100000000
     },
     {
       "type": "SELL",
@@ -46,7 +54,7 @@
       "description": "Sell 100 products",
       "bound": 100,
       "current": 0,
-      "reward": 500
+      "reward": 5000
     },
     {
       "type": "SELL",
@@ -54,7 +62,7 @@
       "description": "Sell 1K products",
       "bound": 1000,
       "current": 0,
-      "reward": 2000
+      "reward": 20000
     },
     {
       "type": "SELL",
@@ -62,7 +70,7 @@
       "description": "Sell 10K products",
       "bound": 10000,
       "current": 0,
-      "reward": 5000
+      "reward": 50000
     },
     {
       "type": "SELL",
@@ -70,15 +78,23 @@
       "description": "Sell 100K products",
       "bound": 100000,
       "current": 0,
-      "reward": 10000
+      "reward": 100000
     },
     {
       "type": "SELL",
-      "name": "Basically millionaire",
+      "name": "Sold kidneys",
       "description": "Sell 1M products",
       "bound": 1000000,
       "current": 0,
-      "reward": 100000
+      "reward": 1000000
+    },
+    {
+      "type": "SELL",
+      "name": "Post-selling depression",
+      "description": "Sell 10M products",
+      "bound": 10000000,
+      "current": 0,
+      "reward": 10000000
     },
     {
       "type": "MONEY",
@@ -114,11 +130,19 @@
     },
     {
       "type": "MONEY",
-      "name": "Jirka would be proud",
+      "name": "Where are the girls?",
       "description": "Earn 10M Tony Franks",
       "bound": 10000000,
       "current": 0,
       "reward": 8000000
+    },
+    {
+      "type": "MONEY",
+      "name": "Jirka would be proud",
+      "description": "Earn 100M Tony Franks",
+      "bound": 100000000,
+      "current": 0,
+      "reward": 80000000
     }
   ]
 }
