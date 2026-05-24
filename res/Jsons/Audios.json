@@ -63,6 +63,16 @@
       "music": true,
       "soundPool" : 2,
       "shifting" : true
+    },
+    {
+      "title": "MINES",
+      "filePath": "/Audio/Music/Mines.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": 0.7,
+      "music": true,
+      "soundPool" : 2,
+      "shifting" : true
     }
   ],
   "sounds": [

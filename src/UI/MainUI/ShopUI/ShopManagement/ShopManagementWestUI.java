@@ -62,13 +62,15 @@ public class ShopManagementWestUI extends JPanel {
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         previous.addActionListener(e -> {
+            String previousShop = gameData.getShopManagement().getCurrentShop().getName();
             CommandResult result = new ChangeShopLeftCommand(gameData).execute();
-            proceedCommandResult(result, ShopDirection.LEFT);
+            proceedCommandResult(result, ShopDirection.LEFT, previousShop);
         });
 
         next.addActionListener(e -> {
+            String previousShop = gameData.getShopManagement().getCurrentShop().getName();
             CommandResult result = new ChangeShopRightCommand(gameData).execute();
-            proceedCommandResult(result, ShopDirection.RIGHT);
+            proceedCommandResult(result, ShopDirection.RIGHT, previousShop);
         });
 
         add(previous);
@@ -77,14 +79,14 @@ public class ShopManagementWestUI extends JPanel {
         add(Box.createVerticalStrut(20));
     }
 
-    private void proceedCommandResult(CommandResult result, ShopDirection shopDirection) {
+    private void proceedCommandResult(CommandResult result, ShopDirection shopDirection, String previousShop) {
         System.out.println(result.getMessage());
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         ShopManagementUI shopUI = (ShopManagementUI) SwingUtilities.getAncestorOfClass(ShopManagementUI.class, this);
         switch (result.getState()) {
             case DONE: {
+                Important.getAudioManagement().stopSound(previousShop, AudioType.MUSIC);
                 shopUI.changeCard(gameData.getShopManagement().getCurrentShop().getName());
-                Important.getAudioManagement().stopSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                 break;
             }
             case FAILED_ISSUE: {

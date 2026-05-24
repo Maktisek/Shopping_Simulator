@@ -25,12 +25,18 @@ public class ItemShop implements Item, Serializable {
 
     private double calculateBonusPenalization() {
         double result = ((double) currentDayAmount / this.priceSensitivity);
-
-        return Math.min(result, 0.25);
+        if (item.getName().equalsIgnoreCase("APPLE")){
+            System.out.println("For item " + item.getName());
+            System.out.println("Calculated: " + result);
+            System.out.println("Returning: "+ Math.min(result, 0.125));
+            System.out.println("Penalization: " + penalization);
+            System.out.println("Final penalization: " + penalization * (1 + Math.min(result, 0.125)));
+        }
+        return Math.min(result, 0.125);
     }
 
-    public void updatePenalization(double change) {
-        double afterChange = this.penalization + (change * (5 / (penalization) / 2));
+    public void updatePenalization(double change, double rebirthCoefficient) {
+        double afterChange = (this.penalization + (change * (5 / (penalization) / 2))) * rebirthCoefficient;
         if (afterChange < 0.9) {
             this.penalization = 0.9;
         } else if (afterChange > 1.2) {
@@ -40,8 +46,8 @@ public class ItemShop implements Item, Serializable {
         }
     }
 
-    public void newDayPenalization(double change) {
-        double afterChange = this.penalization + change;
+    public void newDayPenalization(double change, double rebirthCoefficient) {
+        double afterChange = (this.penalization + change) * rebirthCoefficient;
         this.penalization = Math.max(afterChange, 0.9);
     }
 

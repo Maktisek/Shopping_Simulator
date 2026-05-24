@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Rebirth implements Serializable {
 
     private double upgradeMultiplier;
+    private double penalizationMultiplier;
     private int price;
     private int level;
     private int capital;
@@ -17,6 +18,7 @@ public class Rebirth implements Serializable {
 
     public void updateRebirth(){
         updateUpgradeMultiplier();
+        updatePenalizationMultiplier();
         updateCapital();
         updatePrice();
         this.level++;
@@ -26,8 +28,13 @@ public class Rebirth implements Serializable {
         this.upgradeMultiplier = this.upgradeMultiplier * (1 + ((double) 2 / level));
     }
 
+    private void updatePenalizationMultiplier(){
+        this.penalizationMultiplier = (1 / Math.pow(level, 0.005));
+        System.out.println(this.penalizationMultiplier);
+    }
+
     private void updatePrice(){
-        this.price = (int) (this.price * (1 + (level * 5)));
+        this.price = (int) (this.price * (1 + (level * 2)));
     }
 
     private void updateCapital(){
@@ -36,6 +43,14 @@ public class Rebirth implements Serializable {
 
     public double getUpgradeMultiplier() {
         return upgradeMultiplier;
+    }
+
+    public double getPenalizationMultiplier() {
+        return penalizationMultiplier;
+    }
+
+    public void setPenalizationMultiplier(double penalizationMultiplier) {
+        this.penalizationMultiplier = penalizationMultiplier;
     }
 
     public void setUpgradeMultiplier(double upgradeMultiplier) {

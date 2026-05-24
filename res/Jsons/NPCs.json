@@ -1,6 +1,6 @@
 [
   {
-    "shopName": "Test",
+    "shopName": "PIER",
     "npc": {
       "quantityWeight": 15,
       "convenienceWeight": 10,
@@ -50,6 +50,74 @@
             "interval" : {
               "upperBound": 13,
               "lowerBound" : 7
+            }
+          }
+        },
+        {
+          "item" : null,
+          "amountManager" : {
+            "max" : 10,
+            "current" : 1,
+            "interval" : {
+              "upperBound": 2,
+              "lowerBound" : 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "shopName": "MINES",
+    "npc": {
+      "quantityWeight": 10,
+      "convenienceWeight": 25,
+      "demand": [
+        null,
+        null
+      ],
+      "items": [
+        {
+          "item" : null,
+          "amountManager" : {
+            "max" : 100,
+            "current" : 15,
+            "interval" : {
+              "upperBound": 18,
+              "lowerBound" : 15
+            }
+          }
+        },
+        {
+          "item" : null,
+          "amountManager" : {
+            "max" : 60,
+            "current" : 5,
+            "interval" : {
+              "upperBound": 12,
+              "lowerBound" : 6
+            }
+          }
+        },
+        {
+          "item" : null,
+          "amountManager" : {
+            "max" : 20,
+            "current" : 2,
+            "interval" : {
+              "upperBound": 10,
+              "lowerBound" : 7
+            }
+          }
+        },
+        {
+          "item" : null,
+          "amountManager" : {
+            "max" : 14,
+            "current" : 5,
+            "interval" : {
+              "upperBound": 5,
+              "lowerBound" : 4
             }
           }
         },

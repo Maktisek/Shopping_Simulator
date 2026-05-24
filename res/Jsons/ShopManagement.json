@@ -18,7 +18,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 80,
+          "priceSensitivity": 280,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 100,
@@ -37,7 +37,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 50,
+          "priceSensitivity": 270,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 50,
@@ -56,7 +56,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 30,
+          "priceSensitivity": 250,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 35,
@@ -75,7 +75,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 20,
+          "priceSensitivity": 230,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 25,
@@ -94,13 +94,119 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 10,
+          "priceSensitivity": 200,
           "daysToBeDelivered" : 3,
           "amountManager" : {
             "max" : 10,
             "current" : 1,
             "interval" : {
               "upperBound": 3,
+              "lowerBound" : 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MINES",
+      "npc": null,
+      "shopKey": {
+        "price": 2000,
+        "unlocked": true,
+        "rebirthLevel" : 1
+      },
+      "items": [
+        {
+          "item": {
+            "name": "STONE",
+            "basePrice": 350,
+            "currentPrice": 350
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 280,
+          "daysToBeDelivered" : 1,
+          "amountManager" : {
+            "max" : 100,
+            "current" : 80,
+            "interval" : {
+              "upperBound": 12,
+              "lowerBound" : 8
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "COAL",
+            "basePrice": 450,
+            "currentPrice": 450
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 270,
+          "daysToBeDelivered" : 1,
+          "amountManager" : {
+            "max" : 60,
+            "current" : 30,
+            "interval" : {
+              "upperBound": 12,
+              "lowerBound" : 6
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "RUBY",
+            "basePrice": 550,
+            "currentPrice": 550
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 250,
+          "daysToBeDelivered" : 2,
+          "amountManager" : {
+            "max" : 40,
+            "current" : 10,
+            "interval" : {
+              "upperBound": 8,
+              "lowerBound" : 4
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "EMERALD",
+            "basePrice": 800,
+            "currentPrice": 800
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 230,
+          "daysToBeDelivered" : 2,
+          "amountManager" : {
+            "max" : 30,
+            "current" : 2,
+            "interval" : {
+              "upperBound": 5,
+              "lowerBound" : 3
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "DIAMOND",
+            "basePrice": 1000,
+            "currentPrice": 1000
+          },
+          "penalization": 1,
+          "currentDayAmount": 0,
+          "priceSensitivity": 200,
+          "daysToBeDelivered" : 3,
+          "amountManager" : {
+            "max" : 5,
+            "current" : 0,
+            "interval" : {
+              "upperBound": 2,
               "lowerBound" : 1
             }
           }

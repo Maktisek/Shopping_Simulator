@@ -17,8 +17,8 @@ public class Shop implements Serializable {
     private ShopKey shopKey;
 
 
-    public void buyItem(int index, int amount){
-        items[index].updatePenalization(0.06 * amount);
+    public void buyItem(int index, int amount, double rebirthCoefficient){
+        items[index].updatePenalization(0.004 * amount, rebirthCoefficient);
         items[index].updateCurrentDayAmount(amount);
     }
 
@@ -28,14 +28,14 @@ public class Shop implements Serializable {
         this.npc.setNewPrices(player, shop);
     }
 
-    public void newDay(Player player) throws WrongItemException{
-        updateItems();
+    public void newDay(Player player, double rebirthCoefficient) throws WrongItemException{
+        updateItems(rebirthCoefficient);
         updateNPC(player);
     }
 
-    private void updateItems(){
+    private void updateItems(double rebirthCoefficient){
         for (ItemShop item : items){
-            item.newDayPenalization(-0.08);
+            item.newDayPenalization(-0.02, rebirthCoefficient);
             item.getAmountManager().stockIn();
             try {
                 item.updatePrice();

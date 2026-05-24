@@ -48,7 +48,7 @@ public class BuyProductCommand extends Command {
         getStatsCounter().setBought(getStatsCounter().getBought() + amount);
         getStatsCounter().setCosts(getStatsCounter().getCosts() + (amount * price));
         product.getAmountManager().decrement(amount);
-        getCurrentShop().buyItem(index, amount);
+        getCurrentShop().buyItem(index, amount, getUpgradeManagement().getRebirth().getPenalizationMultiplier());
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);
         getAchievementManagement().updateAchievement(AchievementTypes.BUY, amount);

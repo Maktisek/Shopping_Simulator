@@ -70,11 +70,11 @@ public class ShopManagement implements Serializable {
         return rightShops.peek();
     }
 
-    public void setNewDays(Player player) {
+    public void setNewDays(Player player, double rebirthCoefficient) {
         for (Shop shop : shops) {
             if (shop.getShopKey().isUnlocked()) {
                 try {
-                    shop.newDay(player);
+                    shop.newDay(player, rebirthCoefficient);
                 } catch (WrongItemException e) {
                     e.printStackTrace();
                 }

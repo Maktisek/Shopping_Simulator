@@ -23,7 +23,7 @@ public class NewDayCommand extends Command {
         }catch (InvalidPlayerActionException e){
             return new CommandResult(e.getMessage(), CommandState.FAILED_ISSUE);
         }
-        getShopManagement().setNewDays(getPlayer());
+        getShopManagement().setNewDays(getPlayer(), getUpgradeManagement().getRebirth().getPenalizationMultiplier());
         getDayManagement().nextDay();
         getTax().incrementDayNumber();
         getTax().calculateNewDay();
