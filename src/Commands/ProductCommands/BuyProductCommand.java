@@ -19,7 +19,7 @@ import Upgrade.Utilities.UpgradeNames;
  *     This command should be only executed from the current shop, otherwise the index do not correspond with the desired product.
  * </p>
  * <p>
- *    If daily buy limit is reached, stocks limit is reached, the product is out of stocks or player does not have money then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ *    If daily buy limit is reached, stocks limit is reached, the product is out of stocks or player does not have enough money then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
  * </p>
  * <p>
  *     If the action was successful, then {@link CommandResult} with {@link CommandState#DONE} is returned.
