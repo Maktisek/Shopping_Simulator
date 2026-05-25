@@ -9,6 +9,21 @@ import Items.ItemNPC;
 import Player.Exceptions.InvalidPlayerActionException;
 import Upgrade.Utilities.UpgradeNames;
 
+/**
+ * This command represents a system of selling a product.
+ * <p>
+ * {@link #index} stands for the index of the product, which is located in {@link NPCs.NPC} in current shop.
+ * </p>
+ * <p>
+ * This command should be only executed from the current shop, otherwise the index do not correspond with the desired product.
+ * </p>
+ * <p>
+ * If daily sell limit is reached, the product is out of demand or an unexpected issue occurs then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * </p>
+ * <p>
+ * If the action was successful, then {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * </p>
+ */
 public class SellProductCommand extends Command {
 
     private final int index;
