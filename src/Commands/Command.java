@@ -10,36 +10,39 @@ import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
 
+/**
+ * This class represents an abstract class, which is responsible for all commands in the system.
+ * <p>
+ *     {@link #gameData} is needed for almost every single command, that is why it is originally declared here
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public abstract class Command {
 
     private GameData gameData;
-    private CommandResult result;
 
 
     public Command(GameData gameData) {
-        this.result = null;
         this.gameData = gameData;
     }
 
     public Command() {
-        this.result = null;
     }
 
+    /**
+     * This abstract method represents an execution of a command.
+     * <p>
+     *     Every single command gets his own {@code execute()} method implementation.
+     * </p>
+     * It is just the base of the command design pattern.
+     * @return an instance of {@link CommandResult} with all information about the process.
+     */
     public abstract CommandResult execute();
 
 
     public GameData getGameData() {
         return gameData;
     }
-
-    public CommandResult getResult() {
-        return result;
-    }
-
-    public void setResult(CommandResult result) {
-        this.result = result;
-    }
-
     public Player getPlayer() {
         return this.gameData.getPlayer();
     }
