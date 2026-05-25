@@ -3,10 +3,7 @@ package UI.MainUI.ShopUI.ShopManagement;
 import Commands.AudioCommands.SwapMuteCommand;
 import Commands.CommandResult;
 import Game.GameData;
-import UI.CreationUI.Buttons.ButtonType;
-import UI.CreationUI.Buttons.ChangingButton;
-import UI.CreationUI.Buttons.CustomButton;
-import UI.CreationUI.Buttons.MultiplierButton;
+import UI.CreationUI.Buttons.*;
 import UI.CreationUI.Utilities.UpdateAble;
 import UI.DialogUI.DecisionDialogs.NewRebirthDialog;
 import UI.DialogUI.SaveDialogs.SaveAndQuitDialogUI;
@@ -124,12 +121,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMuteButton() throws InvalidUILoadException {
-        ChangingButton muteButton = new ChangingButton("/Sprites/ButtonSprites/UNMUTE_BUTTON.png", "/Sprites/ButtonSprites/MUTE_BUTTON.png", 100, 100, gameData);
-        muteButton.addActionListener(e -> {
-            CommandResult result = new SwapMuteCommand().execute();
-            System.out.println(result.getMessage());
-        });
-
+        ChangingButton muteButton = new MuteButton().getMuteButton();
         add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         add(muteButton);
     }

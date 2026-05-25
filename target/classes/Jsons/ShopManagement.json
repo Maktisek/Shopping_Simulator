@@ -112,8 +112,8 @@
       "npc": null,
       "shopKey": {
         "price": 2000,
-        "unlocked": true,
-        "rebirthLevel" : 1
+        "unlocked": false,
+        "rebirthLevel" : 2
       },
       "items": [
         {

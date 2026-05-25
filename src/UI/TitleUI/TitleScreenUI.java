@@ -1,11 +1,14 @@
 package UI.TitleUI;
 
 import AudioSystem.AudioType;
+import Commands.AudioCommands.SwapMuteCommand;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.SaveCommands.LoadSaveCommand;
 import Game.GameData;
 import Game.Initialization;
+import UI.CreationUI.Buttons.ChangingButton;
+import UI.CreationUI.Buttons.MuteButton;
 import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Buttons.ButtonType;
 import UI.CreationUI.Buttons.CustomTitleButton;
@@ -52,6 +55,7 @@ public class TitleScreenUI extends FrameBaseUI {
         this.setMinimumSize(new Dimension(Important.calculateDimension(600), Important.calculateDimension(600)));
         this.setLocationRelativeTo(null);
         initializeBackground();
+        initializeSouthPanel();
         initializeOverlay();
         initializeLayerPane();
         setCursor();
@@ -145,6 +149,21 @@ public class TitleScreenUI extends FrameBaseUI {
         panel.add(loadGame);
         panel.add(Box.createVerticalStrut(Important.calculateDimension(12)));
         panel.add(quit);
+    }
+
+    private void initializeSouthPanel() throws InvalidUILoadException {
+        JPanel wrapper = new JPanel();
+        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
+        wrapper.setOpaque(false);
+
+        initializeMuteButton(wrapper);
+
+        background.add(wrapper, BorderLayout.SOUTH);
+    }
+
+    private void initializeMuteButton(JPanel wrapper) throws InvalidUILoadException {
+        ChangingButton muteButton = new MuteButton().getMuteButton();
+        wrapper.add(muteButton);
     }
 
     private void initializeOverlay() {

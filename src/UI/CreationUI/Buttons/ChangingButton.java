@@ -10,11 +10,9 @@ import java.awt.event.MouseEvent;
 
 public class ChangingButton extends CustomBaseChangingButton {
 
-    private final GameData gameData;
 
-    public ChangingButton(String filePathOne, String filePathTwo,int width, int height, GameData gameData) throws InvalidUILoadException {
+    public ChangingButton(String filePathOne, String filePathTwo,int width, int height) throws InvalidUILoadException {
         super(width, height, ButtonType.ENTER, filePathOne, filePathTwo);
-        this.gameData = gameData;
         initialization();
     }
 
@@ -74,9 +72,5 @@ public class ChangingButton extends CustomBaseChangingButton {
             return 0;
         }
         return 5;
-    }
-
-    public GameData getGameData() {
-        return gameData;
     }
 }
