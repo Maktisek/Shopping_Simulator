@@ -30,7 +30,7 @@ public class MyFrame extends FrameBaseUI {
 
     @Override
     public void refreshUI() throws InvalidUILoadException {
-        Important.getAudioManagement().pauseAll();
+        Important.getAudioManagement().pauseAllMusic();
         this.getContentPane().removeAll();
         this.mainUI.stopAllTimers();
         this.mainUI = new MainUI(this.gameData);
