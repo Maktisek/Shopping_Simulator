@@ -3,8 +3,7 @@ package DayCycle;
 import java.io.Serializable;
 
 /**
- * This enum represents day names.
- * That is all:)
+ * This enum represents each day names.
  * @author Matěj Pospíšil
  */
 public enum DayName implements Serializable {
