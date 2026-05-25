@@ -23,7 +23,7 @@ import java.io.Serializable;
  */
 public class Day implements Serializable {
 
-    private DayNames dayName;
+    private DayName dayName;
     private final int numberOfTheDay;
     private int dayIncome;
     private int daySpending;
@@ -44,7 +44,7 @@ public class Day implements Serializable {
      * @param numberOfTheDay the number of the new day
      * @param dayName the name of the new day
      */
-    public Day(int numberOfTheDay, DayNames dayName) {
+    public Day(int numberOfTheDay, DayName dayName) {
         this.numberOfTheDay = numberOfTheDay;
         this.dayIncome = 0;
         this.daySpending = 0;
@@ -85,11 +85,11 @@ public class Day implements Serializable {
         return dayIncome;
     }
 
-    public DayNames getDayName() {
+    public DayName getDayName() {
         return dayName;
     }
 
-    public void setDayName(DayNames dayName) {
+    public void setDayName(DayName dayName) {
         this.dayName = dayName;
     }
 
