@@ -111,13 +111,6 @@ public class Player implements Serializable {
         return false;
     }
 
-//    public void loadItems(ArrayList<Shop> shops) throws WrongItemException {
-//        for (Shop shop : shops) {
-//            for (int i = 0; i < shop.getItems().length; i++) {
-//                this.stockItems.add(new ItemPlayer(shop.getItems()[i].getItem().getName()));
-//            }
-//        }
-//    }
 
     public void loadItems(ItemShop[] itemShop) throws WrongItemException {
         for (ItemShop item : itemShop) {
