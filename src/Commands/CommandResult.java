@@ -1,5 +1,12 @@
 package Commands;
 
+/**
+ * This class is responsible for holding data about the process of a command.
+ * <p>
+ *     It's data are then processed - the UI can react to what happened.
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class CommandResult {
 
     private String message;
