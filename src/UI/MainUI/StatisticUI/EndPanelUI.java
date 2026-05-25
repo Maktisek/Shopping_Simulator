@@ -1,7 +1,7 @@
 package UI.MainUI.StatisticUI;
 
 import Commands.CommandResult;
-import Commands.UserInterfaceCommands.TurnOfTheGame;
+import Commands.UserInterfaceCommands.TurnOffTheGame;
 import Game.GameData;
 import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Buttons.ButtonType;
@@ -29,7 +29,7 @@ public class EndPanelUI extends GameDataInfoUI {
             mainUI.hideDialog();
 
             SwingUtilities.invokeLater(() -> {
-                CommandResult result = new TurnOfTheGame(mainUI).execute();
+                CommandResult result = new TurnOffTheGame(mainUI).execute();
                 System.out.println(result.getMessage());
             });
         });

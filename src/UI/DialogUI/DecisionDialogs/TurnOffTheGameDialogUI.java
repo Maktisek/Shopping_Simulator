@@ -1,7 +1,7 @@
 package UI.DialogUI.DecisionDialogs;
 
 import Commands.CommandResult;
-import Commands.UserInterfaceCommands.TurnOfTheGame;
+import Commands.UserInterfaceCommands.TurnOffTheGame;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 
@@ -15,7 +15,7 @@ public class TurnOffTheGameDialogUI extends YesNoDialogUI {
 
     @Override
     public void initializeBuyButton() {
-        CommandResult result = new TurnOfTheGame(mainUI).execute();
+        CommandResult result = new TurnOffTheGame(mainUI).execute();
         System.out.println(result.getMessage());
     }
 }

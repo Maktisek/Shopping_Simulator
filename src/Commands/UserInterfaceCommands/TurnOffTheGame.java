@@ -9,11 +9,22 @@ import UI.MainUI.MainUI;
 import UI.TitleUI.TitleScreenUI;
 import Utilities.Important;
 
-public class TurnOfTheGame extends Command {
+/**
+ * This command represents a system of turning of the main game and loading back again the title screen.
+ * <p>
+ * {@link #mainUI} stands for the instance of {@link MainUI}, which should be turned off.
+ * </p>
+ * If there is a problem with loading the TitleScreenUI then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned
+ * <p>
+ *     Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned
+ * </p>
+ * @author Matěj Pospíšil
+ */
+public class TurnOffTheGame extends Command {
 
     private final MainUI mainUI;
 
-    public TurnOfTheGame(MainUI mainUI) {
+    public TurnOffTheGame(MainUI mainUI) {
         this.mainUI = mainUI;
     }
 
