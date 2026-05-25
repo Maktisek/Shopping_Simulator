@@ -10,6 +10,22 @@ import Items.ItemShop;
 import Player.Exceptions.InvalidPlayerActionException;
 import Upgrade.Utilities.UpgradeNames;
 
+/**
+ * This command represents a system of buying a product.
+ * <p>
+ * {@link #index} stands for the index of the product in the current shop.
+ * </p>
+ * <p>
+ *     This command should be only executed from the current shop, otherwise the index do not correspond with the desired product.
+ * </p>
+ * <p>
+ *    If daily buy limit is reached, stocks limit is reached, the product is out of stocks or player does not have money {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * </p>
+ * <p>
+ *     If the action was successful, then {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class BuyProductCommand extends Command {
 
     private final int index;
