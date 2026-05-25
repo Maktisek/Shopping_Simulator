@@ -6,6 +6,19 @@ import Commands.CommandState;
 import Game.GameData;
 import Player.Exceptions.InvalidPlayerActionException;
 
+/**
+ * This command represents a system, which sets new day.
+ * <p>
+ *     If the player is bankrupt then {@link CommandResult} with {@link CommandState#FAILED_END} is returned.
+ * </p>
+ * <p>
+ *     If any unexpected mistake happens during player undelivered update process then {@link CommandResult} with {@link CommandState#FAILED_END} is returned.
+ * </p>
+ * <p>
+ *     If the whole process was successful then {@link CommandResult} with {@link CommandState#DONE} is returned
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class NewDayCommand extends Command {
 
     public NewDayCommand(GameData gameData) {
