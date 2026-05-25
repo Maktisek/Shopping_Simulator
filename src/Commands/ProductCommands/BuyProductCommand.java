@@ -1,6 +1,6 @@
 package Commands.ProductCommands;
 
-import Achievements.AchievementTypes;
+import Achievements.AchievementType;
 import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -51,7 +51,7 @@ public class BuyProductCommand extends Command {
         getCurrentShop().buyItem(index, amount, getUpgradeManagement().getRebirth().getPenalizationMultiplier());
         getDayManagement().getCurrentDay().incrementDayBoughtAmount(amount);
         getDayManagement().getCurrentDay().incrementDaySpending(amount * price);
-        getAchievementManagement().updateAchievement(AchievementTypes.BUY, amount);
+        getAchievementManagement().updateAchievement(AchievementType.BUY, amount);
         return new CommandResult("Bought " + amount + "x " + product.getItem().getName(), CommandState.DONE);
     }
 }

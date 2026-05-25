@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * This class represents an achievement. The game calls it "goal" because of space limitation.
  * <p>
- *     Every single achievement has its own type which is represented by {@link AchievementTypes} enum.
+ *     Every single achievement has its own type which is represented by {@link AchievementType} enum.
  *     The achievement holds its current state and its bound. If {@code current} equals, or it is larger than {@code bound},
  *     then the achievement is marked as done.
  * </p>
@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Achievement implements Serializable {
 
-    private AchievementTypes type;
+    private AchievementType type;
     private String name;
     private String description;
     private int bound;
@@ -42,11 +42,11 @@ public class Achievement implements Serializable {
         return current >= bound;
     }
 
-    public AchievementTypes getType() {
+    public AchievementType getType() {
         return type;
     }
 
-    public void setType(AchievementTypes type) {
+    public void setType(AchievementType type) {
         this.type = type;
     }
 

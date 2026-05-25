@@ -23,7 +23,7 @@ import java.util.Queue;
 public class AchievementManagement implements Serializable {
 
     private Queue<Achievement> freshAchievements;
-    private HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements;
+    private HashMap<AchievementType, ArrayList<Achievement>> possibleAchievements;
     private final ArrayList<Achievement> doneAchievements;
     private ArrayList<Achievement> loadedAchievements;
 
@@ -35,13 +35,13 @@ public class AchievementManagement implements Serializable {
     }
 
     public void loadPossibleAchievements() {
-        for (int i = 0; i < AchievementTypes.values().length; i++) {
-            AchievementTypes currentType = AchievementTypes.values()[i];
+        for (int i = 0; i < AchievementType.values().length; i++) {
+            AchievementType currentType = AchievementType.values()[i];
             this.possibleAchievements.put(currentType, findInLoadedAchievements(currentType));
         }
     }
 
-    private ArrayList<Achievement> findInLoadedAchievements(AchievementTypes type) {
+    private ArrayList<Achievement> findInLoadedAchievements(AchievementType type) {
         ArrayList<Achievement> result = new ArrayList<>();
         for (Achievement achievement : loadedAchievements) {
             if (achievement.getType() == type) {
@@ -56,7 +56,7 @@ public class AchievementManagement implements Serializable {
      * then it is added into {@code freshAchievement} and {@code doneAchievements}
      */
     private void executeDoneAchievements() {
-        for (AchievementTypes key : possibleAchievements.keySet()) {
+        for (AchievementType key : possibleAchievements.keySet()) {
             ArrayList<Achievement> possible = possibleAchievements.get(key);
             for (Achievement achievement : possible) {
                 if (achievement.isDone() && !doneAchievements.contains(achievement)) {
@@ -73,7 +73,7 @@ public class AchievementManagement implements Serializable {
      * @return true if yes, false if not
      */
     public boolean checkForUnclaimed() {
-        for (AchievementTypes key : possibleAchievements.keySet()) {
+        for (AchievementType key : possibleAchievements.keySet()) {
             ArrayList<Achievement> possible = possibleAchievements.get(key);
             for (Achievement achievement : possible) {
                 if (achievement.isDone() && achievement.getReward() != 0) {
@@ -89,7 +89,7 @@ public class AchievementManagement implements Serializable {
      * @param type the type of achievements to be updated
      * @param change the amount of which is the {@code current} of all found achievements incremented
      */
-    public void updateAchievement(AchievementTypes type, int change) {
+    public void updateAchievement(AchievementType type, int change) {
         ArrayList<Achievement> temp = possibleAchievements.get(type);
         if (temp != null) {
             for (Achievement achievement : temp) {
@@ -121,11 +121,11 @@ public class AchievementManagement implements Serializable {
         this.loadedAchievements = loadedAchievements;
     }
 
-    public HashMap<AchievementTypes, ArrayList<Achievement>> getPossibleAchievements() {
+    public HashMap<AchievementType, ArrayList<Achievement>> getPossibleAchievements() {
         return possibleAchievements;
     }
 
-    public void setPossibleAchievements(HashMap<AchievementTypes, ArrayList<Achievement>> possibleAchievements) {
+    public void setPossibleAchievements(HashMap<AchievementType, ArrayList<Achievement>> possibleAchievements) {
         this.possibleAchievements = possibleAchievements;
     }
 

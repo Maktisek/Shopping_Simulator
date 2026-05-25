@@ -1,7 +1,7 @@
 package Commands.AchievementCommands;
 
 import Achievements.Achievement;
-import Achievements.AchievementTypes;
+import Achievements.AchievementType;
 import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -22,7 +22,7 @@ public class ClaimAchievementRewardCommand extends Command {
         int reward = achievement.returnReward();
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() + reward);
         getDayManagement().getCurrentDay().incrementDayIncome(reward);
-        getAchievementManagement().updateAchievement(AchievementTypes.MONEY, reward);
+        getAchievementManagement().updateAchievement(AchievementType.MONEY, reward);
         return new CommandResult("You got " + Important.parseMoney(reward) + " FR as reward from \"" + achievement.getName() +"\"", CommandState.DONE);
     }
 }

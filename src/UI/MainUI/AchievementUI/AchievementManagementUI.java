@@ -1,7 +1,7 @@
 package UI.MainUI.AchievementUI;
 
 import Achievements.Achievement;
-import Achievements.AchievementTypes;
+import Achievements.AchievementType;
 import Game.GameData;
 import UI.CreationUI.Labels.StrokeLabel;
 import UI.CreationUI.Panels.BackgroundPanel;
@@ -66,7 +66,7 @@ public class AchievementManagementUI extends JPanel implements UpdateAble {
     }
 
     private void fillGrid(JPanel wrapper) throws InvalidUILoadException {
-        for (AchievementTypes type : AchievementTypes.values()) {
+        for (AchievementType type : AchievementType.values()) {
             wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
             StrokeLabel typeLabel = new StrokeLabel(type.toString() + " goals", 40);
             typeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

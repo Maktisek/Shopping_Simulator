@@ -1,6 +1,6 @@
 package Commands.ProductCommands;
 
-import Achievements.AchievementTypes;
+import Achievements.AchievementType;
 import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
@@ -42,8 +42,8 @@ public class SellProductCommand extends Command {
         getDayManagement().getCurrentDay().incrementDaySoldAmount(amount);
         int income = amount * price;
         getDayManagement().getCurrentDay().incrementDayIncome(income);
-        getAchievementManagement().updateAchievement(AchievementTypes.SELL, amount);
-        getAchievementManagement().updateAchievement(AchievementTypes.MONEY, income);
+        getAchievementManagement().updateAchievement(AchievementType.SELL, amount);
+        getAchievementManagement().updateAchievement(AchievementType.MONEY, income);
         return new CommandResult("Sold " + amount + "x " + productName, CommandState.DONE);
     }
 }
