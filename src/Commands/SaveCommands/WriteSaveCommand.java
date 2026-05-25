@@ -7,6 +7,17 @@ import Game.GameData;
 
 import java.io.IOException;
 
+/**
+ * This command represents a system which saves the game.
+ * <p>
+ *     {@link #getGameData()} uses {@link GameData#writeToFile()} method to save the game.
+ * </p>
+ * <p>
+ *     If there is any issue with writing the save file then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * </p>
+ * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * @author Matěj Pospíšil
+ */
 public class WriteSaveCommand extends Command {
 
     public WriteSaveCommand(GameData gameData) {

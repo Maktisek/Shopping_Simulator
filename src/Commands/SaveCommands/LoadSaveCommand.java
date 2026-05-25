@@ -17,6 +17,7 @@ import java.io.IOException;
  *     If there is any issue with reading the save file then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
  * </p>
  * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * @author Matěj Pospíšil
  */
 public class LoadSaveCommand extends Command {
 
