@@ -11,13 +11,13 @@ import java.util.Queue;
  * This class represents a management of achievements. It holds all achievements and manipulates with them.
  * All achievements have to cycle through various collections.
  * <p>
- * {@code freshAchievements} stands for newly achieved achievements
+ * {@link #freshAchievements} stands for newly achieved achievements
  * </p>
- * {@code doneAchievements} stands for all done achievements
+ * {@link #doneAchievements} stands for all done achievements
  * <p>
- * {@code loadedAchievements} all achievements are firstly loaded here so they can be distributed
+ * {@link #loadedAchievements} all achievements are firstly loaded here so they can be distributed
  * </p>
- * {@code possibleAchievements} stands for all unfinished achievements
+ * {@link #possibleAchievements} stands for all unfinished achievements
  * </p>
  */
 public class AchievementManagement implements Serializable {
@@ -53,7 +53,7 @@ public class AchievementManagement implements Serializable {
 
     /**
      * Goes through all achievements and decides which ones are done. If it founds done achievement
-     * then it is added into {@code freshAchievement} and {@code doneAchievements}
+     * then it is added into {@link #freshAchievements} and {@link #doneAchievements}
      */
     private void executeDoneAchievements() {
         for (AchievementType key : possibleAchievements.keySet()) {
@@ -68,7 +68,7 @@ public class AchievementManagement implements Serializable {
     }
 
     /**
-     * Checks if there is any unclaimed achievement among all {@code possibleAchievements}
+     * Checks if there is any unclaimed achievement among all {@link #possibleAchievements}
      * The game cannot end if there is any unclaimed achievement.
      * @return true if yes, false if not
      */
