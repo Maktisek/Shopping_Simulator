@@ -2,8 +2,7 @@ package UI.MainUI.ShopUI.ShopManagement;
 
 import AudioSystem.AudioType;
 import Commands.CommandResult;
-import Commands.ShopCommands.ChangeShopLeftCommand;
-import Commands.ShopCommands.ChangeShopRightCommand;
+import Commands.ShopCommands.ChangeShopCommand;
 import Commands.ShopCommands.ShopDirection;
 import Game.GameData;
 import UI.CreationUI.Buttons.ButtonType;
@@ -63,13 +62,13 @@ public class ShopManagementWestUI extends JPanel {
 
         previous.addActionListener(e -> {
             String previousShop = gameData.getShopManagement().getCurrentShop().getName();
-            CommandResult result = new ChangeShopLeftCommand(gameData).execute();
+            CommandResult result = new ChangeShopCommand(gameData, ShopDirection.LEFT).execute();
             proceedCommandResult(result, ShopDirection.LEFT, previousShop);
         });
 
         next.addActionListener(e -> {
             String previousShop = gameData.getShopManagement().getCurrentShop().getName();
-            CommandResult result = new ChangeShopRightCommand(gameData).execute();
+            CommandResult result = new ChangeShopCommand(gameData, ShopDirection.RIGHT).execute();
             proceedCommandResult(result, ShopDirection.RIGHT, previousShop);
         });
 

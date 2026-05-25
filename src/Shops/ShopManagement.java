@@ -1,5 +1,6 @@
 package Shops;
 
+import Commands.ShopCommands.ShopDirection;
 import Items.Exceptions.WrongItemException;
 import Player.Player;
 
@@ -24,12 +25,55 @@ public class ShopManagement implements Serializable {
         }
     }
 
-    public void switchLeft() {
+    public void switchFromStack(ShopDirection direction){
+        switch (direction){
+            case LEFT -> switchLeft();
+            case RIGHT -> switchRight();
+        }
+    }
+
+    public boolean isSwitch(ShopDirection direction){
+        switch (direction){
+            case LEFT -> {
+                return !isSwitchLeft();
+            }
+            case RIGHT -> {
+                return !isSwitchRight();
+            }
+        }
+        return true;
+    }
+
+    public boolean isBought(ShopDirection direction){
+        switch (direction){
+            case RIGHT -> {
+                return boughtRight();
+            }
+            case LEFT -> {
+                return boughtLeft();
+            }
+        }
+        return false;
+    }
+
+    public Shop peek(ShopDirection direction){
+        switch (direction){
+            case LEFT -> {
+                return peekLeft();
+            }
+            case RIGHT -> {
+                return peekRight();
+            }
+        }
+        return null;
+    }
+
+    private void switchLeft() {
         rightShops.push(currentShop);
         currentShop = leftShops.pop();
     }
 
-    public boolean isSwitchLeft() {
+    private boolean isSwitchLeft() {
         try {
             leftShops.peek();
         } catch (EmptyStackException e) {
@@ -38,17 +82,17 @@ public class ShopManagement implements Serializable {
         return true;
     }
 
-    public boolean boughtLeft() {
+    private boolean boughtLeft() {
         Shop temp = leftShops.peek();
         return temp.getShopKey().isUnlocked();
     }
 
-    public void switchRight() {
+    private void switchRight() {
         leftShops.push(currentShop);
         currentShop = rightShops.pop();
     }
 
-    public boolean isSwitchRight() {
+    private boolean isSwitchRight() {
         try {
             rightShops.peek();
         } catch (EmptyStackException e) {
@@ -57,16 +101,16 @@ public class ShopManagement implements Serializable {
         return true;
     }
 
-    public boolean boughtRight() {
+    private boolean boughtRight() {
         Shop temp = rightShops.peek();
         return temp.getShopKey().isUnlocked();
     }
 
-    public Shop peekLeft() {
+    private Shop peekLeft() {
         return leftShops.peek();
     }
 
-    public Shop peekRight() {
+    private Shop peekRight() {
         return rightShops.peek();
     }
 

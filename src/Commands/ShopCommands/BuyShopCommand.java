@@ -33,21 +33,13 @@ public class BuyShopCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Shop temp = null;
-        switch (direction) {
-            case LEFT:
-                if (!getShopManagement().isSwitchLeft()) {
-                    return new CommandResult("There is no other shop available", CommandState.FAILED_ISSUE);
-                }
-                temp = getShopManagement().peekLeft();
-                break;
-            case RIGHT:
-                if (!getShopManagement().isSwitchRight()) {
-                    return new CommandResult("There is no other shop available", CommandState.FAILED_ISSUE);
-                }
-                temp = getShopManagement().peekRight();
-                break;
+        Shop temp;
+        if (getShopManagement().isSwitch(direction)) {
+            return new CommandResult("There is no other shop available", CommandState.FAILED_ISSUE);
         }
+        temp = getShopManagement().peek(direction);
+
+
         if (temp.getShopKey().isUnlocked()) {
             return new CommandResult(temp.getName() + " has been already bought", CommandState.FAILED_ISSUE);
         }
@@ -67,10 +59,7 @@ public class BuyShopCommand extends Command {
         } catch (WrongItemException e) {
             return new CommandResult("This should not happen", CommandState.FAILED_ISSUE);
         }
-        switch (direction) {
-            case LEFT -> getShopManagement().switchLeft();
-            case RIGHT -> getShopManagement().switchRight();
-        }
+        getShopManagement().switchFromStack(direction);
         return new CommandResult(temp.getName() + " has been bought", CommandState.DONE);
     }
 }
