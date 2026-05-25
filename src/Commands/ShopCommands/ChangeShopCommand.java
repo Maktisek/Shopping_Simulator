@@ -6,6 +6,18 @@ import Commands.CommandState;
 import Game.GameData;
 import Shops.Shop;
 
+/**
+ * This command represents a system of changing shops.
+ * <p>
+ *     {@link #direction} determines in which direction should the shop be changed.
+ * </p>
+ * If there is no shop in the given direction then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * <p>
+ *     If the shop in the given direction has not been bought then {@link CommandResult} with {@link CommandState#FAILED_BUY} is returned.
+ * </p>
+ * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * @author Matěj Pospíšil
+ */
 public class ChangeShopCommand extends Command {
 
     private final ShopDirection direction;
