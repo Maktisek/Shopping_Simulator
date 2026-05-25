@@ -2,6 +2,15 @@ package Achievements;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an achievement. The game calls it "goal" because of space limitation.
+ * <p>
+ *     Every single achievement has its own type which is represented by {@link AchievementTypes} enum.
+ *     The achievement holds its current state and its bound. If {@code current} equals, or it is larger than {@code bound},
+ *     then the achievement is marked as done.
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class Achievement implements Serializable {
 
     private AchievementTypes type;
