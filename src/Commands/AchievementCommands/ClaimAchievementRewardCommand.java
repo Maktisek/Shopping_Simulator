@@ -8,6 +8,10 @@ import Commands.CommandState;
 import Game.GameData;
 import Utilities.Important;
 
+/**
+ * This command represents claiming a reward from achievement.
+ * @author Matěj Pospíšil
+ */
 public class ClaimAchievementRewardCommand extends Command {
 
     private final Achievement achievement;
