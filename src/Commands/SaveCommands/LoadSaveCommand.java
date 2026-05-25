@@ -7,6 +7,17 @@ import Game.GameData;
 
 import java.io.IOException;
 
+/**
+ * This command represents a loading system of the game from .dat file.
+ * <p>
+ *     {@link #getGameData()} has to be rewritten through {@link GameData#copyFromLoaded(GameData)}.
+ *     So firstly a new {@link GameData} has to be initialized from the file, and then it is copied into {@link #getGameData()}
+ * </p>
+ * <p>
+ *     If there is any issue with reading the save file then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * </p>
+ * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned.
+ */
 public class LoadSaveCommand extends Command {
 
     public LoadSaveCommand(GameData gameData) {
