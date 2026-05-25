@@ -6,6 +6,17 @@ import Commands.CommandState;
 import Game.GameData;
 import Shops.Shop;
 
+/**
+ * This command represents a system of changing the current shop from left stack in {@link Shops.ShopManagement}
+ * <p>
+ *     If the stack is empty then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned.
+ * </p>
+ * <p>
+ *     If the shop has not been bought then {@link CommandResult} with {@link CommandState#FAILED_BUY} is returned.
+ * </p>
+ * If the action was successful, then {@link CommandResult} with {@link CommandState#DONE} is returned.
+ * @author Matěj Pospíšil
+ */
 public class ChangeShopLeftCommand extends Command {
 
     public ChangeShopLeftCommand(GameData gameData) {
