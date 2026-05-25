@@ -4,23 +4,48 @@ import Utilities.Important;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an individual day.
+ * <p>
+ *     {@link #dayIncome} stands for how much has the player made this day
+ * </p>
+ * <p>
+ *     {@link #daySpending} stands for how much has the player spent this day
+ * </p>
+ * <p>
+ *     {@link #dayBoughtAmount} stands for how many products has the player bought today
+ * </p>
+ * <p>
+ *     {@link #daySoldAmount} stands for how many products has the player sold today
+ * </p>
+ * {@link #dayName} stands for classic english day system (monday - sunday) and it cycles through of it.
+ * @author Matěj Pospíšil
+ */
 public class Day implements Serializable {
 
     private DayNames dayName;
-    private final int number;
+    private final int numberOfTheDay;
     private int dayIncome;
     private int daySpending;
     private int dayBoughtAmount;
     private int daySoldAmount;
 
-    public Day(int number) {
-        this.number = number;
+    /**
+     * This constructor is made just for first day implementation
+     */
+    public Day() {
+        this.numberOfTheDay = 0;
         this.dayIncome = 0;
         this.daySpending = 0;
     }
 
-    public Day(int number, DayNames dayName) {
-        this.number = number;
+    /**
+     * This is the main constructor for creating a new day
+     * @param numberOfTheDay the number of the new day
+     * @param dayName the name of the new day
+     */
+    public Day(int numberOfTheDay, DayNames dayName) {
+        this.numberOfTheDay = numberOfTheDay;
         this.dayIncome = 0;
         this.daySpending = 0;
         this.dayName = dayName;
@@ -52,8 +77,8 @@ public class Day implements Serializable {
         this.daySoldAmount += amount;
     }
 
-    public int getNumber() {
-        return number;
+    public int getNumberOfTheDay() {
+        return numberOfTheDay;
     }
 
     public int getDayIncome() {
@@ -96,6 +121,12 @@ public class Day implements Serializable {
         this.daySpending = daySpending;
     }
 
+    /**
+     * This method is made for writing down summary of a day in {@link UI.MainUI.ShopUI.Days.DaySummaryPanelUI}
+     * @param tax how much is the current tax
+     * @return the text in a specific format, which is divided into two parts by ":".
+     * This output is later used in {@link Important#insertDots(String, int)}
+     */
     public String information(int tax) {
         return "Tax paid:" + Important.parseMoney(tax) + " FR" + "\n" +
                 "Income:" + Important.parseMoney(dayIncome) + " FR" + "\n" +

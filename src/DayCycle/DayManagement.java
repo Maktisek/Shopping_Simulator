@@ -15,7 +15,7 @@ public class DayManagement implements Serializable {
 
     public DayManagement() {
         this.numberOfDays = 0;
-        this.currentDay = new Day(0);
+        this.currentDay = new Day();
         this.daysDatabase = new ArrayList<>();
         this.daysNames = new HashMap<>();
         loadNames();
