@@ -7,6 +7,19 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * This class represents a management of achievements. It holds all achievements and manipulates with them.
+ * All achievements have to cycle through various collections.
+ * <p>
+ * {@code freshAchievements} stands for newly achieved achievements
+ * </p>
+ * {@code doneAchievements} stands for all done achievements
+ * <p>
+ * {@code loadedAchievements} all achievements are firstly loaded here so they can be distributed
+ * </p>
+ * {@code possibleAchievements} stands for all unfinished achievements
+ * </p>
+ */
 public class AchievementManagement implements Serializable {
 
     private Queue<Achievement> freshAchievements;
@@ -38,6 +51,10 @@ public class AchievementManagement implements Serializable {
         return result;
     }
 
+    /**
+     * Goes through all achievements and decides which ones are done. If it founds done achievement
+     * then it is added into {@code freshAchievement} and {@code doneAchievements}
+     */
     private void executeDoneAchievements() {
         for (AchievementTypes key : possibleAchievements.keySet()) {
             ArrayList<Achievement> possible = possibleAchievements.get(key);
@@ -50,6 +67,11 @@ public class AchievementManagement implements Serializable {
         }
     }
 
+    /**
+     * Checks if there is any unclaimed achievement among all {@code possibleAchievements}
+     * The game cannot end if there is any unclaimed achievement.
+     * @return true if yes, false if not
+     */
     public boolean checkForUnclaimed() {
         for (AchievementTypes key : possibleAchievements.keySet()) {
             ArrayList<Achievement> possible = possibleAchievements.get(key);
@@ -62,6 +84,11 @@ public class AchievementManagement implements Serializable {
         return true;
     }
 
+    /**
+     * Updates {@code current} of any achievement of given type.
+     * @param type the type of achievements to be updated
+     * @param change the amount of which is the {@code current} of all found achievements incremented
+     */
     public void updateAchievement(AchievementTypes type, int change) {
         ArrayList<Achievement> temp = possibleAchievements.get(type);
         if (temp != null) {
