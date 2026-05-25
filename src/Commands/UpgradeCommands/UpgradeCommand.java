@@ -6,6 +6,14 @@ import Commands.CommandState;
 import Game.GameData;
 import Upgrade.Utilities.UpgradeNames;
 
+/**
+ * This command represents a system of buying a new upgrade. The amount of bought upgrades is determined by {@link GameData#getAmount()}.
+ * <p>
+ *     If player has not enough money then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned
+ * </p>
+ * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned
+ * @author Matěj Pospíšil
+ */
 public class UpgradeCommand extends Command {
 
     private final UpgradeNames name;
@@ -19,7 +27,7 @@ public class UpgradeCommand extends Command {
     public CommandResult execute() {
         int price = getUpgradeManagement().getUpgradePrice(name) * getGameData().getAmount();
         if (!getPlayer().canBuy(price)) {
-            return new CommandResult("Not enough money", CommandState.FAILED_ISSUE);
+            return new CommandResult("Not enough money for new upgrade", CommandState.FAILED_ISSUE);
         }
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
         getDayManagement().getCurrentDay().incrementDaySpending(price);
