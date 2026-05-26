@@ -5,6 +5,16 @@ import Utilities.Interval;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * This class represents a system, which manages stocks or demand of an item.
+ * <p>
+ *      {@link #max} stands for the maximum possible amount
+ * </p>
+ * <p>
+ *      {@link #current} stands for the current amount available
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class AmountManager implements Serializable {
 
     private final int max;
@@ -17,6 +27,9 @@ public class AmountManager implements Serializable {
         this.interval = interval;
     }
 
+    /**
+     * Randomly (based on {@link #interval}) increments {@link #current}.
+     */
     public void stockIn(){
         Random rd = new Random();
         int newCurrent = current + rd.nextInt(interval.getLowerBound(), interval.getUpperBound());
