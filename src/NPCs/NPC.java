@@ -10,6 +10,27 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * This class represents a NPC (in game called "buyer")
+ * <p>
+ * There are some mentionable features, which may not be understandable from first sight. Let me clear them out:
+ * </p>
+ * <p>
+ * Every NPC has its {@link #quantityWeight} and {@link #convenienceWeight} that determines its decisions
+ *     <ul>
+ *         <li>{@link #quantityWeight} the larger the more NPC want to buy massively bought products</li>
+ *         <li>{@link #convenienceWeight} the larger the more NPC want to buy products on which the player will have the best profit</li>
+ *     </ul>
+ *     Also mentionable are {@link #items} and {@link #demand}.
+ *     <ul>
+ *         <li>{@link #items} store all items</li>
+ *         <li>{@link #demand} store all currently available items. Those item cycle based on their coefficient of popularity (which is calculated in
+ *         {@link #loadDemand(Player, Shop)})</li>
+ *     </ul>
+ * </p>
+ *
+ * @author Matěj Pospíšil
+ */
 public class NPC implements Serializable {
 
     private int quantityWeight;
@@ -17,6 +38,19 @@ public class NPC implements Serializable {
     private ItemNPC[] items;
     private ItemNPC[] demand;
 
+    /**
+     * This complex method calculates, which items should be put into {@link #demand}.
+     * <p>
+     * Every single item in {@link #items} gets its own coefficient of popularity (in code called {@code s}).
+     * Two items with the highest coefficient are then put into {@link #demand}.
+     * </p>
+     * <p>
+     *     The coefficient is not calculated when player own 0 pieces of the product. So it may happen that
+     *     there will be no possible item to be added into {@link #demand}. To prevent this a method {@link #checkLoadDemand()} is executed.
+     * </p>
+     * @param player needs to be inserted, because provides needed data for coefficient calculation
+     * @param shop needs to be inserted, because provides needed data for coefficient calculation
+     */
     public void loadDemand(Player player, Shop shop) {
         resetDemand();
         double first = 0;
@@ -44,6 +78,12 @@ public class NPC implements Serializable {
         checkLoadDemand();
     }
 
+    /**
+     * Determines whether {@link #demand} should be filled randomly or not.
+     * <p>
+     *     It is executed always after {@link #loadDemand(Player, Shop)}
+     * </p>
+     */
     private void checkLoadDemand() {
         if (demand[0] == null && demand[1] == null) {
             fillWholeDemandRandomly();
@@ -55,6 +95,12 @@ public class NPC implements Serializable {
         }
     }
 
+    /**
+     * This method is being run from {@link #checkLoadDemand()} and it only does if the whole {@link #demand} is empty.
+     * <p>
+     *     It simply loads {@link #demand} with random products - those products will never be same because of while cycle.
+     * </p>
+     */
     private void fillWholeDemandRandomly() {
         Random rd = new Random();
         int indexOne = rd.nextInt(items.length);
@@ -77,10 +123,20 @@ public class NPC implements Serializable {
         }
     }
 
+    /**
+     * This method calculates prices of items located in {@link #demand}
+     * <p>
+     *     Again same as in {@link #loadDemand(Player, Shop)} the price is not calculated when player own 0 pieces of the product.
+     *     The price then stays how it was.
+     * </p>
+     * @param player needs to be inserted, because provides needed data for price calculation
+     * @param shop needs to be inserted, because provides needed data for price calculation
+     * @throws WrongItemException when the price goes under 1 (impossible)
+     */
     public void setNewPrices(Player player, Shop shop) throws WrongItemException {
         Random rd = new Random();
         for (ItemNPC item : demand) {
-            if(item == null){
+            if (item == null) {
                 continue;
             }
 
@@ -95,11 +151,11 @@ public class NPC implements Serializable {
             }
 
             ItemShop itemShop = shop.findItem(item.getItemBase().getName());
-            if(itemShop == null){
+            if (itemShop == null) {
                 continue;
             }
             double shopPrice = itemShop.getItemBase().getCurrentPrice();
-            if(shopPrice == 0){
+            if (shopPrice == 0) {
                 continue;
             }
 
@@ -110,27 +166,41 @@ public class NPC implements Serializable {
         }
     }
 
-    private double calculateB(double playerAverage, double playerWhole){
+    /**
+     * This method calculates a special coefficient, which is later used in {@link #setNewPrices(Player, Shop)}
+     * @param playerAverage stands for average buy price of the item, and it is needed for usage in {@link #calculateK(double)}
+     * @param playerWhole stands for how much have player spent on that item (not overall, but without sells)
+     * @return the calculated bonus
+     */
+    private double calculateB(double playerAverage, double playerWhole) {
         double k = calculateK(playerAverage);
         double bonus = Math.sqrt(k) / Math.sqrt(playerWhole);
-        if(bonus > 5){
+        if (bonus > 5) {
             bonus = 5;
         }
         return bonus;
     }
-
-    private double calculateK(double averagePrice){
+    
+    /**
+     * This method calculates a special coefficient, which is later used in {@link #calculateB(double, double)}
+     * @return the calculated coefficient
+     */
+    private double calculateK(double averagePrice) {
         String parser = String.valueOf((int) averagePrice);
         return 5000.00 * Math.pow(10, parser.length() - 2);
     }
 
-    private double calculateL(double averagePrice, double shopPrice){
+    /**
+     * This method calculates a special coefficient, which is later used in {@link #setNewPrices(Player, Shop)}
+     * @return the calculated coefficient
+     */
+    private double calculateL(double averagePrice, double shopPrice) {
         double ratio = averagePrice / shopPrice;
-        if(ratio > 1){
+        if (ratio > 1) {
             return -ratio;
         }
-        if(ratio < 1){
-            return shopPrice/averagePrice;
+        if (ratio < 1) {
+            return shopPrice / averagePrice;
         }
         return 0;
     }
