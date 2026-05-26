@@ -7,8 +7,14 @@ import java.util.Queue;
 /**
  * This class represents an audio management. All audio files are being stored here and from here they are manipulated.
  * <p>
- *     The audios are divided into two categories - {@link #music} and {@link #sounds}.
- *     {@link #mute} when it is false, then no audio can be played.
+ * The audios are divided into two categories - {@link #music} and {@link #sounds}.
+ * {@link #mute} when it is false, then no audio can be played.
+ * </p>
+ * Also, {@link #queue} stacks all sounds that should be played, but were not, because {@link #mute} is false.
+ * When the player then unmutes the game all audios in this queue will be polled and played.
+ * <p>
+ * Sometimes it is needed to clear the queue. Especially when the environment of the game changes. No one wants old sounds to be played
+ * on a place where they do not belong.
  * </p>
  * @author Matěj Pospíšil
  */
@@ -24,14 +30,15 @@ public class AudioManagement {
     /**
      * Plays desired sound by its title.
      * <p>
-     *     It searches in the audio list, which is selected by {@link AudioType} and if it
-     *     founds the sound, then it is played.
+     * It searches in the audio list, which is selected by {@link AudioType} and if it
+     * founds the sound, then it is played.
      * </p>
      * <p>
-     *     {@link #mute} has to be set to false in order to proceed.
+     * {@link #mute} has to be set to false in order to proceed.
      * </p>
-     * @param title the audio to be played
-     * @param type the audio type to be played
+     *
+     * @param title         the audio to be played
+     * @param type          the audio type to be played
      * @param startPosition from where the audio should start
      */
     public void playSound(String title, AudioType type, long startPosition) {
@@ -40,11 +47,11 @@ public class AudioManagement {
             if (temp != null) {
                 for (Audio audio : temp) {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
-                       if(!mute){
-                           audio.startAudio(startPosition);
-                       }else {
-                           addToQueue(title, type);
-                       }
+                        if (!mute) {
+                            audio.startAudio(startPosition);
+                        } else {
+                            addToQueue(title, type);
+                        }
                     }
                 }
             }
@@ -55,14 +62,15 @@ public class AudioManagement {
     /**
      * Pauses desired sound by its title.
      * <p>
-     *     It searches in the audio list, which is selected by {@link AudioType} and if it
-     *     founds the sound, it is paused.
+     * It searches in the audio list, which is selected by {@link AudioType} and if it
+     * founds the sound, it is paused.
      * </p>
      * <p>
-     *     {@link #mute} has to be set to false in order to proceed.
+     * {@link #mute} has to be set to false in order to proceed.
      * </p>
+     *
      * @param title the audio to be paused
-     * @param type the audio type to be paused
+     * @param type  the audio type to be paused
      */
     public void pauseSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
@@ -81,14 +89,17 @@ public class AudioManagement {
     /**
      * Resumes desired sound by its title.
      * <p>
-     *     It searches in the audio list, which is selected by {@link AudioType} and if it
-     *     founds the sound, it is resumed.
+     * It searches through the audio list, which is selected by {@link AudioType}, and if it
+     * founds the sound, those actions may be done:
      * </p>
      * <p>
-     *     {@link #mute} has to be set to false in order to proceed.
+     * If it is paused it is resumed, if it is not paused and {@link #mute} is {@code true} then it is played from the start or
+     * if the {@link #mute} is {@code false}, it is not paused and {@code add} is {@code true}, then it is added into {@link #queue} so it can be replayed later.
      * </p>
+     *
      * @param title the audio to be resumed
-     * @param type the audio type to be resumed
+     * @param type  the audio type to be resumed
+     * @param add   decides if the audio can be added into {@link Queue}
      */
     public void resumeSound(String title, AudioType type, boolean add) {
         final Thread playThread = new Thread(() -> {
@@ -99,9 +110,9 @@ public class AudioManagement {
                         if (audio.isPaused() && !mute) {
                             audio.resume();
                         } else {
-                            if(!mute){
+                            if (!mute) {
                                 audio.startAudio(0);
-                            }else if (add){
+                            } else if (add) {
                                 addToQueue(title, type);
                             }
                         }
@@ -112,10 +123,18 @@ public class AudioManagement {
         playThread.start();
     }
 
-    public void prepareForLoad(){
-        Thread t = new Thread(() ->{
+    /**
+     * Sets {@code boolean paused} for audios to {@code false}. It is done, because if the audio muted and then unmuted it should
+     * resume all sounds. But because the system is a little bit complicated, some sounds are already gone, and they are not needed.
+     * Their pause status still remains {@code true}, but when it is replayed again, it should be again {@code false}.
+     * <p>
+     *     This method is being run anytime the environment changes.
+     * </p>
+     */
+    public void prepareForLoad() {
+        Thread t = new Thread(() -> {
             paused.clear();
-            for (Audio audio : music){
+            for (Audio audio : music) {
                 audio.setPaused(false);
             }
         });
@@ -125,11 +144,12 @@ public class AudioManagement {
     /**
      * Stops desired sound by its title.
      * <p>
-     *     It searches in the audio list, which is selected by {@link AudioType} and if it
-     *     founds the sound, it is stopped.
+     * It searches in the audio list, which is selected by {@link AudioType} and if it
+     * founds the sound, it is stopped.
      * </p>
+     *
      * @param title the audio to be paused
-     * @param type the audio type to be paused
+     * @param type  the audio type to be paused
      */
     public void stopSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
@@ -172,7 +192,7 @@ public class AudioManagement {
      * Pauses all music.
      */
     public void pauseAllMusic() {
-        Thread t = new Thread(() ->{
+        Thread t = new Thread(() -> {
             for (Audio audio : music) {
                 Clip clip = audio.getCurrentClip();
                 if (clip != null && clip.isRunning()) {
@@ -237,6 +257,13 @@ public class AudioManagement {
         return null;
     }
 
+    /**
+     * This method finds and adds an audio into {@link #queue}. If the audio was not found
+     * anything happens.
+     *
+     * @param title the audio to be added
+     * @param type  the type of the audio to be added
+     */
     public void addToQueue(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
@@ -244,7 +271,6 @@ public class AudioManagement {
                 for (Audio audio : temp) {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
                         queue.add(audio);
-
                     }
                 }
             }
@@ -252,9 +278,12 @@ public class AudioManagement {
         playThread.start();
     }
 
+    /**
+     * Polls and plays all audios from {@link #queue}
+     */
     public void pollFromQueue() {
         final Thread playThread = new Thread(() -> {
-            while (!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 Audio audio = queue.poll();
                 audio.startAudio(0);
             }
