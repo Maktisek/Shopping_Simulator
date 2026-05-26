@@ -19,7 +19,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
- * This class represents a system of loading new instance of {@link GameData} and loading it from jsons.
+ * This class represents a system of loading a new instance of {@link GameData} from multiple jsons.
+ * <p>
+ *     The process has to be divided into multiple layers each loading a specific area of the game.
+ * </p>
+ * In the end bonus methods for connecting still unconnected are being executed finishing the whole load process.
+ * @author Matěj Pospíšil
  */
 public class Initialization {
 
@@ -44,6 +49,14 @@ public class Initialization {
         finishInitialization();
     }
 
+    /**
+     * This method loads {@link Player} and {@link Rebirth} from json located on {@code res/Jsons/Rebirth.json}.
+     * <p>
+     *     This may look weird, loading player from rebirth, but it is actually pretty simple.
+     *     The player does not need anything else than starting money. So firstly an instance of {@link Rebirth} is loaded and then
+     *     its {@code capital} is being used in {@link Player} initialization.
+     * </p>
+     */
     private void loadPlayer() {
         Gson gson = new Gson();
 
@@ -59,6 +72,9 @@ public class Initialization {
         }
     }
 
+    /**
+     * This method loads {@link Tax} from json located on {@code res/Jsons/Tax.json}
+     */
     private void loadTax() {
         Gson gson = new Gson();
 
@@ -77,6 +93,9 @@ public class Initialization {
         this.gameData.setDayManagement(new DayManagement());
     }
 
+    /**
+     * This method loads {@link ShopManagement} from json located on {@code res/Jsons/ShopManagement.json}
+     */
     private void loadShopManagement() {
         Gson gson = new Gson();
 
@@ -92,6 +111,9 @@ public class Initialization {
         }
     }
 
+    /**
+     * This method loads {@link NPCFinder} from json located on {@code res/Jsons/NPCs.json}
+     */
     private void loadNPCs() {
         Gson gson = new Gson();
 
@@ -109,6 +131,10 @@ public class Initialization {
         this.gameData.setStatsCounter(new StatsCounter());
     }
 
+    /**
+     * Loads shops with all possible NPCs. If there is less NPCs than shops, then a problem will occur. That is why it is needed to be sure
+     * that those counts match. Also shops order must be same as NPC order. First NPC belongs to first shop.
+     */
     private void connectShopAndNPCs() {
         for (int i = 0; i < gameData.getShopManagement().getShops().size(); i++) {
             gameData.getShopManagement().getShops().get(i).setNpc(npcs[i].getNpc());
@@ -120,6 +146,9 @@ public class Initialization {
         this.gameData.setUpgradeManagement(new UpgradeManagement());
     }
 
+    /**
+     * This method loads {@link AchievementManagement} from json located on {@code res/Jsons/AchievementManagement.json}
+     */
     private void loadAchievementManagement() {
         Gson gson = new Gson();
 
@@ -135,6 +164,12 @@ public class Initialization {
         }
     }
 
+    /**
+     * This method finishes the initialization process.
+     * <p>
+     *     It loads player with all items that are possible to be in the stock, and it loads all NPCs with items and sets their prices.
+     * </p>
+     */
     private void finishInitialization() {
         try {
             for (Shop shop : this.gameData.getShopManagement().getShops()){
