@@ -41,8 +41,8 @@ public class SellProductCommand extends Command {
                     CommandState.FAILED_ISSUE);
         }
         ItemNPC product = getCurrentShop().getNpc().getDemand()[index];
-        String productName = product.getItem().getName();
-        int price = product.getItem().getCurrentPrice();
+        String productName = product.getItemBase().getName();
+        int price = product.getItemBase().getCurrentPrice();
         if (!product.getAmountManager().canDecrement(amount)) {
             return new CommandResult("Buyer does not need " + productName + " anymore", CommandState.FAILED_ISSUE);
         }

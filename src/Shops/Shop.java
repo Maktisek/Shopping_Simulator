@@ -56,7 +56,7 @@ public class Shop implements Serializable {
 
     public ItemShop findItem(java.lang.String name){
         for (ItemShop item : items){
-            if(item.getItem().getName().equalsIgnoreCase(name)){
+            if(item.getItemBase().getName().equalsIgnoreCase(name)){
                 return item;
             }
         }

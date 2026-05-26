@@ -59,7 +59,7 @@ public class ItemShop implements Item, Serializable {
         this.currentDayAmount = 0;
     }
 
-    public ItemBase getItem() {
+    public ItemBase getItemBase() {
         return item;
     }
 

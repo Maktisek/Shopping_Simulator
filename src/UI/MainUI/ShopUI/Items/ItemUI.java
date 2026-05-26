@@ -60,7 +60,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeLabel() {
-        name = new StrokeLabel(this.item.getItem().getName(), 14);
+        name = new StrokeLabel(this.item.getItemBase().getName(), 14);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -76,7 +76,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private CustomButton initializeCustomImageButton() throws InvalidUILoadException {
-        CustomButton image = new CustomButton("/Sprites/Products/" + item.getItem().getName() + ".png", 80, 80, ButtonType.ENTER);
+        CustomButton image = new CustomButton("/Sprites/Products/" + item.getItemBase().getName() + ".png", 80, 80, ButtonType.ENTER);
 
         image.setOpaque(false);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -85,7 +85,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
         image.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new ItemInformationUI(this.item.getItem().getName(), this.item.specification()));
+                parent.showDialog(new ItemInformationUI(this.item.getItemBase().getName(), this.item.specification()));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -148,7 +148,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializePrice(JPanel panel) {
-        this.price = new StrokeLabel(Important.parseMoney(item.getItem().getCurrentPrice()) + " FR", 13);
+        this.price = new StrokeLabel(Important.parseMoney(item.getItemBase().getCurrentPrice()) + " FR", 13);
         this.price.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(this.price);
@@ -156,27 +156,27 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
 
     private void updateShop() {
         if (this.price != null) {
-            this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice() * gameData.getAmount()) + " FR");
+            this.price.setText(Important.parseMoney(item.getItemBase().getCurrentPrice() * gameData.getAmount()) + " FR");
             updateShopColorPrice();
         }
     }
 
     private void updateNPC() throws InvalidUILoadException {
-        this.name.setText(item.getItem().getName());
+        this.name.setText(item.getItemBase().getName());
         updateImage();
-        this.price.setText(Important.parseMoney(item.getItem().getCurrentPrice() * gameData.getAmount()) + " FR");
+        this.price.setText(Important.parseMoney(item.getItemBase().getCurrentPrice() * gameData.getAmount()) + " FR");
         this.name.repaint();
         this.price.repaint();
     }
 
     private void updateImage() throws InvalidUILoadException {
-        this.image.setImgFile("/Sprites/Products/" + item.getItem().getName() + ".png");
+        this.image.setImgFile("/Sprites/Products/" + item.getItemBase().getName() + ".png");
         this.image.setImages();
         this.image.repaint();
     }
 
     private void updateShopColorPrice() {
-        if (item.getItem().getCurrentPrice() * gameData.getAmount() <= gameData.getPlayer().getCurrentBalance()) {
+        if (item.getItemBase().getCurrentPrice() * gameData.getAmount() <= gameData.getPlayer().getCurrentBalance()) {
             this.price.setForeground(Color.GREEN);
         } else {
             this.price.setForeground(Color.RED);

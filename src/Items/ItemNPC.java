@@ -11,7 +11,7 @@ public class ItemNPC implements Item, Serializable {
     private ItemBase item;
     private AmountManager amountManager;
 
-    public ItemBase getItem() {
+    public ItemBase getItemBase() {
         return item;
     }
 

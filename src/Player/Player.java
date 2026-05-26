@@ -4,7 +4,6 @@ import Items.*;
 import Items.Exceptions.WrongEvidenceException;
 import Items.Exceptions.WrongItemException;
 import Player.Exceptions.InvalidPlayerActionException;
-import Shops.Shop;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -114,7 +113,7 @@ public class Player implements Serializable {
 
     public void loadItems(ItemShop[] itemShop) throws WrongItemException {
         for (ItemShop item : itemShop) {
-            this.stockItems.add(new ItemPlayer(item.getItem().getName()));
+            this.stockItems.add(new ItemPlayer(item.getItemBase().getName()));
         }
     }
 

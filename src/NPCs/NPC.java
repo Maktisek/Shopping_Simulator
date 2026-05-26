@@ -22,13 +22,13 @@ public class NPC implements Serializable {
         double first = 0;
         double second = 0;
         for (ItemNPC item : this.items) {
-            ItemPlayer playersItem = player.findItem(item.getItem().getName());
-            ItemShop shopsItem = shop.findItem(item.getItem().getName());
+            ItemPlayer playersItem = player.findItem(item.getItemBase().getName());
+            ItemShop shopsItem = shop.findItem(item.getItemBase().getName());
             if (playersItem != null && shopsItem != null) {
                 double playerAverage = playersItem.getAverageBuyPrice();
                 if (playerAverage != 0) {
                     double s = (playersItem.getAmount() * quantityWeight) +
-                            ((shopsItem.getItem().getCurrentPrice() / playerAverage) * convenienceWeight);
+                            ((shopsItem.getItemBase().getCurrentPrice() / playerAverage) * convenienceWeight);
                     if (s > first && item.getAmountManager().getCurrent() != 0) {
                         demand[1] = demand[0];
                         second = first;
@@ -73,7 +73,7 @@ public class NPC implements Serializable {
 
     public void loadItems(ItemShop[] temp) throws WrongItemException {
         for (int i = 0; i < temp.length; i++) {
-            this.items[i].setItem(temp[i].getItem().copy());
+            this.items[i].setItem(temp[i].getItemBase().copy());
         }
     }
 
@@ -84,7 +84,7 @@ public class NPC implements Serializable {
                 continue;
             }
 
-            ItemPlayer playersItem = player.findItem(item.getItem().getName());
+            ItemPlayer playersItem = player.findItem(item.getItemBase().getName());
             if (playersItem == null) {
                 continue;
             }
@@ -94,11 +94,11 @@ public class NPC implements Serializable {
                 continue;
             }
 
-            ItemShop itemShop = shop.findItem(item.getItem().getName());
+            ItemShop itemShop = shop.findItem(item.getItemBase().getName());
             if(itemShop == null){
                 continue;
             }
-            double shopPrice = itemShop.getItem().getCurrentPrice();
+            double shopPrice = itemShop.getItemBase().getCurrentPrice();
             if(shopPrice == 0){
                 continue;
             }
@@ -106,7 +106,7 @@ public class NPC implements Serializable {
             double bonus = calculateB(playerAverage, playerWhole);
 
             double percentUpdate = rd.nextInt(-8, 6) + bonus + calculateL(playerAverage, shopPrice);
-            item.getItem().setCurrentPrice((int) Math.round(item.getItem().getBasePrice() + (((double) item.getItem().getCurrentPrice() / 100) * percentUpdate)));
+            item.getItemBase().setCurrentPrice((int) Math.round(item.getItemBase().getBasePrice() + (((double) item.getItemBase().getCurrentPrice() / 100) * percentUpdate)));
         }
     }
 
