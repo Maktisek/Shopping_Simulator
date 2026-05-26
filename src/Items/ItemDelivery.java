@@ -2,6 +2,13 @@ package Items;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an undelivered product, which still waits until will be shipped into players stocks.
+ * <p>
+ *     It is a basic POJO, cloud be record class
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class ItemDelivery implements Serializable {
 
     private String name;
