@@ -104,6 +104,7 @@ public class TitleScreenUI extends FrameBaseUI {
         this.background.add(panel, BorderLayout.CENTER);
 
         newGame.addActionListener(e -> {
+            Important.getAudioManagement().prepareForLoad();
             try {
                 Important.getAudioManagement().stopSound("MenuOST", AudioType.MUSIC);
                 MyFrame myFrame = new MyFrame(new Initialization().getGameData());
@@ -116,6 +117,7 @@ public class TitleScreenUI extends FrameBaseUI {
         });
 
         loadGame.addActionListener(e -> {
+            Important.getAudioManagement().prepareForLoad();
             GameData gameData = new GameData();
             CommandResult result = new LoadSaveCommand(gameData).execute();
             if (result.getState() == CommandState.FAILED_ISSUE) {
@@ -167,7 +169,7 @@ public class TitleScreenUI extends FrameBaseUI {
     }
 
     private void initializeMuteButton(JPanel wrapper) throws InvalidUILoadException {
-        ChangingButton muteButton = new MuteButton().getMuteButton();
+        ChangingButton muteButton = new MuteButton(Important.getAudioManagement().isMute(), "MenuOST").getMuteButton();
         wrapper.add(muteButton);
     }
 

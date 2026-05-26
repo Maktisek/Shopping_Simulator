@@ -1,5 +1,6 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
+import AudioSystem.AudioType;
 import Commands.AudioCommands.SwapMuteCommand;
 import Commands.CommandResult;
 import Game.GameData;
@@ -22,6 +23,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     private MoneyPanelUI moneyPanelUI;
     private final ArrayList<MultiplierButton> multiplierButtons;
     private final GameData gameData;
+    private ChangingButton muteButton;
 
     public ShopManagementNorthUI(GameData gameData) throws InvalidUILoadException {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -121,7 +123,8 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMuteButton() throws InvalidUILoadException {
-        ChangingButton muteButton = new MuteButton().getMuteButton();
+        muteButton = new MuteButton(Important.getAudioManagement().isMute(), gameData.getShopManagement().getCurrentShop().getName()).getMuteButton();
+
         add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         add(muteButton);
     }

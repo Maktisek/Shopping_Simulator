@@ -100,11 +100,13 @@ public class Audio {
      * Sets {@link #pausePosition} to current microsecond position, so the audio can be resumed later.
      */
     public void pause() {
+        System.out.println(paused);
         if (currentClip != null && !paused) {
             pausePosition = currentClip.getMicrosecondPosition();
             paused = true;
             shifting = false;
             currentClip.stop();
+            System.out.println("Yeah");
         }
     }
 

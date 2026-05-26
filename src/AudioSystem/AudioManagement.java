@@ -102,14 +102,21 @@ public class AudioManagement {
         playThread.start();
     }
 
+    public void prepareForLoad(){
+        Thread t = new Thread(() ->{
+            paused.clear();
+            for (Audio audio : music){
+                audio.setPaused(false);
+            }
+        });
+        t.start();
+    }
+
     /**
      * Stops desired sound by its title.
      * <p>
      *     It searches in the audio list, which is selected by {@link AudioType} and if it
      *     founds the sound, it is stopped.
-     * </p>
-     * <p>
-     *     {@link #mute} has to be set to false in order to proceed.
      * </p>
      * @param title the audio to be paused
      * @param type the audio type to be paused
@@ -117,7 +124,7 @@ public class AudioManagement {
     public void stopSound(String title, AudioType type) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if (temp != null && !mute) {
+            if (temp != null) {
                 for (Audio audio : temp) {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
                         audio.stopSound();
@@ -159,6 +166,7 @@ public class AudioManagement {
             for (Audio audio : music) {
                 Clip clip = audio.getCurrentClip();
                 if (clip != null && clip.isRunning()) {
+                    System.out.println("Pausing " + audio.getTitle());
                     audio.pause();
                     paused.add(audio);
                 }
@@ -175,6 +183,7 @@ public class AudioManagement {
             for (Audio audio : paused) {
                 audio.resume();
             }
+            paused.clear();
         });
         t.start();
     }
@@ -191,6 +200,9 @@ public class AudioManagement {
         }
     }
 
+    /**
+     * Closes all clips
+     */
     public void closeAll() {
         Thread t = new Thread(() -> {
             ArrayList<Audio> temp = new ArrayList<>();
@@ -202,6 +214,7 @@ public class AudioManagement {
         });
         t.start();
     }
+
 
     private ArrayList<Audio> getAudioListByType(AudioType type) {
         switch (type) {
