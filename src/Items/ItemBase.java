@@ -6,6 +6,13 @@ import Utilities.Important;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a base of an item (product) in the game.
+ * <p>
+ *     It is used, because every single special item has to hold those basic information, it is fair to say, that it is pretty close be a record class.
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class ItemBase implements Serializable {
 
 
@@ -82,7 +89,15 @@ public class ItemBase implements Serializable {
     }
 
 
-
+    /**
+     * This method is used to get information about that object.
+     * <p>
+     *     Normally I would use {@code toString()}, but the problem an input is needed.
+     * </p>
+     * @param spec stands for specification of from where does this instance came from. Fields are same, but meaning different.
+     *             This is why this specification is required.
+     * @return the information about that object.
+     */
     public String information(ItemSpecification spec){
         switch (spec){
             case SHOP -> {
