@@ -1,5 +1,12 @@
 package NPCs;
 
+/**
+ * This class is POJO
+ * <p>
+ *     It works as a helper for connecting NPCs with shops in {@link Game.Initialization}
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class NPCFinder {
 
     private String shopName;
