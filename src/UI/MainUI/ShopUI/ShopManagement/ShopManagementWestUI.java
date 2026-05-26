@@ -43,7 +43,7 @@ public class ShopManagementWestUI extends JPanel {
         CustomButton change = new CustomButton("/Sprites/ButtonSprites/" + card + "_BUTTON.png", 110, 110, ButtonType.ENTER);
         change.addActionListener(e -> {
             Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
-            Important.getAudioManagement().resumeSound(card+"OST", AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(card+"OST", AudioType.MUSIC, false);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel(card);
         });
@@ -61,12 +61,20 @@ public class ShopManagementWestUI extends JPanel {
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         previous.addActionListener(e -> {
+            if(Important.getAudioManagement().isMute()){
+                Important.getAudioManagement().prepareForLoad();
+                Important.getAudioManagement().getQueue().clear();
+            }
             String previousShop = gameData.getShopManagement().getCurrentShop().getName();
             CommandResult result = new ChangeShopCommand(gameData, ShopDirection.LEFT).execute();
             proceedCommandResult(result, ShopDirection.LEFT, previousShop);
         });
 
         next.addActionListener(e -> {
+            if(Important.getAudioManagement().isMute()){
+                Important.getAudioManagement().prepareForLoad();
+                Important.getAudioManagement().getQueue().clear();
+            }
             String previousShop = gameData.getShopManagement().getCurrentShop().getName();
             CommandResult result = new ChangeShopCommand(gameData, ShopDirection.RIGHT).execute();
             proceedCommandResult(result, ShopDirection.RIGHT, previousShop);

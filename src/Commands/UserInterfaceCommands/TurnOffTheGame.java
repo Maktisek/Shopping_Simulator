@@ -31,7 +31,8 @@ public class TurnOffTheGame extends Command {
     @Override
     public CommandResult execute() {
         mainUI.turnOff();
-        Important.getAudioManagement().getPaused().clear();
+        Important.getAudioManagement().prepareForLoad();
+        Important.getAudioManagement().getQueue().clear();
         TitleScreenUI title;
         try {
             Important.getAudioManagement().stopAll();

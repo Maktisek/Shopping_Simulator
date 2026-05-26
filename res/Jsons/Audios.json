@@ -1,7 +1,8 @@
 {
-  "mute" : false,
+  "mute": false,
   "paused": [
-
+  ],
+  "queue": [
   ],
   "music": [
     {
@@ -11,8 +12,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "StockOST",
@@ -21,8 +22,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "AchievementsOST",
@@ -31,8 +32,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "StatsOST",
@@ -41,8 +42,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "EndOST",
@@ -51,8 +52,8 @@
       "paused": false,
       "initialVolume": 0.8,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "PIER",
@@ -61,8 +62,8 @@
       "paused": false,
       "initialVolume": 0.7,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "MINES",
@@ -71,8 +72,8 @@
       "paused": false,
       "initialVolume": 0.7,
       "music": true,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     }
   ],
   "sounds": [
@@ -83,8 +84,8 @@
       "paused": false,
       "initialVolume": 0,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "EnterClick",
@@ -93,8 +94,8 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 5,
-      "shifting" : true
+      "soundPool": 5,
+      "shifting": true
     },
     {
       "title": "ExitClick",
@@ -103,8 +104,8 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 5,
-      "shifting" : true
+      "soundPool": 5,
+      "shifting": true
     },
     {
       "title": "Buy",
@@ -113,8 +114,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10,
-      "shifting" : true
+      "soundPool": 10,
+      "shifting": true
     },
     {
       "title": "Sell",
@@ -123,8 +124,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10,
-      "shifting" : true
+      "soundPool": 10,
+      "shifting": true
     },
     {
       "title": "NewUpgrade",
@@ -133,8 +134,8 @@
       "paused": false,
       "initialVolume": 0.4,
       "music": false,
-      "soundPool" : 10,
-      "shifting" : true
+      "soundPool": 10,
+      "shifting": true
     },
     {
       "title": "Error",
@@ -143,8 +144,8 @@
       "paused": false,
       "initialVolume": 0.6,
       "music": false,
-      "soundPool" : 2,
-      "shifting" : true
+      "soundPool": 2,
+      "shifting": true
     },
     {
       "title": "NewGoal",
@@ -153,8 +154,8 @@
       "paused": false,
       "initialVolume": 0.6,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "NewDay",
@@ -163,8 +164,8 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "ButtonPoint",
@@ -173,8 +174,8 @@
       "paused": false,
       "initialVolume": 0.3,
       "music": false,
-      "soundPool" : 15,
-      "shifting" : true
+      "soundPool": 15,
+      "shifting": true
     },
     {
       "title": "ClaimGoal",
@@ -183,8 +184,8 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "NewRebirth",
@@ -193,8 +194,8 @@
       "paused": false,
       "initialVolume": 0.6,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "Save",
@@ -203,8 +204,8 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool" : 1,
-      "shifting" : true
+      "soundPool": 1,
+      "shifting": true
     },
     {
       "title": "ChangeShop",
@@ -213,8 +214,8 @@
       "paused": false,
       "initialVolume": 0.2,
       "music": false,
-      "soundPool" : 8,
-      "shifting" : true
+      "soundPool": 8,
+      "shifting": true
     }
   ],
   "background": [

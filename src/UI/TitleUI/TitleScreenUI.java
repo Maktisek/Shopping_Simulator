@@ -169,7 +169,7 @@ public class TitleScreenUI extends FrameBaseUI {
     }
 
     private void initializeMuteButton(JPanel wrapper) throws InvalidUILoadException {
-        ChangingButton muteButton = new MuteButton(Important.getAudioManagement().isMute(), "MenuOST").getMuteButton();
+        ChangingButton muteButton = new MuteButton().getMuteButton();
         wrapper.add(muteButton);
     }
 

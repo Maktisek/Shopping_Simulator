@@ -123,7 +123,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMuteButton() throws InvalidUILoadException {
-        muteButton = new MuteButton(Important.getAudioManagement().isMute(), gameData.getShopManagement().getCurrentShop().getName()).getMuteButton();
+        muteButton = new MuteButton().getMuteButton();
 
         add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         add(muteButton);

@@ -29,6 +29,7 @@ public class SwapMuteCommand extends Command {
             Important.getAudioManagement().pauseAllMusic();
         } else {
             Important.getAudioManagement().resumeAll();
+            Important.getAudioManagement().pollFromQueue();
         }
         return new CommandResult("Swapped mute: " + Important.getAudioManagement().isMute(), CommandState.DONE);
     }

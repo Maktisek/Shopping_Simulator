@@ -36,7 +36,7 @@ public class BarPanelUI extends BackgroundPanel {
     private void initializeExitButton() throws InvalidUILoadException {
         CustomButton customButton = new CustomButton("/Sprites/ButtonSprites/ESCAPE_BUTTON.png", Important.calculateDimension(100), Important.calculateDimension(100), ButtonType.EXIT);
         customButton.addActionListener(e -> {
-            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC, false);
             Important.getAudioManagement().stopSound(type+"OST",AudioType.MUSIC);
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.switchPanel("Shop");

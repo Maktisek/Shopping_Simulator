@@ -50,7 +50,7 @@ public class DialogUI extends BaseDialogUI {
 
     public void buttonAction(){
         if(gameData != null){
-            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC, false);
         }
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         parent.hideDialog();

@@ -2,6 +2,7 @@ package AudioSystem;
 
 import javax.sound.sampled.Clip;
 import java.util.ArrayList;
+import java.util.Queue;
 
 /**
  * This class represents an audio management. All audio files are being stored here and from here they are manipulated.
@@ -16,6 +17,7 @@ public class AudioManagement {
     private ArrayList<Audio> music;
     private ArrayList<Audio> sounds;
     private ArrayList<Audio> paused;
+    private Queue<Audio> queue;
     private boolean mute;
 
 
@@ -35,10 +37,14 @@ public class AudioManagement {
     public void playSound(String title, AudioType type, long startPosition) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if (temp != null && !mute) {
+            if (temp != null) {
                 for (Audio audio : temp) {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
-                        audio.startAudio(startPosition);
+                       if(!mute){
+                           audio.startAudio(startPosition);
+                       }else {
+                           addToQueue(title, type);
+                       }
                     }
                 }
             }
@@ -84,16 +90,20 @@ public class AudioManagement {
      * @param title the audio to be resumed
      * @param type the audio type to be resumed
      */
-    public void resumeSound(String title, AudioType type) {
+    public void resumeSound(String title, AudioType type, boolean add) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
-            if (temp != null && !mute) {
+            if (temp != null) {
                 for (Audio audio : temp) {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
-                        if (audio.isPaused()) {
+                        if (audio.isPaused() && !mute) {
                             audio.resume();
                         } else {
-                            audio.startAudio(0);
+                            if(!mute){
+                                audio.startAudio(0);
+                            }else if (add){
+                                addToQueue(title, type);
+                            }
                         }
                     }
                 }
@@ -166,7 +176,6 @@ public class AudioManagement {
             for (Audio audio : music) {
                 Clip clip = audio.getCurrentClip();
                 if (clip != null && clip.isRunning()) {
-                    System.out.println("Pausing " + audio.getTitle());
                     audio.pause();
                     paused.add(audio);
                 }
@@ -228,6 +237,30 @@ public class AudioManagement {
         return null;
     }
 
+    public void addToQueue(String title, AudioType type) {
+        final Thread playThread = new Thread(() -> {
+            ArrayList<Audio> temp = getAudioListByType(type);
+            if (temp != null) {
+                for (Audio audio : temp) {
+                    if (audio.getTitle().equalsIgnoreCase(title)) {
+                        queue.add(audio);
+
+                    }
+                }
+            }
+        });
+        playThread.start();
+    }
+
+    public void pollFromQueue() {
+        final Thread playThread = new Thread(() -> {
+            while (!queue.isEmpty()){
+                Audio audio = queue.poll();
+                audio.startAudio(0);
+            }
+        });
+        playThread.start();
+    }
 
     public ArrayList<Audio> getMusic() {
         return music;
@@ -259,5 +292,13 @@ public class AudioManagement {
 
     public void setPaused(ArrayList<Audio> paused) {
         this.paused = paused;
+    }
+
+    public Queue<Audio> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(Queue<Audio> queue) {
+        this.queue = queue;
     }
 }

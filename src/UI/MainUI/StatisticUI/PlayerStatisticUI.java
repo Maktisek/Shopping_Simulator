@@ -25,7 +25,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
         CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75, ButtonType.EXIT);
         ok.addActionListener(e ->{
             Important.getAudioManagement().stopSound("StatsOST", AudioType.MUSIC);
-            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
+            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC, false);
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             mainUI.switchPanel("Shop");
         });
