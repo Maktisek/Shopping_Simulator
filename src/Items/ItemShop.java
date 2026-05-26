@@ -7,6 +7,23 @@ import Utilities.Important;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an item stored in {@link Shops.Shop}
+ * <p>
+ *     It implements {@link Item} so {@link #item} is needed.
+ * </p>
+ * This class also features plenty of interesting price calculating mechanics, such as:
+ * <p>
+ *     <ul>
+ *         <li>{@link #penalization} represents a coefficient of price change.
+ *         The interval is <0.9;1.2> and the price is multiplied by that.
+ *         Every single purchase increments it and every single new day decrements it.</li>
+ *         <li>{@link #priceSensitivity} represents how aggressively will the price spike after buying a product.
+ *         Larger it is, less it spikes. The spike is created only the day after.</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class ItemShop implements Item, Serializable {
 
     private ItemBase item;
@@ -25,13 +42,6 @@ public class ItemShop implements Item, Serializable {
 
     private double calculateBonusPenalization() {
         double result = ((double) currentDayAmount / this.priceSensitivity);
-        if (item.getName().equalsIgnoreCase("APPLE")){
-            System.out.println("For item " + item.getName());
-            System.out.println("Calculated: " + result);
-            System.out.println("Returning: "+ Math.min(result, 0.125));
-            System.out.println("Penalization: " + penalization);
-            System.out.println("Final penalization: " + penalization * (1 + Math.min(result, 0.125)));
-        }
         return Math.min(result, 0.125);
     }
 
@@ -111,6 +121,4 @@ public class ItemShop implements Item, Serializable {
     public void setAmountManager(AmountManager amountManager) {
         this.amountManager = amountManager;
     }
-
-
 }
