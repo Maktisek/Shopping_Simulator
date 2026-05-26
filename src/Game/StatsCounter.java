@@ -2,6 +2,13 @@ package Game;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a simple POJO with little calculations.
+ * <p>
+ *     It is used to store all statistic data.
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class StatsCounter implements Serializable {
 
     private int shipped;
@@ -14,7 +21,6 @@ public class StatsCounter implements Serializable {
         if(shipped == 0){
             return 0;
         }
-
         return earnings / shipped;
     }
 
@@ -22,7 +28,6 @@ public class StatsCounter implements Serializable {
         if(bought == 0){
             return 0;
         }
-
         return costs / bought;
     }
 
@@ -56,15 +61,5 @@ public class StatsCounter implements Serializable {
 
     public void setCosts(int costs) {
         this.costs = costs;
-    }
-
-    @Override
-    public String toString() {
-        return "StatsCounter{" +
-                "shipped=" + shipped +
-                ", bought=" + bought +
-                ", earnings=" + earnings +
-                ", costs=" + costs +
-                '}';
     }
 }
