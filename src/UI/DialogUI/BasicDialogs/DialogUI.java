@@ -24,14 +24,14 @@ public class DialogUI extends BaseDialogUI {
 
     public DialogUI(String imgFile, String message, String sound) throws InvalidUILoadException {
         super(imgFile, message);
-        Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0);
+        Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0, false);
         initializeButton();
     }
 
     public DialogUI(String imgFile, String message, String sound, GameData gameData) throws InvalidUILoadException {
         super(imgFile, message);
         this.gameData = gameData;
-        Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0);
+        Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0, false);
         initializeButton();
     }
 

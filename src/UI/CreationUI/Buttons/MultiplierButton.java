@@ -33,7 +33,7 @@ public class MultiplierButton extends CustomBaseChangingButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 if(!clicked) {
-                    Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
+                    Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0, false);
                     setCursor();
                     MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, MultiplierButton.this);
                     if(parent != null) {

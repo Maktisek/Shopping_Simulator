@@ -141,7 +141,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
                     throw new RuntimeException(ex);
                 }
             } else {
-                Important.getAudioManagement().playSound(finalName, AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound(finalName, AudioType.SOUNDS, 0, false);
             }
         });
         panel.add(button);

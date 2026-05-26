@@ -136,7 +136,7 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             if(result.getState() == CommandState.DONE){
                 try {
-                    Important.getAudioManagement().playSound("ClaimGoal", AudioType.SOUNDS, 0);
+                    Important.getAudioManagement().playSound("ClaimGoal", AudioType.SOUNDS, 0, false);
                     initializeImage();
                     this.claimButton.setVisible(false);
                     this.bound.setVisible(true);

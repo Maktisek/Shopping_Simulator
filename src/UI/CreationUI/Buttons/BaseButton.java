@@ -29,8 +29,8 @@ public abstract class BaseButton extends JButton {
     private void initializeSound(ButtonType type) {
         this.addActionListener(e -> {
             switch (type) {
-                case EXIT -> Important.getAudioManagement().playSound("ExitClick", AudioType.SOUNDS, 0);
-                case ENTER -> Important.getAudioManagement().playSound("EnterClick", AudioType.SOUNDS, 0);
+                case EXIT -> Important.getAudioManagement().playSound("ExitClick", AudioType.SOUNDS, 0, false);
+                case ENTER -> Important.getAudioManagement().playSound("EnterClick", AudioType.SOUNDS, 0, false);
             }
         });
     }
@@ -50,7 +50,7 @@ public abstract class BaseButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0, false);
             }
         });
     }

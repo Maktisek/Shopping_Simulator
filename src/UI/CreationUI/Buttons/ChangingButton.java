@@ -23,7 +23,7 @@ public class ChangingButton extends CustomBaseChangingButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                    Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0);
+                    Important.getAudioManagement().playSound("ButtonPoint", AudioType.SOUNDS, 0, false);
                     setCursor();
                     ChangingButton.super.hoovered = true;
                     repaint();

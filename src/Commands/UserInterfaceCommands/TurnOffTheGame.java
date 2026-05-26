@@ -36,7 +36,7 @@ public class TurnOffTheGame extends Command {
         TitleScreenUI title;
         try {
             Important.getAudioManagement().stopAll();
-            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
+            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0, true);
             title = new TitleScreenUI();
         } catch (InvalidUILoadException ex) {
             return new CommandResult("There is a problem with loading TitleScreenUI", CommandState.FAILED_ISSUE);

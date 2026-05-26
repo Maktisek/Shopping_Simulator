@@ -64,7 +64,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
                     throw new RuntimeException(ex);
                 }
             }else{
-                Important.getAudioManagement().playSound("NewUpgrade", AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound("NewUpgrade", AudioType.SOUNDS, 0, false);
             }
         });
         add(buyButton);

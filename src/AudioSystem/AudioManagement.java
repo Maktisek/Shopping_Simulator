@@ -41,7 +41,7 @@ public class AudioManagement {
      * @param type          the audio type to be played
      * @param startPosition from where the audio should start
      */
-    public void playSound(String title, AudioType type, long startPosition) {
+    public void playSound(String title, AudioType type, long startPosition, boolean add) {
         final Thread playThread = new Thread(() -> {
             ArrayList<Audio> temp = getAudioListByType(type);
             if (temp != null) {
@@ -49,7 +49,7 @@ public class AudioManagement {
                     if (audio.getTitle().equalsIgnoreCase(title)) {
                         if (!mute) {
                             audio.startAudio(startPosition);
-                        } else {
+                        } else if (add){
                             addToQueue(title, type);
                         }
                     }

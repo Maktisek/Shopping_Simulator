@@ -56,7 +56,7 @@ public class NewDayDialogUI extends BaseDialogUI {
             if (commandResult.getState() == CommandState.DONE) {
                 parent.hideDialog();
                 try {
-                    Important.getAudioManagement().playSound("NewDay", AudioType.SOUNDS, 0);
+                    Important.getAudioManagement().playSound("NewDay", AudioType.SOUNDS, 0, false);
                     Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                     parent.showDialog(new DaySummaryPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {
@@ -65,7 +65,7 @@ public class NewDayDialogUI extends BaseDialogUI {
             } else if (commandResult.getState() == CommandState.FAILED_END) {
                 parent.hideDialog();
                 try {
-                    Important.getAudioManagement().playSound("EndOST", AudioType.MUSIC, 0);
+                    Important.getAudioManagement().playSound("EndOST", AudioType.MUSIC, 0, true);
                     Important.getAudioManagement().stopSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
                     parent.initAndSwitchPanel(new EndPanelUI(gameData));
                 } catch (InvalidUILoadException ex) {

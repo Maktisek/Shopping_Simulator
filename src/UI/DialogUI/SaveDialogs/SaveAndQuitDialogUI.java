@@ -22,7 +22,7 @@ public class SaveAndQuitDialogUI extends SaveBaseDialogUI{
         CommandResult result = new WriteSaveCommand(super.gameData).execute();
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         try {
-            Important.getAudioManagement().playSound("Save", AudioType.SOUNDS, 0);
+            Important.getAudioManagement().playSound("Save", AudioType.SOUNDS, 0, false);
             parent.hideDialog();
             parent.showDialog(new TurnOffTheGameDialogUI(result.getMessage(), parent));
         } catch (InvalidUILoadException ex) {

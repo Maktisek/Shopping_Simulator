@@ -13,7 +13,7 @@ public class Launcher {
 
         Thread loadThread = new Thread(() ->{
             Important.loadAudioManagement();
-            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0);
+            Important.getAudioManagement().playSound("MenuOST", AudioType.MUSIC, 0, true);
 
             EventQueue.invokeLater(new Runnable() {
                 @Override

@@ -30,7 +30,7 @@ public class NewRebirthDialog extends YesNoDialogUI {
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
-                Important.getAudioManagement().playSound("Error", AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound("Error", AudioType.SOUNDS, 0, false);
                 parent.hideDialog();
                 parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
             } catch (InvalidUILoadException ex) {
@@ -38,9 +38,9 @@ public class NewRebirthDialog extends YesNoDialogUI {
             }
         }else {
             try {
-                Important.getAudioManagement().playSound("Buy", AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound("Buy", AudioType.SOUNDS, 0, false);
                 Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
-                Important.getAudioManagement().playSound("NewRebirth", AudioType.SOUNDS, 0);
+                Important.getAudioManagement().playSound("NewRebirth", AudioType.SOUNDS, 0, false);
                 parent.hideDialog();
                 parent.stopAllTimers();
                 parent.showDialog(new RefreshFrameDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));

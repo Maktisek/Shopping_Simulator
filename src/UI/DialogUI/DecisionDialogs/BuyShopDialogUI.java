@@ -38,9 +38,9 @@ public class BuyShopDialogUI extends YesNoDialogUI {
             }
         }else {
             parent.hideDialog();
-            Important.getAudioManagement().playSound("Buy", AudioType.SOUNDS, 0);
+            Important.getAudioManagement().playSound("Buy", AudioType.SOUNDS, 0, false);
             Important.getAudioManagement().stopSound(previousShop, AudioType.MUSIC);
-            Important.getAudioManagement().playSound("ChangeShop", AudioType.SOUNDS, 0);
+            Important.getAudioManagement().playSound("ChangeShop", AudioType.SOUNDS, 0, false);
             parent.getShopManagementUI().changeCard(gameData.getShopManagement().getCurrentShop().getName());
         }
     }
