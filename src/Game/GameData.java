@@ -18,6 +18,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * This class represents the main place, where all game data are being stored
+ * <p>
+ *     All the data can be accessed from here making this the most efficient way how to manipulate with them.
+ * </p>
+ * If any new feature is added, it should be accessible from here (except static stuff)
+ * @author Matěj Pospíšil
+ */
 public class GameData implements Serializable {
 
     private Player player;
@@ -94,6 +102,16 @@ public class GameData implements Serializable {
     }
 
 
+    /**
+     * This method writes {@link GameData} version into pre-inserted path.
+     * <p>
+     *     The path always points to current user folder, and it creates its own folder named {@code ForestMarketSave}.
+     * </p>
+     * <p>
+     *     The save can be only one and its name is {@code save}
+     * </p>
+     * @throws IOException if the folder cannot not be created or the output stream cannot be opened
+     */
     public void writeToFile() throws IOException {
         Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");
         try {
@@ -108,6 +126,18 @@ public class GameData implements Serializable {
         }
     }
 
+    /**
+     * This static methods loads {@link GameData} from pre-inserted path.
+     * <p>
+     *     The path is same as in {@link #writeToFile()} because of compatibility.
+     * </p>
+     * <p>
+     *     Use when creating new instance of {@link GameData} - {@code GameData gameData = GameData.readFromFile();}
+     * </p>
+     * @return the loaded instance of {@link GameData}
+     * @throws IOException if there is no save being stored on the path, if the input stream cannot be opened or if the given instance is not instance
+     * of {@link GameData}
+     */
     public static GameData readFromFile() throws IOException {
         Path path = Paths.get(System.getProperty("user.home"), "ForestMarketSave", "save" + ".dat");
         if (!Files.exists(path)) {
@@ -120,6 +150,18 @@ public class GameData implements Serializable {
         }
     }
 
+    /**
+     * This method is needed for compatibility with the rest of the UI system.
+     * <p>
+     *     The process of loading {@link GameData} is being executed in a command {@link Commands.SaveCommands.LoadSaveCommand}.
+     *     The instance of {@link GameData} is being sent there, not as a new object itself, but as a reference to the object.
+     *     If we change the reference through {@link #readFromFile()} the rest of the system do not know about it. And this is why this method
+     *     comes in handy.
+     * </p>
+     * The newly created instance of {@link GameData} gives its data to the old instance of {@link GameData}. The reference stays for both same, but
+     * the data changes.
+     * @param gameData the newly created instance o {@link GameData} - through {@link #readFromFile()}
+     */
     public void copyFromLoaded(GameData gameData) {
         this.setPlayer(gameData.getPlayer());
         this.setAchievementManagement(gameData.getAchievementManagement());
@@ -130,6 +172,13 @@ public class GameData implements Serializable {
         this.setTax(gameData.getTax());
     }
 
+    /**
+     * This method works similar to {@link #copyFromLoaded(GameData)}, but it is used when player buys new rebirth.
+     * <p>
+     *     Again it just rewrites data of the original reference, but unlike {@link #copyFromLoaded(GameData)} it keeps some of them or specifically change them.
+     * </p>
+     * @param gameData fresh new instance of {@link GameData}, from which the data will be taken
+     */
     public void copyFromRebirth(GameData gameData) {
         this.setDayManagement(gameData.getDayManagement());
         this.dayManagement.getCurrentDay().setDayBoughtAmount(0);
