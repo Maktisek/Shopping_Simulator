@@ -9,6 +9,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class represents a player.
+ * <p>
+ *     Players possessions are being stored here, so this class is more like a warehouse than a player.
+ * </p>
+ * <p>
+ *     Products are being stored in three collections:
+ *     <ul>
+ *         <li>{@link #stockItems} stands for the classic collection, in which are stored all achievable products. </li>
+ *         <li>{@link #undeliveredItems} unlike {@link #stockItems}, this collection is filled by instances of {@link ItemDelivery}.
+ *         It is because this collection stores and holds all products before they arrive.</li>
+ *         <li>{@link #deliveredItems} this collection is not that important like the other ones, but it is made to store products that have been already
+ *         delivered. This is so that the game can display, which products were delivered on the start of a new day.</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ */
 public class Player implements Serializable {
 
 
@@ -32,16 +49,26 @@ public class Player implements Serializable {
         return null;
     }
 
+    /**
+     * This method searches {@link #undeliveredItems} and calculates how many pieces of one product are there.
+     * @param name is the name of the product to be counted
+     * @return the final amount
+     */
     public int findNumberOfUndelivered(String name) {
         int result = 0;
         for (ItemDelivery itemDelivery : undeliveredItems) {
             if (itemDelivery.getName().equalsIgnoreCase(name)) {
-                result++;
+                result += itemDelivery.getAmount();
             }
         }
         return result;
     }
 
+    /**
+     * This method represents a system of buying a product.
+     * @param delivery the item to be bought
+     * @throws InvalidPlayerActionException if player has not enough money
+     */
     public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException {
         if (delivery.getBoughtPrice() * delivery.getAmount() > this.currentBalance) {
             throw new InvalidPlayerActionException("Not enough money for " + delivery.getName());
@@ -50,6 +77,11 @@ public class Player implements Serializable {
         this.undeliveredItems.add(delivery);
     }
 
+    /**
+     * This method updates state of all items stored in {@link #undeliveredItems} by decrementing their
+     * {@code daysToBeDelivered} by one and then checking if the item has been delivered.
+     * @throws InvalidPlayerActionException when an issue occurs in {@link #transferDeliveredItems()}
+     */
     public void updateUndelivered() throws InvalidPlayerActionException {
         deliveredItems.clear();
         for (ItemDelivery delivery : undeliveredItems) {
@@ -62,14 +94,28 @@ public class Player implements Serializable {
         transferDeliveredItems();
     }
 
+    /**
+     * This method transfers data from an instance of {@link ItemDelivery} into an instance of {@link ItemPlayer}.
+     * @throws InvalidPlayerActionException when an issue occurs in {@link #transferItem(String, int, int)}
+     */
     private void transferDeliveredItems() throws InvalidPlayerActionException {
         for (ItemDelivery delivery : deliveredItems) {
             transferItem(delivery.getName(), delivery.getBoughtPrice(), delivery.getAmount());
         }
     }
 
-
-    public void transferItem(String name, int shopPrice, int amount) throws InvalidPlayerActionException {
+    /**
+     * This method, based on input data, "buys" a product.
+     * <p>
+     *     In reality the player has already bought that product. The product stored in {@link #stockItems} does not know
+     *     about it. So now, when the product was delivered, the game can simulate buying process in the real product.
+     * </p>
+     * @param name the product that came
+     * @param shopPrice for how much it was bought (one piece)
+     * @param amount how many of them were bought
+     * @throws InvalidPlayerActionException if there is any issue allocated with manipulating with {@link ItemPlayer} data.
+     */
+    private void transferItem(String name, int shopPrice, int amount) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
             throw new InvalidPlayerActionException(name + "could not be bought " + name + " could not be found");
@@ -81,6 +127,21 @@ public class Player implements Serializable {
         }
     }
 
+    /**
+     * This method represents a system of selling an item.
+     * <p>
+     *     This system is much simpler than the system in {@link #transferItem(String, int, int)}
+     *     Because the game can only manipulate with delivered items, no transfer is needed.
+     * </p>
+     * <p>
+     *     All important math is happening inside an instance of {@link ItemPlayer}, which is found through {@link #findItem(String)}.
+     * </p>
+     * @param name is the name of the item to be sold
+     * @param amount represents how many of them will be sold
+     * @param npcPrice stands for how much does the NPC sell this product
+     * @throws InvalidPlayerActionException if the product cloud not be found (should never occur) or if there is a problem
+     * in further process.
+     */
     public void sellItem(String name, int amount, int npcPrice) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
@@ -98,6 +159,13 @@ public class Player implements Serializable {
         return this.currentBalance < 15 && !hasSomething();
     }
 
+    /**
+     * This method checks whether the player has something to sell now or in the future.
+     * <p>
+     *     It is to prevent the player playing while he has no chance to continue.
+     * </p>
+     * @return true if he has something to sell, false if not
+     */
     private boolean hasSomething() {
         if (!undeliveredItems.isEmpty()) {
             return true;
@@ -110,12 +178,20 @@ public class Player implements Serializable {
         return false;
     }
 
-
+    /**
+     * This method loads {@link #stockItems} by transferring whole array of {@link ItemShop} into individual instances of {@link ItemPlayer}.
+     * <p>
+     *     Usually this method is executed when player acquires a new shop
+     * </p>
+     * @param itemShop the array filled by {@link ItemShop} instances
+     * @throws WrongItemException if there is any problem in transforming {@link ItemShop} into {@link ItemPlayer}
+     */
     public void loadItems(ItemShop[] itemShop) throws WrongItemException {
         for (ItemShop item : itemShop) {
             this.stockItems.add(new ItemPlayer(item.getItemBase().getName()));
         }
     }
+
 
     public int calculateStocks() {
         int stocks = 0;
@@ -133,6 +209,10 @@ public class Player implements Serializable {
         return stocks;
     }
 
+    /**
+     * This method finds player's favorite product.
+     * @return player's favorite product
+     */
     public String findFavorite() {
         int max = 0;
         String result = "";
@@ -165,6 +245,21 @@ public class Player implements Serializable {
         return stockItems;
     }
 
+    /**
+     * This method is useful when it comes to displaying information about all delivered products.
+     * <p>
+     *     It creates a HashMap whose
+     *     <ul>
+     *         <li>key is name of the product</li>
+     *         <li>value is the amount</li>
+     *     </ul>
+     * </p>
+     * <p>
+     *     If the product is not in the map then it is just put there with its amount.
+     *     But if the product is already in the map then the amount is only updated.
+     * </p>
+     * @return the map with all delivered products and their amounts
+     */
     private HashMap<String, Integer> loadMap() {
         HashMap<String, Integer> map = new HashMap<>();
         for (ItemDelivery itemDelivery : deliveredItems) {
@@ -179,6 +274,14 @@ public class Player implements Serializable {
         return map;
     }
 
+    /**
+     * This method processes {@link #loadMap()} further.
+     * <p>
+     *     It rewrites the content of the map into pre-defined syntax.
+     * </p>
+     * The syntax: {@code Name of the product: amount}
+     * @return the rewritten content of the map or null if there is no content in the map
+     */
     public String information() {
         HashMap<String, Integer> map = loadMap();
         StringBuilder sb = new StringBuilder();
