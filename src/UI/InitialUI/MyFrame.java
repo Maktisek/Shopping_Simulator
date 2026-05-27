@@ -8,21 +8,25 @@ import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 
 public class MyFrame extends FrameBaseUI {
 
     private final GameData gameData;
     private MainUI mainUI;
 
-    public MyFrame(GameData gameData) throws InvalidUILoadException{
+    public MyFrame(GameData gameData) throws InvalidUILoadException {
         super("/Sprites/IconSprites/MAIN_ICON.png");
         setTitle("Forest Market");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setUndecorated(true);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+
 
         this.gameData = gameData;
         initialize();
@@ -40,8 +44,25 @@ public class MyFrame extends FrameBaseUI {
     }
 
     private void initialize() throws InvalidUILoadException {
+        initializeWindowOperations();
         this.mainUI = new MainUI(gameData);
         getContentPane().add(this.mainUI, BorderLayout.CENTER);
+    }
+
+    private void initializeWindowOperations() {
+        this.addWindowStateListener(new WindowAdapter() {
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                if(e.getNewState() != 0) {
+                    refreshFullscreen();
+                }
+            }
+        });
+    }
+
+    private void refreshFullscreen() {
+        setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public void makeVisible() {
