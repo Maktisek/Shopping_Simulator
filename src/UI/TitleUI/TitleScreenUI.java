@@ -26,7 +26,6 @@ import java.net.URL;
 public class TitleScreenUI extends FrameBaseUI {
 
     private BackgroundPanel background;
-    private JPanel upperPanel;
     private JPanel overlay;
 
     public TitleScreenUI() throws InvalidUILoadException {
@@ -155,17 +154,13 @@ public class TitleScreenUI extends FrameBaseUI {
     }
 
     private void initializeSouthPanel() throws InvalidUILoadException {
-        upperPanel = new JPanel();
-        upperPanel.setLayout(new BorderLayout());
-        upperPanel.setOpaque(false);
-
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
         wrapper.setOpaque(false);
 
         initializeMuteButton(wrapper);
 
-        upperPanel.add(wrapper, BorderLayout.SOUTH);
+        background.add(wrapper, BorderLayout.SOUTH);
     }
 
     private void initializeMuteButton(JPanel wrapper) throws InvalidUILoadException {
@@ -186,7 +181,6 @@ public class TitleScreenUI extends FrameBaseUI {
         layeredPane.setLayout(new OverlayLayout(layeredPane));
 
         layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(upperPanel, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
 
         this.getContentPane().add(layeredPane, BorderLayout.CENTER);

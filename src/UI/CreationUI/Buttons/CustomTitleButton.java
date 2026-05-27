@@ -26,6 +26,7 @@ public class CustomTitleButton extends CustomBaseChangingButton {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 CustomTitleButton.this.hoovered = false;
+                resetCursor();
                 repaint();
             }
 
@@ -33,6 +34,7 @@ public class CustomTitleButton extends CustomBaseChangingButton {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 CustomTitleButton.this.hoovered = true;
+                setCursor();
                 repaint();
             }
 
@@ -52,13 +54,6 @@ public class CustomTitleButton extends CustomBaseChangingButton {
                 repaint();
             }
         });
-    }
-
-    public void setCursor(){
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/TitleScreenSprites/CLICKED_CURSOR.png"));
-        Cursor customCursor = toolkit.createCustomCursor(cursorImg, new Point(0, 0), "cursorName");
-        this.setCursor(customCursor);
     }
 }
 
