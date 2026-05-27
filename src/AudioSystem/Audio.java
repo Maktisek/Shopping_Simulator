@@ -21,19 +21,25 @@ import java.util.ArrayList;
  * Used Gemini to help me find bugs and fix issues.
  *
  * @author Matěj Pospíšil, Gemini, Tim (Cool dude on Stack Overflow)
+ * @since   1.0 - (pre-release version)
  */
 public class Audio {
 
+    @SuppressWarnings("unused")
     private String filePath;
+    @SuppressWarnings("unused")
     private String title;
     private boolean music;
+    @SuppressWarnings("unused")
     private int soundPool;
 
     private Clip currentClip;
     private ArrayList<Clip> clips;
+    @SuppressWarnings("unused")
     private boolean infiniteLoop;
     private long pausePosition;
     private boolean paused;
+    @SuppressWarnings("unused")
     private float initialVolume;
     private boolean shifting;
 
@@ -312,44 +318,12 @@ public class Audio {
         }
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public long getPausePosition() {
-        return pausePosition;
-    }
-
-    public void setPausePosition(long pausePosition) {
-        this.pausePosition = pausePosition;
-    }
-
     public Clip getCurrentClip() {
         return currentClip;
-    }
-
-    public void setCurrentClip(Clip currentClip) {
-        this.currentClip = currentClip;
-    }
-
-    public boolean isInfiniteLoop() {
-        return infiniteLoop;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public void setInfiniteLoop(boolean infiniteLoop) {
-        this.infiniteLoop = infiniteLoop;
     }
 
     public boolean isPaused() {
@@ -360,35 +334,11 @@ public class Audio {
         this.paused = paused;
     }
 
-    public float getInitialVolume() {
-        return initialVolume;
-    }
-
-    public void setInitialVolume(float initialVolume) {
-        this.initialVolume = initialVolume;
-    }
-
     public boolean isMusic() {
         return music;
     }
 
     public void setMusic(boolean music) {
         this.music = music;
-    }
-
-    public int getSoundPool() {
-        return soundPool;
-    }
-
-    public void setSoundPool(int soundPool) {
-        this.soundPool = soundPool;
-    }
-
-    public ArrayList<Clip> getClips() {
-        return clips;
-    }
-
-    public void setClips(ArrayList<Clip> clips) {
-        this.clips = clips;
     }
 }

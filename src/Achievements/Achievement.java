@@ -10,12 +10,15 @@ import java.io.Serializable;
  *     then the achievement is marked as done.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Achievement implements Serializable {
 
     private AchievementType type;
     private String name;
+    @SuppressWarnings("unused")
     private String description;
+    @SuppressWarnings("unused")
     private int bound;
     private int current;
     private int reward;
@@ -54,10 +57,6 @@ public class Achievement implements Serializable {
         return bound;
     }
 
-    public void setBound(int bound) {
-        this.bound = bound;
-    }
-
     public int getCurrent() {
         return current;
     }
@@ -78,15 +77,8 @@ public class Achievement implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public int getReward() {
         return reward;
     }
 
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
 }

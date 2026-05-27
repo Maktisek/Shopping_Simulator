@@ -23,6 +23,8 @@ import Upgrade.Utilities.UpgradeNames;
  * <p>
  * If the action was successful, then {@link CommandResult} with {@link CommandState#DONE} is returned.
  * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class SellProductCommand extends Command {
 

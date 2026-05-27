@@ -18,6 +18,7 @@ import Shops.ShopDirection;
  * </p>
  * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned.
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ChangeShopCommand extends Command {
 

@@ -30,12 +30,16 @@ import java.util.Random;
  * </p>
  *
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class NPC implements Serializable {
 
+    @SuppressWarnings("unused")
     private int quantityWeight;
+    @SuppressWarnings("unused")
     private int convenienceWeight;
     private ItemNPC[] items;
+    @SuppressWarnings("unused")
     private ItemNPC[] demand;
 
     /**
@@ -210,20 +214,8 @@ public class NPC implements Serializable {
         return 0;
     }
 
-    public int getQuantityWeight() {
-        return quantityWeight;
-    }
-
-    public void setQuantityWeight(int quantityWeight) {
-        this.quantityWeight = quantityWeight;
-    }
-
     public ItemNPC[] getDemand() {
         return demand;
-    }
-
-    public void setDemand(ItemNPC[] demand) {
-        this.demand = demand;
     }
 
     public ItemNPC[] getItems() {
@@ -233,13 +225,4 @@ public class NPC implements Serializable {
     public void setItems(ItemNPC[] items) {
         this.items = items;
     }
-
-    public int getConvenienceWeight() {
-        return convenienceWeight;
-    }
-
-    public void setConvenienceWeight(int convenienceWeight) {
-        this.convenienceWeight = convenienceWeight;
-    }
-
 }

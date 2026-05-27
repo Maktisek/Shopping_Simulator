@@ -25,6 +25,7 @@ import java.util.HashMap;
  *     </ul>
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Player implements Serializable {
 

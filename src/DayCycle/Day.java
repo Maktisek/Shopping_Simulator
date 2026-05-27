@@ -20,10 +20,12 @@ import java.io.Serializable;
  * </p>
  * {@link #dayName} stands for classic english day system (monday - sunday) and it cycles through of it.
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Day implements Serializable {
 
     private DayName dayName;
+    @SuppressWarnings("unused")
     private final int numberOfTheDay;
     private int dayIncome;
     private int daySpending;
@@ -77,28 +79,12 @@ public class Day implements Serializable {
         this.daySoldAmount += amount;
     }
 
-    public int getNumberOfTheDay() {
-        return numberOfTheDay;
-    }
-
-    public int getDayIncome() {
-        return dayIncome;
-    }
-
     public DayName getDayName() {
         return dayName;
     }
 
     public void setDayName(DayName dayName) {
         this.dayName = dayName;
-    }
-
-    public int getDaySpending() {
-        return daySpending;
-    }
-
-    public void setDayIncome(int dayIncome) {
-        this.dayIncome = dayIncome;
     }
 
     public int getDaySoldAmount() {
@@ -115,10 +101,6 @@ public class Day implements Serializable {
 
     public void setDayBoughtAmount(int dayBoughtAmount) {
         this.dayBoughtAmount = dayBoughtAmount;
-    }
-
-    public void setDaySpending(int daySpending) {
-        this.daySpending = daySpending;
     }
 
     /**

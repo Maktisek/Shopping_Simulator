@@ -19,13 +19,16 @@ import java.util.Queue;
  * </p>
  * {@link #possibleAchievements} stands for all unfinished achievements
  * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class AchievementManagement implements Serializable {
 
-    private Queue<Achievement> freshAchievements;
-    private HashMap<AchievementType, ArrayList<Achievement>> possibleAchievements;
+    private final Queue<Achievement> freshAchievements;
+    private final HashMap<AchievementType, ArrayList<Achievement>> possibleAchievements;
     private final ArrayList<Achievement> doneAchievements;
-    private ArrayList<Achievement> loadedAchievements;
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    private final ArrayList<Achievement> loadedAchievements;
 
     public AchievementManagement() {
         this.freshAchievements = new LinkedList<>();
@@ -112,28 +115,7 @@ public class AchievementManagement implements Serializable {
             return null;
         }
     }
-
-    public ArrayList<Achievement> getLoadedAchievements() {
-        return loadedAchievements;
-    }
-
-    public void setLoadedAchievements(ArrayList<Achievement> loadedAchievements) {
-        this.loadedAchievements = loadedAchievements;
-    }
-
     public HashMap<AchievementType, ArrayList<Achievement>> getPossibleAchievements() {
         return possibleAchievements;
-    }
-
-    public void setPossibleAchievements(HashMap<AchievementType, ArrayList<Achievement>> possibleAchievements) {
-        this.possibleAchievements = possibleAchievements;
-    }
-
-    public Queue<Achievement> getFreshAchievements() {
-        return freshAchievements;
-    }
-
-    public void setFreshAchievements(Queue<Achievement> freshAchievements) {
-        this.freshAchievements = freshAchievements;
     }
 }

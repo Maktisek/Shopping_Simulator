@@ -27,6 +27,8 @@ import java.util.Stack;
  * Also, there is {@link #currentShop} which holds the currently selected shop. It is a must-have feature, because of easier
  * access and also because of the implementation of the stacks. The current shop must be pushed into the opposite stack as from is the new one
  * taken.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ShopManagement implements Serializable {
 
@@ -218,25 +220,5 @@ public class ShopManagement implements Serializable {
 
     public Shop getCurrentShop() {
         return currentShop;
-    }
-
-    public void setCurrentShop(Shop currentShop) {
-        this.currentShop = currentShop;
-    }
-
-    public Stack<Shop> getLeftShops() {
-        return leftShops;
-    }
-
-    public void setLeftShops(Stack<Shop> leftShops) {
-        this.leftShops = leftShops;
-    }
-
-    public Stack<Shop> getRightShops() {
-        return rightShops;
-    }
-
-    public void setRightShops(Stack<Shop> rightShops) {
-        this.rightShops = rightShops;
     }
 }

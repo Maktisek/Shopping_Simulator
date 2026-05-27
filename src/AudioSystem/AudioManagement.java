@@ -17,12 +17,15 @@ import java.util.Queue;
  * on a place where they do not belong.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class AudioManagement {
 
     private ArrayList<Audio> music;
     private ArrayList<Audio> sounds;
+    @SuppressWarnings("unused")
     private ArrayList<Audio> paused;
+    @SuppressWarnings("unused")
     private Queue<Audio> queue;
     private boolean mute;
 
@@ -319,15 +322,7 @@ public class AudioManagement {
         return paused;
     }
 
-    public void setPaused(ArrayList<Audio> paused) {
-        this.paused = paused;
-    }
-
     public Queue<Audio> getQueue() {
         return queue;
-    }
-
-    public void setQueue(Queue<Audio> queue) {
-        this.queue = queue;
     }
 }

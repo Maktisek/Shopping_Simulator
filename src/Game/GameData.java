@@ -25,6 +25,7 @@ import java.nio.file.Paths;
  * </p>
  * If any new feature is added, it should be accessible from here (except static stuff)
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class GameData implements Serializable {
 

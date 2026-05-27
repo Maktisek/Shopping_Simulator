@@ -19,6 +19,7 @@ import Utilities.Important;
  * </p>
  *
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class SwapMuteCommand extends Command {
 

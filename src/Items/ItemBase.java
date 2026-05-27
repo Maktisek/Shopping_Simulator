@@ -12,6 +12,7 @@ import java.io.Serializable;
  *     It is used, because every single special item has to hold those basic information, it is fair to say, that it is pretty close be a record class.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ItemBase implements Serializable {
 
@@ -85,27 +86,6 @@ public class ItemBase implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public int getWholePrice() {
-        return wholePrice;
-    }
-
-    public void setWholePrice(int wholePrice) {
-        this.wholePrice = wholePrice;
-    }
-
-    public int getNumberOfPrices() {
-        return numberOfPrices;
-    }
-
-    public void setNumberOfPrices(int numberOfPrices) {
-        this.numberOfPrices = numberOfPrices;
-    }
-
 
     /**
      * This method is used to get information about that object.

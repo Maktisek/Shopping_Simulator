@@ -11,6 +11,7 @@ import Utilities.Important;
 /**
  * This command represents claiming a reward from achievement.
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ClaimAchievementRewardCommand extends Command {
 

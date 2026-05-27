@@ -1,8 +1,5 @@
 package Taxes;
 
-import Utilities.Important;
-
-import java.beans.BeanProperty;
 import java.io.Serializable;
 
 /**
@@ -27,6 +24,7 @@ import java.io.Serializable;
  *     <li>{@link #k} this value is loaded after start of the game, and it is not changed afterward. I would like to make it final
  *     but Java needs this value to be set in constructor, which is something I do not want to do</li>
  * </ul>
+ * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
  */
 

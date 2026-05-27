@@ -14,6 +14,7 @@ import java.util.Random;
  *      {@link #current} stands for the current amount available
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class AmountManager implements Serializable {
 
@@ -42,14 +43,6 @@ public class AmountManager implements Serializable {
 
     public void decrement(int amount){
         this.current -= amount;
-    }
-
-    public int getMax() {
-        return max;
-    }
-
-    public Interval getInterval() {
-        return interval;
     }
 
     public int getCurrent() {

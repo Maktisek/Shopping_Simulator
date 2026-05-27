@@ -6,6 +6,7 @@ package AudioSystem;
  *     Used in order to store music and sounds separately.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public enum AudioType {
 

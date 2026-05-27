@@ -5,6 +5,7 @@ package Items;
  *     The game features more varieties of items and not every single of one need to implement this interface.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public interface Item {
     /**

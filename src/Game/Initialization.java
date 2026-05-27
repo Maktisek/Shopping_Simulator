@@ -1,7 +1,6 @@
 package Game;
 
 import Achievements.AchievementManagement;
-import AudioSystem.AudioManagement;
 import DayCycle.DayManagement;
 import Items.Exceptions.WrongItemException;
 import NPCs.NPCFinder;
@@ -16,7 +15,6 @@ import com.google.gson.Gson;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Random;
 
 /**
  * This class represents a system of loading a new instance of {@link GameData} from multiple jsons.
@@ -26,6 +24,7 @@ import java.util.Random;
  * In the end bonus methods for connecting still unconnected are being executed finishing the whole load process.
  *
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Initialization {
 

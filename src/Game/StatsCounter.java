@@ -8,6 +8,7 @@ import java.io.Serializable;
  *     It is used to store all statistic data.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class StatsCounter implements Serializable {
 

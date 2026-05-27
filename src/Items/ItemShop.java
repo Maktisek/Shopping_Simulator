@@ -24,14 +24,18 @@ import java.io.Serializable;
  *     </ul>
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ItemShop implements Item, Serializable {
 
     private ItemBase item;
     private double penalization;
     private int currentDayAmount;
+    @SuppressWarnings("unused")
     private int priceSensitivity;
+    @SuppressWarnings("unused")
     private int daysToBeDelivered;
+    @SuppressWarnings("unused")
     private AmountManager amountManager;
 
     public ItemShop() {
@@ -65,15 +69,7 @@ public class ItemShop implements Item, Serializable {
             change = -1 * change;
         }
         double afterChange = (this.penalization + ((change * (5 / (penalization) / 2))) * rebirthCoefficient);
-//        if (afterChange < 0.9) {
-//            this.penalization = 0.9;
-//        } else
-
-        if (afterChange > 1.2) {
-            this.penalization = 1.2;
-        } else {
-            this.penalization = afterChange;
-        }
+        this.penalization = Math.min(afterChange, 1.2);
     }
 
     /**
@@ -117,43 +113,11 @@ public class ItemShop implements Item, Serializable {
         this.item = item;
     }
 
-    public double getPenalization() {
-        return penalization;
-    }
-
-    public void setPenalization(double penalization) {
-        this.penalization = penalization;
-    }
-
-    public int getCurrentDayAmount() {
-        return currentDayAmount;
-    }
-
-    public void setCurrentDayAmount(int currentDayAmount) {
-        this.currentDayAmount = currentDayAmount;
-    }
-
-    public int getPriceSensitivity() {
-        return priceSensitivity;
-    }
-
-    public void setPriceSensitivity(int priceSensitivity) {
-        this.priceSensitivity = priceSensitivity;
-    }
-
     public int getDaysToBeDelivered() {
         return daysToBeDelivered;
     }
 
-    public void setDaysToBeDelivered(int daysToBeDelivered) {
-        this.daysToBeDelivered = daysToBeDelivered;
-    }
-
     public AmountManager getAmountManager() {
         return amountManager;
-    }
-
-    public void setAmountManager(AmountManager amountManager) {
-        this.amountManager = amountManager;
     }
 }

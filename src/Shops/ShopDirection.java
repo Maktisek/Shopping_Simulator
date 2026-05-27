@@ -6,6 +6,7 @@ import Commands.ShopCommands.ChangeShopCommand;
 /**
  * This enum works as a "direction" identifier for both {@link BuyShopCommand} and {@link ChangeShopCommand}
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public enum ShopDirection {
 

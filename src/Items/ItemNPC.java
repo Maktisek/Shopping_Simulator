@@ -17,10 +17,12 @@ import java.io.Serializable;
  * </p>
  * Here it is clearly visible, why the system with {@link ItemBase} works so well
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ItemNPC implements Item, Serializable {
 
     private ItemBase item;
+    @SuppressWarnings("unused")
     private AmountManager amountManager;
 
     public ItemBase getItemBase() {
@@ -39,9 +41,4 @@ public class ItemNPC implements Item, Serializable {
     public AmountManager getAmountManager() {
         return amountManager;
     }
-
-    public void setAmountManager(AmountManager amountManager) {
-        this.amountManager = amountManager;
-    }
-
 }

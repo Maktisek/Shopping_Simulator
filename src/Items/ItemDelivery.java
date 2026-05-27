@@ -8,11 +8,12 @@ import java.io.Serializable;
  *     It is a basic POJO, cloud be record class
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ItemDelivery implements Serializable {
 
     private String name;
-    private int boughtPrice;
+    private final int boughtPrice;
     private int daysToBeDelivered;
     private int amount;
 
@@ -41,10 +42,6 @@ public class ItemDelivery implements Serializable {
 
     public int getBoughtPrice() {
         return boughtPrice;
-    }
-
-    public void setBoughtPrice(int boughtPrice) {
-        this.boughtPrice = boughtPrice;
     }
 
     public int getAmount() {

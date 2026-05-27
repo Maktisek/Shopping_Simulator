@@ -6,11 +6,12 @@ package Commands;
  *     It's data are then processed - the UI can react to what happened.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class CommandResult {
 
     private String message;
-    private CommandState state;
+    private final CommandState state;
 
     public CommandResult(String message, CommandState state) {
         this.message = message;
@@ -27,9 +28,5 @@ public class CommandResult {
 
     public CommandState getState() {
         return state;
-    }
-
-    public void setState(CommandState state) {
-        this.state = state;
     }
 }

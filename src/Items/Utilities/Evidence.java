@@ -12,6 +12,7 @@ import java.io.Serializable;
  * {@link #price} does not stand for whole price, but for how much did one piece of that product cost.
  *
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Evidence implements Serializable {
     private int amount;

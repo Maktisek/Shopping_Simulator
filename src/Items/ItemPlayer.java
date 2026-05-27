@@ -25,6 +25,7 @@ import java.util.Queue;
  *     It is in the queue so it can be easily backtracked. The oldest purchase is taken first.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class ItemPlayer implements Serializable {
 
@@ -152,16 +153,8 @@ public class ItemPlayer implements Serializable {
         return amount;
     }
 
-    public Queue<Evidence> getEvidences() {
-        return evidences;
-    }
-
     public double getAverageBuyPrice() {
         return averageBuyPrice;
-    }
-
-    public void setAverageBuyPrice(double averageBuyPrice) {
-        this.averageBuyPrice = averageBuyPrice;
     }
 
     public int getWholeBoughtPrice() {
@@ -180,33 +173,7 @@ public class ItemPlayer implements Serializable {
         return sellAmount;
     }
 
-    public void setSellAmount(int sellAmount) {
-        this.sellAmount = sellAmount;
-    }
-
-    public int getWholeEarnings() {
-        return wholeEarnings;
-    }
-
-    public void setWholeEarnings(int wholeEarnings) {
-        this.wholeEarnings = wholeEarnings;
-    }
-
-    public int getWholePrice() {
-        return wholePrice;
-    }
-
-    public void setWholePrice(int wholePrice) {
-        this.wholePrice = wholePrice;
-    }
-
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
-    public void setWholeBoughtPrice(int wholeBoughtPrice) {
-        this.wholeBoughtPrice = wholeBoughtPrice;
-    }
-
-
 }

@@ -18,6 +18,7 @@ import Player.Exceptions.InvalidPlayerActionException;
  *     If the whole process was successful then {@link CommandResult} with {@link CommandState#DONE} is returned
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class NewDayCommand extends Command {
 

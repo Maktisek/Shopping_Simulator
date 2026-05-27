@@ -17,6 +17,7 @@ import java.util.HashMap;
  *     {@link #daysNames} stands for a {@link HashMap} with key being an integer (1 to 7) and key being {@link DayName}
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class DayManagement implements Serializable {
 
@@ -79,13 +80,4 @@ public class DayManagement implements Serializable {
     public int getNumberOfDays() {
         return numberOfDays;
     }
-
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
-    }
-
-    public void setCurrentDay(Day currentDay) {
-        this.currentDay = currentDay;
-    }
-
 }

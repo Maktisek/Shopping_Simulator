@@ -6,18 +6,16 @@ package NPCs;
  *     It works as a helper for connecting NPCs with shops in {@link Game.Initialization}
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class NPCFinder {
 
+    @SuppressWarnings("unused")
     private String shopName;
     private NPC npc;
 
     public String getShopName() {
         return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
     }
 
     public NPC getNpc() {

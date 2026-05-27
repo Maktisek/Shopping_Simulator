@@ -16,6 +16,7 @@ import Upgrade.UpgradeManagement;
  *     {@link #gameData} is needed for almost every single command, that is why it is originally declared here
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public abstract class Command {
 

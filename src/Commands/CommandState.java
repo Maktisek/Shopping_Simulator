@@ -6,6 +6,7 @@ package Commands;
  *     {@link CommandResult} has its own state represented by this enum.
  * </p>
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public enum CommandState {
 

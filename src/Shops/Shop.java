@@ -24,12 +24,14 @@ import java.io.Serializable;
  * </p>
  * Still it is important to say that this class is more like a container of all above-mentioned data.
  * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class Shop implements Serializable {
 
     private String name;
     private ItemShop[] items;
     private NPC npc;
+    @SuppressWarnings("unused")
     private ShopKey shopKey;
 
 
@@ -150,9 +152,4 @@ public class Shop implements Serializable {
     public ShopKey getShopKey() {
         return shopKey;
     }
-
-    public void setShopKey(ShopKey shopKey) {
-        this.shopKey = shopKey;
-    }
-    
 }
