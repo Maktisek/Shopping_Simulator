@@ -3,7 +3,7 @@ package Shops.Utilities;
 import java.io.Serializable;
 
 /**
- * This class represents a system for shop unlocking.
+ * This class represents a system for shop unlocking and it is just POJO.
  * <p>
  *     It manages whether the player can reach that shop or not.
  * </p>

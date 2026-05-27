@@ -3,6 +3,7 @@ package Items;
 import Items.Exceptions.WrongItemException;
 import Items.Utilities.AmountManager;
 import UI.MainUI.ShopUI.Items.ItemSpecification;
+import Upgrade.Rebirth.Rebirth;
 import Utilities.Important;
 
 import java.io.Serializable;
@@ -45,19 +46,53 @@ public class ItemShop implements Item, Serializable {
         return Math.min(result, 0.125);
     }
 
+    /**
+     * This method updates {@link #penalization} by its input.
+     * <p>
+     *     The higher the current penalization is the slower it rises.
+     * </p>
+     * <p>
+     *     The penalization belongs to interval <0.9;1.2>
+     * </p>
+     * <p>
+     *     Watch out, {@link #penalization} is always incremented, never decremented.
+     * </p>
+     * @param change stands for how much should be {@link #penalization} incremented.
+     * @param rebirthCoefficient comes from {@link Rebirth#getPenalizationMultiplier()}, which tenderly softens the changes
+     */
     public void updatePenalization(double change, double rebirthCoefficient) {
-        double afterChange = (this.penalization + (change * (5 / (penalization) / 2))) * rebirthCoefficient;
-        if (afterChange < 0.9) {
-            this.penalization = 0.9;
-        } else if (afterChange > 1.2) {
+        if(change < 0){
+            change = -1 * change;
+        }
+        double afterChange = (this.penalization + ((change * (5 / (penalization) / 2))) * rebirthCoefficient);
+//        if (afterChange < 0.9) {
+//            this.penalization = 0.9;
+//        } else
+
+        if (afterChange > 1.2) {
             this.penalization = 1.2;
         } else {
             this.penalization = afterChange;
         }
     }
 
+    /**
+     * This method updates {@link #penalization} by its input.
+     * <p>
+     *     The update is calculated normally - penalization is only incremented by {@code change} and reduced by {@code rebirthCoefficient}.
+     * </p>
+     * <p>
+     *     Watch out, {@link #penalization} is always decremented, never incremented.
+     * </p>
+     * Use this method only when setting a new day, because it does not check upper bound.
+     * @param change stands for how much should be {@link #penalization} decremented.
+     * @param rebirthCoefficient comes from {@link Rebirth#getPenalizationMultiplier()}, which tenderly softens the changes
+     */
     public void newDayPenalization(double change, double rebirthCoefficient) {
-        double afterChange = (this.penalization + change) * rebirthCoefficient;
+        if(change > 0){
+            change = -1 * change;
+        }
+        double afterChange = (this.penalization + (change) * rebirthCoefficient);
         this.penalization = Math.max(afterChange, 0.9);
     }
 
