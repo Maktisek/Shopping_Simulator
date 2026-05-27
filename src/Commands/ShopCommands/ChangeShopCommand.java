@@ -5,6 +5,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Shops.Shop;
+import Shops.ShopDirection;
 
 /**
  * This command represents a system of changing shops.

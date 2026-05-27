@@ -4,7 +4,7 @@ import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.ShopCommands.BuyShopCommand;
-import Commands.ShopCommands.ShopDirection;
+import Shops.ShopDirection;
 import Game.GameData;
 import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.Exceptions.InvalidUILoadException;

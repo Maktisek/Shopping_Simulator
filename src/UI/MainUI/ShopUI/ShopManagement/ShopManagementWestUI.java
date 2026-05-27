@@ -3,7 +3,7 @@ package UI.MainUI.ShopUI.ShopManagement;
 import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.ShopCommands.ChangeShopCommand;
-import Commands.ShopCommands.ShopDirection;
+import Shops.ShopDirection;
 import Game.GameData;
 import UI.CreationUI.Buttons.ButtonType;
 import UI.CreationUI.Buttons.CustomButton;

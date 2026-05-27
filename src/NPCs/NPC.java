@@ -117,6 +117,11 @@ public class NPC implements Serializable {
         Arrays.fill(demand, null);
     }
 
+    /**
+     * Based on its input it fills {@link #items} by copying instances of {@link ItemBase} from instances of {@link ItemShop} into {@link #items}.
+     * @param temp the array filled by {@link ItemShop} instances
+     * @throws WrongItemException if there is any problem in the {@link ItemBase} copying process
+     */
     public void loadItems(ItemShop[] temp) throws WrongItemException {
         for (int i = 0; i < temp.length; i++) {
             this.items[i].setItem(temp[i].getItemBase().copy());

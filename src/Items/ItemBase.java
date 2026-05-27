@@ -31,6 +31,16 @@ public class ItemBase implements Serializable {
         this.basePrice = basePrice;
     }
 
+    /**
+     * This method is just a basic setter, but it must do few bonus actions.
+     * <ul>
+     *     <li>Check if the input is larger than 0, because the product should not be for free</li>
+     *     <li>Increment {@link #wholePrice}</li>
+     *     <li>Increment {@link #numberOfPrices}</li>
+     * </ul>
+     * @param currentPrice the value to be checked and set
+     * @throws WrongItemException if the input was lower or equal to 0
+     */
     public void setCurrentPrice(int currentPrice) throws WrongItemException {
         if (currentPrice > 0) {
             this.wholePrice += currentPrice;
@@ -48,6 +58,14 @@ public class ItemBase implements Serializable {
         return wholePrice / numberOfPrices;
     }
 
+    /**
+     * This method copies "this" instance of {@link ItemBase} into a new copied instance.
+     * <p>
+     *     This is so that later on I can change the data of the newly created {@link ItemBase} and not data of "this" instance
+     * </p>
+     * @return the copied version of {@link ItemBase}
+     * @throws WrongItemException if there is any problem with values, which were inserted into the constructor.
+     */
     public ItemBase copy() throws WrongItemException {
         return new ItemBase(this.name, this.currentPrice, this.basePrice);
     }
