@@ -2,5 +2,6 @@
   "start" : 2,
   "max": 300,
   "current" : 2,
-  "startDelay" : 8000
+  "startDelay" : 8000,
+  "maxDayNumber" : 1000
 }
