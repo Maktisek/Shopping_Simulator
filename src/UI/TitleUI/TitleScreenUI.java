@@ -64,11 +64,17 @@ public class TitleScreenUI extends FrameBaseUI {
     private void initializeBackground() throws InvalidUILoadException {
         this.background = new BackgroundPanel("/Sprites/TitleScreenSprites/BACKGROUND.png");
         this.background.setLayout(new BorderLayout());
-        initializeTitle();
-        initializeMainPanel();
+        JPanel wrapper = new JPanel();
+        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
+        wrapper.setOpaque(false);
+
+        initializeTitle(wrapper);
+        initializeMainPanel(wrapper);
+
+        this.background.add(wrapper, BorderLayout.NORTH);
     }
 
-    private void initializeTitle() throws InvalidUILoadException {
+    private void initializeTitle(JPanel wrapper) throws InvalidUILoadException {
         URL imageURL = getClass().getResource("/Sprites/TitleScreenSprites/TITLE_SCREEN_NAME.png");
 
         if (imageURL == null) {
@@ -81,15 +87,15 @@ public class TitleScreenUI extends FrameBaseUI {
         JLabel label = new JLabel(icon, JLabel.CENTER);
         label.setBorder(new EmptyBorder(Important.calculateDimension(30), 0, 0, 0));
         label.setOpaque(false);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.background.add(label, BorderLayout.NORTH);
+        wrapper.add(label);
     }
 
-    private void initializeMainPanel() throws InvalidUILoadException {
+    private void initializeMainPanel(JPanel wrapper) throws InvalidUILoadException {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(0, Important.calculateDimension(40), Important.calculateDimension(20), Important.calculateDimension(40)));
 
         CustomTitleButton newGame = new CustomTitleButton("/Sprites/TitleScreenSprites/NEW_GAME_BUTTON.png", "/Sprites/TitleScreenSprites/NEW_GAME_BUTTON_CLICKED.png", 200, 100, ButtonType.ENTER);
         CustomTitleButton loadGame = new CustomTitleButton("/Sprites/TitleScreenSprites/LOAD_BUTTON.png", "/Sprites/TitleScreenSprites/LOAD_BUTTON_CLICKED.png", 200, 100, ButtonType.ENTER);
@@ -100,7 +106,7 @@ public class TitleScreenUI extends FrameBaseUI {
         quit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        this.background.add(panel, BorderLayout.CENTER);
+        wrapper.add(panel);
 
         newGame.addActionListener(e -> {
             Important.getAudioManagement().prepareForLoad();
@@ -155,16 +161,17 @@ public class TitleScreenUI extends FrameBaseUI {
 
     private void initializeSouthPanel() throws InvalidUILoadException {
         JPanel wrapper = new JPanel();
-        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
+        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.Y_AXIS));
         wrapper.setOpaque(false);
 
         initializeMuteButton(wrapper);
 
-        background.add(wrapper, BorderLayout.SOUTH);
+        background.add(wrapper, BorderLayout.WEST);
     }
 
     private void initializeMuteButton(JPanel wrapper) throws InvalidUILoadException {
         ChangingButton muteButton = new MuteButton().getMuteButton();
+        wrapper.add(Box.createVerticalGlue());
         wrapper.add(muteButton);
     }
 

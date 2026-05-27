@@ -4,6 +4,8 @@ import UI.Exceptions.InvalidUILoadException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 
 public abstract class FrameBaseUI extends JFrame {
@@ -48,12 +50,4 @@ public abstract class FrameBaseUI extends JFrame {
     }
 
     public abstract void refreshUI() throws InvalidUILoadException;
-
-    public Timer getResolutionChecker() {
-        return resolutionChecker;
-    }
-
-    public void setResolutionChecker(Timer resolutionChecker) {
-        this.resolutionChecker = resolutionChecker;
-    }
 }
