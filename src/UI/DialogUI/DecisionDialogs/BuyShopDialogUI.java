@@ -25,7 +25,7 @@ public class BuyShopDialogUI extends YesNoDialogUI {
     }
 
     @Override
-    public void initializeBuyButton() {
+    public void initializeYesButton() {
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         String previousShop = gameData.getShopManagement().getCurrentShop().getName();
         CommandResult result = new BuyShopCommand(gameData, shopDirection).execute();

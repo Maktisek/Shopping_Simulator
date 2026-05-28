@@ -14,7 +14,7 @@ public class TurnOffTheGameDialogUI extends YesNoDialogUI {
     }
 
     @Override
-    public void initializeBuyButton() {
+    public void initializeYesButton() {
         CommandResult result = new TurnOffTheGame(mainUI).execute();
         System.out.println(result.getMessage());
     }

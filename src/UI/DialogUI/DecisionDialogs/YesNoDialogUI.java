@@ -9,6 +9,16 @@ import Utilities.Important;
 
 import javax.swing.*;
 
+/**
+ * This class is an abstract class extending {@link BaseDialogUI}.
+ * <p>
+ *     Dialogs extending this class works as option dialogs. Always featuring two buttons
+ *     <ul>
+ *         <li>One that closes the dialog</li>
+ *         <li>Second that performs the desired action</li>
+ *     </ul>
+ * </p>
+ */
 public abstract class YesNoDialogUI extends BaseDialogUI {
 
     public YesNoDialogUI(String message) throws InvalidUILoadException {
@@ -23,22 +33,25 @@ public abstract class YesNoDialogUI extends BaseDialogUI {
 
         add(Box.createVerticalStrut(Important.calculateDimension(20)));
 
-        CustomButton ok = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75, ButtonType.EXIT);
-        CustomButton buy = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", 130, 75, ButtonType.NONE);
+        CustomButton no = new CustomButton("/Sprites/ButtonSprites/NO_BUTTON.png", 130, 75, ButtonType.EXIT);
+        CustomButton yes = new CustomButton("/Sprites/ButtonSprites/YES_BUTTON.png", 130, 75, ButtonType.NONE);
 
-        ok.addActionListener(e ->{
+        no.addActionListener(e ->{
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             parent.hideDialog();
         });
 
-        buy.addActionListener(e ->{
-            initializeBuyButton();
+        yes.addActionListener(e ->{
+            initializeYesButton();
         });
-        panel.add(ok);
+        panel.add(no);
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
-        panel.add(buy);
+        panel.add(yes);
         add(panel);
     }
 
-    public abstract void initializeBuyButton();
+    /**
+     * This method is performed when clicking the {@code yes} button.
+     */
+    public abstract void initializeYesButton();
 }

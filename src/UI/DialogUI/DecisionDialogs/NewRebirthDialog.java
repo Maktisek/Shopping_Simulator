@@ -23,7 +23,7 @@ public class NewRebirthDialog extends YesNoDialogUI {
     }
 
     @Override
-    public void initializeBuyButton() {
+    public void initializeYesButton() {
         CommandResult result = new NewRebirthCommand(gameData).execute();
         System.out.println(result.getMessage());
 
