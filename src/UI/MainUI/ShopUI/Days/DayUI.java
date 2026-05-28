@@ -9,6 +9,15 @@ import Utilities.Important;
 
 import java.awt.*;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     This class visualizes an individual day by displaying its name.
+ * </p>
+ * It can be found in the right top corner in the panel where the shop is located.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class DayUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
