@@ -4,7 +4,7 @@ import Upgrade.Rebirth.Rebirth;
 import Upgrade.Upgrades.MaxBoughtUpgrade;
 import Upgrade.Upgrades.MaxSoldUpgrade;
 import Upgrade.Upgrades.MaxStockUpgrade;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.HashMap;
  * <p>
  *     Upgrades are stored in HashMap {@link #upgrades} where:
  *     <ul>
- *         <li>Key is {@link UpgradeNames}</li>
+ *         <li>Key is {@link UpgradeType}</li>
  *         <li>Value is {@link Upgrade}</li>
  *     </ul>
  * </p>
@@ -24,7 +24,7 @@ import java.util.HashMap;
  */
 public class UpgradeManagement implements Serializable {
 
-    private final HashMap<UpgradeNames, Upgrade> upgrades;
+    private final HashMap<UpgradeType, Upgrade> upgrades;
     private Rebirth rebirth;
 
     public UpgradeManagement() {
@@ -37,24 +37,24 @@ public class UpgradeManagement implements Serializable {
      * This method loads {@link #upgrades} with all needed upgrades.
      */
     private void loadUpgrades(){
-        this.upgrades.put(UpgradeNames.BUY, new MaxBoughtUpgrade());
-        this.upgrades.put(UpgradeNames.SELL, new MaxSoldUpgrade());
-        this.upgrades.put(UpgradeNames.STOCK, new MaxStockUpgrade());
+        this.upgrades.put(UpgradeType.BUY, new MaxBoughtUpgrade());
+        this.upgrades.put(UpgradeType.SELL, new MaxSoldUpgrade());
+        this.upgrades.put(UpgradeType.STOCK, new MaxStockUpgrade());
     }
 
-    public void levelUpUpgrade(UpgradeNames name){
+    public void levelUpUpgrade(UpgradeType name){
         this.upgrades.get(name).levelUp();
     }
 
-    public int getUpgradeData(UpgradeNames name){
+    public int getUpgradeData(UpgradeType name){
         return (int) (this.upgrades.get(name).dataInfo() * rebirth.getUpgradeMultiplier());
     }
 
-    public int getUpgradePrice(UpgradeNames name){
+    public int getUpgradePrice(UpgradeType name){
         return this.upgrades.get(name).priceInfo();
     }
 
-    public int getUpgradeLevel(UpgradeNames name){
+    public int getUpgradeLevel(UpgradeType name){
         return this.upgrades.get(name).levelInfo();
     }
 
@@ -62,7 +62,7 @@ public class UpgradeManagement implements Serializable {
         this.rebirth.updateRebirth();
     }
 
-    public HashMap<UpgradeNames, Upgrade> getUpgrades() {
+    public HashMap<UpgradeType, Upgrade> getUpgrades() {
         return upgrades;
     }
 

@@ -8,7 +8,7 @@ import Game.GameData;
 import Items.ItemDelivery;
 import Items.ItemShop;
 import Player.Exceptions.InvalidPlayerActionException;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 
 /**
  * This command represents a system of buying a product.
@@ -39,8 +39,8 @@ public class BuyProductCommand extends Command {
     @Override
     public CommandResult execute() {
         int amount = getGameData().getAmount();
-        if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeNames.BUY))) {
-            return new CommandResult("You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.BUY) + " products at one day",
+        if (!getDayManagement().getCurrentDay().canIncrementDayBoughtAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeType.BUY))) {
+            return new CommandResult("You cannot buy more than " + getUpgradeManagement().getUpgradeData(UpgradeType.BUY) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }
 
@@ -48,8 +48,8 @@ public class BuyProductCommand extends Command {
         int price = getCurrentShop().getItems()[index].getItemBase().getCurrentPrice();
         ItemDelivery itemToDeliver = new ItemDelivery(product.getItemBase().getName(), amount, price, product.getDaysToBeDelivered());
 
-        if (getPlayer().calculateAllStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK)) {
-            return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK) + " products in your warehouse",
+        if (getPlayer().calculateAllStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeType.STOCK)) {
+            return new CommandResult("You cannot own more than " + getUpgradeManagement().getUpgradeData(UpgradeType.STOCK) + " products in your warehouse",
                     CommandState.FAILED_ISSUE);
         }
 

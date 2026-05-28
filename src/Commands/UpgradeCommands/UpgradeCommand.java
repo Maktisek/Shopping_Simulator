@@ -4,7 +4,7 @@ import Commands.Command;
 import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 
 /**
  * This command represents a system of buying a new upgrade. The amount of bought upgrades is determined by {@link GameData#getAmount()}.
@@ -17,9 +17,9 @@ import Upgrade.Utilities.UpgradeNames;
  */
 public class UpgradeCommand extends Command {
 
-    private final UpgradeNames name;
+    private final UpgradeType name;
 
-    public UpgradeCommand(GameData gameData, UpgradeNames name) {
+    public UpgradeCommand(GameData gameData, UpgradeType name) {
         super(gameData);
         this.name = name;
     }

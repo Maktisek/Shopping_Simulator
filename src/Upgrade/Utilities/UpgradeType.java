@@ -1,5 +1,5 @@
 package Upgrade.Utilities;
 
-public enum UpgradeNames {
+public enum UpgradeType {
     BUY, SELL, STOCK
 }

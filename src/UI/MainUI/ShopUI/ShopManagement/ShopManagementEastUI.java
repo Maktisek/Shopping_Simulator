@@ -9,7 +9,7 @@ import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DayUI;
 import UI.MainUI.ShopUI.Upgrades.UpgradeUI;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -64,7 +64,7 @@ public class ShopManagementEastUI extends JPanel implements UpdateAble {
 
     private void initializeUpgrades() throws InvalidUILoadException {
         this.add(Box.createVerticalStrut(Important.calculateDimension(15)));
-        for (UpgradeNames upgrade : UpgradeNames.values()) {
+        for (UpgradeType upgrade : UpgradeType.values()) {
             UpgradeUI upgradeUI = new UpgradeUI("/Sprites/UtilityPanels/ITEM_FRAME.png", gameData.getUpgradeManagement().getUpgrades().get(upgrade), gameData);
             upgradeUI.setOpaque(false);
             upgradeUI.setAlignmentX(Component.CENTER_ALIGNMENT);

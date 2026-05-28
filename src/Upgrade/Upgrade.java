@@ -1,6 +1,6 @@
 package Upgrade;
 
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 
 /**
  * This interface represents an upgrade.
@@ -51,5 +51,5 @@ public interface Upgrade {
      * Getter for the upgrade type
      * @return the upgrade type
      */
-    UpgradeNames nameInfo();
+    UpgradeType nameInfo();
 }

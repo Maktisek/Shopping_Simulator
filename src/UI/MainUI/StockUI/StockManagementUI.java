@@ -9,7 +9,7 @@ import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundTypes;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -133,7 +133,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
 
     private void updateBound(){
         String current = String.valueOf(gameData.getPlayer().calculateStocks());
-        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK));
+        String bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeType.STOCK));
         this.stockBound.update(current, bound);
     }
 }

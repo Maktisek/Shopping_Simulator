@@ -10,6 +10,8 @@ import java.io.Serializable;
  * </p>
  * @param lowerBound the lower bound of the interval - inclusive.
  * @param upperBound the upper bound of the interval - exclusive.
+ * @author Matěj Pospíšil
+ * @since 1.0 - (pre-release version)
  */
 public record Interval(int lowerBound, int upperBound) implements Serializable {
 }

@@ -7,7 +7,7 @@ import Commands.CommandState;
 import Game.GameData;
 import Items.ItemNPC;
 import Player.Exceptions.InvalidPlayerActionException;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 
 /**
  * This command represents a system of selling a product.
@@ -38,8 +38,8 @@ public class SellProductCommand extends Command {
     @Override
     public CommandResult execute() {
         int amount = getGameData().getAmount();
-        if (!getDayManagement().getCurrentDay().canIncrementDaySoldAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeNames.SELL))) {
-            return new CommandResult("You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeNames.SELL) + " products at one day",
+        if (!getDayManagement().getCurrentDay().canIncrementDaySoldAmount(amount, getUpgradeManagement().getUpgradeData(UpgradeType.SELL))) {
+            return new CommandResult("You cannot sell more than " + getUpgradeManagement().getUpgradeData(UpgradeType.SELL) + " products at one day",
                     CommandState.FAILED_ISSUE);
         }
         ItemNPC product = getCurrentShop().getNpc().getDemand()[index];

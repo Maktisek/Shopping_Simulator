@@ -5,7 +5,7 @@ import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.CreationUI.Labels.StrokeLabel;
-import Upgrade.Utilities.UpgradeNames;
+import Upgrade.Utilities.UpgradeType;
 import Utilities.Important;
 
 import javax.swing.*;
@@ -35,15 +35,15 @@ public class BoundPanelUI extends BackgroundPanel implements UpdateAble {
         switch (type){
             case BUY_BOUND -> {
                 this.current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDayBoughtAmount());
-                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.BUY));
+                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeType.BUY));
             }
             case SELL_BOUND -> {
                 this.current = String.valueOf(gameData.getDayManagement().getCurrentDay().getDaySoldAmount());
-                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.SELL));
+                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeType.SELL));
             }
             case STOCK_BOUND -> {
                 this.current = String.valueOf(gameData.getPlayer().calculateStocks());
-                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeNames.STOCK));
+                this.bound = String.valueOf(gameData.getUpgradeManagement().getUpgradeData(UpgradeType.STOCK));
             }
         }
     }
