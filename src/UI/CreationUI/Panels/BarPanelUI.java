@@ -11,10 +11,28 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It is commonly used in informational part of UI as a "bar" on top of the screen.
+ * </p>
+ * <p>
+ *     Base on {@link #type} the bar is chosen.
+ * </p>
+ * <p>
+ *     Basically just an exit button is being initialized here, but since it is an inheritor of {@link BackgroundPanel},
+ *     any other component can be added after the initialization process is finished.
+ * </p>
+ * <p>
+ *     An instance of {@link GameData} must be sent here in order to reach the name of the current shop.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class BarPanelUI extends BackgroundPanel {
 
     private final GameData gameData;
-    private String type;
+    private final String type;
 
     public BarPanelUI(String type, GameData gameData) throws InvalidUILoadException {
         super("/Sprites/BarSprites/" + type + "_UI_BAR.png");
@@ -22,7 +40,6 @@ public class BarPanelUI extends BackgroundPanel {
         this.type = type;
         initialize();
     }
-
 
     private void initialize() throws InvalidUILoadException {
         initializeDimensions();
