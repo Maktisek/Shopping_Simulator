@@ -8,7 +8,19 @@ import java.awt.*;
 import java.net.URL;
 
 /**
+ * This class represents an implementation of {@link BasicScrollBarUI}.
+ * <p>
+ *     This class sets and renders images for scrollers.
+ * </p>
+ * There are:
+ * <ul>
+ *     <li>{@link #thumbImage} that stands for the "thumb"</li>
+ *     <li>{@link #trackImage} that stands for the "track" </li>
+ * </ul>
+ * Both images are set in constructor and
+ * file path does not have to be inserted to the constructors parameters.
  * @author Google Gemini
+ * @since   1.0 - (pre-release version)
  */
 public class CustomScrollBarUI extends BasicScrollBarUI {
 
@@ -16,11 +28,8 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
     private final Image trackImage;
 
     public CustomScrollBarUI() throws InvalidUILoadException {
-
         this.thumbImage = loadImage("/Sprites/MiscSprites/SCROLL.png");
         this.trackImage = loadImage("/Sprites/MiscSprites/BAR.png");
-
-
     }
 
     private Image loadImage(String filePath) throws InvalidUILoadException {
