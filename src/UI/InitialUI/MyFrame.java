@@ -19,6 +19,8 @@ import java.awt.event.WindowStateListener;
  * </p>
  * For initializing {@link #mainUI} a proper instance of {@link GameData} has to be inserted.
  * If the given instance of {@link GameData} is not filled by data, the window will not open.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public class MyFrame extends FrameBaseUI {
 

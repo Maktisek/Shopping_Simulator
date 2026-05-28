@@ -20,6 +20,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     This class resembles a panel visualization of individual {@link Achievement} instance.
+ * </p>
+ * <p>
+ *     It displays:
+ *     <ul>
+ *         <li>Achievements icon</li>
+ *         <li>Achievements name</li>
+ *         <li>Achievements description</li>
+ *         <li>Achievements progress</li>
+ *     </ul>
+ * </p>
+ * Important note: in game achievements are named "goals" in order to reduce space consumption.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
@@ -128,6 +146,13 @@ public class AchievementBoxUI extends BackgroundPanel implements UpdateAble {
         xPanel.add(percentualBound);
     }
 
+    /**
+     * This method initializes button, which claims reward from {@link #achievement}.
+     * <p>
+     *     It remains hidden until {@link #achievement} is not completed.
+     * </p>
+     * @throws InvalidUILoadException if there is any problem with loading {@link CustomButton} instance
+     */
     private void initializeClaimButton() throws InvalidUILoadException {
         this.claimButton = new CustomButton("/Sprites/ButtonSprites/CLAIM_BUTTON.png", 256, 74, ButtonType.NONE);
         this.claimButton.setVisible(false);
