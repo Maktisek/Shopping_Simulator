@@ -62,7 +62,7 @@ public class Important {
      * Even though classic ration is 16:9, it is important to count on other ratios such as 4:3.
      * In some situations the scale is not same on X as on the Y. To prevent any problems the lower scale is chosen.
      * </p>
-     * It is better to have smaller icons on 800x600 resolution than having then huge so no one can see them.
+     * It is better to have smaller icons on 800x600 resolution than having them huge, so no one can see them.
      *
      * @return the chosen scale
      */
