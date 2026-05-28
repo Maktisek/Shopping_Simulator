@@ -9,6 +9,19 @@ import Upgrade.Utilities.UpgradeNames;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * This class represents a management of upgrades.
+ * <p>
+ *     Upgrades are stored in HashMap {@link #upgrades} where:
+ *     <ul>
+ *         <li>Key is {@link UpgradeNames}</li>
+ *         <li>Value is {@link Upgrade}</li>
+ *     </ul>
+ * </p>
+ * Also, {@link Rebirth} is stored here.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class UpgradeManagement implements Serializable {
 
     private final HashMap<UpgradeNames, Upgrade> upgrades;
@@ -20,6 +33,9 @@ public class UpgradeManagement implements Serializable {
         loadUpgrades();
     }
 
+    /**
+     * This method loads {@link #upgrades} with all needed upgrades.
+     */
     private void loadUpgrades(){
         this.upgrades.put(UpgradeNames.BUY, new MaxBoughtUpgrade());
         this.upgrades.put(UpgradeNames.SELL, new MaxSoldUpgrade());
@@ -45,7 +61,6 @@ public class UpgradeManagement implements Serializable {
     public void setNewRebirth(){
         this.rebirth.updateRebirth();
     }
-
 
     public HashMap<UpgradeNames, Upgrade> getUpgrades() {
         return upgrades;

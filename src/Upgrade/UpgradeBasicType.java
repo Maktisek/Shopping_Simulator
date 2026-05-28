@@ -8,6 +8,8 @@ import java.io.Serializable;
  *     It stands for classic upgrades and every single upgrade extending this class
  *     should not override its methods.
  * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public abstract class UpgradeBasicType implements Upgrade, Serializable {
 
