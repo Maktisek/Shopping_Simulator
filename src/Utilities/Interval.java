@@ -1,38 +1,15 @@
 package Utilities;
 
-import Utilities.Exceptions.WrongIntervalException;
 
 import java.io.Serializable;
 
-public class Interval implements Serializable {
-
-    private int upperBound;
-    private int lowerBound;
-
-    public Interval(int upperBound, int lowerBound) {
-        this.upperBound = upperBound;
-        this.lowerBound = lowerBound;
-    }
-
-    public int getUpperBound() {
-        return upperBound;
-    }
-
-    public void setUpperBound(int upperBound) {
-        this.upperBound = upperBound;
-    }
-
-    public int getLowerBound() {
-        return lowerBound;
-    }
-
-    public void setLowerBound(int lowerBound) {
-        this.lowerBound = lowerBound;
-    }
-
-    public void testInterval() throws WrongIntervalException {
-        if(upperBound <= lowerBound){
-            throw new WrongIntervalException("Upper bound is lower or same as the lower bound");
-        }
-    }
+/**
+ * This class is a record class, because it is used just to hold two private fields.
+ * <p>
+ *     It represents a half-inclusive interval.
+ * </p>
+ * @param lowerBound the lower bound of the interval - inclusive.
+ * @param upperBound the upper bound of the interval - exclusive.
+ */
+public record Interval(int lowerBound, int upperBound) implements Serializable {
 }

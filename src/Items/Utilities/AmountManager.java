@@ -33,7 +33,7 @@ public class AmountManager implements Serializable {
      */
     public void stockIn(){
         Random rd = new Random();
-        int newCurrent = current + rd.nextInt(interval.getLowerBound(), interval.getUpperBound());
+        int newCurrent = current + rd.nextInt(interval.lowerBound(), interval.upperBound());
         current = Math.min(newCurrent, max);
     }
 
