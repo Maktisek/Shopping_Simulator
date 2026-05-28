@@ -10,6 +10,15 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is an implementation of {@link DialogUI}.
+ * <p>
+ *     It is used in {@link TitleScreenUI} and it does almost exactly the same as {@link DialogUI}, but it is compatible with {@link TitleScreenUI}.
+ * </p>
+ * The message label has to be rearranged so it will fit within the background image.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class TitleDialogUI extends DialogUI{
 
     public TitleDialogUI(String imgFile, String message) throws InvalidUILoadException {
