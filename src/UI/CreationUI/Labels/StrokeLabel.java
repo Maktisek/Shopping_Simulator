@@ -11,11 +11,20 @@ import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
 /**
+ * This class represents an implementation of {@link JLabel}.
+ * <p>
+ *     It is designed that it creates a stroke around inserted text.
+ * </p>
+ * <p>
+ *     Stroke color is always set to {@link Color#BLACK}.
+ * </p
+ * Width of the stroke is always set to {@code 7.5f} and it is scaled depending on screen resolution.
  * @author Google Gemini
+ * @since   1.0 - (pre-release version)
  */
 public class StrokeLabel extends JLabel {
     private final Color strokeColor = Color.BLACK;
-    private float strokeWidth = (float) (7.5f * Important.getManualScale());
+    private final float strokeWidth = (float) (7.5f * Important.getManualScale());
     private boolean visibility;
 
     public StrokeLabel(String text, int size) {
@@ -63,10 +72,6 @@ public class StrokeLabel extends JLabel {
 
         g2.dispose();
         }
-    }
-
-    public void setStrokeWidth(float strokeWidth) {
-        this.strokeWidth = strokeWidth;
     }
 
     public boolean isVisibility() {
