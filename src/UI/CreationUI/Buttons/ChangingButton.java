@@ -8,6 +8,14 @@ import Utilities.Important;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * This class represents a classic changing button, which extends {@link CustomBaseChangingButton}.
+ * <p>
+ *     When this button is clicked, the image switches.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ChangingButton extends CustomBaseChangingButton {
 
 
@@ -44,18 +52,36 @@ public class ChangingButton extends CustomBaseChangingButton {
         });
     }
 
+    /**
+     * Swapes {@link #img} to the first image.
+     * <p>
+     *     Called when {@link #clicked} was true.
+     * </p>
+     */
     public void changeToFirst(){
         this.clicked = false;
         this.img = super.idleImg;
         repaint();
     }
 
+    /**
+     * Swapes {@link #img} to the second image.
+     * <p>
+     *     Called when {@link #clicked} was false.
+     * </p>
+     */
     public void changeToSecond(){
         super.img = clickedImg;
         super.clicked = true;
         repaint();
     }
 
+    /**
+     * Adds initial action listener, which operates with {@link #img}.
+     * <p>
+     *     Basically it switches the image after every click.
+     * </p>
+     */
     public void initialization(){
         addActionListener(e ->{
             if(clicked){
