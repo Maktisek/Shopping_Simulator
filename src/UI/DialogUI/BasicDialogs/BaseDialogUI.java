@@ -8,6 +8,15 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents an implementation of {@link BackgroundPanel} as a dialog window.
+ * <p>
+ *     {@link #message} stands for the message displayed in the dialog.
+ * </p>
+ * Any other dialog window should implement this class in some way.
+ * @author Google Gemini
+ * @since   1.0 - (pre-release version)
+ */
 public abstract class BaseDialogUI extends BackgroundPanel {
 
     protected final String message;
