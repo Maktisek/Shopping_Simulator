@@ -7,8 +7,12 @@ import Utilities.Important;
 
 import java.awt.*;
 
+/**
+ * This class represents the "main" class, from which the game is started.
+ */
 public class Launcher {
     public static void main(String[] args){
+        //Disables adapting to Windows percentual resolution.
         System.setProperty("sun.java2d.uiScale", "1");
 
         Thread loadThread = new Thread(() ->{
