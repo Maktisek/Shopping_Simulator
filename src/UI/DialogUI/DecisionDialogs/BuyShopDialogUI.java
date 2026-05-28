@@ -13,6 +13,14 @@ import Utilities.Important;
 
 import javax.swing.*;
 
+/**
+ * This class is an implementation of {@link YesNoDialogUI}.
+ * <p>
+ *     If yes button is clicked, {@link BuyShopDialogUI} is executed.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class BuyShopDialogUI extends YesNoDialogUI {
 
     private final GameData gameData;

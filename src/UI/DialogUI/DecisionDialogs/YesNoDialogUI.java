@@ -18,6 +18,8 @@ import javax.swing.*;
  *         <li>Second that performs the desired action</li>
  *     </ul>
  * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
  */
 public abstract class YesNoDialogUI extends BaseDialogUI {
 
