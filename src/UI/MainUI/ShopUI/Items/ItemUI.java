@@ -23,6 +23,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It visualizes an individual instance of {@link Item} as a panel featuring:
+ *     <ul>
+ *         <li>The name of the item</li>
+ *         <li>The image of the item</li>
+ *         <li>Buy or sell button (it depends on {@link ItemSpecification} inserted)</li>
+ *         <li>The price of the item</li>
+ *     </ul>
+ * </p>
+ * To make the system more flexible, this class can display an item stored in shop or in npc.
+ * The only thing is that the origin of the item must be declared through {@link ItemSpecification}.
+ * <p>
+ *     Based on {@link ItemSpecification} the initialization process differs (especially in loading the buy/sell button)
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ItemUI extends BackgroundPanel implements UpdateAble {
 
     private Item item;
