@@ -50,7 +50,10 @@ public abstract class BaseButton extends JButton {
         });
     }
 
-
+    /**
+     * This abstract method is made to set images of any inherited class.
+     * @throws InvalidUILoadException if the image load has not been successful
+     */
     public abstract void setImages() throws InvalidUILoadException;
 
     public void setSizeOfButton(int width, int height) {
