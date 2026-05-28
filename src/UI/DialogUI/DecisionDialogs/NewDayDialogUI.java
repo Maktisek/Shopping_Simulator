@@ -5,9 +5,6 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Commands.DayCommands.NewDayCommand;
 import Game.GameData;
-import UI.CreationUI.Buttons.ButtonType;
-import UI.CreationUI.Buttons.CustomButton;
-import UI.DialogUI.BasicDialogs.BaseDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import UI.MainUI.ShopUI.Days.DaySummaryPanelUI;
@@ -16,6 +13,17 @@ import Utilities.Important;
 
 import javax.swing.*;
 
+/**
+ * This class is an implementation of {@link YesNoDialogUI}.
+ * <p>
+ *     If yes button is clicked, {@link NewDayCommand} is executed.
+ * </p>
+ * <p>
+ *     An instance of {@link GameData} has to be sent through constructor.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class NewDayDialogUI extends YesNoDialogUI {
 
     private final GameData gameData;
