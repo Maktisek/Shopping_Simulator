@@ -15,6 +15,20 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     This class visualizes day summary. After the player sets new day, this panel appears.
+ * </p>
+ * It displays:
+ * <ul>
+ *     <li>Name of the day</li>
+ *     <li>Statistics</li>
+ *     <li>All delivered products</li>
+ * </ul>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class DaySummaryPanelUI extends BackgroundPanel {
 
     private final GameData gameData;
