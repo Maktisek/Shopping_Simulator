@@ -1,8 +1,5 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
-import AudioSystem.AudioType;
-import Commands.AudioCommands.SwapMuteCommand;
-import Commands.CommandResult;
 import Game.GameData;
 import UI.CreationUI.Buttons.*;
 import UI.CreationUI.Utilities.UpdateAble;

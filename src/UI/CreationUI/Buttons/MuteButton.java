@@ -11,6 +11,9 @@ import Utilities.Important;
  *     It is basically possible to write this directly in any of the UI classes, but in my opinion
  *     the code was little too long, so creating a class just for the creation looked like a good idea.
  * </p>
+ * <p>
+ *     After initializing {@link #muteButton} it is needed to access is through getter {@link #getMuteButton()}.
+ * </p>
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version
  */
