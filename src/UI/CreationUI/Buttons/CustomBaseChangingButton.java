@@ -7,7 +7,7 @@ import java.awt.*;
 import java.net.URL;
 
 /**
- * This class represents an abstract class made for changing buttons.
+ * This class represents an abstract class made for changing buttons and it extends {@link BaseButton}.
  * <p>
  *     A changing button is a button, which swaps its sprite after every click.
  * </p>

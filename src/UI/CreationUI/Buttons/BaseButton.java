@@ -10,9 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * This class represents an abstract clas made for buttons.
+ * This class represents an abstract clas made for buttons and it extends {@link JButton}.
  * <p>
- *     All button classes should extend this class.
+ *     All future button classes should extend this class in some way.
  * </p>
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
