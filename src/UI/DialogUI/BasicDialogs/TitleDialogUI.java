@@ -13,7 +13,7 @@ import java.awt.*;
 public class TitleDialogUI extends DialogUI{
 
     public TitleDialogUI(String imgFile, String message) throws InvalidUILoadException {
-        super(imgFile, message);
+        super(imgFile, message, "Error");
         initializeDimensions();
         setOpaque(false);
     }
