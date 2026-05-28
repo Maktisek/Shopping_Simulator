@@ -11,6 +11,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * This class represents a special type button extending {@link CustomBaseChangingButton}.
+ * <p>
+ *     When this button is clicked, the image switches, but when it is clicked it cannot be clicked again and
+ *     the player has to click any of other {@link MultiplierButton} instances located in {@link #multiplierButtons}.
+ * </p>
+ * The connection is pretty simple. An ArrayList reference must be sent over here featuring other instances of {@link MultiplierButton}.
+ * An implementation example can be found in {@link UI.MainUI.ShopUI.ShopManagement.ShopManagementNorthUI}
+ * <p>
+ *     {@link #amount} stands for an amount, which is set into {@link GameData} after clicking this button.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class MultiplierButton extends CustomBaseChangingButton {
 
     private final ArrayList<MultiplierButton> multiplierButtons;
@@ -56,6 +70,15 @@ public class MultiplierButton extends CustomBaseChangingButton {
         });
     }
 
+    /**
+     * Special method that is executed after every clicked.
+     * <p>
+     *     If the button is clicked all other buttons in {@link #multiplierButtons} are reset making them clickable again.
+     * </p>
+     * <p>
+     *     Also, if the button is clicked, then {@link GameData#setAmount(int)} is executed.
+     * </p>
+     */
     public void click(){
         for (MultiplierButton multiplierButton : multiplierButtons){
             multiplierButton.resetClicked();
@@ -67,12 +90,18 @@ public class MultiplierButton extends CustomBaseChangingButton {
         gameData.setAmount(this.amount);
     }
 
+    /**
+     * Adds method {@link #click} into action listener
+     */
     public void initialization(){
         addActionListener(e ->{
             click();
         });
     }
 
+    /**
+     * Resets the button into clickable state.
+     */
     public void resetClicked(){
         this.clicked = false;
         this.img = super.idleImg;
