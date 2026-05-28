@@ -3,6 +3,7 @@ package UI.DialogUI.DecisionDialogs;
 import AudioSystem.AudioType;
 import Commands.CommandResult;
 import Commands.CommandState;
+import Commands.DayCommands.NewDayCommand;
 import Commands.RebirthCommands.NewRebirthCommand;
 import Game.GameData;
 import UI.DialogUI.BasicDialogs.DialogUI;
@@ -13,6 +14,17 @@ import Utilities.Important;
 
 import javax.swing.*;
 
+/**
+ * This class is an implementation of {@link YesNoDialogUI}.
+ * <p>
+ *     If yes button is clicked, {@link NewRebirthCommand} is executed.
+ * </p>
+ * <p>
+ *     An instance of {@link GameData} has to be sent through constructor.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class NewRebirthDialog extends YesNoDialogUI {
 
     private final GameData gameData;
