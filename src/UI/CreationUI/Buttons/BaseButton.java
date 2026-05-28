@@ -9,6 +9,14 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * This class represents an abstract classes made for buttons.
+ * <p>
+ *     All button classes should extend this class.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public abstract class BaseButton extends JButton {
 
     protected boolean hoovered;
@@ -26,6 +34,13 @@ public abstract class BaseButton extends JButton {
     public BaseButton() {
     }
 
+    /**
+     * Based on the input it initializes basic factory click sound.
+     * <p>
+     *     If the input does not match any of the options in the switch, then no sound is added.
+     * </p>
+     * @param type the type of the button that determines the sound
+     */
     private void initializeSound(ButtonType type) {
         this.addActionListener(e -> {
             switch (type) {
@@ -55,6 +70,13 @@ public abstract class BaseButton extends JButton {
         });
     }
 
+    /**
+     * Calculates offset of the button.
+     * <p>
+     *     The higher, the smaller the button is.
+     * </p>
+     * @return the offset
+     */
     public int calculateOffset() {
         if (clicked) {
             return 5;
