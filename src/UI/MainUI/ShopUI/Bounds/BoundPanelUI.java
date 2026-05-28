@@ -1,5 +1,6 @@
 package UI.MainUI.ShopUI.Bounds;
 
+import Achievements.Achievement;
 import Game.GameData;
 import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Utilities.UpdateAble;
@@ -12,6 +13,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     This class resembles a panel visualization of individual {@link Upgrade.Upgrade} instance.
+ * </p>
+ * In game there are three places where does an instance of this class appears:
+ * <ul>
+ *     <li>Two of them are in the right corner in the main panel (where the shop is)</li>
+ *     <li>The third is located in stock panel in the left corner</li>
+ * </ul>
+ * <p>
+ *     It displays:
+ *     <ul>
+ *         <li>Upgrades icon</li>
+ *         <li>Upgrades state (current/bound)</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class BoundPanelUI extends BackgroundPanel implements UpdateAble {
 
     private String current;
