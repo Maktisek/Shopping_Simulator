@@ -79,11 +79,20 @@ public class MyFrame extends FrameBaseUI {
     /**
      * This method refreshes the window into "fullscreen", even tough it is not actual fullscreen.
      * <p>
-     *     Well, I was trying to find a solution, how to simulate fullscreen without it actually being full screen, because when
-     *     actual full screen was on, when changing resolution it was making a mess.
+     *     Well, I was trying to find a solution, how to simulate fullscreen without it actually being fullscreen, because when
+     *     actual fullscreen was on and the player changed the resolution it made a mess.
      * </p>
-     * This solution works pretty well. When the window is minimized and then again opened, the window resets its position
-     * and spreads across the whole screen. Otherwise, the window would be unopenable after minimizing it.
+     * This solution works pretty well. When the window is minimized and then opened, the window resets its position
+     * and spreads across the whole screen. But the OS of the computer
+     * do not count this window as a fullscreen window.
+     * <p>
+     *     If this solution was not applied those things would happen:
+     *     <ul>
+     *         <li>After minimizing, the window would not be able to be opened again (when no solution applied)</li>
+     *         <li>After changing resolution, the whole OS UI may go pretty broken, making hard reset the only solution (if the window
+     *         would be set as a fullscreen window through {@link GraphicsEnvironment})</li>
+     *     </ul>
+     * </p>
      */
     private void refreshFullscreen() {
         setLocationRelativeTo(null);
