@@ -65,7 +65,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         save.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new SaveDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+                parent.showDialog(new SaveDialogUI("Do you wish to save the game", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }
@@ -80,7 +80,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
         saveAndQuit.addActionListener(e -> {
             MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
             try {
-                parent.showDialog(new SaveAndQuitDialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", "Do you wish to save the game", gameData));
+                parent.showDialog(new SaveAndQuitDialogUI("Do you wish to save the game", gameData));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

@@ -5,21 +5,25 @@ import Commands.CommandResult;
 import Commands.SaveCommands.WriteSaveCommand;
 import Game.GameData;
 import UI.DialogUI.DecisionDialogs.TurnOffTheGameDialogUI;
+import UI.DialogUI.DecisionDialogs.YesNoDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
 import Utilities.Important;
 
 import javax.swing.*;
 
-public class SaveAndQuitDialogUI extends SaveBaseDialogUI{
+public class SaveAndQuitDialogUI extends YesNoDialogUI {
 
-    public SaveAndQuitDialogUI(String imgFile, String message, GameData gameData) throws InvalidUILoadException {
-        super(imgFile, message, gameData);
+    private final GameData gameData;
+
+    public SaveAndQuitDialogUI(String message, GameData gameData) throws InvalidUILoadException {
+        super(message);
+        this.gameData = gameData;
     }
 
     @Override
-    public void loadSaveButton() {
-        CommandResult result = new WriteSaveCommand(super.gameData).execute();
+    public void initializeYesButton() {
+        CommandResult result = new WriteSaveCommand(gameData).execute();
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         try {
             Important.getAudioManagement().playSound("Save", AudioType.SOUNDS, 0, false);
