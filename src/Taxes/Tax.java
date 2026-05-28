@@ -46,7 +46,6 @@ public class Tax implements Serializable {
      */
     public void initializeK() {
         this.k = (Math.log(maxDayNumber + startDelay) - Math.log(startDelay + 1));
-        System.out.println(k);
     }
 
     /**
