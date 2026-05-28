@@ -21,11 +21,11 @@ import Utilities.Important;
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
  */
-public class TurnOffTheGame extends Command {
+public class TurnOffTheGameCommand extends Command {
 
     private final MainUI mainUI;
 
-    public TurnOffTheGame(MainUI mainUI) {
+    public TurnOffTheGameCommand(MainUI mainUI) {
         this.mainUI = mainUI;
     }
 
