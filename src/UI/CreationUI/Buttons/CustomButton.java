@@ -9,6 +9,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+/**
+ * This class represents a classic button, which extends {@link BaseButton}.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class CustomButton extends BaseButton {
 
     protected String imgFile;
