@@ -2,11 +2,18 @@ package Upgrade;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an abstract class implementing {@link Upgrade}.
+ * <p>
+ *     It stands for classic upgrades and every single upgrade extending this class
+ *     should not override its methods.
+ * </p>
+ */
 public abstract class UpgradeBasicType implements Upgrade, Serializable {
 
-    private int data;
-    private int price;
-    private int level;
+    protected int data;
+    protected int price;
+    protected int level;
 
     public UpgradeBasicType() {
         setLevel(1);
@@ -19,6 +26,14 @@ public abstract class UpgradeBasicType implements Upgrade, Serializable {
         this.level++;
     }
 
+    /**
+     * This method represents a system, which calculates special coefficient based on length of {@link #price}.
+     * <p>
+     *     The first dial is used to make the change of this coefficient every half before another dial is added.
+     *     For {@code  400} it returns {@code 2}, but for {@code 500} it returns {@code 3}.
+     * </p>
+     * @return the calculated coefficient
+     */
     private int calculateDials(){
         String s = String.valueOf(this.price);
         int dials = s.length() - 1;
@@ -62,12 +77,7 @@ public abstract class UpgradeBasicType implements Upgrade, Serializable {
         this.data = data;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public void setLevel(int level) {
         this.level = level;
     }
-
 }

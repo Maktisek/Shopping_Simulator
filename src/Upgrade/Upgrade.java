@@ -18,6 +18,9 @@ public interface Upgrade {
 
     /**
      * This method levels up the upgrade.
+     * <p>
+     *     Usually it starts a chain of methods.
+     * </p>
      */
     void levelUp();
 
