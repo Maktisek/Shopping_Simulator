@@ -12,6 +12,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It visualizes all information about inserted item.
+ * </p>
+ * To make the implementation more objective, no instance of any type of item has to be inserted.
+ * <p>
+ *     <ui>
+ *         <li>{@link #name} stands for the name of the product</li>
+ *         <li>{@link #specification} represents the whole chunk of information</li>
+ *     </ui>
+ * </p>
+ * With this implementation it is possible to visualize {@link Items.ItemShop} and {@link Items.ItemPlayer}
+ * without any problems.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ItemInformationUI extends BackgroundPanel {
 
     private final String name;
