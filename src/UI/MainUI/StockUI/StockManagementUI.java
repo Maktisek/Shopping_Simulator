@@ -8,7 +8,7 @@ import UI.CreationUI.Panels.GridPanelUI;
 import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
-import UI.MainUI.ShopUI.Bounds.BoundTypes;
+import UI.MainUI.ShopUI.Bounds.BoundType;
 import Upgrade.Utilities.UpgradeType;
 import Utilities.Important;
 
@@ -103,7 +103,7 @@ public class StockManagementUI extends JPanel implements UpdateAble {
 
 
     private void initializeBoundPanel(JPanel panel) throws InvalidUILoadException {
-        this.stockBound = new BoundPanelUI("/Sprites/UtilityPanels/CURRENT_PANE.png", "/Sprites/IconSprites/STOCK_ICON.png", gameData, BoundTypes.STOCK_BOUND);
+        this.stockBound = new BoundPanelUI("/Sprites/UtilityPanels/CURRENT_PANE.png", "/Sprites/IconSprites/STOCK_ICON.png", gameData, BoundType.STOCK_BOUND);
 
         panel.add(Box.createHorizontalStrut(Important.calculateDimension(20)));
         panel.add(stockBound);

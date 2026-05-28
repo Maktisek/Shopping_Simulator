@@ -1,6 +1,5 @@
 package UI.MainUI.ShopUI.Bounds;
 
-import Achievements.Achievement;
 import Game.GameData;
 import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Utilities.UpdateAble;
@@ -40,9 +39,9 @@ public class BoundPanelUI extends BackgroundPanel implements UpdateAble {
     private ImageIcon img;
     private final GameData gameData;
     private StrokeLabel label;
-    private final BoundTypes type;
+    private final BoundType type;
 
-    public BoundPanelUI(String imgFile, String iconFile, GameData gameData, BoundTypes type) throws InvalidUILoadException {
+    public BoundPanelUI(String imgFile, String iconFile, GameData gameData, BoundType type) throws InvalidUILoadException {
         super(imgFile);
         this.gameData = gameData;
         this.type = type;
