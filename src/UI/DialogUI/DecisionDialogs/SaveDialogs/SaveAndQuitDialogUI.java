@@ -1,4 +1,4 @@
-package UI.DialogUI.SaveDialogs;
+package UI.DialogUI.DecisionDialogs.SaveDialogs;
 
 import AudioSystem.AudioType;
 import Commands.CommandResult;
@@ -12,6 +12,17 @@ import Utilities.Important;
 
 import javax.swing.*;
 
+/**
+ * This class is an implementation of {@link YesNoDialogUI}.
+ * <p>
+ *     If yes button is clicked, {@link WriteSaveCommand} is executed and {@link TurnOffTheGameDialogUI} is shown.
+ * </p>
+ * <p>
+ *     An instance of {@link GameData} has to be sent through constructor.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class SaveAndQuitDialogUI extends YesNoDialogUI {
 
     private final GameData gameData;

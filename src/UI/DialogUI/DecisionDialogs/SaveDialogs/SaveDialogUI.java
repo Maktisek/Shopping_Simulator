@@ -1,7 +1,8 @@
-package UI.DialogUI.SaveDialogs;
+package UI.DialogUI.DecisionDialogs.SaveDialogs;
 
 import Commands.CommandResult;
 import Commands.SaveCommands.WriteSaveCommand;
+import Commands.UserInterfaceCommands.TurnOffTheGameCommand;
 import Game.GameData;
 import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.DialogUI.DecisionDialogs.YesNoDialogUI;
@@ -10,6 +11,17 @@ import UI.MainUI.MainUI;
 
 import javax.swing.*;
 
+/**
+ * This class is an implementation of {@link YesNoDialogUI}.
+ * <p>
+ *     If yes button is clicked, {@link WriteSaveCommand} is executed and the dialog is closed.
+ * </p>
+ * <p>
+ *     An instance of {@link GameData} has to be sent through constructor.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class SaveDialogUI extends YesNoDialogUI {
 
     private final GameData gameData;
