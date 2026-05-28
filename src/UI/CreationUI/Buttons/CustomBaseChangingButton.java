@@ -6,6 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * This class represents an abstract class made for changing buttons.
+ * <p>
+ *     A changing button is a button, which swaps its sprite after every click.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public abstract class CustomBaseChangingButton extends BaseButton {
 
     protected Image img;
@@ -51,6 +59,9 @@ public abstract class CustomBaseChangingButton extends BaseButton {
         g.drawImage(img, offset2, offset2, w - (offset2 * 2), h - (offset2 * 2), this);
     }
 
+    /**
+     * This method resets the cursor for this button back to normal cursor.
+     */
     public void resetCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/MainSprites/MAIN_CURSOR.png"));
@@ -58,6 +69,9 @@ public abstract class CustomBaseChangingButton extends BaseButton {
         super.setCursor(customCursor);
     }
 
+    /**
+     * This method sets the cursor for this button into pointing cursor.
+     */
     public void setCursor(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image cursorImg = toolkit.getImage(getClass().getResource("/Sprites/TitleScreenSprites/CLICKED_CURSOR.png"));
