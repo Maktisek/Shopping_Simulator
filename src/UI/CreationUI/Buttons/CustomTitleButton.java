@@ -6,7 +6,15 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
+/**
+ * This class represents a classic changing button, which extends {@link CustomBaseChangingButton}.
+ * <p>
+ *     When this button is clicked, the image switches and stays until the player do not let left mouse button.
+ *     After that, {@link #img} switches back to {@link #idleImg}.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class CustomTitleButton extends CustomBaseChangingButton {
 
 

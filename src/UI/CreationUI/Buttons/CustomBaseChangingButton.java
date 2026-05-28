@@ -11,6 +11,11 @@ import java.net.URL;
  * <p>
  *     A changing button is a button, which swaps its sprite after every click.
  * </p>
+ * It swaps {@link #img} with those:
+ * <ul>
+ *     <li>{@link #idleImg}</li>
+ *     <li>{@link #clickedImg}</li>
+ * </ul>
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
  */
