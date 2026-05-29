@@ -7,15 +7,30 @@ import Shops.ShopDirection;
 import Game.GameData;
 import UI.CreationUI.Buttons.ButtonType;
 import UI.CreationUI.Buttons.CustomButton;
+import UI.CreationUI.Buttons.MultiplierButton;
 import UI.DialogUI.DecisionDialogs.BuyShopDialogUI;
 import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.MainUI;
+import UI.MainUI.ShopUI.Money.MoneyPanelUI;
 import Utilities.Important;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * This class represents the west part of {@link ShopManagementUI}.
+ * <p>
+ *     It displays:
+ *     <ul>
+ *         <li>Change shop buttons</li>
+ *         <li>Stock entrance button</li>
+ *         <li>Goals entrance button</li>
+ *         <li>Statistic entrance button</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopManagementWestUI extends JPanel {
 
 
