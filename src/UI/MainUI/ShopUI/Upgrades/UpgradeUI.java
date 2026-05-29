@@ -19,6 +19,25 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * his class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It visualizes individual {@link Upgrade} instances.
+ * </p>
+ * It displays:
+ * <ul>
+ *     <li>Name of the upgrade</li>
+ *     <li>Icon of the upgrade (it is clickable)</li>
+ *     <li>Level information</li>
+ *     <li>Price of next upgrade</li>
+ * </ul>
+ * <p>
+ *     Clicking the icon upgrades the upgrade!
+ * </p>
+ * I kinda like how I called it upgrade, and now I can say "upgrade an upgrade":)
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class UpgradeUI extends BackgroundPanel implements UpdateAble {
 
     private final Upgrade upgrade;
