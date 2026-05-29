@@ -12,6 +12,24 @@ import java.util.ArrayList;
 
 import static Utilities.Important.initializeScrollPane;
 
+/**
+ * This class is abstract, and it is made to provide blueprint to any statistic-showing class.
+ * <p>
+ * Abstract methods:
+ *      <ul>
+ *          <li>{@link #initializeBar()}</li>
+ *          <li>{@link #initializeButton(JPanel)}</li>
+ *      </ul>
+ * </p>
+ * This class displays:
+ * <ul>
+ * <li>Players statistics</li>
+ * <li>Exit button (implementation through abstract method)</li>
+ * <li>Bar panel (implementation through abstract method)</li>
+ * </ul>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public abstract class GameDataInfoUI extends BackgroundPanel {
 
     protected JPanel mainPanel;
@@ -55,9 +73,9 @@ public abstract class GameDataInfoUI extends BackgroundPanel {
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void fillWithStats(JPanel wrapper){
+    private void fillWithStats(JPanel wrapper) {
         String[] stats = Important.decodeString(this.gameData.toString());
-        for (String s : stats){
+        for (String s : stats) {
             wrapper.add(Box.createVerticalStrut(Important.calculateDimension(20)));
             StrokeLabel stat = new StrokeLabel(Important.insertDots(s, 50), 28);
             stat.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -77,7 +95,7 @@ public abstract class GameDataInfoUI extends BackgroundPanel {
 
     public abstract BackgroundPanel initializeBar() throws InvalidUILoadException;
 
-    private void initializeLayeredPane(){
+    private void initializeLayeredPane() {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(new OverlayLayout(layeredPane));
 
