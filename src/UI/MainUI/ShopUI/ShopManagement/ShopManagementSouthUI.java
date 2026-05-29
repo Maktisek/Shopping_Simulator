@@ -1,15 +1,25 @@
 package UI.MainUI.ShopUI.ShopManagement;
 
 import Game.GameData;
+import UI.CreationUI.Buttons.MultiplierButton;
 import UI.CreationUI.Utilities.UpdateAble;
 import UI.Exceptions.InvalidUILoadException;
 import UI.MainUI.ShopUI.Bounds.BoundPanelUI;
 import UI.MainUI.ShopUI.Bounds.BoundType;
+import UI.MainUI.ShopUI.Money.MoneyPanelUI;
 import Upgrade.Utilities.UpgradeType;
 import Utilities.Important;
 
 import javax.swing.*;
-
+/**
+ * This class represents the south part of {@link ShopManagementUI}.
+ * <p>
+ *     To make it clear, in the game on the south side there also instances of {@link UI.MainUI.ShopUI.Items.ItemUI} visible.
+ *     Those are not initialized here, but in {@link UI.MainUI.ShopUI.ShopUI}. This class only initializes two instances of {@link BoundPanelUI}.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopManagementSouthUI extends JPanel implements UpdateAble {
 
     private BoundPanelUI buyBounds;
