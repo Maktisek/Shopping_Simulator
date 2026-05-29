@@ -13,6 +13,15 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class an inheritor of {@link GameDataInfoUI}.
+ * <p>
+ *     This class implements statistics in "game over" way. When this panel is displayed
+ *     player cannot come back to the game and has to either start new game or load back from his save.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class EndPanelUI extends GameDataInfoUI {
 
 

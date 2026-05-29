@@ -164,7 +164,7 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool": 1,
+      "soundPool": 3,
       "shifting": true
     },
     {
