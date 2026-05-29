@@ -13,6 +13,20 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class an inheritor of {@link GameDataInfoUI}.
+ * <p>
+ * This class implements statistics in classic way letting player continue after
+ * reading.
+ * </p>
+ * Unlike {@link EndPanelUI} it implements {@link UpdateAble}, because an instance of this class is primarily located in {@link MainUI}
+ * and has to update itself every tick.
+ * <p>
+ *     It is a bad practise to update this panel everytime player opens it, since it will look laggy.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
 
 
@@ -23,7 +37,7 @@ public class PlayerStatisticUI extends GameDataInfoUI implements UpdateAble {
     @Override
     public void initializeButton(JPanel wrapper) throws InvalidUILoadException {
         CustomButton ok = new CustomButton("/Sprites/ButtonSprites/CLOSE_BUTTON.png", 130, 75, ButtonType.EXIT);
-        ok.addActionListener(e ->{
+        ok.addActionListener(e -> {
             Important.getAudioManagement().stopSound("StatsOST", AudioType.MUSIC);
             Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC, false);
             MainUI mainUI = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
