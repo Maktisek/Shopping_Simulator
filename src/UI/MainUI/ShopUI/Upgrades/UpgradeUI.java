@@ -20,7 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * his class is an implementation of {@link BackgroundPanel}.
+ * This class is an implementation of {@link BackgroundPanel}.
  * <p>
  *     It visualizes individual {@link Upgrade} instances.
  * </p>

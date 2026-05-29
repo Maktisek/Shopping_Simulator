@@ -14,7 +14,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It visualizes whole shop as one panel, and it is used in {@link UI.MainUI.ShopUI.ShopManagement.ShopManagementUI}.
+ * </p>
+ * It displays:
+ * <ul>
+ *     <li>Shop background (every shop has its own)</li>
+ *     <li>Purchasable items from the shop</li>
+ *     <li>Sellable items to the NPC</li>
+ * </ul>
+ * {@link #demandUI} works same as demand array in {@link NPCs.NPC}. Products cycle daily there.
+ * <p>
+ *     The update method is also featured here. Even though it could be updated just once per day, this method is part of the huge
+ *     updating block of code in {@link UI.MainUI.MainUI}.
+ * </p>
+ * <p>
+ *     Cloud 1.1 add dynamic prices?
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopUI extends BackgroundPanel implements UpdateAble {
 
     private final Shop shop;
