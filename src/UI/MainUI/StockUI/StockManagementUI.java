@@ -18,6 +18,18 @@ import java.util.ArrayList;
 
 import static Utilities.Important.initializeScrollPane;
 
+/**
+ * This class stands as the "stock" panel in the game.
+ * <p>
+ *     In this panel player can see information about all obtainable products.
+ * </p>
+ * The main functionality of this class is storing {@link ItemPlayerUI} instances in {@link #items} and visualizing them through gird.
+ * <p>
+ *     The bar on the top contains an instance of {@link BoundPanelUI} showing the current state of players stocks
+ * </p>
+ * @author Matěj Pospíšil
+ * @since 1.0 - (pre-release version)
+ */
 public class StockManagementUI extends JPanel implements UpdateAble {
 
     private final GameData gameData;
