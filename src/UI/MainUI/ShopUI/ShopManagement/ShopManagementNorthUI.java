@@ -15,12 +15,24 @@ import Utilities.Important;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * This class represents the north part of {@link ShopManagementUI}.
+ * <p>
+ *     It displays:
+ *     <ul>
+ *         <li>{@link MoneyPanelUI}</li>
+ *         <li>Three instances of {@link MultiplierButton}</li>
+ *         <li>Function buttons such as save or mute buttons</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopManagementNorthUI extends JPanel implements UpdateAble {
 
     private MoneyPanelUI moneyPanelUI;
     private final ArrayList<MultiplierButton> multiplierButtons;
     private final GameData gameData;
-    private ChangingButton muteButton;
 
     public ShopManagementNorthUI(GameData gameData) throws InvalidUILoadException {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -120,7 +132,7 @@ public class ShopManagementNorthUI extends JPanel implements UpdateAble {
     }
 
     private void initializeMuteButton() throws InvalidUILoadException {
-        muteButton = new MuteButton().getMuteButton();
+        ChangingButton muteButton = new MuteButton().getMuteButton();
 
         add(Box.createHorizontalStrut(Important.calculateDimension(10)));
         add(muteButton);
