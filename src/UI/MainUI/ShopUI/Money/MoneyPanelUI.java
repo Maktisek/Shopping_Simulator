@@ -10,6 +10,19 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It visualizes players current balance, and it can be found in the main panel in the left corner.
+ * </p>
+ * <p>
+ *     {@link #price} stands for the current balance, and it has to be updated through update method,
+ *     that is why {@link UpdateAble} is implemented.
+ * </p>
+ * If players money are negative {@link #price} turns into red color and it flashes.
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class MoneyPanelUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
