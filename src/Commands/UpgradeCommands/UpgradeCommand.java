@@ -11,6 +11,10 @@ import Upgrade.Utilities.UpgradeType;
  * <p>
  *     If player has not enough money then {@link CommandResult} with {@link CommandState#FAILED_ISSUE} is returned
  * </p>
+ * <p>
+ *     If {@link #check} is set to {@code true}, then the system will check whether player will not bankrupt after buying this upgrade.
+ *     If yes then {@link CommandResult} with {@link CommandState#FAILED_BUY} is returned.
+ * </p>
  * Otherwise {@link CommandResult} with {@link CommandState#DONE} is returned
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
@@ -18,10 +22,12 @@ import Upgrade.Utilities.UpgradeType;
 public class UpgradeCommand extends Command {
 
     private final UpgradeType name;
+    private boolean check;
 
-    public UpgradeCommand(GameData gameData, UpgradeType name) {
+    public UpgradeCommand(GameData gameData, UpgradeType name, boolean check) {
         super(gameData);
         this.name = name;
+        this.check = check;
     }
 
     @Override
@@ -31,6 +37,12 @@ public class UpgradeCommand extends Command {
             return new CommandResult("Not enough money for new upgrade", CommandState.FAILED_ISSUE);
         }
         getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() - price);
+
+        if(getPlayer().bankrupt() && check){
+            getPlayer().setCurrentBalance(getPlayer().getCurrentBalance() + price);
+            return new CommandResult("You may lose, do you want to continue?",
+                    CommandState.FAILED_BUY);
+        }
         getDayManagement().getCurrentDay().incrementDaySpending(price);
         for (int i = 0; i < getGameData().getAmount(); i++) {
             getUpgradeManagement().levelUpUpgrade(name);

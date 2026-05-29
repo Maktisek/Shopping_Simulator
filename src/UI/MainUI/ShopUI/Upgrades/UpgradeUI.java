@@ -10,6 +10,7 @@ import UI.CreationUI.Buttons.CustomButton;
 import UI.CreationUI.Labels.StrokeLabel;
 import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Utilities.UpdateAble;
+import UI.DialogUI.DecisionDialogs.ContinueUpgradeDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.MainUI.MainUI;
@@ -73,7 +74,7 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
         CustomButton buyButton = new CustomButton("/Sprites/IconSprites/" + upgrade.nameInfo().toString() + "_ICON.png", 80, 80, ButtonType.NONE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.addActionListener(e ->{
-            CommandResult result = new UpgradeCommand(gameData, this.upgrade.nameInfo()).execute();
+            CommandResult result = new UpgradeCommand(gameData, this.upgrade.nameInfo(), true).execute();
             System.out.println(result.getMessage());
             if(result.getState() == CommandState.FAILED_ISSUE){
                 MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
@@ -82,8 +83,15 @@ public class UpgradeUI extends BackgroundPanel implements UpdateAble {
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }
-            }else{
+            }else if(result.getState() == CommandState.DONE){
                 Important.getAudioManagement().playSound("NewUpgrade", AudioType.SOUNDS, 0, false);
+            }else {
+                MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
+                try {
+                    parentShop.showDialog(new ContinueUpgradeDialogUI(result.getMessage(), gameData, this.upgrade.nameInfo()));
+                } catch (InvalidUILoadException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(buyButton);
