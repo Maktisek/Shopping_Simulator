@@ -15,6 +15,21 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ * This class visualizes an instance of {@link ItemPlayer}.
+ * </p>
+ * It displays:
+ * <ul>
+ *     <li>Name of the item</li>
+ *     <li>Icon of the item (it is clickable)</li>
+ *     <li>How many of this item does player own</li>
+ * </ul>
+ * Clicking the icon opens {@link ItemInformationUI} panel.
+ * @author Matěj Pospíšil
+ * @since 1.0 - (pre-release version)
+ */
 public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
 
     private final GameData gameData;
@@ -62,7 +77,7 @@ public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
         panel.add(productButton);
     }
 
-    private void initializeAmount(JPanel panel){
+    private void initializeAmount(JPanel panel) {
         panel.add(Box.createVerticalStrut(Important.calculateDimension(20)));
         this.amount = new StrokeLabel(Important.parseMoney(itemPlayer.getAmount()) + "X", 24);
         this.amount.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -70,7 +85,7 @@ public class ItemPlayerUI extends BackgroundPanel implements UpdateAble {
     }
 
     @Override
-    public void update(){
+    public void update() {
         this.amount.setText(Important.parseMoney(itemPlayer.getAmount()) + "X");
         this.amount.repaint();
     }
