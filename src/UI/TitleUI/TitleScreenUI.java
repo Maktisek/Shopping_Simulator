@@ -13,6 +13,7 @@ import UI.CreationUI.Panels.BackgroundPanel;
 import UI.CreationUI.Buttons.ButtonType;
 import UI.CreationUI.Buttons.CustomTitleButton;
 import UI.CreationUI.Frames.FrameBaseUI;
+import UI.CreationUI.Utilities.DialogAble;
 import UI.DialogUI.BasicDialogs.TitleDialogUI;
 import UI.Exceptions.InvalidUILoadException;
 import UI.InitialUI.MyFrame;
@@ -23,7 +24,24 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.net.URL;
 
-public class TitleScreenUI extends FrameBaseUI {
+/**
+ * This class represents the title frame where the title screen is being displayed.
+ * <p>
+ *     It extends {@link FrameBaseUI} so it behaves like a {@link JFrame}.
+ *     But unlike in {@link MyFrame}, components are already initialized here.
+ * </p>
+ * Those are displayed on the title screen:
+ * <ul>
+ *     <li>New game button</li>
+ *     <li>Load game button</li>
+ *     <li>Quit button</li>
+ *     <li>Mute button</li>
+ * </ul>
+ * Also, this class uses {@link JLayeredPane} in its functionality and it is able to show dialogs (implementation of {@link DialogAble}).
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
+public class TitleScreenUI extends FrameBaseUI implements DialogAble {
 
     private BackgroundPanel background;
     private JPanel overlay;
@@ -193,13 +211,14 @@ public class TitleScreenUI extends FrameBaseUI {
         this.getContentPane().add(layeredPane, BorderLayout.CENTER);
     }
 
+    @Override
     public void showDialog(JPanel customContent) {
         overlay.removeAll();
         overlay.add(customContent);
         overlay.setVisible(true);
         this.repaint();
     }
-
+    @Override
     public void hideDialog() {
         overlay.setVisible(false);
         this.repaint();

@@ -4,6 +4,7 @@ import Achievements.Achievement;
 import AudioSystem.AudioType;
 import Game.GameData;
 import UI.CreationUI.Panels.BackgroundPanel;
+import UI.CreationUI.Utilities.DialogAble;
 import UI.CreationUI.Utilities.UpdateAble;
 import UI.DialogUI.BasicDialogs.DialogUI;
 import UI.Exceptions.InvalidUILoadException;
@@ -26,13 +27,13 @@ import java.awt.*;
  * Also it features the main updating timer {@link #updater} and achievement checker {@link #achievementUpdater}.
  * Both of those timers are responsible for updating the whole UI system.
  * <p>
- *     Also dialogs are appearing here, since {@link #mainPanel} shows the game {@link #overlay} can show dialogs.
+ *     Also dialogs are appearing here (implementation of {@link DialogAble}), since {@link #mainPanel} shows the game {@link #overlay} can show dialogs.
  *     Both of them are then put inside {@link JLayeredPane}. This system can make any normal {@link JPanel} as a modal dialog.
  * </p>
  * @author Matěj Pospíšil
  * @since 1.0 - (pre-release version)
  */
-public class MainUI extends BackgroundPanel implements UpdateAble {
+public class MainUI extends BackgroundPanel implements UpdateAble, DialogAble {
 
     private JPanel mainPanel;
     private CardLayout cardLayout;
@@ -175,20 +176,15 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         }
     }
 
-    /**
-     * Shows the given instance of {@link JPanel} by putting it inside {@link #overlay}.
-     * @param customContent the instance of {@link JPanel} to be displayed
-     */
+    @Override
     public void showDialog(JPanel customContent) {
         overlay.add(customContent);
         overlay.setVisible(true);
         repaint();
     }
 
-    /**
-     * Hides currently displayed dialog by simply removing all components from {@link #overlay} and settings its
-     * visibility to false.
-     */
+
+    @Override
     public void hideDialog() {
         this.achievementUpdater.start();
         overlay.setVisible(false);
