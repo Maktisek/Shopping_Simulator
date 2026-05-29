@@ -18,7 +18,7 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 /**
- * This class represents the west part of {@link ShopManagementUI}.
+ * This class represents the western part of {@link ShopManagementUI}.
  * <p>
  *     It displays:
  *     <ul>

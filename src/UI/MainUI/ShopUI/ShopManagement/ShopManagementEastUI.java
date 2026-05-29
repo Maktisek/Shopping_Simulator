@@ -15,7 +15,19 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+/**
+ * This class represents the eastern part of {@link ShopManagementUI}.
+ * <p>
+ *     It displays:
+ *     <ul>
+ *         <li>{@link DayUI}</li>
+ *         <li>Next day button</li>
+ *         <li>Individual upgrades (instances of {@link UpgradeUI})</li>
+ *     </ul>
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopManagementEastUI extends JPanel implements UpdateAble {
 
     private final GameData gameData;

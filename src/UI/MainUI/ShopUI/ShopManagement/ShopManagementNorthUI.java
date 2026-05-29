@@ -16,7 +16,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- * This class represents the north part of {@link ShopManagementUI}.
+ * This class represents the northern part of {@link ShopManagementUI}.
  * <p>
  *     It displays:
  *     <ul>

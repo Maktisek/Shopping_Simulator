@@ -12,7 +12,7 @@ import Utilities.Important;
 
 import javax.swing.*;
 /**
- * This class represents the south part of {@link ShopManagementUI}.
+ * This class represents the southern part of {@link ShopManagementUI}.
  * <p>
  *     To make it clear, in the game on the south side there also instances of {@link UI.MainUI.ShopUI.Items.ItemUI} visible.
  *     Those are not initialized here, but in {@link UI.MainUI.ShopUI.ShopUI}. This class only initializes two instances of {@link BoundPanelUI}.
