@@ -17,6 +17,21 @@ import Utilities.Important;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is the class where all UI in-game panels and features meet. It simply holds all UI data and manipulates
+ * with them. An analogy can be found in {@link GameData}, but unlike {@link GameData} this class holds UI data.
+ * <p>
+ *     It implements {@link CardLayout} into its functionality, and it is the main core of the whole system.
+ * </p>
+ * Also it features the main updating timer {@link #updater} and achievement checker {@link #achievementUpdater}.
+ * Both of those timers are responsible for updating the whole UI system.
+ * <p>
+ *     Also dialogs are appearing here, since {@link #mainPanel} shows the game {@link #overlay} can show dialogs.
+ *     Both of them are then put inside {@link JLayeredPane}. This system can make any normal {@link JPanel} as a modal dialog.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since 1.0 - (pre-release version)
+ */
 public class MainUI extends BackgroundPanel implements UpdateAble {
 
     private JPanel mainPanel;
@@ -91,6 +106,16 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         this.cardLayout.show(mainPanel, panel);
     }
 
+    /**
+     * Used if there is any external panel to be shown as a main panel.
+     * <p>
+     *     It is named {@code TEMP}, but cloud be named any name. The only
+     *     non-possible names are names, which are already used.
+     *     When there is new component added into {@link CardLayout} and has name as some of the
+     *     currently existing, the older one gets replaced.
+     * </p>
+     * @param panel the panel to be shown
+     */
     public void initAndSwitchPanel(JPanel panel){
         this.mainPanel.add(panel, "TEMP");
         switchPanel("TEMP");
@@ -150,12 +175,20 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         }
     }
 
-    public void showDialog(JPanel customContent) throws InvalidUILoadException {
+    /**
+     * Shows the given instance of {@link JPanel} by putting it inside {@link #overlay}.
+     * @param customContent the instance of {@link JPanel} to be displayed
+     */
+    public void showDialog(JPanel customContent) {
         overlay.add(customContent);
         overlay.setVisible(true);
         repaint();
     }
 
+    /**
+     * Hides currently displayed dialog by simply removing all components from {@link #overlay} and settings its
+     * visibility to false.
+     */
     public void hideDialog() {
         this.achievementUpdater.start();
         overlay.setVisible(false);
@@ -163,6 +196,13 @@ public class MainUI extends BackgroundPanel implements UpdateAble {
         repaint();
     }
 
+    /**
+     * This method is useful when it comes to leaving into {@link UI.TitleUI.TitleScreenUI}.
+     * <p>
+     *     All timers have to be turned off, because if that was not done, they would run in the background and
+     *     the system would be overwhelmed.
+     * </p>
+     */
     public void turnOff() {
         stopAllTimers();
         MyFrame parent = getMyFrame();
