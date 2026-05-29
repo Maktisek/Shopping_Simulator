@@ -13,6 +13,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This class is an implementation of {@link BackgroundPanel}.
+ * <p>
+ *     It resembles the main window, where the shop and all important buttons are located.
+ * </p>
+ * This class used to be extremely long, so in order to make it shorter I divided it into 4 sections based on world sides.
+ * Every section has their own class.
+ * <p>
+ *     Connecting sides together is not the only thing that this class does, it also features {@link CardLayout}, in which all
+ *     in-game shops are stored.
+ * </p>
+ * <p>
+ *     {@link JLayeredPane} is used fore organizing components.
+ * </p>
+ * @author Matěj Pospíšil
+ * @since   1.0 - (pre-release version)
+ */
 public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
 
     private final JPanel cardPanel;
@@ -74,6 +91,10 @@ public class ShopManagementUI extends BackgroundPanel implements UpdateAble {
         initializeLayeredPane(wrapper);
     }
 
+    /**
+     * This method loads {@link #cardPanel} with instances of {@link ShopUI} made from all available shops inside {@link Shops.ShopManagement}.
+     * @throws InvalidUILoadException if there is a problem with initializing {@link ShopUI} instance
+     */
     private void initializeShops() throws InvalidUILoadException {
         for (int i = 0; i < gameData.getShopManagement().getShops().size(); i++) {
             Shop currentShop = gameData.getShopManagement().getShops().get(i);
