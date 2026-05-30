@@ -81,17 +81,16 @@ public class Tax implements Serializable {
      * </p>
      * Here are changes that happen when new rebirth is bought:
      * <ul>
-     *     <li>{@link #start} is set to 50% of what is {@link #current}</li>
+     *     <li>{@link #start} is set to 25% of what is {@link #current}</li>
      *     <li>{@link #current} is then set to start</li>
-     *     <li>{@link #max} is set to 400% of what it was before (this value will be probably changed in the future, since it was not
-     *     properly tested)</li>
+     *     <li>{@link #max} is set to 170% of what it was before</li>
      *     <li>{@link #dayNumber} is set to 1, because the player starts from day 1</li>
      * </ul>
      */
     public void updateAfterRebirth() {
-        this.start = Math.max(2, (int) (((double) this.current / (double) 100) * 50));
+        this.start = Math.max(2, (int) (((double) this.current / (double) 100) * 25));
         this.current = this.start;
-        this.max = (int) (((double) max / (double) 100) * 400);
+        this.max = (int) (((double) max / (double) 100) * 170);
         this.dayNumber = 1;
     }
 
