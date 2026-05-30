@@ -26,7 +26,7 @@ public class NewRebirthCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int price = getUpgradeManagement().getRebirth().getPrice();
+        long price = getUpgradeManagement().getRebirth().getPrice();
         if(!getPlayer().canBuy(price)){
             return new CommandResult("Not enough money for buying new rebirth", CommandState.FAILED_ISSUE);
         }

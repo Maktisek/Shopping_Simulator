@@ -18,15 +18,15 @@ public class ItemBase implements Serializable {
 
 
     private String name;
-    private int basePrice;
-    private int currentPrice;
-    private int wholePrice;
-    private int numberOfPrices;
+    private long basePrice;
+    private long currentPrice;
+    private long wholePrice;
+    private long numberOfPrices;
 
     public ItemBase() {
     }
 
-    public ItemBase(String name, int currentPrice, int basePrice) throws WrongItemException {
+    public ItemBase(String name, long currentPrice, long basePrice) throws WrongItemException {
         this.name = name;
         setCurrentPrice(currentPrice);
         this.basePrice = basePrice;
@@ -42,7 +42,7 @@ public class ItemBase implements Serializable {
      * @param currentPrice the value to be checked and set
      * @throws WrongItemException if the input was lower or equal to 0
      */
-    public void setCurrentPrice(int currentPrice) throws WrongItemException {
+    public void setCurrentPrice(long currentPrice) throws WrongItemException {
         if (currentPrice > 0) {
             this.wholePrice += currentPrice;
             this.numberOfPrices++;
@@ -52,7 +52,7 @@ public class ItemBase implements Serializable {
         }
     }
 
-    private int calculateAveragePrice(){
+    private long calculateAveragePrice(){
         if(numberOfPrices == 0){
             return currentPrice;
         }
@@ -71,11 +71,11 @@ public class ItemBase implements Serializable {
         return new ItemBase(this.name, this.currentPrice, this.basePrice);
     }
 
-    public int getCurrentPrice() {
+    public long getCurrentPrice() {
         return currentPrice;
     }
 
-    public int getBasePrice() {
+    public long getBasePrice() {
         return basePrice;
     }
 

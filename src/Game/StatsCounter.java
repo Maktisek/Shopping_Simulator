@@ -14,18 +14,18 @@ public class StatsCounter implements Serializable {
 
     private int shipped;
     private int bought;
-    private int earnings;
-    private int costs;
+    private long earnings;
+    private long costs;
 
 
-    public int averageShipPrice(){
+    public long averageShipPrice(){
         if(shipped == 0){
             return 0;
         }
         return earnings / shipped;
     }
 
-    public int averageBuyPrice(){
+    public long averageBuyPrice(){
         if(bought == 0){
             return 0;
         }
@@ -48,19 +48,19 @@ public class StatsCounter implements Serializable {
         this.bought = bought;
     }
 
-    public int getEarnings() {
+    public long getEarnings() {
         return earnings;
     }
 
-    public void setEarnings(int earnings) {
+    public void setEarnings(long earnings) {
         this.earnings = earnings;
     }
 
-    public int getCosts() {
+    public long getCosts() {
         return costs;
     }
 
-    public void setCosts(int costs) {
+    public void setCosts(long costs) {
         this.costs = costs;
     }
 }

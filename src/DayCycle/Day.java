@@ -27,8 +27,8 @@ public class Day implements Serializable {
     private DayName dayName;
     @SuppressWarnings("unused")
     private final int numberOfTheDay;
-    private int dayIncome;
-    private int daySpending;
+    private long dayIncome;
+    private long daySpending;
     private int dayBoughtAmount;
     private int daySoldAmount;
 
@@ -53,11 +53,11 @@ public class Day implements Serializable {
         this.dayName = dayName;
     }
 
-    public void incrementDayIncome(int income) {
+    public void incrementDayIncome(long income) {
         this.dayIncome += income;
     }
 
-    public void incrementDaySpending(int spending) {
+    public void incrementDaySpending(long spending) {
         this.daySpending += spending;
     }
 

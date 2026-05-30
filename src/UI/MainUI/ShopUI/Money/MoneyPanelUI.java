@@ -57,12 +57,12 @@ public class MoneyPanelUI extends BackgroundPanel implements UpdateAble {
 
     @Override
     public void update(){
-        int balance = gameData.getPlayer().getCurrentBalance();
+        long balance = gameData.getPlayer().getCurrentBalance();
         updateColors(balance);
         this.price.repaint();
     }
 
-    private void updateColors(int balance){
+    private void updateColors(long balance){
         if(balance < 0){
             this.price.setText("-"+Important.parseMoney(balance)+" FR");
             this.price.setForeground(Color.RED);

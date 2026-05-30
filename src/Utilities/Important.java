@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /**
  * This class is one of my oldest practise of all time.
@@ -123,7 +125,7 @@ public class Important {
      * <p>
      *      Here is the explanation of the process:
      *      <ul>
-     *          <li>Firstly the number is parsed through {@link #formatCurrency(int)} - from {@code 100000} to {@code 100 000}</li>
+     *          <li>Firstly the number is parsed through {@link #formatCurrency(long)} - from {@code 100000} to {@code 100 000}</li>
      *          <li>Secondly the index where the "main part" of the number ends is found - in our example it is index {@code 3}</li>
      *          <li>Thirdly if the index is {@code 0}, then it is just returned, otherwise number of digits after the "main part" are calculated.</li>
      *          <li>And then the number is returned through {@link #findStartOfNumber(String)} and {@link #findDigitName(int)}</li>
@@ -132,7 +134,7 @@ public class Important {
      * @param number the number to be parsed
      * @return the parsed number
      */
-    public static String parseMoney(int number) {
+    public static String parseMoney(long number) {
         if (number < 0) {
             number = number * -1;
         }
@@ -155,13 +157,15 @@ public class Important {
      * @param amount the number to be formated
      * @return the formated number
      */
-    private static String formatCurrency(int amount) {
+    private static String formatCurrency(long amount) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(' ');
         DecimalFormat df = new DecimalFormat("#,###");
         return df.format(amount).replace(",", " ");
     }
 
     /**
-     * Finds the first index where "main part" of a number formated through {@link #formatCurrency(int)} ends.
+     * Finds the first index where "main part" of a number formated through {@link #formatCurrency(long)} ends.
      * <p>
      *     For number {@code 100 000} it is index {@code 3}.
      * </p>
@@ -178,7 +182,7 @@ public class Important {
     }
 
     /**
-     * This method create shorter form of a desired number, which has been already formated through {@link #formatCurrency(int)}.
+     * This method create shorter form of a desired number, which has been already formated through {@link #formatCurrency(long)}.
      * <p>
      *     {@code 13 789 000} returns {@code 13,7}.
      * </p>
@@ -217,7 +221,19 @@ public class Important {
             }
 
             case 9 -> {
+                return "B";
+            }
+
+            case 12 ->{
                 return "T";
+            }
+
+            case 15 ->{
+                return "Qa";
+            }
+
+            case 18 ->{
+                return "Qi";
             }
         }
         return "";

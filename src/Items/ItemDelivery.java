@@ -13,11 +13,11 @@ import java.io.Serializable;
 public class ItemDelivery implements Serializable {
 
     private String name;
-    private final int boughtPrice;
+    private final long boughtPrice;
     private int daysToBeDelivered;
     private int amount;
 
-    public ItemDelivery(String name, int amount, int boughtPrice, int daysToBeDelivered) {
+    public ItemDelivery(String name, int amount, long boughtPrice, int daysToBeDelivered) {
         this.name = name;
         this.boughtPrice = boughtPrice;
         this.daysToBeDelivered = daysToBeDelivered;
@@ -40,7 +40,7 @@ public class ItemDelivery implements Serializable {
         this.daysToBeDelivered = daysToBeDelivered;
     }
 
-    public int getBoughtPrice() {
+    public long getBoughtPrice() {
         return boughtPrice;
     }
 

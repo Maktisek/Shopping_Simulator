@@ -44,7 +44,7 @@ public class SellProductCommand extends Command {
         }
         ItemNPC product = getCurrentShop().getNpc().getDemand()[index];
         String productName = product.getItemBase().getName();
-        int price = product.getItemBase().getCurrentPrice();
+        long price = product.getItemBase().getCurrentPrice();
         if (!product.getAmountManager().canDecrement(amount)) {
             return new CommandResult("Buyer does not need " + productName + " anymore", CommandState.FAILED_ISSUE);
         }
@@ -57,7 +57,7 @@ public class SellProductCommand extends Command {
         getStatsCounter().setEarnings(getStatsCounter().getEarnings() + (amount * price));
         product.getAmountManager().decrement(amount);
         getDayManagement().getCurrentDay().incrementDaySoldAmount(amount);
-        int income = amount * price;
+        long income = amount * price;
         getDayManagement().getCurrentDay().incrementDayIncome(income);
         getAchievementManagement().updateAchievement(AchievementType.SELL, amount);
         getAchievementManagement().updateAchievement(AchievementType.MONEY, income);

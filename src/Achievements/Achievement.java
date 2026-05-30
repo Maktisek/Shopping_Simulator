@@ -26,9 +26,9 @@ public class Achievement implements Serializable {
     public Achievement() {
     }
 
-    public void changeCurrent(int change) {
-        int after = this.current + change;
-        this.current = Math.min(after, bound);
+    public void changeCurrent(long change) {
+        long after = this.current + change;
+        this.current = Math.toIntExact(Math.min(after, bound));
     }
 
     public int returnReward(){

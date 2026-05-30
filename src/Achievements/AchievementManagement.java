@@ -92,7 +92,7 @@ public class AchievementManagement implements Serializable {
      * @param type the type of achievements to be updated
      * @param change the amount of which is the {@code current} of all found achievements incremented
      */
-    public void updateAchievement(AchievementType type, int change) {
+    public void updateAchievement(AchievementType type, long change) {
         ArrayList<Achievement> temp = possibleAchievements.get(type);
         if (temp != null) {
             for (Achievement achievement : temp) {

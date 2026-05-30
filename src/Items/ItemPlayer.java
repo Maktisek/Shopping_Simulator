@@ -30,11 +30,11 @@ import java.util.Queue;
 public class ItemPlayer implements Serializable {
 
     private String name;
-    private int amount;
-    private int sellAmount;
-    private int wholeBoughtPrice;
-    private int wholePrice;
-    private int wholeEarnings;
+    private long amount;
+    private long sellAmount;
+    private long wholeBoughtPrice;
+    private long wholePrice;
+    private long wholeEarnings;
     private double averageBuyPrice;
     private final Queue<Evidence> evidences;
     private final ArrayList<Double> averagePrices;
@@ -59,7 +59,7 @@ public class ItemPlayer implements Serializable {
      * @throws WrongEvidenceException if there is a problem with loading the evidence (this should never occur)
      * @throws WrongItemException if there is a problem with moving with data (also this should never occur)
      */
-    public void buyItem(int amount, int shopPrice) throws WrongEvidenceException, WrongItemException {
+    public void buyItem(int amount, long shopPrice) throws WrongEvidenceException, WrongItemException {
         moveWithAmount(amount);
         moveWithWholeBoughtPrice(amount, shopPrice);
         this.evidences.add(new Evidence(amount, shopPrice));
@@ -79,8 +79,8 @@ public class ItemPlayer implements Serializable {
         this.averagePrices.add(this.averageBuyPrice);
     }
 
-    private void moveWithAmount(int move) throws WrongItemException {
-        int afterMove = this.amount + move;
+    private void moveWithAmount(long move) throws WrongItemException {
+        long afterMove = this.amount + move;
         if (afterMove < 0) {
             throw new WrongItemException("There is less than " + -move + " pieces of " + name);
         } else {
@@ -88,8 +88,8 @@ public class ItemPlayer implements Serializable {
         }
     }
 
-    private void moveWithWholeBoughtPrice(int amount, int shopPrice) throws WrongItemException {
-        int afterMove = this.wholeBoughtPrice + (shopPrice * amount);
+    private void moveWithWholeBoughtPrice(int amount, long shopPrice) throws WrongItemException {
+        long afterMove = this.wholeBoughtPrice + (shopPrice * amount);
         if (afterMove < 0) {
             throw new WrongItemException("WholeBoughtPrice must be larger that -1");
         } else {
@@ -113,12 +113,12 @@ public class ItemPlayer implements Serializable {
      * @return how much the player made
      * @throws WrongItemException if the {@code amount} is larger than {@link #amount}
      */
-    public int sellItem(int amount, int NPCPrice) throws WrongItemException {
+    public long sellItem(long amount, long NPCPrice) throws WrongItemException {
         moveWithAmount(-amount);
         this.sellAmount += amount;
-        int result = 0;
+        long result = 0;
         while (amount != 0 && this.evidences.peek() != null) {
-            int[] arr = this.evidences.peek().register(amount);
+            long[] arr = this.evidences.peek().register(amount);
             amount = arr[0];
             result = result + (arr[3] * NPCPrice);
             if (arr[1] == 0) {
@@ -149,7 +149,7 @@ public class ItemPlayer implements Serializable {
     public String description(GameData gameData) {
         return "Amount:" + Important.parseMoney(this.amount) + "X" + "\n" + "To be delivered:" + Important.parseMoney(gameData.getPlayer().findNumberOfUndelivered(this.name)) + "X" +"\n" + "Avg. Buy Price:" + Important.parseMoney((int) averageBuyPrice) + " FR" + "\n" + "Total earnings:" + Important.parseMoney(wholeEarnings) + " FR"+  "\n" + "Total Spent:" + Important.parseMoney(wholePrice) + " FR" +"\n"+ "Total Avg. buy price:" + Important.parseMoney((int) calculateWholeTimeAveragePrice()) + " FR" + "\n" + "Total Avg. sell price:" + Important.parseMoney((int) calculateAverageSellPrice()) + " FR";
     }
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
@@ -157,7 +157,7 @@ public class ItemPlayer implements Serializable {
         return averageBuyPrice;
     }
 
-    public int getWholeBoughtPrice() {
+    public long getWholeBoughtPrice() {
         return wholeBoughtPrice;
     }
 
@@ -169,11 +169,11 @@ public class ItemPlayer implements Serializable {
         this.name = name;
     }
 
-    public int getSellAmount() {
+    public long getSellAmount() {
         return sellAmount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 }

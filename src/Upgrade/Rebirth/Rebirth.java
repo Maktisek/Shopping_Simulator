@@ -31,9 +31,9 @@ public class Rebirth implements Serializable {
 
     private double upgradeMultiplier;
     private double penalizationMultiplier;
-    private int price;
+    private long price;
     private int level;
-    private int capital;
+    private long capital;
 
     public Rebirth(int price) {
         this.upgradeMultiplier = 1;
@@ -101,11 +101,11 @@ public class Rebirth implements Serializable {
     }
 
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
@@ -113,7 +113,7 @@ public class Rebirth implements Serializable {
         return level;
     }
 
-    public int getCapital() {
+    public long getCapital() {
         return capital;
     }
 

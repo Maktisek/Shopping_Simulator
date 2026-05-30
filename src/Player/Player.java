@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class Player implements Serializable {
 
 
-    private int currentBalance;
+    private long currentBalance;
     private final ArrayList<ItemPlayer> stockItems;
     private final ArrayList<ItemDelivery> undeliveredItems;
     private final ArrayList<ItemDelivery> deliveredItems;
@@ -71,10 +71,10 @@ public class Player implements Serializable {
      * @throws InvalidPlayerActionException if player has not enough money
      */
     public void buyItemNew(ItemDelivery delivery) throws InvalidPlayerActionException {
-        if (delivery.getBoughtPrice() * delivery.getAmount() > this.currentBalance) {
+        if ((long) delivery.getBoughtPrice() * delivery.getAmount() > this.currentBalance) {
             throw new InvalidPlayerActionException("Not enough money for " + delivery.getName());
         }
-        this.currentBalance -= delivery.getAmount() * delivery.getBoughtPrice();
+        this.currentBalance -= (long) delivery.getAmount() * delivery.getBoughtPrice();
         this.undeliveredItems.add(delivery);
     }
 
@@ -97,7 +97,7 @@ public class Player implements Serializable {
 
     /**
      * This method transfers data from an instance of {@link ItemDelivery} into an instance of {@link ItemPlayer}.
-     * @throws InvalidPlayerActionException when an issue occurs in {@link #transferItem(String, int, int)}
+     * @throws InvalidPlayerActionException when an issue occurs in {@link #transferItem(String, long, int)}
      */
     private void transferDeliveredItems() throws InvalidPlayerActionException {
         for (ItemDelivery delivery : deliveredItems) {
@@ -116,7 +116,7 @@ public class Player implements Serializable {
      * @param amount how many of them were bought
      * @throws InvalidPlayerActionException if there is any issue allocated with manipulating with {@link ItemPlayer} data.
      */
-    private void transferItem(String name, int shopPrice, int amount) throws InvalidPlayerActionException {
+    private void transferItem(String name, long shopPrice, int amount) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
             throw new InvalidPlayerActionException(name + "could not be bought " + name + " could not be found");
@@ -131,7 +131,7 @@ public class Player implements Serializable {
     /**
      * This method represents a system of selling an item.
      * <p>
-     *     This system is much simpler than the system in {@link #transferItem(String, int, int)}
+     *     This system is much simpler than the system in {@link #transferItem(String, long, int)}
      *     Because the game can only manipulate with delivered items, no transfer is needed.
      * </p>
      * <p>
@@ -143,13 +143,13 @@ public class Player implements Serializable {
      * @throws InvalidPlayerActionException if the product cloud not be found (should never occur) or if there is a problem
      * in further process.
      */
-    public void sellItem(String name, int amount, int npcPrice) throws InvalidPlayerActionException {
+    public void sellItem(String name, int amount, long npcPrice) throws InvalidPlayerActionException {
         ItemPlayer foundItem = findItem(name);
         if (foundItem == null) {
             throw new InvalidPlayerActionException(name + "could not be sold - " + name + " could not be found");
         }
         try {
-            int profit = foundItem.sellItem(amount, npcPrice);
+            long profit = foundItem.sellItem(amount, npcPrice);
             this.currentBalance += profit;
         } catch (WrongItemException e) {
             throw new InvalidPlayerActionException(e.getMessage());
@@ -194,16 +194,16 @@ public class Player implements Serializable {
     }
 
 
-    public int calculateStocks() {
-        int stocks = 0;
+    public long calculateStocks() {
+        long stocks = 0;
         for (ItemPlayer itemPlayer : stockItems) {
             stocks += itemPlayer.getAmount();
         }
         return stocks;
     }
 
-    public int calculateAllStocks() {
-        int stocks = calculateStocks();
+    public long calculateAllStocks() {
+        long stocks = calculateStocks();
         for (ItemDelivery itemDelivery : undeliveredItems) {
             stocks += itemDelivery.getAmount();
         }
@@ -215,7 +215,7 @@ public class Player implements Serializable {
      * @return player's favorite product
      */
     public String findFavorite() {
-        int max = 0;
+        long max = 0;
         String result = "";
         for (ItemPlayer itemPlayer : stockItems) {
             if (itemPlayer.getSellAmount() > max) {
@@ -230,15 +230,15 @@ public class Player implements Serializable {
         return result;
     }
 
-    public boolean canBuy(int price) {
+    public boolean canBuy(long price) {
         return price <= this.currentBalance;
     }
 
-    public int getCurrentBalance() {
+    public long getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(int currentBalance) {
+    public void setCurrentBalance(long currentBalance) {
         this.currentBalance = currentBalance;
     }
 
