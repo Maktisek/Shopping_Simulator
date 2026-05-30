@@ -1,0 +1,31 @@
+[
+  {
+   "key" : "BUY",
+    "value" : {
+      "data" : 10,
+      "price" : 50,
+      "level" : 1,
+      "type" : "basic"
+    }
+  },
+  {
+    "key" : "SELL",
+    "type" : "basic",
+    "value" : {
+      "data" : 5,
+      "price" : 50,
+      "level" : 1,
+      "type" : "basic"
+    }
+  },
+  {
+    "key" : "STOCK",
+    "type" : "basic",
+    "value" : {
+      "data" : 20,
+      "price" : 70,
+      "level" : 1,
+      "type" : "basic"
+    }
+  }
+]

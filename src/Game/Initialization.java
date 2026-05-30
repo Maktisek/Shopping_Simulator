@@ -9,8 +9,11 @@ import Shops.Shop;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.Rebirth.Rebirth;
+import Upgrade.Upgrade;
+import Upgrade.UpgradeFinder;
 import Upgrade.UpgradeManagement;
-import com.google.gson.Gson;
+import Upgrade.UpgradeBasicType;
+import com.google.gson.*;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,12 +27,13 @@ import java.nio.charset.StandardCharsets;
  * In the end bonus methods for connecting still unconnected are being executed finishing the whole load process.
  *
  * @author Matěj Pospíšil
- * @since   1.0 - (pre-release version)
+ * @since 1.0 - (pre-release version)
  */
 public class Initialization {
 
     private final GameData gameData;
     private NPCFinder[] npcs;
+    private UpgradeFinder[] upgrades;
 
     public Initialization() {
         this.gameData = new GameData();
@@ -42,6 +46,7 @@ public class Initialization {
         loadShopManagement();
         loadNPCs();
         connectShopAndNPCs();
+        loadUpgrades();
         loadUpgradeManagement();
         loadAchievementManagement();
         loadStatsCounter();
@@ -144,8 +149,52 @@ public class Initialization {
         }
     }
 
+    /**
+     * This method loads {@link #upgrades} from json file located on {@code /Jsons/Upgrades.json}.
+     * <p>
+     *     Because there is a field of {@link Upgrade} data type in {@link UpgradeFinder}, the Gson do not know how to
+     *     create it, since {@link Upgrade} is an interface. This is why there is a code initializing the Gson and telling it what should it actually load based
+     *     on {@code type} field in the given json.
+     * </p>
+     * If the {@code type} is set to {@code basic}, then an instance of {@link UpgradeBasicType} is created.
+     * <p>
+     *     In the end, a finish method is executed for all instances of {@link UpgradeFinder} in {@link #upgrades}.
+     * </p>
+     */
+    private void loadUpgrades() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Upgrade.class, (JsonDeserializer<Upgrade>) (json, typeOfT, context) -> {
+                    JsonObject jsonObject = json.getAsJsonObject();
+                    String type = jsonObject.get("type").getAsString();
+                    if (type.equals("basic")) {
+                        return context.deserialize(json, UpgradeBasicType.class);
+                    }
+                    return null;
+                })
+                .create();
+
+        try (InputStream is = GameData.class.getResourceAsStream("/Jsons/Upgrades.json")) {
+            if (is == null) {
+                throw new IllegalStateException("The path for Json: /Jsons/Upgrades.json is invalid and the file could not be found");
+            }
+            this.upgrades = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), UpgradeFinder[].class);
+            for (UpgradeFinder upgradeFinder : upgrades) {
+                upgradeFinder.finishValue();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Loads {@link #gameData} with an instance of {@link UpgradeManagement} and then
+     * it loads the instance with all upgrades, which are found inside {@link #upgrades}.
+     */
     private void loadUpgradeManagement() {
         this.gameData.setUpgradeManagement(new UpgradeManagement());
+        for (UpgradeFinder upgradeFinder : upgrades) {
+            this.gameData.getUpgradeManagement().addUpgrade(upgradeFinder.getKey(), upgradeFinder.getValue());
+        }
     }
 
     /**

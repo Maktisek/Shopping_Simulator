@@ -30,6 +30,12 @@ public interface Upgrade {
     void changePrice();
 
     /**
+     * Sets type of the upgrade
+     * @param type the type to be set
+     */
+    void setNameInfo(UpgradeType type);
+
+    /**
      * Getter for inner data.
      * @return the data
      */

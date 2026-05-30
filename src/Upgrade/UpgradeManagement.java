@@ -1,9 +1,6 @@
 package Upgrade;
 
 import Upgrade.Rebirth.Rebirth;
-import Upgrade.Upgrades.MaxBoughtUpgrade;
-import Upgrade.Upgrades.MaxSoldUpgrade;
-import Upgrade.Upgrades.MaxStockUpgrade;
 import Upgrade.Utilities.UpgradeType;
 
 import java.io.Serializable;
@@ -37,9 +34,13 @@ public class UpgradeManagement implements Serializable {
      * This method loads {@link #upgrades} with all needed upgrades.
      */
     private void loadUpgrades(){
-        this.upgrades.put(UpgradeType.BUY, new MaxBoughtUpgrade());
-        this.upgrades.put(UpgradeType.SELL, new MaxSoldUpgrade());
-        this.upgrades.put(UpgradeType.STOCK, new MaxStockUpgrade());
+//        this.upgrades.put(UpgradeType.BUY, new MaxBoughtUpgrade());
+//        this.upgrades.put(UpgradeType.SELL, new MaxSoldUpgrade());
+//        this.upgrades.put(UpgradeType.STOCK, new MaxStockUpgrade());
+    }
+
+    public void addUpgrade(UpgradeType key, Upgrade value){
+        this.upgrades.put(key, value);
     }
 
     public void levelUpUpgrade(UpgradeType name){
