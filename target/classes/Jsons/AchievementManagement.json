@@ -22,7 +22,7 @@
       "description": "Buy 10K products",
       "bound": 10000,
       "current": 0,
-      "reward": 5000
+      "reward": 150000
     },
     {
       "type": "BUY",
@@ -30,7 +30,7 @@
       "description": "Buy 100K products",
       "bound": 100000,
       "current": 0,
-      "reward": 10000
+      "reward": 1200000
     },
     {
       "type": "BUY",
@@ -38,7 +38,7 @@
       "description": "Buy 1M products",
       "bound": 1000000,
       "current": 0,
-      "reward": 1000000
+      "reward": 300000000
     },
     {
       "type": "BUY",
@@ -46,7 +46,7 @@
       "description": "Buy 10M products",
       "bound": 10000000,
       "current": 0,
-      "reward": 10000000
+      "reward": 1000000000
     },
     {
       "type": "SELL",
@@ -70,7 +70,7 @@
       "description": "Sell 10K products",
       "bound": 10000,
       "current": 0,
-      "reward": 5000
+      "reward": 150000
     },
     {
       "type": "SELL",
@@ -78,7 +78,7 @@
       "description": "Sell 100K products",
       "bound": 100000,
       "current": 0,
-      "reward": 10000
+      "reward": 1200000
     },
     {
       "type": "SELL",
@@ -86,7 +86,7 @@
       "description": "Sell 1M products",
       "bound": 1000000,
       "current": 0,
-      "reward": 100000
+      "reward": 300000000
     },
     {
       "type": "SELL",
@@ -94,7 +94,7 @@
       "description": "Sell 10M products",
       "bound": 10000000,
       "current": 0,
-      "reward": 1000000
+      "reward": 1000000000
     },
     {
       "type": "MONEY",
@@ -110,15 +110,15 @@
       "description": "Earn 10K Tony Franks",
       "bound": 10000,
       "current": 0,
-      "reward": 1000
+      "reward": 2000
     },
     {
       "type": "MONEY",
-      "name": "I cloud join politics",
+      "name": "I could join politics",
       "description": "Earn 100K Tony Franks",
-      "bound": 50000,
+      "bound": 100000,
       "current": 0,
-      "reward": 8000
+      "reward": 10000
     },
     {
       "type": "MONEY",
@@ -126,7 +126,7 @@
       "description": "Earn 1M Tony Franks",
       "bound": 1000000,
       "current": 0,
-      "reward": 12000
+      "reward": 75000
     },
     {
       "type": "MONEY",
@@ -134,7 +134,7 @@
       "description": "Earn 10M Tony Franks",
       "bound": 10000000,
       "current": 0,
-      "reward": 80000
+      "reward": 500000
     },
     {
       "type": "MONEY",
@@ -142,7 +142,15 @@
       "description": "Earn 100M Tony Franks",
       "bound": 100000000,
       "current": 0,
-      "reward": 8000000
+      "reward": 5000000
+    },
+    {
+      "type": "MONEY",
+      "name": "B like baguette",
+      "description": "Earn 1B Tony Franks",
+      "bound": 1000000000,
+      "current": 0,
+      "reward": 50000000
     }
   ]
 }
