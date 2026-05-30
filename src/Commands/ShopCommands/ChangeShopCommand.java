@@ -6,6 +6,7 @@ import Commands.CommandState;
 import Game.GameData;
 import Shops.Shop;
 import Shops.ShopDirection;
+import Utilities.Important;
 
 /**
  * This command represents a system of changing shops.
@@ -37,7 +38,7 @@ public class ChangeShopCommand extends Command {
 
         if (!getShopManagement().isBought(direction)) {
             Shop temp = getShopManagement().peek(direction);
-            return new CommandResult("Do you want to buy " + temp.getName() + " for " + temp.getShopKey().getPrice() + "?",
+            return new CommandResult("Do you want to buy " + temp.getName() + " for " + Important.parseMoney(temp.getShopKey().getPrice()) + "?",
                     CommandState.FAILED_BUY);
         }
 

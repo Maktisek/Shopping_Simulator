@@ -111,8 +111,8 @@
       "name": "MINES",
       "npc": null,
       "shopKey": {
-        "price": 2000,
-        "unlocked": true,
+        "price": 2500,
+        "unlocked": false,
         "rebirthLevel" : 2
       },
       "items": [
