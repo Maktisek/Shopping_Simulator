@@ -118,7 +118,7 @@
       "description": "Earn 100K Tony Franks",
       "bound": 50000,
       "current": 0,
-      "reward": 80000
+      "reward": 8000
     },
     {
       "type": "MONEY",
@@ -126,7 +126,7 @@
       "description": "Earn 1M Tony Franks",
       "bound": 1000000,
       "current": 0,
-      "reward": 120000
+      "reward": 12000
     },
     {
       "type": "MONEY",
@@ -134,7 +134,7 @@
       "description": "Earn 10M Tony Franks",
       "bound": 10000000,
       "current": 0,
-      "reward": 800000
+      "reward": 80000
     },
     {
       "type": "MONEY",
@@ -142,7 +142,7 @@
       "description": "Earn 100M Tony Franks",
       "bound": 100000000,
       "current": 0,
-      "reward": 80000000
+      "reward": 8000000
     }
   ]
 }

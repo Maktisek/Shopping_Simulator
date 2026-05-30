@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
 /**
  * This class is one of my oldest practise of all time.
@@ -195,12 +194,29 @@ public class Important {
             if (number.charAt(i) != ' ') {
                 result += number.charAt(i);
             } else {
-                String next = "";
-                if (number.charAt(i + 1) != '0') {
-                    next = "," + number.charAt(i + 1);
-                }
+                String next = getAfterComma(number.charAt(i + 1), number.charAt(i + 2));
                 return result + next;
             }
+        }
+        return "";
+    }
+
+    /**
+     * Writes two numbers following a comma.
+     * <p>
+     *     If both of them are {@code '0'}, then nothing is returned.
+     *     Otherwise, comma and both numbers are returned as a String.
+     * </p>
+     * <p>
+     *     Note: The numbers have to be inserted as characters.
+     * </p>
+     * @param one stands for the first number
+     * @param two represents the second number
+     * @return comma and both numbers if both of are not {@code '0'}, nothing if they are
+     */
+    private static String getAfterComma(char one, char two){
+        if (one != '0' || two != '0') {
+          return ",".concat(String.valueOf(one).concat(String.valueOf(two)));
         }
         return "";
     }
