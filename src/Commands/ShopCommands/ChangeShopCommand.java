@@ -36,8 +36,12 @@ public class ChangeShopCommand extends Command {
             return new CommandResult("There is no other shop available", CommandState.FAILED_ISSUE);
         }
 
+        Shop temp = getShopManagement().peek(direction);
+        if (temp.getShopKey().getRebirthLevel() > getUpgradeManagement().getRebirth().getLevel()){
+            return new CommandResult("You need rebirth level " + temp.getShopKey().getRebirthLevel() + " for unlocking " + temp.getName(), CommandState.FAILED_ISSUE);
+        }
+
         if (!getShopManagement().isBought(direction)) {
-            Shop temp = getShopManagement().peek(direction);
             return new CommandResult("Do you want to buy " + temp.getName() + " for " + Important.parseMoney(temp.getShopKey().getPrice()) + "?",
                     CommandState.FAILED_BUY);
         }

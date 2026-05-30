@@ -125,6 +125,7 @@ public class MainUI extends BackgroundPanel implements UpdateAble, DialogAble {
     @Override
     public void update() {
         this.updater = new Timer(5, e -> {
+            repaint();
             try {
                 this.shopManagementUI.update();
             } catch (InvalidUILoadException ex) {

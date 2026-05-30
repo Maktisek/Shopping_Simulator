@@ -183,7 +183,7 @@ public class Important {
     /**
      * This method create shorter form of a desired number, which has been already formated through {@link #formatCurrency(long)}.
      * <p>
-     *     {@code 13 789 000} returns {@code 13,7}.
+     *     {@code 13 789 000} returns {@code 13,78}.
      * </p>
      * @param number the number to be shortened
      * @return the shortened number
@@ -215,9 +215,14 @@ public class Important {
      * @return comma and both numbers if both of are not {@code '0'}, nothing if they are
      */
     private static String getAfterComma(char one, char two){
-        if (one != '0' || two != '0') {
-          return ",".concat(String.valueOf(one).concat(String.valueOf(two)));
+        if ((one != '0' && two != '0') || (one == '0' && two != '0')) {
+            return ",".concat(String.valueOf(one).concat(String.valueOf(two)));
         }
+
+        if (one != '0') {
+            return ",".concat(String.valueOf(one));
+        }
+
         return "";
     }
 

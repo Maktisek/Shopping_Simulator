@@ -200,6 +200,8 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
         } else {
             this.price.setForeground(Color.RED);
         }
+        this.price.repaint();
+        this.price.revalidate();
     }
 
     public void setItem(Item item) {

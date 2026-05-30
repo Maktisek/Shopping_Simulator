@@ -44,7 +44,7 @@ public class MoneyPanelUI extends BackgroundPanel implements UpdateAble {
         center.setLayout(new BoxLayout(center, BoxLayout.X_AXIS));
         center.setOpaque(false);
 
-        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 24);
+        this.price = new StrokeLabel(Important.parseMoney(gameData.getPlayer().getCurrentBalance()), 22);
         add(price, BorderLayout.CENTER);
     }
 
