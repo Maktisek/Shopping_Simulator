@@ -28,6 +28,7 @@ public class SwapMuteCommand extends Command {
         Important.getAudioManagement().setMute(!Important.getAudioManagement().isMute());
         if (Important.getAudioManagement().isMute()) {
             Important.getAudioManagement().pauseAllMusic();
+            Important.getAudioManagement().stopAllSounds();
         } else {
             Important.getAudioManagement().resumeAll();
             Important.getAudioManagement().pollFromQueue();

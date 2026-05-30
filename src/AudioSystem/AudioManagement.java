@@ -226,7 +226,7 @@ public class AudioManagement {
         }
     }
 
-    private void stopAllSounds() {
+    public void stopAllSounds() {
         for (Audio audio : sounds) {
             audio.stopAll();
         }
