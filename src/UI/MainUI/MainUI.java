@@ -172,7 +172,7 @@ public class MainUI extends BackgroundPanel implements UpdateAble, DialogAble {
             String message = "Goal \"" + temp.getName() + "\" has been reached";
             System.out.println(message);
             Important.getAudioManagement().pauseSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC);
-            showDialog(new DialogUI("/Sprites/AchievementSprites/ACHIEVEMENT_PANE.png", message, "NewGoal"));
+            showDialog(new DialogUI("/Sprites/AchievementSprites/ACHIEVEMENT_PANE.png", message, "NewGoal", gameData));
         }
     }
 

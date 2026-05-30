@@ -18,7 +18,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 280,
+          "priceSensitivity": 220,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 100,
@@ -37,7 +37,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 270,
+          "priceSensitivity": 210,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 50,
@@ -56,7 +56,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 250,
+          "priceSensitivity": 190,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 35,
@@ -75,7 +75,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 230,
+          "priceSensitivity": 170,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 25,
@@ -94,7 +94,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 200,
+          "priceSensitivity": 140,
           "daysToBeDelivered" : 3,
           "amountManager" : {
             "max" : 10,
@@ -124,7 +124,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 280,
+          "priceSensitivity": 220,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 100,
@@ -143,7 +143,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 270,
+          "priceSensitivity": 210,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 60,
@@ -162,7 +162,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 250,
+          "priceSensitivity": 190,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 40,
@@ -181,7 +181,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 230,
+          "priceSensitivity": 170,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 30,
@@ -200,7 +200,7 @@
           },
           "penalization": 1,
           "currentDayAmount": 0,
-          "priceSensitivity": 200,
+          "priceSensitivity": 140,
           "daysToBeDelivered" : 3,
           "amountManager" : {
             "max" : 5,

@@ -37,7 +37,7 @@ public class SaveDialogUI extends YesNoDialogUI {
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         try {
             parent.hideDialog();
-            parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Save"));
+            parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Save", null));
         } catch (InvalidUILoadException ex) {
             throw new RuntimeException(ex);
         }

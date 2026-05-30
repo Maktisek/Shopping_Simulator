@@ -155,7 +155,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error"));
+                    parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error", null));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

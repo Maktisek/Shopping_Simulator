@@ -48,9 +48,10 @@ public class DialogUI extends BaseDialogUI {
      * @param sound is a title of the sound to be played.
      * @throws InvalidUILoadException if there is any problem while loading the image
      */
-    public DialogUI(String imgFile, String message, String sound) throws InvalidUILoadException {
+    public DialogUI(String imgFile, String message, String sound, GameData gameData) throws InvalidUILoadException {
         super(imgFile, message);
         Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0, false);
+        this.gameData = gameData;
         initializeButton();
     }
 
