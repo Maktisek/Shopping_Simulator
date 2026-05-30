@@ -48,7 +48,7 @@ public class Shop implements Serializable {
      * @param rebirthCoefficient represents a coefficient that is useful in further process (the rebirth coefficient comes from {@link Rebirth#getPenalizationMultiplier()})
      */
     public void buyItem(int index, int amount, double rebirthCoefficient){
-        items[index].updatePenalization(0.02 * amount, rebirthCoefficient);
+        items[index].updatePenalization(amount, rebirthCoefficient);
         items[index].updateCurrentDayAmount(amount);
     }
 
@@ -81,13 +81,19 @@ public class Shop implements Serializable {
      */
     private void updateItems(double rebirthCoefficient){
         for (ItemShop item : items){
-            item.newDayPenalization(0.01920, rebirthCoefficient);
-            item.getAmountManager().stockIn();
+            int amount;
+            if(item.getMoveAbleDayAmount() == 0){
+                amount = 2;
+            }else {
+                amount = item.getMoveAbleDayAmount();
+            }
             try {
                 item.updatePrice();
             }catch (WrongItemException e){
                 System.err.println(e.getMessage());
             }
+            item.newDayPenalization(amount, rebirthCoefficient);
+            item.getAmountManager().stockIn();
             item.resetCurrentDayAmount();
         }
     }

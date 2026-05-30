@@ -30,7 +30,12 @@ public class ItemShop implements Item, Serializable {
 
     private ItemBase item;
     private double penalization;
+    @SuppressWarnings("unused")
+    private double addPenalization;
+    @SuppressWarnings("unused")
+    private double coolDown;
     private int currentDayAmount;
+    private int moveAbleDayAmount;
     @SuppressWarnings("unused")
     private int priceSensitivity;
     @SuppressWarnings("unused")
@@ -42,7 +47,7 @@ public class ItemShop implements Item, Serializable {
     }
 
     public void updatePrice() throws WrongItemException {
-        this.item.setCurrentPrice((int) Math.round((this.item.getBasePrice() * penalization * (1 + calculateBonusPenalization()))));
+        this.item.setCurrentPrice(Math.round((this.item.getBasePrice() * penalization * (1 + calculateBonusPenalization()))));
     }
 
     private double calculateBonusPenalization() {
@@ -64,12 +69,27 @@ public class ItemShop implements Item, Serializable {
      * @param change stands for how much should be {@link #penalization} incremented.
      * @param rebirthCoefficient comes from {@link Rebirth#getPenalizationMultiplier()}, which tenderly softens the changes
      */
-    public void updatePenalization(double change, double rebirthCoefficient) {
+    public void updatePenalization(int amount, double rebirthCoefficient) {
+        double change = addPenalization * amount;
         if(change < 0){
             change = -1 * change;
         }
-        double afterChange = (this.penalization + ((change * (5 / (penalization) / 2))) * rebirthCoefficient);
-        this.penalization = Math.min(afterChange, 1.2);
+        double afterChange = (this.penalization + (change * rebirthCoefficient));
+        if(afterChange > 1.2){
+            this.penalization = 1.2;
+            System.out.println(this.penalization);
+            calculateUnpenalizedProducts(change, afterChange);
+        }else {
+            this.penalization = afterChange;
+            System.out.println(this.penalization);
+        }
+    }
+
+    private void calculateUnpenalizedProducts(double change, double afterChange){
+        while (afterChange > 1.2){
+            afterChange -= change;
+            this.moveAbleDayAmount--;
+        }
     }
 
     /**
@@ -81,19 +101,16 @@ public class ItemShop implements Item, Serializable {
      *     Watch out, {@link #penalization} is always decremented, never incremented.
      * </p>
      * Use this method only when setting a new day, because it does not check upper bound.
-     * @param change stands for how much should be {@link #penalization} decremented.
      * @param rebirthCoefficient comes from {@link Rebirth#getPenalizationMultiplier()}, which tenderly softens the changes
      */
-    public void newDayPenalization(double change, double rebirthCoefficient) {
-        if(change > 0){
-            change = -1 * change;
-        }
-        double afterChange = (this.penalization + (change) * rebirthCoefficient);
+    public void newDayPenalization(int amount, double rebirthCoefficient) {
+        double afterChange = (this.penalization - (coolDown * amount) * rebirthCoefficient);
         this.penalization = Math.max(afterChange, 0.9);
     }
 
     public void updateCurrentDayAmount(int change) {
         this.currentDayAmount += change;
+        this.moveAbleDayAmount += change;
     }
 
     public void resetCurrentDayAmount() {
@@ -119,5 +136,9 @@ public class ItemShop implements Item, Serializable {
 
     public AmountManager getAmountManager() {
         return amountManager;
+    }
+
+    public int getMoveAbleDayAmount() {
+        return moveAbleDayAmount;
     }
 }

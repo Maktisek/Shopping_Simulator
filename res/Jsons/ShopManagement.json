@@ -17,8 +17,10 @@
             "currentPrice": 15
           },
           "penalization": 1,
+          "addPenalization" : 0.15,
+          "coolDown" : 0.1,
           "currentDayAmount": 0,
-          "priceSensitivity": 220,
+          "priceSensitivity": 260,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 100,
@@ -36,8 +38,10 @@
             "currentPrice": 30
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.099307,
           "currentDayAmount": 0,
-          "priceSensitivity": 210,
+          "priceSensitivity": 250,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 50,
@@ -55,8 +59,10 @@
             "currentPrice": 50
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 190,
+          "priceSensitivity": 230,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 35,
@@ -74,8 +80,10 @@
             "currentPrice": 100
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 170,
+          "priceSensitivity": 210,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 25,
@@ -93,8 +101,10 @@
             "currentPrice": 300
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 140,
+          "priceSensitivity": 180,
           "daysToBeDelivered" : 3,
           "amountManager" : {
             "max" : 10,
@@ -111,7 +121,7 @@
       "name": "MINES",
       "npc": null,
       "shopKey": {
-        "price": 2500,
+        "price": 1500,
         "unlocked": false,
         "rebirthLevel" : 2
       },
@@ -123,8 +133,10 @@
             "currentPrice": 350
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 220,
+          "priceSensitivity": 260,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 100,
@@ -142,8 +154,10 @@
             "currentPrice": 450
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 210,
+          "priceSensitivity": 250,
           "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 60,
@@ -161,8 +175,10 @@
             "currentPrice": 550
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 190,
+          "priceSensitivity": 230,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 40,
@@ -180,8 +196,10 @@
             "currentPrice": 800
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 170,
+          "priceSensitivity": 210,
           "daysToBeDelivered" : 2,
           "amountManager" : {
             "max" : 30,
@@ -199,8 +217,10 @@
             "currentPrice": 1000
           },
           "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
           "currentDayAmount": 0,
-          "priceSensitivity": 140,
+          "priceSensitivity": 180,
           "daysToBeDelivered" : 3,
           "amountManager" : {
             "max" : 5,
