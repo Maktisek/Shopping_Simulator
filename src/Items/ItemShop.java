@@ -77,11 +77,9 @@ public class ItemShop implements Item, Serializable {
         double afterChange = (this.penalization + (change * rebirthCoefficient));
         if(afterChange > 1.2){
             this.penalization = 1.2;
-            System.out.println(this.penalization);
             calculateUnpenalizedProducts(change, afterChange);
         }else {
             this.penalization = afterChange;
-            System.out.println(this.penalization);
         }
     }
 
