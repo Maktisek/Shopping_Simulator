@@ -74,6 +74,16 @@
       "music": true,
       "soundPool": 2,
       "shifting": true
+    },
+    {
+      "title": "DESERT",
+      "filePath": "/Audio/Music/Desert.wav",
+      "infiniteLoop": true,
+      "paused": false,
+      "initialVolume": 0.7,
+      "music": true,
+      "soundPool": 2,
+      "shifting": true
     }
   ],
   "sounds": [
@@ -184,7 +194,7 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool": 1,
+      "soundPool": 3,
       "shifting": true
     },
     {
@@ -204,7 +214,7 @@
       "paused": false,
       "initialVolume": 0.5,
       "music": false,
-      "soundPool": 1,
+      "soundPool": 2,
       "shifting": true
     },
     {

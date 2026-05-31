@@ -5,6 +5,7 @@ import Commands.CommandResult;
 import Commands.CommandState;
 import Game.GameData;
 import Game.Initialization;
+import Items.Exceptions.WrongItemException;
 
 /**
  * This command represents a system of buying new rebirth.
@@ -35,7 +36,11 @@ public class NewRebirthCommand extends Command {
         getUpgradeManagement().setNewRebirth();
 
         GameData temp = new Initialization().getGameData();
-        temp.copyFromRebirth(this.getGameData());
+        try {
+            temp.copyFromRebirth(this.getGameData());
+        } catch (WrongItemException e) {
+            return new CommandResult("This should not happen", CommandState.FAILED_ISSUE);
+        }
         this.getGameData().copyFromLoaded(temp);
 
         return new CommandResult("New rebirth - level " + getUpgradeManagement().getRebirth().getLevel(), CommandState.DONE);

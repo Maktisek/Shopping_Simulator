@@ -45,7 +45,7 @@ public class ContinueUpgradeDialogUI extends YesNoDialogUI {
         MainUI parentShop = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         if (result.getState() == CommandState.FAILED_ISSUE) {
             try {
-                parentShop.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error", null));
+                parentShop.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error"));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

@@ -39,7 +39,7 @@ public class SaveAndQuitDialogUI extends YesNoDialogUI {
         try {
             Important.getAudioManagement().playSound("Save", AudioType.SOUNDS, 0, false);
             parent.hideDialog();
-            parent.showDialog(new TurnOffTheGameDialogUI(result.getMessage(), parent));
+            parent.showDialog(new TurnOffTheGameDialogUI(result.getMessage() + ", do you want to quit?", parent));
         } catch (InvalidUILoadException ex) {
             throw new RuntimeException(ex);
         }

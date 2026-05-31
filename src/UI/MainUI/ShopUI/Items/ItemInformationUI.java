@@ -64,7 +64,7 @@ public class ItemInformationUI extends BackgroundPanel {
         setBorder(BorderFactory.createEmptyBorder(Important.calculateDimension(20), 0, 0, 0));
 
 
-        StrokeLabel label = new StrokeLabel(this.name, 48);
+        StrokeLabel label = new StrokeLabel(this.name, 44);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         wrapper.add(label);

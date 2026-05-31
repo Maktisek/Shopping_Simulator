@@ -15,16 +15,12 @@ import javax.swing.*;
  * <p>
  *     It features an exit button, which closes the dialog.
  * </p>
- * <p>
- *     In some cases {@link #gameData} has to be implemented.
- * </p>
  * @author Matěj Pospíšil
  * @since   1.0 - (pre-release version)
  */
 public class DialogUI extends BaseDialogUI {
 
     protected CustomButton button;
-    private GameData gameData;
 
     /**
      * This constructor represents the basic constructor
@@ -48,10 +44,9 @@ public class DialogUI extends BaseDialogUI {
      * @param sound is a title of the sound to be played.
      * @throws InvalidUILoadException if there is any problem while loading the image
      */
-    public DialogUI(String imgFile, String message, String sound, GameData gameData) throws InvalidUILoadException {
+    public DialogUI(String imgFile, String message, String sound) throws InvalidUILoadException {
         super(imgFile, message);
         Important.getAudioManagement().playSound(sound, AudioType.SOUNDS, 0, false);
-        this.gameData = gameData;
         initializeButton();
     }
 
@@ -72,9 +67,6 @@ public class DialogUI extends BaseDialogUI {
      * Initializes the action the button action.
      */
     public void buttonAction(){
-        if(gameData != null){
-            Important.getAudioManagement().resumeSound(gameData.getShopManagement().getCurrentShop().getName(), AudioType.MUSIC, false);
-        }
         MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
         parent.hideDialog();
     }

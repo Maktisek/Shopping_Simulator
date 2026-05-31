@@ -79,7 +79,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
     }
 
     private void initializeLabel() {
-        name = new StrokeLabel(this.item.getItemBase().getName(), 14);
+        name = new StrokeLabel(this.item.getItemBase().getName(), 13);
 
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         name.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -155,7 +155,7 @@ public class ItemUI extends BackgroundPanel implements UpdateAble {
             if (Objects.requireNonNull(result.getState()) == CommandState.FAILED_ISSUE) {
                 MainUI parent = (MainUI) SwingUtilities.getAncestorOfClass(MainUI.class, this);
                 try {
-                    parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error", null));
+                    parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png", result.getMessage(), "Error"));
                 } catch (InvalidUILoadException ex) {
                     throw new RuntimeException(ex);
                 }

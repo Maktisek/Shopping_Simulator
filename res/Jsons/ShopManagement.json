@@ -84,7 +84,7 @@
           "coolDown" : 0.092307,
           "currentDayAmount": 0,
           "priceSensitivity": 210,
-          "daysToBeDelivered" : 2,
+          "daysToBeDelivered" : 1,
           "amountManager" : {
             "max" : 25,
             "current" : 5,
@@ -150,8 +150,8 @@
         {
           "item": {
             "name": "COAL",
-            "basePrice": 450,
-            "currentPrice": 450
+            "basePrice": 500,
+            "currentPrice": 500
           },
           "penalization": 1,
           "addPenalization" : 0.2,
@@ -171,8 +171,8 @@
         {
           "item": {
             "name": "RUBY",
-            "basePrice": 550,
-            "currentPrice": 550
+            "basePrice": 1000,
+            "currentPrice": 1000
           },
           "penalization": 1,
           "addPenalization" : 0.2,
@@ -192,8 +192,8 @@
         {
           "item": {
             "name": "EMERALD",
-            "basePrice": 800,
-            "currentPrice": 800
+            "basePrice": 1800,
+            "currentPrice": 1800
           },
           "penalization": 1,
           "addPenalization" : 0.2,
@@ -213,8 +213,124 @@
         {
           "item": {
             "name": "DIAMOND",
-            "basePrice": 1000,
-            "currentPrice": 1000
+            "basePrice": 2400,
+            "currentPrice": 2400
+          },
+          "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
+          "currentDayAmount": 0,
+          "priceSensitivity": 180,
+          "daysToBeDelivered" : 2,
+          "amountManager" : {
+            "max" : 5,
+            "current" : 0,
+            "interval" : {
+              "upperBound": 2,
+              "lowerBound" : 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DESERT",
+      "npc": null,
+      "shopKey": {
+        "price": 5000,
+        "unlocked": false,
+        "rebirthLevel" : 3
+      },
+      "items": [
+        {
+          "item": {
+            "name": "CACTUS",
+            "basePrice": 2500,
+            "currentPrice": 2500
+          },
+          "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
+          "currentDayAmount": 0,
+          "priceSensitivity": 260,
+          "daysToBeDelivered" : 1,
+          "amountManager" : {
+            "max" : 100,
+            "current" : 80,
+            "interval" : {
+              "upperBound": 12,
+              "lowerBound" : 8
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "COCONUT",
+            "basePrice": 3500,
+            "currentPrice": 3500
+          },
+          "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
+          "currentDayAmount": 0,
+          "priceSensitivity": 250,
+          "daysToBeDelivered" : 1,
+          "amountManager" : {
+            "max" : 60,
+            "current" : 30,
+            "interval" : {
+              "upperBound": 12,
+              "lowerBound" : 6
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "SADDLE",
+            "basePrice": 4800,
+            "currentPrice": 4800
+          },
+          "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
+          "currentDayAmount": 0,
+          "priceSensitivity": 230,
+          "daysToBeDelivered" : 1,
+          "amountManager" : {
+            "max" : 40,
+            "current" : 10,
+            "interval" : {
+              "upperBound": 8,
+              "lowerBound" : 4
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "GOLD NUGGET",
+            "basePrice": 7000,
+            "currentPrice": 7000
+          },
+          "penalization": 1,
+          "addPenalization" : 0.2,
+          "coolDown" : 0.092307,
+          "currentDayAmount": 0,
+          "priceSensitivity": 210,
+          "daysToBeDelivered" : 2,
+          "amountManager" : {
+            "max" : 30,
+            "current" : 2,
+            "interval" : {
+              "upperBound": 5,
+              "lowerBound" : 3
+            }
+          }
+        },
+        {
+          "item": {
+            "name": "SHERIFF STAR",
+            "basePrice": 10000,
+            "currentPrice": 10000
           },
           "penalization": 1,
           "addPenalization" : 0.2,

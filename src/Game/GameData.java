@@ -2,7 +2,9 @@ package Game;
 
 import Achievements.AchievementManagement;
 import DayCycle.DayManagement;
+import Items.Exceptions.WrongItemException;
 import Player.Player;
+import Shops.Shop;
 import Shops.ShopManagement;
 import Taxes.Tax;
 import Upgrade.UpgradeManagement;
@@ -182,16 +184,25 @@ public class GameData implements Serializable {
      * </p>
      *
      * @param gameData fresh new instance of {@link GameData}, from which the data will be taken
+     * @throws WrongItemException if there is problem with reloading players stocks
      */
-    public void copyFromRebirth(GameData gameData) {
+    public void copyFromRebirth(GameData gameData) throws WrongItemException {
         this.setDayManagement(gameData.getDayManagement());
         this.dayManagement.getCurrentDay().setDayBoughtAmount(0);
         this.dayManagement.getCurrentDay().setDaySoldAmount(0);
         this.setStatsCounter(gameData.getStatsCounter());
+        this.setAchievementManagement(gameData.getAchievementManagement());
         this.setTax(gameData.getTax());
         this.getTax().updateAfterRebirth();
         this.getUpgradeManagement().setRebirth(gameData.getUpgradeManagement().getRebirth());
         this.getPlayer().setCurrentBalance(this.getUpgradeManagement().getRebirth().getCapital());
+        this.getShopManagement().openAfterRebirth(gameData.getShopManagement());
+        this.getPlayer().getStockItems().clear();
+        for (Shop shop : getShopManagement().getShops()){
+            if(shop.getShopKey().isUnlocked()){
+                getPlayer().loadItems(shop.getItems());
+            }
+        }
     }
 
     @Override

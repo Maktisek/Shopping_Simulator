@@ -210,6 +210,14 @@ public class ShopManagement implements Serializable {
         }
     }
 
+    public void openAfterRebirth(ShopManagement shopManagement){
+        for (int i = 0; i < this.shops.size(); i++) {
+            if(shopManagement.getShops().get(i).getShopKey().isUnlocked()){
+                this.shops.get(i).getShopKey().setUnlocked(true);
+            }
+        }
+    }
+
     public ArrayList<Shop> getShops() {
         return shops;
     }

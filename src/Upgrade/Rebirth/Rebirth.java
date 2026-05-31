@@ -60,7 +60,7 @@ public class Rebirth implements Serializable {
      * Maybe it is too drastic on the start, so maybe in future updates this method will be changed.
      */
     private void updateUpgradeMultiplier(){
-        this.upgradeMultiplier = this.upgradeMultiplier * (1 + ((double) 2 / level));
+        this.upgradeMultiplier = this.upgradeMultiplier * (1 + ((double) 1 / level));
     }
 
     /**
@@ -79,7 +79,7 @@ public class Rebirth implements Serializable {
      * This method updates {@link #price} and it is used everytime after the player purchases new level.
      */
     private void updatePrice(){
-        this.price = (this.price * (1 + (level * 2)));
+        this.price = (long) (1000 * Math.pow(4, level));
     }
 
     /**

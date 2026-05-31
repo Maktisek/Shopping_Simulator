@@ -40,7 +40,7 @@ public class BuyShopDialogUI extends YesNoDialogUI {
         if(result.getState() == CommandState.FAILED_ISSUE){
             try {
                 parent.hideDialog();
-                parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage()));
+                parent.showDialog(new DialogUI("/Sprites/UtilityPanels/ISSUE_PANE.png",result.getMessage(), "error"));
             } catch (InvalidUILoadException ex) {
                 throw new RuntimeException(ex);
             }

@@ -14,7 +14,7 @@
       "description": "Buy 1K products",
       "bound": 1000,
       "current": 0,
-      "reward": 2000
+      "reward": 9000
     },
     {
       "type": "BUY",
@@ -62,7 +62,7 @@
       "description": "Sell 1K products",
       "bound": 1000,
       "current": 0,
-      "reward": 2000
+      "reward": 9000
     },
     {
       "type": "SELL",
@@ -110,7 +110,7 @@
       "description": "Earn 10K Tony Franks",
       "bound": 10000,
       "current": 0,
-      "reward": 2000
+      "reward": 1000
     },
     {
       "type": "MONEY",
@@ -118,7 +118,7 @@
       "description": "Earn 100K Tony Franks",
       "bound": 100000,
       "current": 0,
-      "reward": 10000
+      "reward": 6000
     },
     {
       "type": "MONEY",
@@ -126,7 +126,7 @@
       "description": "Earn 1M Tony Franks",
       "bound": 1000000,
       "current": 0,
-      "reward": 75000
+      "reward": 40000
     },
     {
       "type": "MONEY",
