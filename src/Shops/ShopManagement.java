@@ -210,6 +210,13 @@ public class ShopManagement implements Serializable {
         }
     }
 
+    /**
+     * This method opens all previously opened shops.
+     * <p>
+     *     This method has to be executed after buying new rebirth.
+     * </p>
+     * @param shopManagement the previous instance of {@link ShopManagement} (the one before rebirth)
+     */
     public void openAfterRebirth(ShopManagement shopManagement){
         for (int i = 0; i < this.shops.size(); i++) {
             if(shopManagement.getShops().get(i).getShopKey().isUnlocked()){
