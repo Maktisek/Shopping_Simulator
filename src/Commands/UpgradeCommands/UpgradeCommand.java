@@ -32,7 +32,7 @@ public class UpgradeCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int price = getUpgradeManagement().getUpgradePrice(name) * getGameData().getAmount();
+        long price = getUpgradeManagement().getUpgradePrice(name) * getGameData().getAmount();
         if (!getPlayer().canBuy(price)) {
             return new CommandResult("Not enough money for new upgrade", CommandState.FAILED_ISSUE);
         }

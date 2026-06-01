@@ -122,8 +122,8 @@
       "npc": null,
       "shopKey": {
         "price": 1500,
-        "unlocked": true,
-        "rebirthLevel" : 1
+        "unlocked": false,
+        "rebirthLevel" : 2
       },
       "items": [
         {
@@ -238,8 +238,8 @@
       "npc": null,
       "shopKey": {
         "price": 5000,
-        "unlocked": true,
-        "rebirthLevel" : 1
+        "unlocked": false,
+        "rebirthLevel" : 3
       },
       "items": [
         {

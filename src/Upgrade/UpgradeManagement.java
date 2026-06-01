@@ -51,11 +51,11 @@ public class UpgradeManagement implements Serializable {
         return (int) (this.upgrades.get(name).dataInfo() * rebirth.getUpgradeMultiplier());
     }
 
-    public int getUpgradePrice(UpgradeType name){
+    public long getUpgradePrice(UpgradeType name){
         return this.upgrades.get(name).priceInfo();
     }
 
-    public int getUpgradeLevel(UpgradeType name){
+    public long getUpgradeLevel(UpgradeType name){
         return this.upgrades.get(name).levelInfo();
     }
 

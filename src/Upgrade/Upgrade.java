@@ -39,19 +39,19 @@ public interface Upgrade {
      * Getter for inner data.
      * @return the data
      */
-    int dataInfo();
+    long dataInfo();
 
     /**
      * Getter for price.
      * @return the price
      */
-    int priceInfo();
+    long priceInfo();
 
     /**
      * Getter for the level
      * @return the level
      */
-    int levelInfo();
+    long levelInfo();
 
     /**
      * Getter for the upgrade type

@@ -16,15 +16,15 @@ import java.io.Serializable;
  */
 public class UpgradeBasicType implements Upgrade, Serializable {
 
-    private int data;
-    private int price;
-    private int level;
+    private long data;
+    private long price;
+    private long level;
     @SuppressWarnings("unused")
     private UpgradeType type;
 
     @Override
     public void levelUp() {
-        this.data += 2 * calculateDials();
+        this.data += 2L * calculateDials();
         changePrice();
         this.level++;
     }
@@ -45,17 +45,17 @@ public class UpgradeBasicType implements Upgrade, Serializable {
     }
 
     @Override
-    public int dataInfo() {
+    public long dataInfo() {
         return data;
     }
 
     @Override
-    public int priceInfo() {
+    public long priceInfo() {
         return this.price;
     }
 
     @Override
-    public int levelInfo() {
+    public long levelInfo() {
         return this.level;
     }
 
@@ -74,11 +74,11 @@ public class UpgradeBasicType implements Upgrade, Serializable {
         this.type = type;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
-    public void setData(int data) {
+    public void setData(long data) {
         this.data = data;
     }
 }
