@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class Launcher {
     public static void main(String[] args){
-        //Disables adapting to Windows percentual resolution.
+        //Disables adapting to Windows perceptual resolution.
         System.setProperty("sun.java2d.uiScale", "1");
 
         Thread loadThread = new Thread(() ->{

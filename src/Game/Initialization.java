@@ -182,7 +182,7 @@ public class Initialization {
                 upgradeFinder.finishValue();
             }
         } catch (Exception e) {
-            throw new RuntimeException("There is an mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
+            throw new RuntimeException("There is a mistake withing loading the Json file while loading ShopManagement: " + e.getMessage());
         }
     }
 

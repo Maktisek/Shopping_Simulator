@@ -45,7 +45,7 @@ public class BuyProductCommand extends Command {
         }
 
         ItemShop product = getCurrentShop().getItems()[index];
-        long price = getCurrentShop().getItems()[index].getItemBase().getCurrentPrice();
+        long price = product.getItemBase().getCurrentPrice();
         ItemDelivery itemToDeliver = new ItemDelivery(product.getItemBase().getName(), amount, price, product.getDaysToBeDelivered());
 
         if (getPlayer().calculateAllStocks() + amount > getUpgradeManagement().getUpgradeData(UpgradeType.STOCK)) {

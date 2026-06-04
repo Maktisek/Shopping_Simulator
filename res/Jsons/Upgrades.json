@@ -10,7 +10,6 @@
   },
   {
     "key" : "SELL",
-    "type" : "basic",
     "value" : {
       "data" : 5,
       "price" : 50,
@@ -20,7 +19,6 @@
   },
   {
     "key" : "STOCK",
-    "type" : "basic",
     "value" : {
       "data" : 20,
       "price" : 70,
